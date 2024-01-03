@@ -1,14 +1,25 @@
 import { useState } from 'react'
 
-import './App.css'
+import '../src/styles/main.scss'
 
-function App() {
-  
+//routes here
+
+import { AppHeader } from './cmps/AppHeader.jsx'
+import { AppFooter } from './cmps/AppFooter.jsx'
+
+
+
+
+export function App() {
+
 
   return (
-    <div></div>
+    <div>
+      <AppHeader />
+      <AppFooter />
+    </div>
 
   )
 }
 
-export default App
+
