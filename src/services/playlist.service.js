@@ -20,9 +20,11 @@ function query(filterSortBy = {}) {
 
 }
 
-function get(playlistId) {
+async function get(playlistId) {
+    const playlist = await asyncService.get(PLAYLISTS_KEY, playlistId)
+    playlist.duration = _getPlaylistDuration(playlist.songs)
 
-    return asyncService.get(PLAYLISTS_KEY, playlistId)
+    return playlist
 
 }
 
@@ -39,6 +41,28 @@ function remove(playlistId) {
     return asyncService.remove(playlistId)
 }
 
+function _getPlaylistDuration(items) {
+    let totalMinutes = 0
+
+    items.forEach(item => {
+        
+
+        const [hours, minutes] = item.duration.split(':')
+        totalMinutes += parseInt(hours, 10) * 60 + parseInt(minutes, 10)
+
+    })
+
+    const totalHours = Math.floor(totalMinutes / 60)
+    const remainingMinutes = totalMinutes % 60
+
+    const formattedTotalRunTime = `${String(totalHours).padStart(2, '0')}:
+    ${String(remainingMinutes).padStart(2, '0')}`
+
+    return formattedTotalRunTime
+}
+
+
+
 function _createPlaylists() {
 
     let playlists = utilService.loadFromStorage(PLAYLISTS_KEY)
@@ -46,8 +70,9 @@ function _createPlaylists() {
     if (!playlists || !playlists.length)
         playlists = [
             {
-                "_id": "5cksxjas89xjsa8xjsa8jxs03",
+                "_id": "5cksxjas89xjsa8xjsa8jxs01",
                 "name": "Soulful Groove",
+                "type": "playlist",
                 "tags": ["Soul", "Chill"],
                 "playlistImgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
                 "createdBy": {
@@ -58,181 +83,123 @@ function _createPlaylists() {
                 "likedByUsers": ['', ''],
                 "songs": [
                     {
-                        "id": "s1003",
+                        "_id": "s10a03",
                         "title": "Let's Stay Together",
+                        "album":utilService.makeLorem(1),
                         "artist": "Al Green",
+                        "type": "song",
+                        "duration": "02:30",
                         "trackUrl": "youtube/song5.mp4",
-                        "profileImgUrl": "https://i.ytimg.com/vi/COiIC3A0ROM/mqdefault.jpg",
+                        "songImgUrl": "https://i.ytimg.com/vi/COiIC3A0ROM/mqdefault.jpg",
                         "addedBy": 'Eran',
                         "addedAt": 162521765262
                     },
                     {
-                        "id": "fW9q-FF4w2A",
+                        "_id": "fW9a-FF4w2A",
                         "title": "What's Going On",
+                        "album":utilService.makeLorem(1),
                         "artist": "Marvin Gaye",
+                        "type": "song",
+                        "duration": "02:30",
                         "url": "youtube/song6.mp4",
                         "addedBy": "aaa",
-                        "profileImg": "https://i.ytimg.com/vi/fW9q-FF4w2A/mqdefault.jpg",
+                        "songImgUrl": "https://i.ytimg.com/vi/fW9q-FF4w2A/mqdefault.jpg",
                         "addedBy": {}
                     },
-                ]
-            },
-            {
-                "_id": "5cksxjas89xjsa8xjsa8jxs03",
-                "name": "Soulful Groove",
-                "tags": ["Soul", "Chill"],
-                "playlistImgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
-                "createdBy": {
-                    "_id": "u104",
-                    "username": "ccc",
-                    "profileImg": ""
-                },
-                "likedByUsers": ['', ''],
-                "songs": [
                     {
-                        "id": "s1003",
-                        "title": "Let's Stay Together",
-                        "artist": "Al Green",
-                        "trackUrl": "youtube/song5.mp4",
-                        "profileImgUrl": "https://i.ytimg.com/vi/COiIC3A0ROM/mqdefault.jpg",
-                        "addedBy": 'Eran',
-                        "addedAt": 162521765262
-                    },
-                    {
-                        "id": "fW9q-FF4w2A",
+                        "_id": "fW9q-FF4w2c",
                         "title": "What's Going On",
+                        "album":utilService.makeLorem(1),
                         "artist": "Marvin Gaye",
+                        "type": "song",
+                        "duration": "02:30",
                         "url": "youtube/song6.mp4",
                         "addedBy": "aaa",
-                        "profileImg": "https://i.ytimg.com/vi/fW9q-FF4w2A/mqdefault.jpg",
+                        "songImgUrl": "https://i.ytimg.com/vi/fW9q-FF4w2A/mqdefault.jpg",
                         "addedBy": {}
                     },
-                ]
-            },
-            {
-                "_id": "5cksxjas89xjsa8xjsa8jxs03",
-                "name": "Soulful Groove",
-                "tags": ["Soul", "Chill"],
-                "playlistImgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
-                "createdBy": {
-                    "_id": "u104",
-                    "username": "ccc",
-                    "profileImg": ""
-                },
-                "likedByUsers": ['', ''],
-                "songs": [
                     {
-                        "id": "s1003",
-                        "title": "Let's Stay Together",
-                        "artist": "Al Green",
-                        "trackUrl": "youtube/song5.mp4",
-                        "profileImgUrl": "https://i.ytimg.com/vi/COiIC3A0ROM/mqdefault.jpg",
-                        "addedBy": 'Eran',
-                        "addedAt": 162521765262
-                    },
-                    {
-                        "id": "fW9q-FF4w2A",
+                        "_id": "fW9q-FFa4w2A",
                         "title": "What's Going On",
+                        "album":utilService.makeLorem(1),
                         "artist": "Marvin Gaye",
+                        "type": "song",
+                        "duration": "02:30",
                         "url": "youtube/song6.mp4",
                         "addedBy": "aaa",
-                        "profileImg": "https://i.ytimg.com/vi/fW9q-FF4w2A/mqdefault.jpg",
+                        "songImgUrl": "https://i.ytimg.com/vi/fW9q-FF4w2A/mqdefault.jpg",
                         "addedBy": {}
                     },
-                ]
-            },
-            {
-                "_id": "5cksxjas89xjsa8xjsa8jxs03",
-                "name": "Soulful Groove",
-                "tags": ["Soul", "Chill"],
-                "playlistImgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
-                "createdBy": {
-                    "_id": "u104",
-                    "username": "ccc",
-                    "profileImg": ""
-                },
-                "likedByUsers": ['', ''],
-                "songs": [
                     {
-                        "id": "s1003",
-                        "title": "Let's Stay Together",
-                        "artist": "Al Green",
-                        "trackUrl": "youtube/song5.mp4",
-                        "profileImgUrl": "https://i.ytimg.com/vi/COiIC3A0ROM/mqdefault.jpg",
-                        "addedBy": 'Eran',
-                        "addedAt": 162521765262
-                    },
-                    {
-                        "id": "fW9q-FF4w2A",
+                        "_id": "fWd9q-FF4w2A",
                         "title": "What's Going On",
+                        "album":utilService.makeLorem(1),
                         "artist": "Marvin Gaye",
+                        "type": "song",
+                        "duration": "02:30",
                         "url": "youtube/song6.mp4",
                         "addedBy": "aaa",
-                        "profileImg": "https://i.ytimg.com/vi/fW9q-FF4w2A/mqdefault.jpg",
+                        "songImgUrl": "https://i.ytimg.com/vi/fW9q-FF4w2A/mqdefault.jpg",
                         "addedBy": {}
                     },
-                ]
-            },
-            {
-                "_id": "5cksxjas89xjsa8xjsa8jxs03",
-                "name": "Soulful Groove",
-                "tags": ["Soul", "Chill"],
-                "playlistImgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
-                "createdBy": {
-                    "_id": "u104",
-                    "username": "ccc",
-                    "profileImg": ""
-                },
-                "likedByUsers": ['', ''],
-                "songs": [
                     {
-                        "id": "s1003",
-                        "title": "Let's Stay Together",
-                        "artist": "Al Green",
-                        "trackUrl": "youtube/song5.mp4",
-                        "profileImgUrl": "https://i.ytimg.com/vi/COiIC3A0ROM/mqdefault.jpg",
-                        "addedBy": 'Eran',
-                        "addedAt": 162521765262
-                    },
-                    {
-                        "id": "fW9q-FF4w2A",
+                        "_id": "fW9vq-FF4w2A",
                         "title": "What's Going On",
+                        "album":utilService.makeLorem(1),
                         "artist": "Marvin Gaye",
+                        "type": "song",
+                        "duration": "02:30",
                         "url": "youtube/song6.mp4",
                         "addedBy": "aaa",
-                        "profileImg": "https://i.ytimg.com/vi/fW9q-FF4w2A/mqdefault.jpg",
+                        "songImgUrl": "https://i.ytimg.com/vi/fW9q-FF4w2A/mqdefault.jpg",
                         "addedBy": {}
                     },
-                ]
-            },
-            {
-                "_id": "5cksxjas89xjsa8xjsa8jxs03",
-                "name": "Soulful Groove",
-                "tags": ["Soul", "Chill"],
-                "playlistImgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
-                "createdBy": {
-                    "_id": "u104",
-                    "username": "ccc",
-                    "profileImg": ""
-                },
-                "likedByUsers": ['', ''],
-                "songs": [
                     {
-                        "id": "s1003",
-                        "title": "Let's Stay Together",
-                        "artist": "Al Green",
-                        "trackUrl": "youtube/song5.mp4",
-                        "profileImgUrl": "https://i.ytimg.com/vi/COiIC3A0ROM/mqdefault.jpg",
-                        "addedBy": 'Eran',
-                        "addedAt": 162521765262
-                    },
-                    {
-                        "id": "fW9q-FF4w2A",
+                        "_id": "fW9sq-FF4w2A",
                         "title": "What's Going On",
+                        "album":utilService.makeLorem(1),
                         "artist": "Marvin Gaye",
+                        "type": "song",
+                        "duration": "02:30",
                         "url": "youtube/song6.mp4",
                         "addedBy": "aaa",
-                        "profileImg": "https://i.ytimg.com/vi/fW9q-FF4w2A/mqdefault.jpg",
+                        "songImgUrl": "https://i.ytimg.com/vi/fW9q-FF4w2A/mqdefault.jpg",
+                        "addedBy": {}
+                    },
+                    {
+                        "_id": "fWg9q-FF4w2A",
+                        "title": "What's Going On",
+                        "album":utilService.makeLorem(1),
+                        "artist": "Marvin Gaye",
+                        "type": "song",
+                        "duration": "02:30",
+                        "url": "youtube/song6.mp4",
+                        "addedBy": "aaa",
+                        "songImgUrl": "https://i.ytimg.com/vi/fW9q-FF4w2A/mqdefault.jpg",
+                        "addedBy": {}
+                    },
+                    {
+                        "_id": "feW9q-FF4w2A",
+                        "title": "What's Going On",
+                        "album":utilService.makeLorem(1),
+                        "artist": "Marvin Gaye",
+                        "type": "song",
+                        "duration": "02:30",
+                        "url": "youtube/song6.mp4",
+                        "addedBy": "aaa",
+                        "songImgUrl": "https://i.ytimg.com/vi/fW9q-FF4w2A/mqdefault.jpg",
+                        "addedBy": {}
+                    },
+                    {
+                        "_id": "fWh9q-FF4w2A",
+                        "title": "What's Going On",
+                        "album":utilService.makeLorem(1),
+                        "artist": "Marvin Gaye",
+                        "type": "song",
+                        "duration": "02:30",
+                        "url": "youtube/song6.mp4",
+                        "addedBy": "aaa",
+                        "songImgUrl": "https://i.ytimg.com/vi/fW9q-FF4w2A/mqdefault.jpg",
                         "addedBy": {}
                     },
                 ]
