@@ -10,8 +10,7 @@ button {
 
 form > * {
   text-align: center;
-    width: 200px;
-    margin: 10px 0px;
+    width: 210px;
     align-self: center;
 }
 
@@ -24,6 +23,6 @@ form > * {
 
 }
 .btn-link:hover {
-    background-color: $clr1;
+    color: $clr5;
     transform: scale(1.1);
 }

@@ -5,6 +5,8 @@ import { useState } from 'react'
 
 export function LoginSighnup({isSignup}){
     const [credentials, setCredentials] = useState(userService.getEmptyCredentials())
+    const [selectedOption, setselectedOption] = useState('noAns')
+
 
     function handleChange({ target }) {
         const { name: field, value } = target
@@ -19,15 +21,17 @@ export function LoginSighnup({isSignup}){
 
     return (
         <form className="login-form" onSubmit={handleSubmit}>
+                        <label> Please enter your email</label>
             <input
                 type="text"
                 name="username"
                 value={credentials.username}
-                placeholder="Please enter your Email"
+                placeholder="Email"
                 onChange={handleChange}
                 required
                 autoFocus
             />
+                                    <label> Please enter your password</label>
             <input
                 type="password"
                 name="password"
@@ -37,11 +41,12 @@ export function LoginSighnup({isSignup}){
                 required
                 autoComplete="off"
             />
-            {isSignup && <div><input
+            {isSignup && <div>
+                <label> Please enter your name</label><input
                 type="text"
                 name="Nickname"
                 value={credentials.fullname}
-                placeholder="Your name on the site"
+                placeholder="Name"
                 onChange={handleChange}
                 required
             />
@@ -55,11 +60,13 @@ export function LoginSighnup({isSignup}){
                 onChange={handleChange}
             />
             <br/>
+            <div className="gender">
             <label> Male</label>
             <input
                 type="radio"
                 name="Male"
                 value={credentials.Gender}
+                chacked={selectedOption === 'Male'}
                 onChange={handleChange}
             />
              <label> Female</label>
@@ -76,13 +83,7 @@ export function LoginSighnup({isSignup}){
                 value={credentials.Gender}
                 onChange={handleChange}
             />
-            <label>Dont want to say</label>
-            <input
-                type="radio"
-                name="noAns"
-                value={credentials.Gender}
-                onChange={handleChange}
-            />
+            </div>
             </div>}
             <button>{isSignup ? 'Signup' : 'Login'}</button>
         </form>
