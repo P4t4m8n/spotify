@@ -8,6 +8,7 @@ import { userReducer } from "./redcuers/user.reducer"
 const rootReducer = combineReducers({
     playlistsMoudle: playlistsReducer,
     userMoudle: userReducer,
+    // songMoudle: songReducer,
 
 })
 

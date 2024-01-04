@@ -12,6 +12,7 @@ export function PlaylistsListList({ playlists, header }) {
                 playlists.playlists.map(playlist => {
                     return <Link to={`/${playlist._id}`} >
                         <li key={playlist._id}>
+                            {console.log("playlist._id:", playlist)}
                             {console.log("playlist:", playlist)}
                             <img src={playlist.playlistImgUrl}></img>
                             <p>{playlist.name}</p>
