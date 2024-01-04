@@ -1,3 +1,4 @@
+import { apiService } from "./api.service"
 import { asyncService } from "./async-storage.service"
 
 const PLAYLISTS_KEY = 'playlits_DB'
@@ -11,7 +12,9 @@ export const playListService = {
 
 function query(filterSortBy = {}) {
 
-    return asyncService.query(PLAYLISTS_KEY)
+    return apiService.getPlaylists()
+
+    // return asyncService.query(PLAYLISTS_KEY)
 
 }
 
@@ -29,5 +32,6 @@ function save(playlist) {
 }
 
 function remove(playlistId) {
-    return asyncService.remove()
+
+    return asyncService.remove(playlistId)
 }
