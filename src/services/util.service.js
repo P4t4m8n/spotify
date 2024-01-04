@@ -8,7 +8,7 @@ export const utilService = {
     debounce
 }
 
-function makeId(length = 6) {
+function makeId(length = 16) {
     var txt = ''
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
