@@ -2,6 +2,7 @@ import { PlaylistsListList } from "./PlaylistsListList"
 
 
 export function PlaylistList({ indexPlaylist }) {
+console.log("indexPlaylist:", indexPlaylist)
 
     return (
 

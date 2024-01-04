@@ -15,7 +15,7 @@ export function PlaylistDetails() {
 
     async function onLoadPlaylist() {
         const playlist = await loadPlaylist(params.playlistId)
-        console.log('1')
+       
         setCurrPlaylist(prevP => ({ ...currPlaylist, ...playlist }))
     }
 
