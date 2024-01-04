@@ -1,16 +1,18 @@
 button {
     border:0;
     background-color: $clr1;
-    color:whitesmoke;
+    color:$clr4;
     padding: 5px 10px;
     margin: 5px;
+    font-weight: bold;
     cursor: pointer;
 }
 
 form > * {
-    display: block;
+  text-align: center;
     width: 200px;
     margin: 10px 0px;
+    align-self: center;
 }
 
 .btn-link {
@@ -18,6 +20,8 @@ form > * {
     background-color: transparent;
     text-decoration: underline;
     transition: .5s;
+    color:$clr7;
+
 }
 .btn-link:hover {
     background-color: $clr1;
