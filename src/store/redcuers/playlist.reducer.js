@@ -6,6 +6,7 @@ export const REMOVE_PLAYLIST = 'REMOVE_PLAYLIST'
 
 const intialState = {
     playlists: []
+    
 }
 
 export function playlistsReducer(state = intialState, action = {}) {
