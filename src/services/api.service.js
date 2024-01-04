@@ -14,9 +14,42 @@ export const apiService = {
 
 const BASE_URL = 'https://api.spotify.com/v1/'
 
+let t = 'https://api.spotify.com/v1/playlists/37i9dQZF1DWT9L7hoCDtjB/tracks'
 
-async function getPlaylists(filterBy={}) {
+// import { fetch } from 'node-fetch'
+
+
+
+async function playTrack(accessToken, trackUri, device_id = null) {
+    const endpoint = 'https://api.spotify.com/v1/me/player/play'
+    const bodyData = {
+        uris: [trackUri], // Array of Spotify track URIs
+    }
+
+    const response = await axios.put(endpoint, {
     
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+            ContentType: 'application/json',
+        },
+        body: JSON.stringify(bodyData),
+    })
+
+    if (response.ok) {
+        console.log('Track is playing!');
+    } else {
+        console.error('Failed to play track', await response.json());
+    }
+}
+
+const spotifyToken = 'YOUR_SPOTIFY_OAUTH_TOKEN'; // Replace with your OAuth token
+const trackUri = 'spotify:track:TRACK_ID'; // Replace with the Spotify URI of the track you want to play
+playTrack(spotifyToken, trackUri);
+
+
+
+async function getPlaylists(filterBy = {}) {
+
     const country = filterBy.country || 'IL'
     console.log("country:", country)
     const local = filterBy.local || 'he_IL'
@@ -25,26 +58,26 @@ async function getPlaylists(filterBy={}) {
     console.log("limit:", limit)
     const offset = filterBy.offset || '50'
     console.log("offset:", offset)
-    const url = `https://api.spotify.com/v1/browse/featured-playlists?country=${country}&locale=${local}`
+    // const url = `https://api.spotify.com/v1/browse/featured-playlists?country=${country}&locale=${local}`
 
-    try {
+try {
 
-        // if (isTokenExpired(accessToken)) {
-        //     accessToken = await _refreshToken()
-        // }
+    // if (isTokenExpired(accessToken)) {
+    //     accessToken = await _refreshToken()
+    // }
 
-        const response = await axios.get(url, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            }
-        })
-        return response.data.playlists.items
-
-    }
-    catch (err) {
-        console.log("err fetching playlists:", err)
-        throw err
-    }
+    const response = await axios.get(t, {
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        }
+    })
+    // return response.data.playlists.items
+    return response.data
+}
+catch (err) {
+    console.log("err fetching playlists:", err)
+    throw err
+}
 }
 
 
