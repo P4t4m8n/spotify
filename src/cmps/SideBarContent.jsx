@@ -10,7 +10,6 @@ export function SideBarContent() {
     const userPlaylists = useSelector(storeState => storeState.playlistsMoudle.userPlaylists)
     const currPlaylistId = useSelector(storeState => storeState.playlistsMoudle.currPlaylistId)
 
-    console.log("++++userPlaylists:", userPlaylists)
 
     async function onPlayPlaylist(ev, playlistId) {
         ev.preventDefault()

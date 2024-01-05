@@ -95,7 +95,7 @@ function getUserFavorites() {
 }
 
 function getUserEpisodes() {
-    return []
+    return { songs: [{ artist: '' }, { artist: '' }, { artist: '' }] }
 }
 
 function _getPlaylistDuration(items) {
@@ -123,8 +123,6 @@ function _createindexPlaylists() {
 
     const topics = [
         'Made for you', 'Top charts', 'Jump back on', 'Recently played', 'Your top mixes',
-
-
     ]
 
     let playlists = utilService.loadFromStorage(PLAYLISTS_KEY)
