@@ -7,6 +7,7 @@ import { PlaylistIndex } from './pages/PlaylistIndex.jsx'
 import { store } from './store/store.js'
 import { PlaylistDetails } from './pages/PlaylistDetails.jsx'
 import '../src/styles/main.scss'
+import { SideBar } from './cmps/SideBar.jsx'
 
 export function App() {
 
@@ -17,9 +18,11 @@ export function App() {
       <Provider store={store}>
         <Router>
           <section className="main-layout app">
-            <AppHeader  />
+            <AppHeader />
             <main>
+              <SideBar/>
               <Routes>
+                {/* <Route path="" element={<SideBar />} /> */}
                 <Route path="/" element={<PlaylistIndex />} />
                 <Route path="/:playlistId" element={<PlaylistDetails />} />
               </Routes>
