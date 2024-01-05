@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { loadSong, setPlaying } from '../store/actions/song.action'
 import { utilService } from '../services/util.service'
 
-export function YouTubeAudioPlayer() {
+export function YouTubeAudioPlayer({ player, setPlayer, volume, setVolume }) {
 
   const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
   const song = useSelector(storeState => storeState.songMoudle.currSong)
@@ -14,7 +14,7 @@ export function YouTubeAudioPlayer() {
   // console.log("isPlaying:", isPlaying)
   // console.log("playlist:", playlist)
 
-  const [player, setPlayer] = useState(null)
+  // const [player, setPlayer] = useState(null)
   const [progress, setProgress] = useState(null)
 
   const playlistIdx = useRef(0)
@@ -33,7 +33,7 @@ export function YouTubeAudioPlayer() {
 
   useEffect(() => {
 
-    loadSong(playlist.songs[playlistIdx.current])
+    if (!song) loadSong(playlist.songs[playlistIdx.current])
     setProgress('0.00')
 
     const updateProgress = () => {
@@ -47,7 +47,6 @@ export function YouTubeAudioPlayer() {
       clearInterval(intervalRef.current);
       intervalRef.current = setInterval(updateProgress, 97)
     }
-
 
   }, [player, song])
 
@@ -73,8 +72,8 @@ export function YouTubeAudioPlayer() {
   }
 
   function onReady(ev) {
-
     setPlayer(ev.target)
+    ev.target.setVolume(volume)
 
   }
 
