@@ -1,3 +1,4 @@
+import { playListService } from "../../services/playlist.service"
 
 export const SET_PLAYLISTS = 'SET_PLAYLISTS'
 export const SET_CURR_PLAYLIST = 'SET_CURR_PLAYLIST'
@@ -7,7 +8,7 @@ export const REMOVE_PLAYLIST = 'REMOVE_PLAYLIST'
 
 const intialState = {
     playlists: [],
-    currPlaylist: [],
+    currPlaylist: playListService.getDeafultPlaylist(),
 
 }
 
