@@ -76,3 +76,15 @@
     list-style-type: none;
     // background-color: yellow;
 }
+
+// Context menu
+
+.context {
+    color: $clr4;
+    background-color: $clr10;
+
+    li:hover {
+        background-color: $clr11;
+        cursor: pointer;
+    }
+}
