@@ -18,9 +18,12 @@ export function PlaylistIndex() {
         topics.current = playListService.getTopics()
     }, [])
 
+    async function onPlay(ev){
+        ev.preventDefault()
+    }
+
 
     if (!playlists) return <div>...Loading</div>
-    console.log("playlists:", playlists)
 
     return (
         topics.current.map(topic => {

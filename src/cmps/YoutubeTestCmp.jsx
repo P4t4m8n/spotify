@@ -1,63 +1,53 @@
-import React, { useEffect, useState } from 'react';
-// import { youtubeService } from './services/youtube.service.js';
+import React, { useState, useEffect } from 'react';
 
-function YoutubeTestCmp() {
-    const [searchValue, setSearchValue] = useState('');
-    const [videos, setVideos] = useState([]);
-    const [wikis, setWikis] = useState([]);
+// Ensure you have installed react-youtube via npm or yarn
+import YouTube from 'react-youtube';
 
+const YouTubeAudioPlayer = ({ videoId }) => {
+  const [player, setPlayer] = useState(null);
+  const [playing, setPlaying] = useState(false);
 
+  // Options for the YouTube player
+  const opts = {
+    height: '0', // Setting height and width to 0 to hide the video
+    width: '0',
+    playerVars: {
+      autoplay: 1,
+      controls: 0, // Hide default YouTube controls
+    },
+  };
 
-    async function onSearch(ev) {
-        ev.preventDefault()
-        try {
-            const videos = await youtubeService.getVideos(searchValue)
-            if (!videos.length) return
-            setVideos(videos)
-            const wikis = await wtService.getWikis(searchValue)
-            setWikis(wikis)
-        }
-        catch (err) { console.log(err) }
+  // This function is triggered when the YouTube player is ready
+  const onReady = (event) => {
+    setPlayer(event.target);
+  };
 
+  // Toggles the play/pause state
+  const togglePlayPause = () => {
+    if (playing) {
+      player.pauseVideo();
+    } else {
+      player.playVideo();
     }
+    setPlaying(!playing);
+  };
 
+  // Effect to autoplay the video on load (optional)
+  useEffect(() => {
+    if (player) {
+      player.playVideo();
+      setPlaying(true);
+    }
+  }, [player]);
 
-    const playVideo = (videoId) => {
-        const elVideoPlayer = document.querySelector('.video-play iframe');
-        elVideoPlayer.src = `https://www.youtube.com/embed/${videoId}?controls=0`;
-    };
+  return (
+    <div>
+      <YouTube videoId={videoId} opts={opts} onReady={onReady} />
+      <button onClick={togglePlayPause}>
+        {playing ? 'Pause' : 'Play'}
+      </button>
+    </div>
+  );
+};
 
-    const renderWikis = () => {
-        return wikis.map((wiki) => (
-            <article key={wiki.title} className="wiki-preview">
-                <h3 className="title">{wiki.title}</h3>
-                <span className="snippet">{wiki.snippet}</span>
-            </article>
-        ));
-    };
-
-    return 
-//         // <div>
-//             {/* <form onSubmit={onSearch}>
-//                 <input
-//                     type="text"
-//                     name="search"
-//                     value={searchValue}
-//                     onChange={(ev) => setSearchValue(ev.target.value)}
-//                 />
-//                 <button type="submit">Search</button>
-//             </form> */}
-// {/* 
-//             <iframe 
-
-
-
-//             <div className="wiki-results">
-//                 {renderWikis()}
-//             </div>
-//         </div>
-//     ); */}
-    
-}
-
-
+export default YouTubeAudioPlayer;

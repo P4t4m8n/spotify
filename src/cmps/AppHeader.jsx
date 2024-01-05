@@ -1,5 +1,4 @@
-import { Link, NavLink } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import {  useState } from 'react'
 import { useSelector } from 'react-redux'
 import { userService } from '../services/user.service'
 

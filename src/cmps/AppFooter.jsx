@@ -1,8 +1,12 @@
+import { useSelector } from "react-redux"
+import  YouTubeAudioPlayer  from "./YouTubeAudioPlayer"
+
 export function AppFooter() {
-    console.log('hi from AppFooter')
-    return (
+
+       return (
         <div className="app-footer">
-            <p>this is the footer</p>
+
+            {/* <YouTubeAudioPlayer videoId={'K9mzg8ueiYA'}></YouTubeAudioPlayer> */}
         </div>
     )
 }
