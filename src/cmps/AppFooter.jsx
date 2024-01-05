@@ -1,6 +1,6 @@
-import ytdl from 'ytdl-core'
+// import ytdl from 'ytdl-core'
 import fs from 'fs'
-import playSound from 'play-sound'
+// import playSound from 'play-sound'
 import axios from 'axios'
 
 
@@ -12,23 +12,23 @@ import  YouTubeAudioPlayer  from "./YouTubeAudioPlayer"
 export function AppFooter() {
     console.log('hi from AppFooter')
 
-    const API='AIzaSyCoga7dmG4dfuYXCqS3ghhsRE8VC-5zdZM'
-    const URL= `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=Ks-_Mh1QhMc&key=${API}` 
+    // const API='AIzaSyCoga7dmG4dfuYXCqS3ghhsRE8VC-5zdZM'
+    // const URL= `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=Ks-_Mh1QhMc&key=${API}` 
 
 
 
 // הפונקציה לקריאת מידע מה- API
-async function fetchSongs(URL) {
-    try {
-        const response = await axios.get(URL);
-        const songs = response.data.songs; // לדוגמה, אם המידע כולל מאפיין songs
+// async function fetchSongs(URL) {
+//     try {
+//         const response = await axios.get(URL);
+//         const songs = response.data.songs; // לדוגמה, אם המידע כולל מאפיין songs
 
-        // טיפול במידע ושימוש בו כפי שרלוונטי לך
-        console.log('Songs:', songs);
-    } catch (error) {
-        console.error('Error:', error.message);
-    }
-}
+//         // טיפול במידע ושימוש בו כפי שרלוונטי לך
+//         console.log('Songs:', songs);
+//     } catch (error) {
+//         console.error('Error:', error.message);
+//     }
+// }
 
 // הפעלת הפונקציה עם כתובת ה-URL של ה- API
 /*const yourApiUrl = 'YOUR_API_ENDPOINT';
