@@ -20,5 +20,6 @@
 // Components
 @import "cmps/AppHeader";
 @import "cmps/AppFooter";
-@import "../styles/views/PlaylistIndex.scss"
+@import "cmps/SideBar";
+@import "../styles/views/PlaylistIndex.scss" // remove later
 // @import "cmps/UserMsg";

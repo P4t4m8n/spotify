@@ -2,7 +2,8 @@ import { Link } from "react-router-dom"
 import { PlaylistsListList } from "./PlaylistsListList"
 
 
-export function PlaylistList({ playlists, topic, onPlay }) {
+export function PlaylistList({ indexPlaylist }) {
+    // console.log("indexPlaylist:", indexPlaylist)
 
     return (
 
