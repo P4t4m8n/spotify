@@ -1,87 +1,53 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react'
 
-const YouTubeAudioPlayer = () => {
-    const [player, setPlayer] = useState(null);
-    const [isPlaying, setIsPlaying] = useState(false);
+// Ensure you have installed react-youtube via npm or yarn
+import YouTube from 'react-youtube'
 
-    // Function to initialize the YouTube player
-    const initializePlayer = () => {
-        if (window.YT) {
-            const newPlayer = new window.YT.Player('youtube-audio-player', {
-                height: '0',
-                width: '0',
-                videoId: 'K9mzg8ueiYA',
-                playerVars: {
-                    autoplay: 0,
-                    controls: 0,
-                    modestbranding: 1,
-                    playsinline: 1,
-                    loop: 1,
-                    fs: 0,
-                    cc_load_policy: 0,
-                    iv_load_policy: 3,
-                    autohide: 0,
-                    showinfo: 0
-                },
-                events: {
-                    'onReady': (event) => {
-                        setPlayer(newPlayer);
-                        event.target.mute(); // Mute by default
-                    },
-                    'onError': (event) => {
-                        console.error('YouTube Player Error:', event.data);
-                    }
-                }
-            });
-        } else {
-            console.error('YouTube API not loaded');
-        }
-    };
+const YouTubeAudioPlayer = ({ videoId }) => {
+  const [player, setPlayer] = useState(null)
+  const [playing, setPlaying] = useState(false)
 
-    useEffect(() => {
-        // Function to load the YouTube IFrame Player API
-        const loadYouTubeScript = () => {
-            const tag = document.createElement('script');
-            tag.src = "https://www.youtube.com/iframe_api";
-            const firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  // Options for the YouTube player
+  const opts = {
+    height: '0', // Setting height and width to 0 to hide the video
+    width: '0',
+    playerVars: {
+      autoplay: 1,
+      controls: 0, // Hide default YouTube controls
+    },
+  }
 
-            window.onYouTubeIframeAPIReady = initializePlayer;
-        };
+  // This function is triggered when the YouTube player is ready
+  const onReady = (event) => {
+    setPlayer(event.target)
+  }
 
-        if (!window.YT) {
-            loadYouTubeScript();
-        } else {
-            initializePlayer();
-        }
+  // Toggles the play/pause state
+  const togglePlayPause = () => {
+    if (playing) {
+      player.pauseVideo()
+    } else {
+      player.playVideo()
+    }
+    setPlaying(!playing)
+  }
 
-        return () => {
-            window.onYouTubeIframeAPIReady = null;
-        };
-    }, [isPlaying]);
+  // Effect to autoplay the video on load (optional)
+  useEffect(() => {
+    if (player) {
+      player.playVideo()
+      setPlaying(true)
+    }
+  }, [player])
 
-    const togglePlayPause = () => {
-        
-        if (!player) return;
-        
-        if (isPlaying) {
-            console.log('a')
-            player.pauseVideo();
-        } else {
-            player.playVideo();
-        }
+  return (
+    <div>
+      <YouTube videoId={videoId} opts={opts} onReady={onReady} />
+      <button onClick={togglePlayPause}>
+        {playing ? 'Pause' : 'Play'}
+      </button>
+    </div>
+  )
+}
 
-        setIsPlaying(!isPlaying);
-    };
-
-    return (
-        <div>
-            <div id="youtube-audio-player"></div>
-            <button onClick={togglePlayPause}>
-                {isPlaying ? 'Pause' : 'Play'}
-            </button>
-        </div>
-    );
-};
-
-export default YouTubeAudioPlayer;
+export default YouTubeAudioPlayer

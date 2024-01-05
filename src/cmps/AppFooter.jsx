@@ -10,7 +10,6 @@ import { useSelector } from "react-redux"
 import  YouTubeAudioPlayer  from "./YouTubeAudioPlayer"
 
 export function AppFooter() {
-    console.log('hi from AppFooter')
 
     // const API='AIzaSyCoga7dmG4dfuYXCqS3ghhsRE8VC-5zdZM'
     // const URL= `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=Ks-_Mh1QhMc&key=${API}` 
@@ -71,7 +70,7 @@ fetchSongs(URL);
     return (
         <div className="app-footer">
 
-            {/* <YouTubeAudioPlayer videoId={'K9mzg8ueiYA'}></YouTubeAudioPlayer> */}
+            <YouTubeAudioPlayer videoId={'K9mzg8ueiYA'}></YouTubeAudioPlayer>
         </div>
     )
 }
