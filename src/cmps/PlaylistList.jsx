@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 
 export function PlaylistList({ playlists, topic, onPlayPlaylist, currPlaylistId }) {
     const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
+    console.log("playlists:", playlists)
 
     return (
 

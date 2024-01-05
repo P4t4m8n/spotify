@@ -12,6 +12,7 @@ const intialState = {
     userPlaylists: [
         playListService.getUserFavorites(),
         playListService.getUserEpisodes(),
+        { songs: [{ artist: '' },{ artist: '' },{ artist: '' }] }
     ]
 
 

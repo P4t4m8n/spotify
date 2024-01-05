@@ -95,7 +95,7 @@ function getUserFavorites() {
 }
 
 function getUserEpisodes() {
-    return []
+    return { songs: [{ artist: '' }, { artist: '' }, { artist: '' }] }
 }
 
 function _getPlaylistDuration(items) {
