@@ -1,12 +1,15 @@
+import { playListService } from "../../services/playlist.service"
 
 export const SET_PLAYLISTS = 'SET_PLAYLISTS'
+export const SET_CURR_PLAYLIST = 'SET_CURR_PLAYLIST'
 export const ADD_PLAYLIST = 'ADD_PLAYLIST'
 export const EDIT_PLAYLIST = 'EDIT_PLAYLIST'
 export const REMOVE_PLAYLIST = 'REMOVE_PLAYLIST'
 
 const intialState = {
-    playlists: []
-    
+    playlists: [],
+    currPlaylist: playListService.getDeafultPlaylist(),
+
 }
 
 export function playlistsReducer(state = intialState, action = {}) {
@@ -15,6 +18,9 @@ export function playlistsReducer(state = intialState, action = {}) {
     switch (action.type) {
         case SET_PLAYLISTS:
             return { ...state, playlists: action.playlists }
+
+        case SET_CURR_PLAYLIST:
+            return { ...state, currPlaylist: action.playlist }
 
         case ADD_PLAYLIST:
             playlists = [...state.playlists, action.playlist]

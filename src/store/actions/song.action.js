@@ -5,9 +5,10 @@ import { store } from "../store";
 
 
 export function loadSong(song) {
-    store.dispatch({ type: SET_SONG, song })
+    return store.dispatch({ type: SET_SONG, song })
 }
 
 export function setPlaying() {
     store.dispatch({ type: SET_PLAYING, wow: 'wow' })
 }
+

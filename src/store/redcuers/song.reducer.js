@@ -1,10 +1,11 @@
-import {songService} from '../../services/song.service'
+import { songService } from '../../services/song.service'
 
 export const SET_SONG = 'SET_SONG'
 export const SET_PLAYING = 'SET_PLAYING'
 
 const initialState = {
-    currSong: songService.getEmptySong(),
+    // currSong: songService.getDefaultSong(),
+    currSong: {},
     isPlaying: false
 }
 
@@ -12,7 +13,7 @@ export function songReducer(state = initialState, action = {}) {
 
     switch (action.type) {
         case SET_SONG:
-            return { ...state, userObj: action.song }
+            return { ...state, currSong: action.song }
 
         case SET_PLAYING:
             const playing = state.isPlaying

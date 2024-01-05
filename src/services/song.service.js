@@ -5,7 +5,7 @@ const PLAYLISTS_KEY = 'playlits_DB'
 
 export const songService = {
     query,
-    getEmptySong
+    getDefaultSong
 }
 
 async function query(filterBy) {
@@ -17,17 +17,17 @@ async function query(filterBy) {
 })*/
     }
 
-function getEmptySong() {
+function getDefaultSong() {
     return {
         _id: '',
-        title: '',
-        album: '',
-        artist: '',
-        type: '',
-        duration: "00:00",
-        trackUrl: '',
-        songImgUrl: '',
-        addedBy: '',
-        addedAt: ''
+        title: 'Winamp Intro',
+        album: 'Single',
+        artist: 'Winamp',
+        type: 'song',
+        duration: "00:05",
+        trackId: 'oQid2jSU7Ww',
+        songImgUrl: 'src/assets/img/winamp.svg',
+        addedBy: 'Me',
+        addedAt: (Date.now() + 1) - Date.now(),
     }
 }

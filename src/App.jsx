@@ -8,7 +8,6 @@ import { store } from './store/store.js'
 import { PlaylistDetails } from './pages/PlaylistDetails.jsx'
 import '../src/styles/main.scss'
 import { SideBar } from './cmps/SideBar.jsx'
-import YouTubeAudioPlayer from './cmps/YouTubeAudioPlayer.jsx'
 import { NavBar } from './cmps/NavBar.jsx'
 
 export function App() {
@@ -31,7 +30,6 @@ export function App() {
                 <Route path="/:playlistId" element={<PlaylistDetails />} />
                 <Route path="/search" element={<NavBar />} />
               </Routes>
-              <YouTubeAudioPlayer></YouTubeAudioPlayer>
               <AppFooter />
             </main>
           </section>
