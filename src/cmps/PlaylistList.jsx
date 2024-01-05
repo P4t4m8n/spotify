@@ -3,8 +3,8 @@ import { Link } from "react-router-dom"
 
 
 export function PlaylistList({ playlists, topic, onPlayPlaylist, currPlaylistId }) {
+
     const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
-    console.log("playlists:", playlists)
 
     return (
 
@@ -14,7 +14,6 @@ export function PlaylistList({ playlists, topic, onPlayPlaylist, currPlaylistId 
                 playlists.map((playlist, idx) =>
                     <Link key={idx} to={`/${playlist._id}`}>
                         <li style={{ width: '100px' }} key={playlist._id}>
-
                             <img src={playlist.playlistImgUrl} style={{ width: '100%' }} ></img>
                             <p>{playlist.name}</p>
                             <p>{playlist.name}</p>

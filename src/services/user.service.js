@@ -2,7 +2,10 @@ import { asyncService } from "./async-storage.service"
 import { utilService } from "./util.service"
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedInUser'
-const STORGE_KEY_USERS = 'STORGE_KEY_USERS'
+const STORGE_KEY_USERS = 'usersDB'
+
+_createUsers()
+
 
 export const userService = {
     login,
@@ -11,6 +14,8 @@ export const userService = {
     getLoggedinUser,
     getEmptyCredentials,
     getDemoUser,
+    update,
+    setDemoUser,
 }
 
 function getLoggedinUser() {
@@ -31,13 +36,21 @@ async function login({ username, password }) {
 
 async function signup({ username, password, fullname }) {
     const user = { username, password, fullname, playlists: [], favorites: [] }
-    const newUser = await asyncService.post(STORAGE_KEY, user)
+    const newUser = await asyncService.post(STORGE_KEY_USERS, user)
     return _setLoggedinUser(newUser)
 }
 
 function logout() {
     asyncService.removeItem(STORAGE_KEY_LOGGEDIN_USER)
     return Promise.resolve()
+}
+
+async function update(user) {
+
+    const updateUser = await asyncService.put(STORGE_KEY_USERS, user)
+    _setLoggedinUser(user)
+    return user
+
 }
 
 function getEmptyCredentials(username = '', password = '', playlists = [], favorites = []) {
@@ -60,9 +73,28 @@ function getDemoUser() {
 }
 
 function _setLoggedinUser(user) {
-    const userToSave = { _id: user._id, username: user.username, playlists: user.playlists, pfavoritesref: user.favorites }
-    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(userToSave))
-    return userToSave
+    console.log("user:", user)
+    // const userToSave = { _id, username: user.username, playlists: user.playlists, pfavoritesref: user.favorites }
+    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
+    return user
+}
+
+function setDemoUser() {
+    const demoUser = getDemoUser()
+    _setLoggedinUser(demoUser)
+    return demoUser
+}
+
+function _createUsers() {
+    let users = utilService.loadFromStorage(STORGE_KEY_USERS)
+
+    if (!users || !users.length) {
+
+        users = [getDemoUser()]
+        utilService.saveToStorage(STORGE_KEY_USERS, users)
+    }
+
+    _setLoggedinUser(users[0])
 }
 
 

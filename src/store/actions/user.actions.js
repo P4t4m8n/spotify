@@ -1,4 +1,5 @@
 import { userService } from "../../services/user.service"
+import { EDIT_USER } from "../redcuers/user.reducer"
 import { store } from "../store"
 
 
@@ -44,18 +45,18 @@ export function signup(credentials) {
 
 }
 
-export function update(user) {
+export async function update(user) {
+console.log("user:", user)
 
-    return userService.update(user)
-        .then((user) => {
-            store.dispatch({ type: EDIT_USER, user })
-            return user
-        })
-        .catch(err => {
-            console.log('user action -> Cannot update', err)
-            throw err
-        })
+    try {
+        const updatedUser = await userService.update(user)
+        store.dispatch({ type: EDIT_USER, updatedUser })
+        return updatedUser
 
+    }
+    catch (err) {
+        throw err
+    }
 
 }
 

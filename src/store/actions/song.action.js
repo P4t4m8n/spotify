@@ -1,6 +1,6 @@
 
 
-import { SET_PLAYING, SET_SONG } from "../redcuers/song.reducer";
+import { SET_PLAYING, SET_SONG, SET_VOLUME } from "../redcuers/song.reducer";
 import { store } from "../store";
 
 
@@ -10,5 +10,9 @@ export function loadSong(song) {
 
 export function setPlaying() {
     store.dispatch({ type: SET_PLAYING, wow: 'wow' })
+}
+
+export function setVolume(lvl) {
+    store.dispatch({ type: SET_VOLUME, volume: lvl })
 }
 

@@ -9,17 +9,17 @@ export const songService = {
 }
 
 async function query(filterBy) {
-   /* let songsToReturn
-    const playlists = await asyncService.query(PLAYLISTS_KEY)
-    .then({
-        const regExp = new RegExp(filterBy, 'i'),
-        songsToReturn = songsToReturn.filter(song => regExp.test(song.name))
-})*/
-    }
+    /* let songsToReturn
+     const playlists = await asyncService.query(PLAYLISTS_KEY)
+     .then({
+         const regExp = new RegExp(filterBy, 'i'),
+         songsToReturn = songsToReturn.filter(song => regExp.test(song.name))
+ })*/
+}
 
 function getDefaultSong() {
     return {
-        _id: '',
+        _id: '2',
         title: 'Winamp Intro',
         album: 'Single',
         artist: 'Winamp',
@@ -29,5 +29,6 @@ function getDefaultSong() {
         songImgUrl: 'src/assets/img/winamp.svg',
         addedBy: 'Me',
         addedAt: (Date.now() + 1) - Date.now(),
+        likedBy: []
     }
 }
