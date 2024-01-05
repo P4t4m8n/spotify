@@ -6,7 +6,7 @@ export function PlaylistList({ playlists, topic, onPlay }) {
 
     return (
 
-        <ul className="playlist-list" style={{ disply: 'flex' }}>
+        <ul className="playlist-list"  style={{ disply: 'flex' }}>
             <p>{topic}</p>
             {
                 playlists.map(playlist =>

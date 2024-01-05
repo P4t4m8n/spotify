@@ -1,53 +1,53 @@
-import React, { useState, useEffect } from 'react'
 
-// Ensure you have installed react-youtube via npm or yarn
 import YouTube from 'react-youtube'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { setPlaying } from '../store/actions/song.action'
 
-const YouTubeAudioPlayer = ({ videoId }) => {
+export function YouTubeAudioPlayer() {
+
+  const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
+  const song = useSelector(storeState => storeState.songMoudle.currSong)
   const [player, setPlayer] = useState(null)
-  const [playing, setPlaying] = useState(false)
 
-  // Options for the YouTube player
   const opts = {
-    height: '0', // Setting height and width to 0 to hide the video
+    height: '0',
     width: '0',
     playerVars: {
       autoplay: 1,
-      controls: 0, // Hide default YouTube controls
+      controls: 0,
     },
   }
 
-  // This function is triggered when the YouTube player is ready
-  const onReady = (event) => {
-    setPlayer(event.target)
+
+  function onReady(ev) {
+    setPlayer(ev.target)
   }
 
-  // Toggles the play/pause state
-  const togglePlayPause = () => {
-    if (playing) {
+  function onEnd(ev) {
+    console.log("ev:", ev)
+
+  }
+
+  function togglePlayPause() {
+    if (isPlaying) {
       player.pauseVideo()
     } else {
       player.playVideo()
     }
-    setPlaying(!playing)
+    setPlaying()
   }
 
-  // Effect to autoplay the video on load (optional)
-  useEffect(() => {
-    if (player) {
-      player.playVideo()
-      setPlaying(true)
-    }
-  }, [player])
-
+  console.log("isPlaying:", isPlaying)
   return (
     <div>
-      <YouTube videoId={videoId} opts={opts} onReady={onReady} />
-      <button onClick={togglePlayPause}>
-        {playing ? 'Pause' : 'Play'}
-      </button>
+      <button onClick={onShuffle}></button>
+      <button onClick={(() => onChangeSong(-1))}></button>
+      <YouTube videoId={videoId} opts={opts} onEnd={onEnd} onReady={onReady} />
+      <button onClick={togglePlayPause}>{isPlaying ? 'Pause' : 'Play'}</button>
+      <button onClick={(() => onChangeSong(1))}></button>
+      <button onClick={onRepeat}></button>
     </div>
   )
 }
 
-export default YouTubeAudioPlayer

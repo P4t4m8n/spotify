@@ -7,7 +7,6 @@ import { PlaylistIndex } from './pages/PlaylistIndex.jsx'
 import { store } from './store/store.js'
 import { PlaylistDetails } from './pages/PlaylistDetails.jsx'
 import '../src/styles/main.scss'
-import YouTubeAudioPlayer from './cmps/YouTubeAudioPlayer.jsx'
 
 export function App() {
 
@@ -24,7 +23,6 @@ export function App() {
                 <Route path="/" element={<PlaylistIndex />} />
                 <Route path="/:playlistId" element={<PlaylistDetails />} />
               </Routes>
-              <YouTubeAudioPlayer></YouTubeAudioPlayer>
               <AppFooter />
             </main>
           </section>

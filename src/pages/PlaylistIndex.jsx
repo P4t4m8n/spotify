@@ -18,7 +18,7 @@ export function PlaylistIndex() {
         topics.current = playListService.getTopics()
     }, [])
 
-    async function onPlay(ev){
+    async function onPlay(ev) {
         ev.preventDefault()
     }
 
@@ -26,10 +26,10 @@ export function PlaylistIndex() {
     if (!playlists) return <div>...Loading</div>
 
     return (
-        topics.current.map(topic => {
+        topics.current.map((topic, idx) => {
             {
                 const playlistsFilterd = playlists.filter(playlist => playlist.topic === topic)
-                return < PlaylistList playlists={playlistsFilterd} topic={topic} ></PlaylistList>
+                return < PlaylistList idx={idx} playlists={playlistsFilterd} topic={topic} ></PlaylistList>
             }
         })
 
