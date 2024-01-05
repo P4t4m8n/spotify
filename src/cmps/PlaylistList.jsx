@@ -1,7 +1,9 @@
+import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 
 
-export function PlaylistList({ playlists, topic, onPlayPlaylist, currPlaylistId, isPlaying }) {
+export function PlaylistList({ playlists, topic, onPlayPlaylist, currPlaylistId }) {
+    const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
 
     return (
 
@@ -18,7 +20,7 @@ export function PlaylistList({ playlists, topic, onPlayPlaylist, currPlaylistId,
                             <p>{playlist.songs[0].artist}</p>
                             <p>{playlist.songs[1].artist}</p>
                             <p>{playlist.songs[2].artist}</p>
-                            <button onClick={(ev) => onPlayPlaylist(ev, playlist._id)}>{(currPlaylistId === playlist._id && isPlaying) ? 'Pause' : 'Play'}</button>
+                            <button style={{ color: 'black' }} onClick={(ev) => onPlayPlaylist(ev, playlist._id)}>{(currPlaylistId === playlist._id && isPlaying) ? 'Pause' : 'Play'}</button>
                         </li>
                     </Link>
 

@@ -10,9 +10,9 @@ export function YouTubeAudioPlayer() {
   const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
   const song = useSelector(storeState => storeState.songMoudle.currSong)
   const playlist = useSelector(storeState => storeState.playlistsMoudle.currPlaylist)
-  console.log("song:", song)
-  console.log("isPlaying:", isPlaying)
-  console.log("playlist:", playlist)
+  // console.log("song:", song)
+  // console.log("isPlaying:", isPlaying)
+  // console.log("playlist:", playlist)
 
   const [player, setPlayer] = useState(null)
   const [progress, setProgress] = useState(null)
