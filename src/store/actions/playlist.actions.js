@@ -1,5 +1,5 @@
 import { playListService } from "../../services/playlist.service";
-import { ADD_PLAYLIST, EDIT_PLAYLIST, REMOVE_PLAYLIST, SET_PLAYLISTS } from "../redcuers/playlist.reducer";
+import { ADD_PLAYLIST, EDIT_PLAYLIST, REMOVE_PLAYLIST, SET_CURR_PLAYLIST, SET_PLAYLISTS } from "../redcuers/playlist.reducer";
 import { store } from "../store";
 
 
@@ -31,6 +31,7 @@ export async function loadPlaylists(filterSortBy = {}) {
 export async function loadPlaylist(playlistId) {
     try {
         const playlist = await playListService.get(playlistId)
+        store.dispatch({ type: SET_CURR_PLAYLIST, playlist })
         console.log('Load')
         return playlist
     }

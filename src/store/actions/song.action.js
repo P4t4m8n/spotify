@@ -11,3 +11,4 @@ export function loadSong(song) {
 export function setPlaying() {
     store.dispatch({ type: SET_PLAYING, wow: 'wow' })
 }
+

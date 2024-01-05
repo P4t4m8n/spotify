@@ -24,12 +24,12 @@ export function PlaylistIndex() {
 
 
     if (!playlists) return <div>...Loading</div>
-
+console.log('a')
     return (
         topics.current.map((topic, idx) => {
             {
                 const playlistsFilterd = playlists.filter(playlist => playlist.topic === topic)
-                return < PlaylistList idx={idx} playlists={playlistsFilterd} topic={topic} ></PlaylistList>
+                return < PlaylistList key={idx} idx={idx} playlists={playlistsFilterd} topic={topic} ></PlaylistList>
             }
         })
 

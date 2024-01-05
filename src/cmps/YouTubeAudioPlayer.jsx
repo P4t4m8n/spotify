@@ -8,7 +8,10 @@ export function YouTubeAudioPlayer() {
 
   const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
   const song = useSelector(storeState => storeState.songMoudle.currSong)
+  const playlist = useSelector(storeState => storeState.playlistsMoudle.currPlaylist)
   const [player, setPlayer] = useState(null)
+
+  let videoId = 'oQid2jSU7Ww'
 
   const opts = {
     height: '0',
@@ -27,6 +30,16 @@ export function YouTubeAudioPlayer() {
   function onEnd(ev) {
     console.log("ev:", ev)
 
+  }
+
+  function onShuffle(ev){
+    console.log("ev:", ev)
+    
+  }
+
+  function onRepeat(ev){
+    console.log("ev:", ev)
+    
   }
 
   function togglePlayPause() {
