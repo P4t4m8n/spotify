@@ -1,11 +1,14 @@
 
 import { combineReducers, compose, legacy_createStore as createStore } from "redux"
 import { playlistsReducer } from "./redcuers/playlist.reducer"
+import { userReducer } from "./redcuers/user.reducer"
 
 
 
 const rootReducer = combineReducers({
     playlistsMoudle: playlistsReducer,
+    userMoudle: userReducer,
+    // songMoudle: songReducer,
 
 })
 

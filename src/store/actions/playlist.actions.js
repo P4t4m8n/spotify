@@ -4,6 +4,17 @@ import { store } from "../store";
 
 
 
+export async function getIndexPlaylists() {
+    try {
+        const indexPlaylist = await playListService.getIndexPlaylists()
+        return indexPlaylist
+    }
+    catch (err) {
+        console.log('playlist Action -> Cannot load index playlists', err)
+        throw err
+    }
+}
+
 export async function loadPlaylists(filterSortBy = {}) {
     try {
         const playlists = await playListService.query(filterSortBy)
