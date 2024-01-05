@@ -8,7 +8,7 @@ import { store } from './store/store.js'
 import { PlaylistDetails } from './pages/PlaylistDetails.jsx'
 import '../src/styles/main.scss'
 import { SideBar } from './cmps/SideBar.jsx'
-import { NavBar } from './cmps/NavBar.jsx'
+import { SearchPage } from './pages/SearchPage.jsx'
 
 export function App() {
 
@@ -28,7 +28,7 @@ export function App() {
 
                 <Route path="/" element={<PlaylistIndex />} />
                 <Route path="/:playlistId" element={<PlaylistDetails />} />
-                <Route path="/search" element={<NavBar />} />
+                <Route path="/search" element={<SearchPage/>} />
               </Routes>
               <AppFooter />
             </main>

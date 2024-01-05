@@ -2,6 +2,9 @@ import {  useState } from 'react'
 import { useSelector } from 'react-redux'
 import { userService } from '../services/user.service'
 
+import { Search } from "./Search"
+
+
 
 export function AppHeader() {
 
@@ -44,6 +47,8 @@ export function AppHeader() {
                 <button> {'<'}</button>
                 <button> {'>'} </button>
             </div>
+            <Search/>
+
             <div className="login-signup">
                 <form className="login-form" onSubmit={isLogin}>
                     <input
