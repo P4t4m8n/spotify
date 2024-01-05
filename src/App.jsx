@@ -8,6 +8,7 @@ import { store } from './store/store.js'
 import { PlaylistDetails } from './pages/PlaylistDetails.jsx'
 import '../src/styles/main.scss'
 import YouTubeAudioPlayer from './cmps/YouTubeAudioPlayer.jsx'
+import { NavBar } from './cmps/NavBar.jsx'
 
 export function App() {
 
@@ -19,6 +20,7 @@ export function App() {
         <Router>
           <section className="main-layout app">
             <AppHeader  />
+            <NavBar/>
             <main>
               <Routes>
                 <Route path="/" element={<PlaylistIndex />} />
