@@ -9,6 +9,11 @@ export const REMOVE_PLAYLIST = 'REMOVE_PLAYLIST'
 const intialState = {
     playlists: [],
     currPlaylist: playListService.getDeafultPlaylist(),
+    userPlaylists: [
+        playListService.getUserFavorites(),
+        playListService.getUserEpisodes(),
+    ]
+
 
 }
 

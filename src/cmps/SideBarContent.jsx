@@ -1,11 +1,27 @@
 import { useState, useEffect } from "react"
 import { PlaylistList } from "../cmps/PlaylistList"
+import { useSelector } from "react-redux"
+import { Logger } from "sass"
 
 
 export function SideBarContent() {
 
     // const [sideBarStationList, setSideBarStationList] = useStatete(null)
+    const userPlaylists = useSelector(storeState => storeState.playlistsMoudle.userPlaylists)
+    const currPlaylistId = useSelector(storeState => storeState.playlistsMoudle.currPlaylistId)
 
+    console.log("++++userPlaylists:", userPlaylists)
+
+    async function onPlayPlaylist(ev, playlistId) {
+        ev.preventDefault()
+        let playlist
+        try {
+            if (playlistId !== currplaylist._id) playlist = await loadPlaylist(playlistId)
+            setPlaying()
+        }
+        catch (err) { }
+
+    }
 
     return (
         <div className="side-bar-content">
@@ -32,7 +48,7 @@ export function SideBarContent() {
 
 
             <section className="side-bar-body">
-
+                <PlaylistList playlists={userPlaylists} onPlayPlaylist={onPlayPlaylist} currPlaylistId={currPlaylistId} ></PlaylistList>
             </section>
         </div>
     )

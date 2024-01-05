@@ -12,7 +12,9 @@ export const playListService = {
     save,
     remove,
     getTopics,
-    getDeafultPlaylist
+    getDeafultPlaylist,
+    getUserFavorites,
+    getUserEpisodes
 }
 
 async function query(filterSortBy = {}) {
@@ -88,6 +90,14 @@ function getDeafultPlaylist() {
     return playlist
 }
 
+function getUserFavorites() {
+    return getDeafultPlaylist()
+}
+
+function getUserEpisodes() {
+    return []
+}
+
 function _getPlaylistDuration(items) {
     let totalMinutes = 0
 
@@ -150,7 +160,8 @@ function _createindexPlaylists() {
                     "trackId": "npjF032TDDQ",
                     "songImgUrl": "https://i.ytimg.com/vi/COiIC3A0ROM/mqdefault.jpg",
                     "addedBy": utilService.makeLorem(1),
-                    "addedAt": Date.now()
+                    "addedAt": Date.now(),
+                    "likedBy": [((utilService.getRandomIntInclusive() > 0.5) ? "1" : "")]
                 }
                 songs.push(song)
             }
