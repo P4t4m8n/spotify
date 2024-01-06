@@ -36,13 +36,18 @@ export function PlaylistIndex() {
     if (!playlists) return <div>...Loading</div>
 
     return (
-        topics.current.map((topic, idx) => {
-            {
-                const playlistsFilterd = playlists.filter(playlist => playlist.topic === topic)
-                return < PlaylistList isPlaying={isPlaying} currPlaylistId={currplaylist._id} key={idx} idx={idx} playlists={playlistsFilterd} topic={topic} onPlayPlaylist={onPlayPlaylist} ></PlaylistList>
-            }
-        })
+        <div className="main-content">
 
+            {
+                topics.current.map((topic, idx) => {
+                    {
+                        const playlistsFilterd = playlists.filter(playlist => playlist.topic === topic)
+                        return < PlaylistList isPlaying={isPlaying} currPlaylistId={currplaylist._id} key={idx} idx={idx} playlists={playlistsFilterd} topic={topic} onPlayPlaylist={onPlayPlaylist} ></PlaylistList>
+                    }
+                })
+            }
+
+        </div>
 
     )
 }

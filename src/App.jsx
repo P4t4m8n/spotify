@@ -18,20 +18,20 @@ export function App() {
     <>
       <Provider store={store}>
         <Router>
-          <section className="main-layout app">
+          <section className="main-container">
             <AppHeader />
+            <SideBar />
 
-            <main>
-              <SideBar />
-              <Routes>
-                {/* <Route path="" element={<SideBar />} /> */}
 
-                <Route path="/" element={<PlaylistIndex />} />
-                <Route path="/:playlistId" element={<PlaylistDetails />} />
-                <Route path="/search" element={<SearchPage/>} />
-              </Routes>
-              <AppFooter />
-            </main>
+            <Routes>
+              {/* <Route path="" element={<SideBar />} /> */}
+
+              <Route path="/" element={<PlaylistIndex />} />
+              <Route path="/:playlistId" element={<PlaylistDetails />} />
+              <Route path="/search" element={<SearchPage />} />
+            </Routes>
+
+            <AppFooter />
           </section>
         </Router>
       </Provider>

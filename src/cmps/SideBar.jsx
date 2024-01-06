@@ -5,7 +5,7 @@ import { SideBarContent } from "./SideBarContent.jsx"
 export function SideBar() {
 
     return (
-        <div className="side-bar">
+        <div className="sidebar">
             <SideBarHeader />
             <SideBarContent />
         </div>
