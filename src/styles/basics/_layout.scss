@@ -15,8 +15,15 @@
 
     &.expanded {
         grid-template-columns: 240px 1fr 300px; // Example: original two columns plus an extra column
-        grid-template-areas: "sidebar main extra"; // Add an 'extra' area for the expanded section
+        grid-template-areas:
+            "sidebar main extra"
+            "footer footer footer"; // Add an 'extra' area for the expanded section
     }
+
+    // &.expanded {
+    //     grid-template-columns: 240px 1fr 300px; // Example: original two columns plus an extra column
+    //     grid-template-areas: "sidebar main extra"; // Add an 'extra' area for the expanded section
+    // }
 
 }
 

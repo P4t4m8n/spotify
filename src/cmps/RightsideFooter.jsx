@@ -18,7 +18,7 @@ export function ReightsideFooter({ player, volume, setVolume, onToggleExpansion 
 
     return (
         <section className="rightside-footer">
-            <button onClick={handleToggleClick}>onpen right modal</button>
+            <button onClick={handleToggleClick} title="Now playing view">onpen right modal</button>
             <button>lyrics</button>
             <button>queue</button>
             <div className="volume">
