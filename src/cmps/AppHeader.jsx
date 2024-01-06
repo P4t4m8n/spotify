@@ -44,12 +44,12 @@ export function AppHeader() {
     return (
         <div className="app-header">
             <div className="page-index">
-                <button> {'<'}</button>
-                <button> {'>'} </button>
+                <button> <i className="fa-solid fa-chevron-left"></i></button>
+                <button><i className="fa-solid fa-chevron-right"></i></button>
             </div>
             <Search/>
 
-            <div className="login-signup">
+            {/*<div className="login-signup">
                 <form className="login-form" onSubmit={isLogin}>
                     <input
                         type="text"
@@ -86,14 +86,14 @@ export function AppHeader() {
                             'New user? Signup here'
                         }
                     </a>
-                </div>
+                    </div>*/}
 
-                {/* {isSignup ?
-                    <button onClick={() => setIsSignup(true)}>  <Link to={`../login`}>Sign up</Link></button> :
-                    <button className="login"> <Link to={`../login`}>Log in</Link></button>
-                } */}
+             <div className="header-login">
+                     <a href="/login" className="sign-up">sign up</a>
+                    <button className="login"> <a href="/login" className="login">login</a></button>
+
+            </div>
             </div>
 
-        </div>
     )
 }

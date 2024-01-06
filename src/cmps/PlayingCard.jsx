@@ -41,7 +41,7 @@ export function PlayingCard() {
                 <p>{song.title}</p>
                 <p>{song.artist}</p>
             </div>
-            <button style={{ color: 'black' }} onClick={onLike}>{(!isLiked) ? 'liked' : 'unLikeed'}</button>
+            <button  onClick={onLike}>{(!isLiked) ? <i className="fa-solid fa-heart"></i> : <i className="fa-regular fa-heart"></i>}</button>
         </div>
 
     )

@@ -5,3 +5,54 @@
     margin: 10px;
     text-align: center;
 }
+
+.playing-card{
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+
+     button{
+        background-color: transparent;
+        font-size: 1em;
+     }
+}
+
+.audio{
+    display: flex;
+
+     button{
+        background-color: transparent;
+        color: $clr4;
+        font-size: 1em;
+     }
+
+     :hover:not(.play){
+        color: $clr5;
+     }
+
+      .play{
+        background-color: $clr5;
+        border-radius: 50%;
+        font-size: 1.2em;
+        padding: 0.5em;
+        padding-left: 0.7em;
+        padding-right: 0.7em;
+      }
+
+      .play:hover{
+        color: $clr9;
+        font-size: 1.3em;
+      }
+
+      .fa-solid.fa-play:hover{
+        color: $clr9;
+      }
+      .fa-solid.fa-pause:hover{
+        color: $clr9;
+      }
+}
+
+.fa-solid.fa-heart{
+color:$clr1;
+}
