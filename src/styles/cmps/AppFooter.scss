@@ -1,9 +1,11 @@
 .app-footer{
+ 
     background-color: #111;
     color: $clr4;
     padding: 20px;
     margin: 10px;
     text-align: center;
+    justify-content: space-between;
 }
 
 .playing-card{
@@ -38,6 +40,8 @@
         padding: 0.5em;
         padding-left: 0.7em;
         padding-right: 0.7em;
+        color: $clr9;
+
       }
 
       .play:hover{
