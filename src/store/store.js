@@ -3,6 +3,7 @@ import { combineReducers, compose, legacy_createStore as createStore } from "red
 import { playlistsReducer } from "./redcuers/playlist.reducer"
 import { userReducer } from "./redcuers/user.reducer"
 import { songReducer } from "./redcuers/song.reducer"
+import { appRedcuer } from "./redcuers/app.reducer"
 
 
 
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
     playlistsMoudle: playlistsReducer,
     userMoudle: userReducer,
     songMoudle: songReducer,
+    appMoudle: appRedcuer,
 
 })
 

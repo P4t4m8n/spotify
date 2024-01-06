@@ -46,7 +46,7 @@ export function signup(credentials) {
 }
 
 export async function update(user) {
-console.log("user:", user)
+    console.log("user:", user)
 
     try {
         const updatedUser = await userService.update(user)
@@ -57,6 +57,11 @@ console.log("user:", user)
     catch (err) {
         throw err
     }
+
+}
+
+export async function getUserPlaylists(user) {
+    const userPlaylists = user.playlists
 
 }
 

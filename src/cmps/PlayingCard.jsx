@@ -11,23 +11,26 @@ export function PlayingCard() {
     const user = useSelector(storeState => storeState.userMoudle.userObj)
 
     useEffect(() => {
-        setisLiked(user.favorites.some(fav => fav === song._id))
+
+        console.log("user:", user)
+        setisLiked(user.playlists[0].songs.some(fav => fav === song._id))
 
     }, [user, isLiked])
 
     function onLike() {
         let userToUpdate
+        let newFav = []
         if (isLiked) {
             console.log('dislike')
-            const newFav = user.favorites.filter(fav => fav !== song._id)
-             userToUpdate = { ...user, favorites: newFav }
+            newFav = user.playlists[0].filter(fav => fav !== song._id)
         }
         else {
             console.log('like')
-            const fav = user.favorites
-            fav.push(song._id)
-             userToUpdate = { ...user, favorites: fav }
+            newFav = user.playlists[0]
+            newFav.push(song._id)
+
         }
+        userToUpdate = { ...user, playlists: playlists.splice(0, 1, newFav) }
         update(userToUpdate)
     }
 

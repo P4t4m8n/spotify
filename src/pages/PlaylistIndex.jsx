@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
 import { useEffect, useRef, useState } from "react"
-import { getIndexPlaylists, loadPlaylist, loadPlaylists } from "../store/actions/playlist.actions"
+import {  loadPlaylist, loadPlaylists } from "../store/actions/playlist.actions"
 import { useParams } from "react-router"
 import { Link } from "react-router-dom"
 import { PlaylistList } from "../cmps/PlaylistList"
@@ -40,7 +40,6 @@ export function PlaylistIndex() {
 
             {
                 topics.current.map((subHeading, idx) => {
-                    console.log("playlists:", playlists)
                     {
                         const playlistsFilterd = playlists.filter(playlist => playlist.subHeading === subHeading)
                         return < PlaylistList isPlaying={isPlaying} currPlaylistId={currplaylist._id} key={idx} idx={idx} playlists={playlistsFilterd} topic={subHeading} onPlayPlaylist={onPlayPlaylist} ></PlaylistList>

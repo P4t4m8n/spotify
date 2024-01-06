@@ -1,4 +1,6 @@
 import { asyncService } from "./async-storage.service"
+import { playListService } from "./playlist.service"
+import { songService } from "./song.service"
 import { utilService } from "./util.service"
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedInUser'
@@ -63,17 +65,20 @@ function getEmptyCredentials(username = '', password = '', playlists = [], favor
 }
 
 function getDemoUser() {
+
+    let user = getLoggedinUser()
+    if (user) return
+    console.log("user:", user)
+
     return {
         _id: '1',
         username: 'bobo',
-        playlists: [],
-        favorites: [],
+        playlists: [playListService.createPlaylist([], 'Liked Songs'), playListService.createPlaylist([], 'Your Episodes')],
 
     }
 }
 
 function _setLoggedinUser(user) {
-    console.log("user:", user)
     // const userToSave = { _id, username: user.username, playlists: user.playlists, pfavoritesref: user.favorites }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
@@ -85,12 +90,21 @@ function setDemoUser() {
     return demoUser
 }
 
+// async function getUserPlaylists(user) {
+//    try{
+//     const playlists
+//    }
+
+// }
+
 function _createUsers() {
+    console.log('a')
     let users = utilService.loadFromStorage(STORGE_KEY_USERS)
 
     if (!users || !users.length) {
 
         users = [getDemoUser()]
+        console.log("users:", users)
         utilService.saveToStorage(STORGE_KEY_USERS, users)
     }
 

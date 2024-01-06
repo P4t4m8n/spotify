@@ -1,10 +1,12 @@
 import { asyncService } from "./async-storage.service"
+import { songService } from "./song.service"
+import { userService } from "./user.service"
 import { utilService } from "./util.service"
 
 const PLAYLISTS_KEY = 'playlits_DB'
 // const PLAYLISTS_KEY = 'PLAYLISTS_KEY'
 
-_createindexPlaylists()
+_createPlaylists()
 
 export const playListService = {
     query,
@@ -13,7 +15,7 @@ export const playListService = {
     remove,
     getSubHeading,
     getDeafultPlaylist,
-    getUserFavorites,
+    createPlaylist,
     getUserEpisodes
 }
 
@@ -72,27 +74,28 @@ function getDeafultPlaylist() {
 
     let songs = []
     for (var i = 0; i < 15; i++) {
-        let song = {
-            "_id": utilService.makeId(),
-            "title": utilService.makeLorem(2),
-            "album": utilService.makeLorem(1),
-            "artist": utilService.makeLorem(2),
-            "type": "song",
-            "duration": "02:30",
-            "trackId": tracksId[i % 4],
-            "songImgUrl": "https://i.ytimg.com/vi/COiIC3A0ROM/mqdefault.jpg",
-            "addedBy": utilService.makeLorem(1),
-            "addedAt": Date.now()
-        }
+        let song = songService.getRandomSong()
         songs.push(song)
     }
     playlist.songs = songs
     return playlist
 }
 
-function getUserFavorites() {
-    return getDeafultPlaylist()
-}
+// async function gestUserPlaylists(userId) {
+//     try {
+//         const userPlaylists = []
+//         const likedSongs = await songService.query({ likedBy: userId })
+
+//         userPlaylists.push(_createPlaylist(songs, 'Liked Songs', userId))
+//         userPlaylists.push(_createPlaylist([], 'Your Episodes',userId))
+
+//         userPlaylist.push(likedSongs)
+//     }
+
+//     return getDeafultPlaylist()
+// }
+
+
 
 function getUserEpisodes() {
     return { songs: [{ artist: '' }, { artist: '' }, { artist: '' }] }
@@ -119,7 +122,7 @@ function _getPlaylistDuration(items) {
 }
 
 
-function _createindexPlaylists() {
+function _createPlaylists() {
 
     const subHeadings = [
         'Made for you', 'Top charts', 'Jump back on', 'Recently played', 'Your top mixes',
@@ -130,6 +133,9 @@ function _createindexPlaylists() {
     if (!playlists || !playlists.length) {
 
         playlists = []
+        let songsIdx = 0
+        let songsArr = songService.getSongs()
+        console.log("songsArr:", songsArr)
         for (var k = 0; k < 100; k++) {
             let playlist = {
                 "_id": utilService.makeId(),
@@ -147,28 +153,36 @@ function _createindexPlaylists() {
             }
 
             let songs = []
-            for (var i = 0; i < 15; i++) {
-                let song = {
-                    "_id": utilService.makeId(),
-                    "title": utilService.makeLorem(2),
-                    "album": utilService.makeLorem(1),
-                    "artist": utilService.makeLorem(2),
-                    "type": "song",
-                    "duration": "02:30",
-                    "trackId": "npjF032TDDQ",
-                    "songImgUrl": "https://i.ytimg.com/vi/COiIC3A0ROM/mqdefault.jpg",
-                    "addedBy": utilService.makeLorem(1),
-                    "addedAt": Date.now(),
-                    "likedBy": [((utilService.getRandomIntInclusive() > 0.5) ? "1" : "")]
-                }
-                songs.push(song)
+            for (var i = songsIdx; i < songsIdx + 15; i++) {
+                songs.push(songsArr[i])
             }
+            songsIdx += 15
+            if (songsIdx > 200) songsIdx = 0
             playlist.songs = songs
             playlists.push(playlist)
         }
+        console.log("playlists:", playlists)
         utilService.saveToStorage(PLAYLISTS_KEY, playlists)
     }
 
     return playlists
 
+}
+
+function createPlaylist(songs, name = 'My Playlist #', subHeading = '1', idx = '') {
+    return {
+        "_id": utilService.makeId(),
+        "name": name + idx,
+        "subHeading": subHeading,
+        "type": "playlist",
+        "tags": [''],
+        "playlistImgUrl": 'src/assets/img/note.svg',
+        "createdBy": {
+            "_id": subHeading,
+            "username": '',
+            "profileImg": ''
+        },
+        "likedByUsers": [''],
+        songs: [...songs]
+    }
 }

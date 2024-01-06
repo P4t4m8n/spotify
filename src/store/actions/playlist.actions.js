@@ -3,18 +3,6 @@ import { ADD_PLAYLIST, EDIT_PLAYLIST, REMOVE_PLAYLIST, SET_CURR_PLAYLIST, SET_PL
 import { store } from "../store";
 
 
-
-export async function getIndexPlaylists() {
-    try {
-        const indexPlaylist = await playListService.getIndexPlaylists()
-        return indexPlaylist
-    }
-    catch (err) {
-        console.log('playlist Action -> Cannot load index playlists', err)
-        throw err
-    }
-}
-
 export async function loadPlaylists(filterSortBy = {}) {
     try {
         const playlists = await playListService.query(filterSortBy)
@@ -23,6 +11,17 @@ export async function loadPlaylists(filterSortBy = {}) {
     }
     catch (err) {
         console.log('playlist Action -> Cannot load playlists', err)
+        throw err
+    }
+
+}
+
+export async function loadUserPlaylists(userId = '1', filterSortBy) {
+    try {
+        let userPlaylists = await playListService.getUserFavorites()
+    }
+    catch (err) {
+        console.log('playlist Action -> Cannot load user playlists', err)
         throw err
     }
 
