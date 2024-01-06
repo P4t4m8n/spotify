@@ -2,36 +2,44 @@
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: 1fr auto;
-    // grid-template-columns: 30% 1fr; // sidebar width and main content
-    // grid-template-rows: auto 1fr 90px; // header, main content, and footer/player
+
 
     grid-template-areas:
         "sidebar main"
         "footer footer";
-    // grid-template-areas:
-    // "sidebar header"
-    // "sidebar main"
-    // "footer footer";
+
     gap: $panel-gap;
-    height: 100vh; // full height of the viewport
-    overflow: hidden; // Prevent scrolling on the grid container itself
+    height: 100vh;
+    overflow: hidden;
+
+
+    &.expanded {
+        grid-template-columns: 240px 1fr 300px; // Example: original two columns plus an extra column
+        grid-template-areas: "sidebar main extra"; // Add an 'extra' area for the expanded section
+    }
+
 }
 
-.app-header {
-    // grid-area: header;
-    // Additional styles for header
-}
 
 .sidebar {
     grid-area: sidebar;
-    // Additional styles for sidebar
-    overflow-y: auto; // Make sidebar scrollable if content overflows
+
+    overflow-y: auto;
+}
+
+.right-sidebar {
+    grid-area: extra; // This should match the 'extra' area in your grid-template-areas
+    display: none; // Start by hiding it
+
+    .main-container.expanded & {
+        display: block; // Display it when the container is expanded
+    }
 }
 
 .main-content {
     grid-area: main;
-    overflow-y: auto; // Allow the main content area to scroll
-    // Additional styles for main content
+    overflow-y: auto;
+
 }
 
 .app-footer {
@@ -39,91 +47,8 @@
     // Additional styles for footer (player)
 }
 
-// // These are likely meant to be outside the .main-container
-// @include for-narrow-layout {
-//     .main-container {
-//         grid-template-columns:
-//             minmax(20px, 1fr) minmax(auto, $mobile-breakpoint) minmax(20px, 1fr);
-//     }
-// }
-
-// @include for-normal-layout {
-//     .main-container {
-//         grid-template-columns:
-//             minmax(20px, 1fr) minmax(auto, $narrow-breakpoint) minmax(20px, 1fr);
-//     }
-// }
-
-// @include for-wide-layout {
-//     .main-container {
-//         grid-template-columns:
-//             minmax(20px, 1fr) minmax(auto, $normal-breakpoint) minmax(20px, 1fr);
-//     }
-// }
-
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 20px;
 }
-
-
-
-
-
-// BEFORE MAJOR CHANGES
-// .main-container {
-//     display: grid;
-//     grid-template-columns: auto 1fr;
-//     grid-template-rows: 1fr auto;
-//     grid-template-areas:
-//         "sidebar main"
-//         "sidebar player";
-
-//     height: 100vh;
-
-//     .sidebar {
-//         grid-area: sidebar;
-//     }
-
-//     .main-content {
-//         grid-area: main;
-//     }
-
-//     .player {
-//         grid-area: player;
-//     }
-
-//     // .main-container {
-//     //     display: grid;
-//     //     grid-template-columns: 20px 1fr 20px;
-
-//     //     > * {
-//     //         grid-column: 2;
-
-//     //         &.full {
-//     //             grid-column: 1 /-1;
-//     //         }
-//     //     }
-
-//     @include for-narrow-layout {
-//         grid-template-columns:
-//             minmax(20px, 1fr) minmax(auto, $mobile-breakpoint) minmax(20px, 1fr);
-//     }
-
-//     @include for-normal-layout {
-//         grid-template-columns:
-//             minmax(20px, 1fr) minmax(auto, $narrow-breakpoint) minmax(20px, 1fr);
-//     }
-
-//     @include for-wide-layout {
-//         grid-template-columns:
-//             minmax(20px, 1fr) minmax(auto, $normal-breakpoint) minmax(20px, 1fr);
-//     }
-// }
-
-// .card-grid {
-//     display: grid;
-//     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-//     grid-gap: 20px;
-// }
