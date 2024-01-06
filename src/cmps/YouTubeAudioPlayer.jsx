@@ -131,25 +131,27 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume, setVolume }) {
 
 
   return (
-    <div style={{ color: 'black' }}>
-      <button style={{ color: 'black' }} onClick={onShuffle}>onShuffle</button>
-      <button style={{ color: 'black' }} onClick={(() => onChangeSong(-1))}>onChangeSong(-1)</button>
+    <section>
+    <div className='audio' >
+      <button onClick={onShuffle}><i className="fa-solid fa-shuffle"></i></button>
+      <button onClick={(() => onChangeSong(-1))}><i className="fa-solid fa-backward-step"></i></button>
+      <button className='play' onClick={togglePlayPause}>{isPlaying ? <i className="fa-solid fa-pause"></i> : <i className="fa-solid fa-play"></i>}</button>
+      <button onClick={(() => onChangeSong(1))}><i className="fa-solid fa-forward-step"></i></button>
+      <button onClick={onRepeat}><i className="fa-solid fa-repeat"></i></button>
+     
+
       <YouTube videoId={trackId} opts={opts} onEnd={onEnd} onReady={onReady} />
-      <button style={{ color: 'black' }} onClick={togglePlayPause}>{isPlaying ? 'Pause' : 'Play'}</button>
-      <button style={{ color: 'black' }} onClick={(() => onChangeSong(1))}>onChangeSong(1)</button>
-      <button style={{ color: 'black' }} onClick={onRepeat}>onRepeat</button>
 
       <div
         onClick={handleProgressbar}
-        style={{ width: '100%', height: '20px', backgroundColor: 'lightgray', cursor: 'pointer' }}
       >
+         </div>
         <div
           style={{ height: '100%', width: `${progress}%`, backgroundColor: 'blue' }}
         />
       </div>
       <p style={{ color: 'white' }}>time:{(progress === 'NaN') ? '0.00' : progress} </p>
 
-    </div>
-  )
+      </section>  )
 }
 
