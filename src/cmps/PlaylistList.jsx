@@ -12,7 +12,6 @@ export function PlaylistList({ playlists, topic, onPlayPlaylist, currPlaylistId 
             <p>{topic}</p>
             {
                 playlists.map((playlist, idx) => {
-                    console.log("playlist:", playlist)
                     return <Link key={idx} to={`/${playlist._id}`}>
                         	<li style={{ width: '100px' }} key={playlist._id}>
                             	<img src={playlist.playlistImgUrl} style={{ width: '100%' }} ></img>

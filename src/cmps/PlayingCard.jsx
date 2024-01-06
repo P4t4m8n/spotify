@@ -12,7 +12,6 @@ export function PlayingCard() {
 
     useEffect(() => {
 
-        console.log("user:", user)
         setisLiked(user.playlists[0].songs.some(fav => fav === song._id))
 
     }, [user, isLiked])
