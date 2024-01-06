@@ -2,17 +2,22 @@ import { useEffect, useRef, useState } from "react"
 import { playListService } from "../services/playlist.service"
 import { EditMoudle } from "./EditMoudle"
 import { useParams } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { savePlaylist } from "../store/actions/playlist.actions"
 
 
-export function PlaylistEdit({ userPlaylists, setUserPlaylists, length }) {
+export function PlaylistEdit() {
+
+    const user = useSelector(storeState => storeState.userMoudle.userObj)
 
     const [playlistToEdit, setPlaylistToEdit] = useState(playListService.getEmptyPlaylist())
     const [mainEditMoudle, setMainEditMoudle] = useState(false)
     const [sotrMoudle, setSortMoudle] = useState(false)
     const [isSearchOpen, setIsSearchOpen] = useState(false)
-    const [recommendedList, setRecommendedList] = useState(playListService.getDeafultPlaylist())
+    const [songEditMoudle, setSongEditMoudle] = useState({ id: '', open: false })
 
     const params = useParams()
+    const recommendedList = useRef(playListService.getDeafultPlaylist())
 
 
     useEffect(() => {
@@ -31,6 +36,27 @@ export function PlaylistEdit({ userPlaylists, setUserPlaylists, length }) {
         catch (err) { console.log(err) }
     }
 
+    async function onAdd(ev, song) {
+
+        recommendedList.current.songs = recommendedList.current.songs.filter(listSong => song._id !== listSong._id)
+
+        const songs = playlistToEdit.songs
+        songs.push(song)
+        setPlaylistToEdit(prev => ({ ...prev, songs: songs }))
+        onSavePlaylist(ev)
+    }
+
+    async function onSavePlaylist(ev) {
+
+        try {
+            await savePlaylist(playlistToEdit)
+
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
     function handleChange({ target }) {
         let value = target.value
         let field = target.name
@@ -42,28 +68,29 @@ export function PlaylistEdit({ userPlaylists, setUserPlaylists, length }) {
 
     }
 
-
+    // console.log('render:PlaylistEdit')
     if (!playlistToEdit) return <div>...Loading</div>
 
     const { type, name, amount, createdBy, duration } = playlistToEdit
-    console.log("playlistToEdit:", playlistToEdit)
 
     return (
-        <section className="playlist-page">
+        <section className="playlist-page" style={{ height: '1000px !importent' }}>
             <header>
-                <label htmlFor="file-input">
-                    <input type="file" id="file-input" name="image" onChange={handleChange} accept="image/*" hidden />
-                    <img className="upload-img" src={playlistToEdit.playlistImgUrl || "/src/assets/img/upload.png"}></img>
-                </label>
-                <div className="playlist-hero">
-                    <p>{type}</p>
-                    <input value={name} id="name" type="text" name="name" onChange={handleChange}></input>
-                </div>
-                <div>
-                    <p>{createdBy.username || 'Spotify'}</p>
-                    <p>{amount || ''}</p>
-                    <p>About: {duration || ''}</p>
-                </div>
+                <form onSubmit={onSavePlaylist}>
+                    <label htmlFor="file-input">
+                        <input type="file" id="file-input" name="image" onChange={handleChange} accept="image/*" hidden />
+                        <img className="upload-img" src={playlistToEdit.playlistImgUrl || "/src/assets/img/upload.png"}></img>
+                    </label>
+                    <div className="playlist-hero">
+                        <p>{type}</p>
+                        <input value={name} id="name" type="text" name="name" onChange={handleChange}></input>
+                    </div>
+                    <div>
+                        <p>{createdBy.username || 'Spotify'}</p>
+                        <p>{amount || ''}</p>
+                        <p>duration: {duration || ''}</p>
+                    </div>
+                </form>
             </header>
 
             <div>
@@ -101,7 +128,8 @@ export function PlaylistEdit({ userPlaylists, setUserPlaylists, length }) {
                                     <p>{song.addedAt}</p>
                                     <button>like</button>
                                     <p>{song.duration}</p>
-
+                                    <button onClick={() => setSongEditMoudle({ id: song._id, open: true })}>X</button>
+                                    {songEditMoudle.open === true && songEditMoudle.id === song.id && <EditMoudle />}
                                 </li>
                             )
                         }
@@ -125,7 +153,7 @@ export function PlaylistEdit({ userPlaylists, setUserPlaylists, length }) {
                         <header>Recommended</header>
                         <p>Based on whats in this playlist</p>
                         {
-                            recommendedList.songs.map(song =>
+                            recommendedList.current.songs.map(song =>
                                 <li key={song._id} className="flex full" style={{ width: '100%' }}>
                                     <div>
                                         <button><img src={song.songImgUrl}></img></button>
@@ -138,7 +166,7 @@ export function PlaylistEdit({ userPlaylists, setUserPlaylists, length }) {
                                     <p>{song.album}</p>
                                     <div>
 
-                                        <button>Add</button>
+                                        <button onClick={(ev) => onAdd(ev, song)}>Add</button>
                                     </div>
 
                                 </li>

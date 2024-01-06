@@ -163,9 +163,9 @@ function _createPlaylists() {
 
 }
 
-function getEmptyPlaylist(name = '', idx = '') {
+function getEmptyPlaylist(name = '', idx = '', id = '') {
     return {
-        _id: '',
+        _id: id,
         name: name + idx,
         subHeading: '',
         type: "playlist",

@@ -6,13 +6,15 @@ import { AppFooter } from './cmps/AppFooter.jsx'
 import { PlaylistIndex } from './pages/PlaylistIndex.jsx'
 import { store } from './store/store.js'
 import { PlaylistDetails } from './pages/PlaylistDetails.jsx'
-import '../src/styles/main.scss'
 import { SideBar } from './cmps/SideBar.jsx'
 import { SearchPage } from './pages/SearchPage.jsx'
 import { VideoInfoComponent } from './cmps/VideoInfo.jsx'
 import { RightSidebar } from './cmps/RightSidebar.jsx'
 import { useState } from 'react'
 import { PlaylistEdit } from './cmps/PlaylistEdit.jsx'
+
+import '../src/styles/main.scss'
+// import '../trash/tempCss.css'
 
 export function App() {
 

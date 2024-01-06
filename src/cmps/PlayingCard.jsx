@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { update } from "../store/actions/user.actions";
+import { updateUser } from "../store/actions/user.actions";
 import { useEffect, useState } from "react";
 
 
@@ -30,7 +30,7 @@ export function PlayingCard() {
 
         }
         userToUpdate = { ...user, playlists: playlists.splice(0, 1, newFav) }
-        update(userToUpdate)
+        updateUser(userToUpdate)
     }
 
 

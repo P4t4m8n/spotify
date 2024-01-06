@@ -6,6 +6,7 @@ import { SET_FILTER } from "../store/redcuers/app.reducer"
 import { Link, useNavigate } from "react-router-dom"
 import { savePlaylist } from "../store/actions/playlist.actions"
 import { playListService } from "../services/playlist.service"
+import { updateUser } from "../store/actions/user.actions"
 // import { getUserPLaylists } from "../store/actions/user.actions"
 
 
@@ -64,11 +65,15 @@ export function SideBarContent() {
 
 
     async function createPlaylist() {
-        let newPlaylist = playListService.getEmptyPlaylist('My Playlist #' , userPlaylists.length - 1)
+        let newPlaylist = playListService.getEmptyPlaylist('My Playlist #', userPlaylists.length - 1)
         try {
             newPlaylist = await savePlaylist(newPlaylist)
-            console.log("newPlaylist:", newPlaylist)
-            setUserPlaylists(prev => ([...prev, newPlaylist]))
+            const newUserPlaylists = userPlaylists
+            newUserPlaylists.push(newPlaylist)
+
+            const editUser = { ...user, playlists: newUserPlaylists }
+            console.log("editUser:", editUser)
+            await updateUser(editUser)
             navigate('/1/playlist/edit/' + newPlaylist._id)
         }
         catch (err) { console.log(err) }
@@ -149,18 +154,18 @@ export function SideBarContent() {
                 <ul>
                     {
                         userPlaylists.map(playlist =>
-                            <li key={playlist._id}>
+                            <Link key={playlist._id} to={'/1/playlist/edit/' + playlist._id}>
+                                <li >
+                                    <img src={playlist.playlistImgUrl}></img>
+                                    <header>{playlist.name}</header>
+                                    <div>
+                                        <button>pinned</button>
+                                        <p>{playlist.type}</p>
+                                        <p>{playlist.songs.length} songs</p>
+                                    </div>
 
-                                <img src={playlist.playlistImgUrl}></img>
-                                <header>{playlist.name}</header>
-
-                                <div>
-                                    <button>pinned</button>
-                                    <p>{playlist.type}</p>
-                                    <p>{playlist.songs.length} songs</p>
-                                </div>
-
-                            </li>
+                                </li>
+                            </Link>
                         )
                     }
                 </ul>

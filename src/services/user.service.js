@@ -73,7 +73,7 @@ function getDemoUser() {
     return {
         _id: '1',
         username: 'bobo',
-        playlists: [playListService.createPlaylist([], 'Liked Songs'), playListService.createPlaylist([], 'Your Episodes')],
+        playlists: [playListService.createPlaylist([], 'Liked Songs', 'tracks'), playListService.createPlaylist([], 'Your Episodes', 'you Episodes')],
 
     }
 }

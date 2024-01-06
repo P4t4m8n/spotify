@@ -45,7 +45,7 @@ export function signup(credentials) {
 
 }
 
-export async function update(user) {
+export async function updateUser(user) {
     console.log("user:", user)
 
     try {
