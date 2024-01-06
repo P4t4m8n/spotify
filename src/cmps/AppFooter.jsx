@@ -12,6 +12,7 @@ export function AppFooter() {
 
     const [player, setPlayer] = useState(null)
     const [volume, setVolume] = useState(50)
+    
     return (
         <div className="app-footer flex">
             <PlayingCard></PlayingCard>

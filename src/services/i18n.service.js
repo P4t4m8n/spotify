@@ -17,10 +17,7 @@ i18n
             en: {
                 translation: {
                     header: {
-                        Dashboard: 'Dashboard',
-                        About: 'About',
-                        Toys: 'Toys',
-                        Home: 'Home'
+                       
                     }
 
                 }
@@ -28,10 +25,7 @@ i18n
             he: {
                 translation: {
                     header: {
-                        Dashboard: 'לוח בקרה',
-                        About: 'מי אנחנו',
-                        Toys: 'צעצועים',
-                        Home: 'בית'
+                     
                     }
 
                 }
