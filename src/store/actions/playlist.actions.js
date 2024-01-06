@@ -62,8 +62,7 @@ export async function savePlaylist(playlist) {
     try {
         const savedPlaylist = await playListService.save(playlist)
         store.dispatch({ type: type, playlist: savedPlaylist })
-        console.log('Saved!')
-        return savePlaylist
+        return savedPlaylist
     }
     catch (err) {
         console.log('playlist Action -> Cannot save playlist', err)

@@ -16,7 +16,9 @@ export const playListService = {
     getSubHeading,
     getDeafultPlaylist,
     createPlaylist,
-    getUserEpisodes
+    getUserEpisodes,
+    getEmptyPlaylist,
+    getPlaylistDuration,
 }
 
 async function query(filterSortBy = {}) {
@@ -32,17 +34,22 @@ async function query(filterSortBy = {}) {
 
 async function get(playlistId) {
     const playlist = await asyncService.get(PLAYLISTS_KEY, playlistId)
-    playlist.duration = _getPlaylistDuration(playlist.songs)
+    playlist.duration = getPlaylistDuration(playlist.songs)
 
     return playlist
 
 }
 
-function save(playlist) {
+async function save(playlist) {
+    console.log("playlist:", playlist)
+    try {
 
-    if (playlist._id) return asyncService.put(PLAYLISTS_KEY, playlist)
-
-    return asyncService.post(PLAYLISTS_KEY, playlist)
+        if (playlist._id) return await asyncService.put(PLAYLISTS_KEY, playlist)
+        return await asyncService.post(PLAYLISTS_KEY, playlist)
+    }
+    catch (err) {
+        throw err
+    }
 }
 
 function remove(playlistId) {
@@ -81,19 +88,6 @@ function getDeafultPlaylist() {
     return playlist
 }
 
-// async function gestUserPlaylists(userId) {
-//     try {
-//         const userPlaylists = []
-//         const likedSongs = await songService.query({ likedBy: userId })
-
-//         userPlaylists.push(_createPlaylist(songs, 'Liked Songs', userId))
-//         userPlaylists.push(_createPlaylist([], 'Your Episodes',userId))
-
-//         userPlaylist.push(likedSongs)
-//     }
-
-//     return getDeafultPlaylist()
-// }
 
 
 
@@ -101,7 +95,7 @@ function getUserEpisodes() {
     return { songs: [{ artist: '' }, { artist: '' }, { artist: '' }] }
 }
 
-function _getPlaylistDuration(items) {
+function getPlaylistDuration(items) {
     let totalMinutes = 0
 
     items.forEach(item => {
@@ -167,6 +161,24 @@ function _createPlaylists() {
 
     return playlists
 
+}
+
+function getEmptyPlaylist(name = '', idx = '') {
+    return {
+        _id: '',
+        name: name + idx,
+        subHeading: '',
+        type: "playlist",
+        tags: [''],
+        playlistImgUrl: '/src/assets/img/note.svg',
+        createdBy: {
+            _id: '',
+            username: '',
+            profileImg: ''
+        },
+        likedByUsers: [''],
+        songs: []
+    }
 }
 
 function createPlaylist(songs, name = 'My Playlist #', subHeading = '1', idx = '') {

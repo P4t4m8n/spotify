@@ -3,6 +3,9 @@ import { PlaylistList } from "../cmps/PlaylistList"
 import { useDispatch, useSelector } from "react-redux"
 import { Logger } from "sass"
 import { SET_FILTER } from "../store/redcuers/app.reducer"
+import { Link, useNavigate } from "react-router-dom"
+import { savePlaylist } from "../store/actions/playlist.actions"
+import { playListService } from "../services/playlist.service"
 // import { getUserPLaylists } from "../store/actions/user.actions"
 
 
@@ -21,6 +24,7 @@ export function SideBarContent() {
     const [isSortOpen, setIsSortOpen] = useState(false)
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const types = ['Playlists', 'Podcasts & Shows']
 
@@ -58,11 +62,18 @@ export function SideBarContent() {
 
     }
 
-    function openCreatePlaylist() {
-        setShowCreateModal(!setShowCreateModal)
-    }
 
-    function createPlaylist() { }
+    async function createPlaylist() {
+        let newPlaylist = playListService.getEmptyPlaylist('My Playlist #' , userPlaylists.length - 1)
+        try {
+            newPlaylist = await savePlaylist(newPlaylist)
+            console.log("newPlaylist:", newPlaylist)
+            setUserPlaylists(prev => ([...prev, newPlaylist]))
+            navigate('/1/playlist/edit/' + newPlaylist._id)
+        }
+        catch (err) { console.log(err) }
+
+    }
 
     function createFolder() { }
 
@@ -70,21 +81,27 @@ export function SideBarContent() {
 
 
     if (!userPlaylists) return <div>...Loading</div>
-    
+
     return (
 
         <div style={{ width: size }} className="side-bar-content">
             <header className="side-bar-header">
                 <div className="toggle-library">
                     <button className="your-library">📂<span>Your Library</span></button>
-                    <button onClick={() => openCreatePlaylist()}>
+                    <button onClick={() => setShowCreateModal(!showCreateModal)}>
                         <span title="Create playlist or folder">➕</span>
                     </button>
                     {showCreateModal &&
 
                         <ul className="clean-list context">
-                            <li onClick={createPlaylist}><span>🎵</span>Create a new playlist</li>
-                            <li onClick={createFolder}><span>📁</span>Create a playlist folder</li>
+                            {/* <li ><Link setUserPlaylists={setUserPlaylists} userPlaylists={userPlaylists} length={userPlaylists.length} to={'/1/playlist/edit'}>
+                                <span>🎵</span>Create a new playlist
+                            </Link>
+                            </li> */}
+                            <li onClick={createPlaylist}>
+                                <span>🎵</span>Create a new playlist
+                            </li>
+                            <li><span>📁</span>Create a playlist folder</li>
                         </ul>
                     }
 

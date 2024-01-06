@@ -12,6 +12,7 @@ import { SearchPage } from './pages/SearchPage.jsx'
 import { VideoInfoComponent } from './cmps/VideoInfo.jsx'
 import { RightSidebar } from './cmps/RightSidebar.jsx'
 import { useState } from 'react'
+import { PlaylistEdit } from './cmps/PlaylistEdit.jsx'
 
 export function App() {
 
@@ -40,6 +41,8 @@ export function App() {
               <Route path="/" element={<PlaylistIndex />} />
               <Route path="/:playlistId" element={<PlaylistDetails />} />
               <Route path="/search" element={<SearchPage />} />
+              <Route path="/:userId/playlist/edit" element={<PlaylistEdit />}></Route>
+              <Route path="/:userId/playlist/edit/:playlistId" element={<PlaylistEdit />}></Route>
             </Routes>
 
             <RightSidebar />
