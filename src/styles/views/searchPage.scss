@@ -1,0 +1,32 @@
+
+.ganeres-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+
+
+
+.ganeres-list h1{
+    margin-left: 2em;
+    font-weight:bolder;
+}
+
+.ganeres-list li{
+   
+  
+    margin: 0.5em;
+    margin-bottom: 0;
+    list-style: none;
+    height:7em;
+    width:7em; 
+    border-radius: 0.3em; 
+    padding: 0.5em;
+    font-size: 1.5em;
+    font-weight:bolder;
+
+}
+    .ganeres-list li:hover{
+        opacity: 70%;
+        cursor: pointer;
+    }
