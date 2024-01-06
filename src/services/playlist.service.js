@@ -11,7 +11,7 @@ export const playListService = {
     get,
     save,
     remove,
-    getTopics,
+    getSubHeading,
     getDeafultPlaylist,
     getUserFavorites,
     getUserEpisodes
@@ -48,7 +48,7 @@ function remove(playlistId) {
     return asyncService.remove(playlistId)
 }
 
-function getTopics() {
+function getSubHeading() {
     return ['Made for you', 'Top charts', 'Jump back on', 'Recently played', 'Your top mixes']
 }
 
@@ -58,7 +58,7 @@ function getDeafultPlaylist() {
     let playlist = {
         "_id": utilService.makeId(),
         "name": utilService.makeLorem(2),
-        "topic": 'Welcome to Stainfy',
+        "subHeading": 'Welcome to Stainfy',
         "type": "playlist",
         "tags": ["deafult"],
         "playlistImgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
@@ -121,7 +121,7 @@ function _getPlaylistDuration(items) {
 
 function _createindexPlaylists() {
 
-    const topics = [
+    const subHeadings = [
         'Made for you', 'Top charts', 'Jump back on', 'Recently played', 'Your top mixes',
     ]
 
@@ -134,7 +134,7 @@ function _createindexPlaylists() {
             let playlist = {
                 "_id": utilService.makeId(),
                 "name": utilService.makeLorem(2),
-                "topic": topics[k % 5],
+                "subHeading": subHeadings[k % 5],
                 "type": "playlist",
                 "tags": ["Soul", "Chill"],
                 "playlistImgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',

@@ -18,7 +18,7 @@ export function PlaylistIndex() {
 
     useEffect(() => {
         loadPlaylists()
-        topics.current = playListService.getTopics()
+        topics.current = playListService.getSubHeading()
     }, [])
 
     async function onPlayPlaylist(ev, playlistId) {
@@ -36,10 +36,11 @@ export function PlaylistIndex() {
     if (!playlists) return <div>...Loading</div>
 
     return (
-        topics.current.map((topic, idx) => {
+        topics.current.map((subHeading, idx) => {
+            console.log("playlists:", playlists)
             {
-                const playlistsFilterd = playlists.filter(playlist => playlist.topic === topic)
-                return < PlaylistList isPlaying={isPlaying} currPlaylistId={currplaylist._id} key={idx} idx={idx} playlists={playlistsFilterd} topic={topic} onPlayPlaylist={onPlayPlaylist} ></PlaylistList>
+                const playlistsFilterd = playlists.filter(playlist => playlist.subHeading === subHeading)
+                return < PlaylistList isPlaying={isPlaying} currPlaylistId={currplaylist._id} key={idx} idx={idx} playlists={playlistsFilterd} topic={subHeading} onPlayPlaylist={onPlayPlaylist} ></PlaylistList>
             }
         })
 

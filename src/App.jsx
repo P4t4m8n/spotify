@@ -9,6 +9,7 @@ import { PlaylistDetails } from './pages/PlaylistDetails.jsx'
 import '../src/styles/main.scss'
 import { SideBar } from './cmps/SideBar.jsx'
 import { SearchPage } from './pages/SearchPage.jsx'
+import { VideoInfoComponent } from './cmps/VideoInfo.jsx'
 
 export function App() {
 
@@ -20,18 +21,17 @@ export function App() {
         <Router>
           <section className="main-layout app">
             <AppHeader />
-
+            <SideBar />
             <main>
-              <SideBar />
+              {/* <VideoInfoComponent></VideoInfoComponent> */}
               <Routes>
                 {/* <Route path="" element={<SideBar />} /> */}
-
                 <Route path="/" element={<PlaylistIndex />} />
                 <Route path="/:playlistId" element={<PlaylistDetails />} />
-                <Route path="/search" element={<SearchPage/>} />
+                <Route path="/search" element={<SearchPage />} />
               </Routes>
-              <AppFooter />
             </main>
+            <AppFooter />
           </section>
         </Router>
       </Provider>
