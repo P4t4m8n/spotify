@@ -98,7 +98,6 @@ function setDemoUser() {
 // }
 
 function _createUsers() {
-    console.log('a')
     let users = utilService.loadFromStorage(STORGE_KEY_USERS)
 
     if (!users || !users.length) {

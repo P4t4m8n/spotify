@@ -9,7 +9,6 @@ import { SET_FILTER } from "../store/redcuers/app.reducer"
 export function SideBarContent() {
 
     const user = useSelector((storeState) => storeState.userMoudle.userObj)
-    console.log("user:", user)
     // const currPlaylist = useSelector(storeState => storeState.playlistsMoudle.currPlaylist)
     const filterSortBy = useSelector(storeState => storeState.appMoudle.filterSortBy)
 
