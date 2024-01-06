@@ -18,7 +18,7 @@ export function SideBarContent() {
 
 
     const [userPlaylists, setUserPlaylists] = useState(null)
-    const [isOpen, setIsOpen] = useState(false)
+    // const [isOpen, setIsOpen] = useState(false)
     const [showCreateModal, setShowCreateModal] = useState(false)
     const [showSearch, setShowSearch] = useState(false)
     const [resize, setResize] = useState(false)

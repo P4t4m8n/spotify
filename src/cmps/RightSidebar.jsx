@@ -1,7 +1,9 @@
+import { useSelector } from "react-redux"
 
 
 export function RightSidebar() {
 
+    const song = useSelector(storeState => storeState.songMoudle.currSong)
     return (
         <div className="right-sidebar">
             <div className="flex">

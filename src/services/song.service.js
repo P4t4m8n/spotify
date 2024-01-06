@@ -60,6 +60,7 @@ function getDefaultSong() {
 }
 
 function getRandomSong() {
+    const tracksId = ['pM6RAz9BE2A', 'zlM0vahvauU', 'npjF032TDDQ', 'eU8P0Ufwpl8']
     return {
         "_id": utilService.makeId(),
         "title": utilService.makeLorem(2),
@@ -67,7 +68,7 @@ function getRandomSong() {
         "artist": utilService.makeLorem(1),
         "type": "song",
         "duration": "02:30",
-        "trackId": "npjF032TDDQ",
+        "trackId": tracksId[utilService.getRandomIntInclusive(0, 4)],
         "songImgUrl": "https://i.ytimg.com/vi/COiIC3A0ROM/mqdefault.jpg",
         "addedBy": 'artist',
         "addedAt": Date.now(),

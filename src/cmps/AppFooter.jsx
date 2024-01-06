@@ -8,16 +8,16 @@ import { YouTubeAudioPlayer } from './YouTubeAudioPlayer'
 
 
 
-export function AppFooter({ onToggleExpansion }) {
+export function AppFooter() {
 
     const [player, setPlayer] = useState(null)
     const [volume, setVolume] = useState(50)
     
     return (
         <div className="app-footer flex">
-            <PlayingCard></PlayingCard>
+            {/* <PlayingCard></PlayingCard> */}
             <YouTubeAudioPlayer volume={volume} setVolume={setVolume} player={player} setPlayer={setPlayer}></YouTubeAudioPlayer>
-            <ReightsideFooter  volume={volume} setVolume={setVolume} player={player} onToggleExpansion={onToggleExpansion}></ReightsideFooter>
+            {/* <ReightsideFooter  volume={volume} setVolume={setVolume} player={player} ></ReightsideFooter> */}
         </div>
     )
 }

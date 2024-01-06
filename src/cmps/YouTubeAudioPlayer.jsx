@@ -10,11 +10,7 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume, setVolume }) {
   const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
   const song = useSelector(storeState => storeState.songMoudle.currSong)
   const playlist = useSelector(storeState => storeState.playlistsMoudle.currPlaylist)
-  // console.log("song:", song)
-  // console.log("isPlaying:", isPlaying)
-  // console.log("playlist:", playlist)
 
-  // const [player, setPlayer] = useState(null)
   const [progress, setProgress] = useState(null)
 
   const playlistIdx = useRef(0)
@@ -38,17 +34,18 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume, setVolume }) {
 
     const updateProgress = () => {
       if (player && player.getCurrentTime && player.getDuration) {
-        const currentTime = player.getCurrentTime();
-        const duration = player.getDuration();
-        setProgress(((currentTime / duration) * 100).toFixed(2));
+        const currentTime = player.getCurrentTime()
+        const duration = player.getDuration()
+        setProgress(((currentTime / duration) * 100).toFixed(2))
       }
     }
     if (player) {
-      clearInterval(intervalRef.current);
+      clearInterval(intervalRef.current)
       intervalRef.current = setInterval(updateProgress, 97)
     }
 
   }, [player, song])
+  console.log("song:", song)
 
 
   if (!song) return <div> loading</div>
@@ -113,6 +110,7 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume, setVolume }) {
       if (playlistIdx.current < 0) playlistIdx.current = playlist.length - 1
     }
 
+
     loadSong(playlist.songs[playlistIdx.current])
   }
 
@@ -128,30 +126,31 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume, setVolume }) {
   }
 
   const { trackId } = song
+  console.log("trackId:", trackId)
 
 
   return (
-    <section>
-    <div className='audio' >
+    <section className='audio' >
+
       <button onClick={onShuffle}><i className="fa-solid fa-shuffle"></i></button>
       <button onClick={(() => onChangeSong(-1))}><i className="fa-solid fa-backward-step"></i></button>
       <button className='play' onClick={togglePlayPause}>{isPlaying ? <i className="fa-solid fa-pause"></i> : <i className="fa-solid fa-play"></i>}</button>
       <button onClick={(() => onChangeSong(1))}><i className="fa-solid fa-forward-step"></i></button>
       <button onClick={onRepeat}><i className="fa-solid fa-repeat"></i></button>
-     
 
       <YouTube videoId={trackId} opts={opts} onEnd={onEnd} onReady={onReady} />
 
       <div
         onClick={handleProgressbar}
-      >
-         </div>
+        style={{ width: '100%', height: '20px', backgroundColor: 'lightgray' }}>
         <div
           style={{ height: '100%', width: `${progress}%`, backgroundColor: 'blue' }}
         />
       </div>
+
       <p style={{ color: 'white' }}>time:{(progress === 'NaN') ? '0.00' : progress} </p>
 
-      </section>  )
+    </section>
+  )
 }
 
