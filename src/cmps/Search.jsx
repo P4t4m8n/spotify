@@ -66,23 +66,16 @@ export function Search(){
    <form onSubmit={onFilter}>
     <label htmlFor="txt"> </label>
         <input
+        className="search-box"
           value={txt}
           onChange={handleChange}
           type="text"
           id="txt"
           name="txt"
-        />    <button>🔍</button>
+          placeholder="🔍 Search for songs "
+        />   
+        
     </form>
-    {(videos.length) && videos.map(video => {
-            <div className="video-preview" >
-                    {/*<button onclick={() => playSong({video.id})}>▶</button>*/}
-                    <img 
-                        src={video.img.url} 
-                        width={video.img.width} 
-                        height={video.img.height}/>
-                    <span>${video.title}</span>
-                </div>})}
-
                 </section>
     )
 

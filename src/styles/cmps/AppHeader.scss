@@ -4,35 +4,47 @@
     padding: 10px;
     display: flex;
     justify-content: space-between;
+    height: 4.065em;
+    width: 100%;
+    
+
   
 
-    button{
+    
+
+
+    .page-index button{
         background-color: $clr7;
         border-radius: 50%;
+        font-size: 1em;
+        color: $clr6;
+
+
+        
     }
+    .header-login {
 
-
-    .login-signup {
-
-        button {
+        .sign-up {
             padding: 1em;
-            background-color: inherit;
+            background-color: $clr8;
             font-weight: bold;
+            font-size: 1em;
+           
         }
 
         :hover{
             color:$clr6;
+            font-size: 1.1em;
+
           
         }
 
-         .login{
+        .login{
             background-color: $clr6;
             color:$clr8;
-
-        .login:hover{
-                padding: 1.1em;
-            }
-
+            border-radius: 32px;
+            padding: 0.5em;
+            font-size: 1em;
          }
 
         img {
@@ -42,6 +54,15 @@
             object-fit: cover;
         }
     }
+
+.search-box{
+    background-color: $clr11;
+    padding: 1em;
+    border-radius: 2em;
+    width: 120%;
+    text-align: start;
+   border: none;
+}
 
     .user-info .btn-link {
         color: $clr2;

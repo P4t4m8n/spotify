@@ -10,17 +10,27 @@ import '../src/styles/main.scss'
 import { SideBar } from './cmps/SideBar.jsx'
 import { SearchPage } from './pages/SearchPage.jsx'
 import { VideoInfoComponent } from './cmps/VideoInfo.jsx'
+import { RightSidebar } from './cmps/RightSidebar.jsx'
+import { useState } from 'react'
 
 export function App() {
 
+  const [isExpanded, setIsExpanded] = useState(false)
+
+
+  // this relates to the RightSidebar
+  const toggleExpansion = () => {
+    setIsExpanded(!isExpanded)
+    console.log('+++++++++++++++++Toggle RightSidebar');
+  }
 
   return (
 
     <>
       <Provider store={store}>
         <Router>
-          <section className="main-container">
-            <AppHeader />
+          <section className={`main-container ${isExpanded ? 'expanded' : ''}`}>
+            {/* <AppHeader /> */}
             <SideBar />
             {/* <VideoInfoComponent></VideoInfoComponent> */}
 
@@ -32,7 +42,8 @@ export function App() {
               <Route path="/search" element={<SearchPage />} />
             </Routes>
 
-            <AppFooter />
+            <RightSidebar />
+            <AppFooter onToggleExpansion={toggleExpansion} />
           </section>
         </Router>
       </Provider>

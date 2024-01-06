@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import { PlaylistList } from "../cmps/PlaylistList"
 import { playListService } from "../services/playlist.service"
 import { setPlaying } from "../store/actions/song.action"
+import { AppHeader } from "../cmps/AppHeader"
 
 export function PlaylistIndex() {
 
@@ -37,6 +38,7 @@ export function PlaylistIndex() {
 
     return (
         <div className="main-content">
+            <AppHeader />
 
             {
                 topics.current.map((subHeading, idx) => {

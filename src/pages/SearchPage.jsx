@@ -4,7 +4,7 @@ import { SearchResults} from '../cmps/SearchResults'
 
 export function SearchPage() {
 
-const ganers=[New,Music,Pop,Hip-Hop,R&B,latino, indi,Rock,Podcusts, Live,Sport,Maditation]
+/*const ganers=[New,Music,Pop,Hip-Hop,R&B,latino, indi,Rock,Podcusts, Live,Sport,Maditation]
 
 
     return(
@@ -16,7 +16,7 @@ const ganers=[New,Music,Pop,Hip-Hop,R&B,latino, indi,Rock,Podcusts, Live,Sport,M
         })}
                 </section>
 
-    )
+    )*/
 
 
 }

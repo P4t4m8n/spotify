@@ -1,6 +1,6 @@
 
 
-export function ReightsideFooter({ player, volume, setVolume }) {
+export function ReightsideFooter({ player, volume, setVolume, onToggleExpansion }) {
 
     function handleVolumeChange(event) {
         const newVolume = parseInt(event.target.value, 10);
@@ -10,9 +10,15 @@ export function ReightsideFooter({ player, volume, setVolume }) {
         }
     }
 
+    const handleToggleClick = () => {
+        if (onToggleExpansion) {
+            onToggleExpansion()
+        }
+    }
+
     return (
         <section className="rightside-footer">
-            <button>onpen right modal</button>
+            <button onClick={handleToggleClick} title="Now playing view">onpen right modal</button>
             <button>lyrics</button>
             <button>queue</button>
             <div className="volume">
