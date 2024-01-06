@@ -4,6 +4,8 @@ import { playlistsReducer } from "./redcuers/playlist.reducer"
 import { userReducer } from "./redcuers/user.reducer"
 import { songReducer } from "./redcuers/song.reducer"
 import { appRedcuer } from "./redcuers/app.reducer"
+import { sidebarReducer } from "./redcuers/sidebar.reducer"
+
 
 
 
@@ -12,6 +14,7 @@ const rootReducer = combineReducers({
     userMoudle: userReducer,
     songMoudle: songReducer,
     appMoudle: appRedcuer,
+    sidebarModule: sidebarReducer,
 
 })
 
