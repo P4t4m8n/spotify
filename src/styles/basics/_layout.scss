@@ -1,17 +1,24 @@
 .main-container {
     display: grid;
-    grid-template-columns: 30% 1fr; // sidebar width and main content
-    grid-template-rows: auto 1fr 90px; // header, main content, and footer/player
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr auto;
+    // grid-template-columns: 30% 1fr; // sidebar width and main content
+    // grid-template-rows: auto 1fr 90px; // header, main content, and footer/player
+
     grid-template-areas:
-        "sidebar header"
         "sidebar main"
-        "sidebar footer";
+        "footer footer";
+    // grid-template-areas:
+    // "sidebar header"
+    // "sidebar main"
+    // "footer footer";
+    gap: $panel-gap;
     height: 100vh; // full height of the viewport
     overflow: hidden; // Prevent scrolling on the grid container itself
 }
 
 .app-header {
-    grid-area: header;
+    // grid-area: header;
     // Additional styles for header
 }
 
@@ -32,27 +39,27 @@
     // Additional styles for footer (player)
 }
 
-// These are likely meant to be outside the .main-container
-@include for-narrow-layout {
-    .main-container {
-        grid-template-columns:
-            minmax(20px, 1fr) minmax(auto, $mobile-breakpoint) minmax(20px, 1fr);
-    }
-}
+// // These are likely meant to be outside the .main-container
+// @include for-narrow-layout {
+//     .main-container {
+//         grid-template-columns:
+//             minmax(20px, 1fr) minmax(auto, $mobile-breakpoint) minmax(20px, 1fr);
+//     }
+// }
 
-@include for-normal-layout {
-    .main-container {
-        grid-template-columns:
-            minmax(20px, 1fr) minmax(auto, $narrow-breakpoint) minmax(20px, 1fr);
-    }
-}
+// @include for-normal-layout {
+//     .main-container {
+//         grid-template-columns:
+//             minmax(20px, 1fr) minmax(auto, $narrow-breakpoint) minmax(20px, 1fr);
+//     }
+// }
 
-@include for-wide-layout {
-    .main-container {
-        grid-template-columns:
-            minmax(20px, 1fr) minmax(auto, $normal-breakpoint) minmax(20px, 1fr);
-    }
-}
+// @include for-wide-layout {
+//     .main-container {
+//         grid-template-columns:
+//             minmax(20px, 1fr) minmax(auto, $normal-breakpoint) minmax(20px, 1fr);
+//     }
+// }
 
 .card-grid {
     display: grid;

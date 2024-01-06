@@ -20,7 +20,7 @@ export function App() {
       <Provider store={store}>
         <Router>
           <section className="main-container">
-            <AppHeader />
+            {/* <AppHeader /> */}
             <SideBar />
             {/* <VideoInfoComponent></VideoInfoComponent> */}
 
