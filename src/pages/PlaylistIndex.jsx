@@ -36,14 +36,19 @@ export function PlaylistIndex() {
     if (!playlists) return <div>...Loading</div>
 
     return (
-        topics.current.map((subHeading, idx) => {
-            console.log("playlists:", playlists)
-            {
-                const playlistsFilterd = playlists.filter(playlist => playlist.subHeading === subHeading)
-                return < PlaylistList isPlaying={isPlaying} currPlaylistId={currplaylist._id} key={idx} idx={idx} playlists={playlistsFilterd} topic={subHeading} onPlayPlaylist={onPlayPlaylist} ></PlaylistList>
-            }
-        })
+        <div className="main-content">
 
+            {
+                topics.current.map((subHeading, idx) => {
+                    console.log("playlists:", playlists)
+                    {
+                        const playlistsFilterd = playlists.filter(playlist => playlist.subHeading === subHeading)
+                        return < PlaylistList isPlaying={isPlaying} currPlaylistId={currplaylist._id} key={idx} idx={idx} playlists={playlistsFilterd} topic={subHeading} onPlayPlaylist={onPlayPlaylist} ></PlaylistList>
+                    }
+                })
+            }
+        </div>
 
     )
+
 }
