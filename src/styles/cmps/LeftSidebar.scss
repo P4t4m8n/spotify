@@ -1,14 +1,24 @@
 .left-sidebar {
     grid-area: left-sidebar;
     overflow-y: auto;
-    overflow-x: hidden;
     position: relative;
     background-color: $clr7;
+
+    .your-library {
+        background-color: transparent;
+    }
+
+    .side-bar-content {
+        ul li img {
+            // width: 100%;
+            width: 50px;
+
+            border: 10px solid pink;
+        }
+    }
 }
 
-.your-library {
-    background-color: transparent;
-}
+
 
 // Styles for the resizer
 .resizer {
@@ -17,14 +27,7 @@
     height: 100%;
     background-color: red;
     position: absolute;
-    right: 0; // Place it on the right edge inside the sidebar
+    right: 0;
     top: 0;
     z-index: 10;
-}
-
-.side-bar-content {
-    img {
-        width: 100%;
-        border: 10px solid red;
-    }
 }

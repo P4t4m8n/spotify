@@ -87,7 +87,7 @@ export function SideBarContent() {
                     </button>
                     {showCreateModal &&
 
-                        <ul className="clean-list context flex">
+                        <ul className="clean-list context">
 
                             <li onClick={createStation}>
                                 <span>🎵</span>Create a new station
@@ -140,7 +140,7 @@ export function SideBarContent() {
                     {
                         userStations.map(station =>
                             <Link key={station._id} to={'/1/station/edit/' + station._id}>
-                                <li className="flex">
+                                <li>
                                     <img src={station.stationImgUrl}></img>
                                     <header>{station.name}</header>
                                     <div>
