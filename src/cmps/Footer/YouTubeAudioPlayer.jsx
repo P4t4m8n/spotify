@@ -9,12 +9,11 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume }) {
 
   const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
   const song = useSelector(storeState => storeState.songMoudle.currSong)
-  console.log("song:", song)
-  const playlist = useSelector(storeState => storeState.playlistsMoudle.currPlaylist)
+  const station = useSelector(storeState => storeState.stationsMoudle.currStation)
 
   const [progress, setProgress] = useState(null)
 
-  const playlistIdx = useRef(0)
+  const stationIdx = useRef(0)
   const isRepeat = useRef(false)
   const isShuffle = useRef(false)
   const intervalRef = useRef(null)
@@ -30,7 +29,7 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume }) {
 
   useEffect(() => {
 
-    if (!song) loadSong(playlist.songs[playlistIdx.current])
+    if (!song) loadSong(station.songs[stationIdx.current])
     setProgress('0.00')
 
     const updateProgress = () => {
@@ -50,10 +49,10 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume }) {
 
   if (!song) return <div> loading</div>
 
-  async function load() {
-    loadSong(playlist.songs[playlistIdx.current])
+  // async function load() {
+  //   loadSong(station.songs[stationIdx.current])
 
-  }
+  // }
 
   function handleProgressbar(ev) {
 
@@ -73,14 +72,14 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume }) {
 
   function onEnd(ev) {
     if (!isRepeat.current && !isShuffle.current) {
-      playlistIdx.current++
-      if (playlistIdx.current >= playlist.length) playlistIdx.current = 0
+      stationIdx.current++
+      if (stationIdx.current >= station.length) stationIdx.current = 0
     }
 
     if (isShuffle.current) {
-      playlistIdx.current = utilService.getRandomIntInclusive(0, playlist.length)
+      stationIdx.current = utilService.getRandomIntInclusive(0, station.length)
     }
-    loadSong(playlist.songs[playlistIdx.current])
+    loadSong(station.songs[stationIdx.current])
   }
 
   function onShuffle(ev) {
@@ -96,19 +95,19 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume }) {
   function onChangeSong(dir) {
 
     if (isShuffle.current) {
-      playlistIdx.current = utilService.getRandomIntInclusive(0, playlist.songs.length)
+      stationIdx.current = utilService.getRandomIntInclusive(0, station.songs.length)
     }
 
     else if (isRepeat.current) { }
 
     else {
-      playlistIdx.current += dir
-      if (playlistIdx.current >= playlist.length) playlistIdx.current = 0
-      if (playlistIdx.current < 0) playlistIdx.current = playlist.length - 1
+      stationIdx.current += dir
+      if (stationIdx.current >= station.length) stationIdx.current = 0
+      if (stationIdx.current < 0) stationIdx.current = station.length - 1
     }
 
 
-    loadSong(playlist.songs[playlistIdx.current])
+    loadSong(station.songs[stationIdx.current])
   }
 
   function togglePlayPause() {
@@ -125,7 +124,7 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume }) {
   const { trackId } = song
 
   return (
-    <section className='audio' >
+    <section className='audio'>
 
       <button onClick={onShuffle}><i className="fa-solid fa-shuffle"></i></button>
       <button onClick={(() => onChangeSong(-1))}><i className="fa-solid fa-backward-step"></i></button>

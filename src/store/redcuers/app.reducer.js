@@ -18,17 +18,10 @@ export function appRedcuer(state = initialSate, action = {}) {
             return { ...state, filterSortBy }
 
         case SET_IS_OPEN:
-            {
-                console.log("state:", state)
-                return { ...state, isOpen: action.isOpen }
-
-            }
-        case SET_IS_OPEN:
-            {
-                console.log("state:", state)
-                return { ...state, isOpen: action.isOpen }
-
-            }
+            { return { ...state, isOpen: action.isOpen } }
+            
+        case SET_IS_SEARCH_OPEN:
+            { return { ...state, isOpen: action.isOpen } }
 
         default:
             return state

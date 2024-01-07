@@ -6,7 +6,6 @@ export const SET_VOLUME = 'SET_VOLUME'
 
 const initialState = {
     currSong: songService.getDefaultSong(),
-    // currSong: {},
     isPlaying: false,
     volume: 50,
     songs: []

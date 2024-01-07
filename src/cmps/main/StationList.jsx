@@ -1,24 +1,24 @@
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 
-
-export function StationList({ playlists, topic, onPlayPlaylist, currPlaylistId }) {
+export function StationList({ stations, topic, onPlayStation, currStationId: currStationId }) {
+console.log("stations:", stations)
 
     const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
 
     return (
 
-        <ul className="playlist-list" style={{ disply: 'flex' }}>
+        <ul className="station-list" style={{ disply: 'flex' }}>
             <p>{topic}</p>
             {
-                playlists.map((playlist, idx) => {
-                    return <Link key={idx} to={`/${playlist._id}`}>
-                        	<li style={{ width: '100px' }} key={playlist._id}>
-                            	<img src={playlist.playlistImgUrl} style={{ width: '100%' }} ></img>
-                            	<p>{playlist.name}</p>
-                            	<p>{playlist.name}</p>
-                            	{playlist.songs.slice(0, 3).map(song => song.artist || '').join('')}
-                            	<button style={{ color: 'black' }} onClick={(ev) => onPlayPlaylist(ev, playlist._id)}>{(currPlaylistId === playlist._id && isPlaying) ? 'Pause' : 'Play'}</button>
+                stations.map((station, idx) => {
+                    return <Link key={idx} to={`/${station._id}`}>
+                        	<li style={{ width: '100px' }} key={station._id}>
+                            	<img src={station.stationImgUrl} style={{ width: '100%' }} ></img>
+                            	<p>{station.name}</p>
+                            	<p>{station.name}</p>
+                            	{station.songs.slice(0, 3).map(song => song.artist || '').join('')}
+                            	<button style={{ color: 'black' }} onClick={(ev) => onPlayStation(ev, station._id)}>{(currStationId === station._id && isPlaying) ? 'Pause' : 'Play'}</button>
                         	</li>
                     	</Link>
 	

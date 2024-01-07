@@ -2,8 +2,8 @@ import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { SET_FILTER } from "../../store/redcuers/app.reducer"
 import { Link, useNavigate } from "react-router-dom"
-import { savePlaylist } from "../../store/actions/playlist.actions"
-import { playListService } from "../../services/playlist.service"
+import { saveStation } from "../../store/actions/station.actions"
+import { stationService } from "../../services/station.service"
 import { updateUser } from "../../store/actions/user.actions"
 
 
@@ -12,8 +12,7 @@ export function SideBarContent() {
     const user = useSelector((storeState) => storeState.userMoudle.userObj)
     const filterSortBy = useSelector(storeState => storeState.appMoudle.filterSortBy)
 
-
-    const [userPlaylists, setUserPlaylists] = useState(null)
+    const [userStations, setUserStations] = useState(null)
     const [showCreateModal, setShowCreateModal] = useState(false)
     const [showSearch, setShowSearch] = useState(false)
     const [resize, setResize] = useState(false)
@@ -22,10 +21,10 @@ export function SideBarContent() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const types = ['Playlists', 'Podcasts & Shows']
+    const types = ['stations', 'Podcasts & Shows']
 
     useEffect(() => {
-        setUserPlaylists(user.playlists)
+        setUserStations(user.stations)
 
     }, [])
 
@@ -39,30 +38,30 @@ export function SideBarContent() {
         dispatch({ type: SET_FILTER, filterSort })
     }
 
-    async function onPlayPlaylist(ev, playlistId) {
+    async function onPlayStation(ev, stationId) {
 
         ev.preventDefault()
         try {
-            let playlist
-            if (playlistId !== currplaylist._id) playlist = await loadPlaylist(playlistId)
+            let station
+            if (stationId !== currStation._id) station = await loadStation(stationId)
             setPlaying()
         }
         catch (err) { }
 
     }
 
+    async function createStation() {
 
-    async function createPlaylist() {
+        let newStation = stationService.getEmptystation('My station #', userStations.length - 1)
 
-        let newPlaylist = playListService.getEmptyPlaylist('My Playlist #', userPlaylists.length - 1)
         try {
-            newPlaylist = await savePlaylist(newPlaylist)
-            const newUserPlaylists = userPlaylists
-            newUserPlaylists.push(newPlaylist)
+            newStation = await saveStation(newStation)
+            const newUserStations = userStations
+            newUserStations.push(newStation)
 
-            const editUser = { ...user, playlists: newUserPlaylists }
+            const editUser = { ...user, stations: newUserStations }
             await updateUser(editUser)
-            navigate('/1/playlist/edit/' + newPlaylist._id)
+            navigate('/1/station/edit/' + newStation._id)
         }
         catch (err) { console.log(err) }
 
@@ -73,7 +72,7 @@ export function SideBarContent() {
     const size = resize ? '50px' : '700px'
 
 
-    if (!userPlaylists) return <div>...Loading</div>
+    if (!userStations) return <div>...Loading</div>
 
     return (
 
@@ -82,16 +81,16 @@ export function SideBarContent() {
                 <div className="toggle-library">
                     <button className="your-library">📂<span>Your Library</span></button>
                     <button onClick={() => setShowCreateModal(!showCreateModal)}>
-                        <span title="Create playlist or folder">➕</span>
+                        <span title="Create station or folder">➕</span>
                     </button>
                     {showCreateModal &&
 
                         <ul className="clean-list context">
 
-                            <li onClick={createPlaylist}>
-                                <span>🎵</span>Create a new playlist
+                            <li onClick={createStation}>
+                                <span>🎵</span>Create a new station
                             </li>
-                            <li><span>📁</span>Create a playlist folder</li>
+                            <li><span>📁</span>Create a station folder</li>
                         </ul>
                     }
 
@@ -102,7 +101,7 @@ export function SideBarContent() {
             <div className="side-bar-filtersort">
 
                 <div className="side-bar-type-filter">
-                    <button>Playlists</button>
+                    <button>stations</button>
                     <button>Podcasts & Shows</button>
                 </div>
 
@@ -137,15 +136,15 @@ export function SideBarContent() {
 
                 <ul>
                     {
-                        userPlaylists.map(playlist =>
-                            <Link key={playlist._id} to={'/1/playlist/edit/' + playlist._id}>
+                        userStations.map(station =>
+                            <Link key={station._id} to={'/1/station/edit/' + station._id}>
                                 <li >
-                                    <img src={playlist.playlistImgUrl}></img>
-                                    <header>{playlist.name}</header>
+                                    <img src={station.stationImgUrl}></img>
+                                    <header>{station.name}</header>
                                     <div>
                                         <button>pinned</button>
-                                        <p>{playlist.type}</p>
-                                        <p>{playlist.songs.length} songs</p>
+                                        <p>{station.type}</p>
+                                        <p>{station.songs.length} songs</p>
                                     </div>
 
                                 </li>

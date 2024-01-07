@@ -1,30 +1,28 @@
 import { asyncService } from "./async-storage.service"
 import { songService } from "./song.service"
-import { userService } from "./user.service"
 import { utilService } from "./util.service"
 
-const PLAYLISTS_KEY = 'playlits_DB'
-// const PLAYLISTS_KEY = 'PLAYLISTS_KEY'
+const STORGE_STATION_KEY = 'station_DB'
 
-_createPlaylists()
+_createStations()
 
-export const playListService = {
+export const stationService = {
     query,
     get,
     save,
     remove,
     getSubHeading,
-    getDeafultPlaylist,
-    createPlaylist,
+    getDefaultStation,
+    createStation,
     getUserEpisodes,
-    getEmptyPlaylist,
-    getPlaylistDuration,
+    getEmptyStation,
+    getStationDuration,
 }
 
 async function query(filterSortBy = {}) {
     try {
-        const playlists = await asyncService.query(PLAYLISTS_KEY)
-        return playlists
+        const stations = await asyncService.query(STORGE_STATION_KEY)
+        return stations
     }
     catch (err) {
         throw err
@@ -32,44 +30,43 @@ async function query(filterSortBy = {}) {
 
 }
 
-async function get(playlistId) {
-    const playlist = await asyncService.get(PLAYLISTS_KEY, playlistId)
-    playlist.duration = getPlaylistDuration(playlist.songs)
+async function get(stationId) {
+    const station = await asyncService.get(STORGE_STATION_KEY, stationId)
+    station.duration = getStationDuration(station.songs)
 
-    return playlist
+    return station
 
 }
 
-async function save(playlist) {
-    console.log("playlist:", playlist)
+async function save(station) {
     try {
 
-        if (playlist._id) return await asyncService.put(PLAYLISTS_KEY, playlist)
-        return await asyncService.post(PLAYLISTS_KEY, playlist)
+        if (station._id) return await asyncService.put(STORGE_STATION_KEY, station)
+        return await asyncService.post(STORGE_STATION_KEY, station)
     }
     catch (err) {
         throw err
     }
 }
 
-function remove(playlistId) {
+function remove(stationId) {
 
-    return asyncService.remove(playlistId)
+    return asyncService.remove(stationId)
 }
 
 function getSubHeading() {
     return ['Made for you', 'Top charts', 'Jump back on', 'Recently played', 'Your top mixes']
 }
 
-function getDeafultPlaylist() {
+function getDefaultStation() {
 
-    let playlist = {
+    let station = {
         "_id": utilService.makeId(),
         "name": utilService.makeLorem(2),
         "subHeading": 'Welcome to Stainfy',
-        "type": "playlist",
+        "type": "station",
         "tags": ["deafult"],
-        "playlistImgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
+        "stationImgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
         "createdBy": {
             "_id": utilService.makeId(),
             "username": utilService.makeLorem(1),
@@ -83,26 +80,20 @@ function getDeafultPlaylist() {
         let song = songService.getRandomSong()
         songs.push(song)
     }
-    playlist.songs = songs
-    return playlist
+    station.songs = songs
+    return station
 }
-
-
-
 
 function getUserEpisodes() {
     return { songs: [{ artist: '' }, { artist: '' }, { artist: '' }] }
 }
 
-function getPlaylistDuration(items) {
+function getStationDuration(items) {
     let totalMinutes = 0
 
     items.forEach(item => {
-
-
         const [hours, minutes] = item.duration.split(':')
         totalMinutes += parseInt(hours, 10) * 60 + parseInt(minutes, 10)
-
     })
 
     const totalHours = Math.floor(totalMinutes / 60)
@@ -114,29 +105,28 @@ function getPlaylistDuration(items) {
     return formattedTotalRunTime
 }
 
-
-function _createPlaylists() {
+function _createStations() {
 
     const subHeadings = [
         'Made for you', 'Top charts', 'Jump back on', 'Recently played', 'Your top mixes',
     ]
 
-    let playlists = utilService.loadFromStorage(PLAYLISTS_KEY)
+    let stations = utilService.loadFromStorage(STORGE_STATION_KEY)
 
-    if (!playlists || !playlists.length) {
+    if (!stations || !stations.length) {
 
-        playlists = []
+        stations = []
         let songsIdx = 0
         let songsArr = songService.getSongs()
         console.log("songsArr:", songsArr)
         for (var k = 0; k < 100; k++) {
-            let playlist = {
+            let station = {
                 "_id": utilService.makeId(),
                 "name": utilService.makeLorem(2),
                 "subHeading": subHeadings[k % 5],
-                "type": "playlist",
+                "type": "station",
                 "tags": ["Soul", "Chill"],
-                "playlistImgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
+                "stationImgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
                 "createdBy": {
                     "_id": utilService.makeId(),
                     "username": utilService.makeLorem(1),
@@ -151,25 +141,24 @@ function _createPlaylists() {
             }
             songsIdx += 15
             if (songsIdx > 200) songsIdx = 0
-            playlist.songs = songs
-            playlists.push(playlist)
+            station.songs = songs
+            stations.push(station)
         }
-        console.log("playlists:", playlists)
-        utilService.saveToStorage(PLAYLISTS_KEY, playlists)
+        utilService.saveToStorage(STORGE_STATION_KEY, stations)
     }
 
-    return playlists
+    return stations
 
 }
 
-function getEmptyPlaylist(name = '', idx = '', id = '') {
+function getEmptyStation(name = '', idx = '', id = '') {
     return {
         _id: id,
         name: name + idx,
         subHeading: '',
-        type: "playlist",
+        type: "station",
         tags: [''],
-        playlistImgUrl: '/src/assets/img/note.svg',
+        stationImgUrl: '/src/assets/img/note.svg',
         createdBy: {
             _id: '',
             username: '',
@@ -180,14 +169,14 @@ function getEmptyPlaylist(name = '', idx = '', id = '') {
     }
 }
 
-function createPlaylist(songs, name = 'My Playlist #', subHeading = '1', idx = '') {
+function createStation(songs, name = 'My station #', subHeading = '1', idx = '') {
     return {
         "_id": utilService.makeId(),
         "name": name + idx,
         "subHeading": subHeading,
-        "type": "playlist",
+        "type": "station",
         "tags": [''],
-        "playlistImgUrl": 'src/assets/img/note.svg',
+        "stationImgUrl": 'src/assets/img/note.svg',
         "createdBy": {
             "_id": subHeading,
             "username": '',

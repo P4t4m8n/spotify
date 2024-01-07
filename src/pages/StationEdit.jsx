@@ -1,37 +1,36 @@
 import { useEffect, useRef, useState } from "react"
-import { playListService } from "../services/playlist.service"
+import { stationService } from "../services/station.service"
 import { EditMoudle } from "../cmps/LeftSidebar/EditMoudle"
 import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
-import { savePlaylist } from "../store/actions/playlist.actions"
+import { saveStation } from "../store/actions/station.actions"
 
 
-export function PlaylistEdit() {
+export function StationEdit() {
 
     const user = useSelector(storeState => storeState.userMoudle.userObj)
 
-    const [playlistToEdit, setPlaylistToEdit] = useState(playListService.getEmptyPlaylist())
+    const [stationToEdit, setStationToEdit] = useState(stationService.getEmptystation())
     const [mainEditMoudle, setMainEditMoudle] = useState(false)
-    const [sotrMoudle, setSortMoudle] = useState(false)
+    const [sortMoudle, setSortMoudle] = useState(false)
     const [isSearchOpen, setIsSearchOpen] = useState(false)
     const [songEditMoudle, setSongEditMoudle] = useState({ id: '', open: false })
 
     const params = useParams()
-    const recommendedList = useRef(playListService.getDeafultPlaylist())
-
+    const recommendedList = useRef(stationService.getDeafultstation())
 
     useEffect(() => {
-        if (params.playlistId)
-            loadPlaylist(params.playlistId)
+        if (params.stationId)
+            loadStation(params.stationId)
 
     }, [])
 
-    async function loadPlaylist(playlistId) {
+    async function loadStation(stationId) {
         try {
 
-            const playlist = await playListService.get(playlistId)
-            setPlaylistToEdit(playlist)
-            playlistToEdit.amount = playListService.getPlaylistDuration(playlistToEdit.songs)
+            const station = await stationService.get(stationId)
+            setStationToEdit(station)
+            stationToEdit.amount = stationService.getStationDuration(stationToEdit.songs)
         }
         catch (err) { console.log(err) }
     }
@@ -40,16 +39,16 @@ export function PlaylistEdit() {
 
         recommendedList.current.songs = recommendedList.current.songs.filter(listSong => song._id !== listSong._id)
 
-        const songs = playlistToEdit.songs
+        const songs = stationToEdit.songs
         songs.push(song)
-        setPlaylistToEdit(prev => ({ ...prev, songs: songs }))
-        onSavePlaylist(ev)
+        setStationToEdit(prev => ({ ...prev, songs: songs }))
+        onSaveStation(ev)
     }
 
-    async function onSavePlaylist(ev) {
+    async function onSaveStation(ev) {
 
         try {
-            await savePlaylist(playlistToEdit)
+            await saveStation(stationToEdit)
 
         }
         catch (err) {
@@ -64,24 +63,24 @@ export function PlaylistEdit() {
             console.log(value)
             return
         }
-        setPlaylistToEdit(presPlaylist => ({ ...presPlaylist, [field]: value }))
+        setStationToEdit(prevStation => ({ ...prevStation, [field]: value }))
 
     }
 
-    // console.log('render:PlaylistEdit')
-    if (!playlistToEdit) return <div>...Loading</div>
+    // console.log('render:stationEdit')
+    if (!stationToEdit) return <div>...Loading</div>
 
-    const { type, name, amount, createdBy, duration } = playlistToEdit
+    const { type, name, amount, createdBy, duration } = stationToEdit
 
     return (
-        <section className="playlist-page" style={{ height: '1000px !importent' }}>
+        <section className="station-page" style={{ height: '1000px !importent' }}>
             <header>
-                <form onSubmit={onSavePlaylist}>
+                <form onSubmit={onSaveStation}>
                     <label htmlFor="file-input">
                         <input type="file" id="file-input" name="image" onChange={handleChange} accept="image/*" hidden />
-                        <img className="upload-img" src={playlistToEdit.playlistImgUrl || "/src/assets/img/upload.png"}></img>
+                        <img className="upload-img" src={stationToEdit.stationImgUrl || "/src/assets/img/upload.png"}></img>
                     </label>
-                    <div className="playlist-hero">
+                    <div className="station-hero">
                         <p>{type}</p>
                         <input value={name} id="name" type="text" name="name" onChange={handleChange}></input>
                     </div>
@@ -94,11 +93,11 @@ export function PlaylistEdit() {
             </header>
 
             <div>
-                {playlistToEdit.songs && <button>Play</button>}
+                {stationToEdit.songs && <button>Play</button>}
                 <button onClick={() => setMainEditMoudle(!mainEditMoudle)}>...</button>
                 {mainEditMoudle && <EditMoudle />}
-                <button onClick={(() => setSortMoudle(!sotrMoudle))}>Sort</button>
-                {!sotrMoudle &&
+                <button onClick={(() => setSortMoudle(!sortMoudle))}>Sort</button>
+                {!sortMoudle &&
                     <ul>
                         <li>Views as</li>
                         <li>Compact</li>
@@ -107,7 +106,7 @@ export function PlaylistEdit() {
                 }
 
                 {
-                    playlistToEdit.songs &&
+                    stationToEdit.songs &&
 
                     <ul className="song-list">
                         <li className="list-header">
@@ -119,7 +118,7 @@ export function PlaylistEdit() {
                             <p>duration</p>
                         </li>
                         {
-                            playlistToEdit.songs.map((song, idx) =>
+                            stationToEdit.songs.map((song, idx) =>
                                 <li key={song._id} className="flex full" style={{ width: '100%' }}>
                                     <button>idx+1</button>
                                     <p>{song.title}</p>
@@ -151,7 +150,7 @@ export function PlaylistEdit() {
                     :
                     <ul className="song-list">
                         <header>Recommended</header>
-                        <p>Based on whats in this playlist</p>
+                        <p>Based on whats in this station</p>
                         {
                             recommendedList.current.songs.map(song =>
                                 <li key={song._id} className="flex full" style={{ width: '100%' }}>

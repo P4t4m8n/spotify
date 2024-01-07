@@ -1,37 +1,37 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router"
-import { loadPlaylist } from "../store/actions/playlist.actions"
+import { loadStation } from "../store/actions/station.actions"
 
 
-export function PlaylistDetails() {
+export function StationDetails() {
 
-    const [currPlaylist, setCurrPlaylist] = useState(null)
+    const [currStation, setCurrStation] = useState(null)
     const params = useParams()
 
     useEffect(() => {
-        onLoadPlaylist()
+        onLoadstation()
 
-    }, [params.playlistId])
+    }, [params.stationId])
 
-    async function onLoadPlaylist() {
-        const playlist = await loadPlaylist(params.playlistId)
+    async function onLoadstation() {
+        const station = await loadStation(params.stationId)
 
-        setCurrPlaylist(prevP => ({ ...currPlaylist, ...playlist }))
+        setCurrStation(prevStation => ({ ...prevStation, ...station }))
     }
 
-    if (!currPlaylist) return <div>...Loading</div>
+    if (!currStation) return <div>...Loading</div>
 
+    const { stationImgUrl, type, createdBy, name, duration, songs } = currStation
 
-    const { playlistImgUrl, type, createdBy, name, duration, songs } = currPlaylist
+    const amount = currStation.songs.length
 
-    const amount = currPlaylist.songs.length
-
-    // console.log('Render Playlist-details')
+    // console.log('Render station-details')
+    
     return (
-        <section className="playlist-page">
+        <section className="station-page">
             <header>
-                <img src={playlistImgUrl}></img>
-                <div className="playlist-hero">
+                <img src={stationImgUrl}></img>
+                <div className="station-hero">
                     <p>{type}</p>
                     <p>{name}</p>
                     <p>{songs[0].title}</p>

@@ -9,7 +9,7 @@ export function SearchPage() {
     // console.log('Render-Search page')
     return (
         <section className='search-page'>
-            <h1>Brouse all</h1>
+            <h1>Browse all</h1>
             <SearchResults />
             <ul className="ganeres-list">
                 {ganers.map(ganere =>

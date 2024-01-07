@@ -18,7 +18,6 @@ async function query(filterSortBy = {}) {
     let filteredSortSongs = []
     try {
         const songs = await asyncService.query(STORAGE_SONGS_KEY)
-        console.log("songs:", songs)
 
         if (txt) { }
 
@@ -35,8 +34,8 @@ async function query(filterSortBy = {}) {
 
 async function getSongById(songId) {
     try {
-        const playlist = await asyncService.get(STORAGE_SONGS_KEY, songId)
-        return playlist
+        const station = await asyncService.get(STORAGE_SONGS_KEY, songId)
+        return station
     }
     catch (err) {
         throw err
@@ -91,7 +90,6 @@ function _createSongs() {
             let song = getRandomSong()
             songs.push(song)
         }
-
 
     }
     utilService.saveToStorage(STORAGE_SONGS_KEY, songs)

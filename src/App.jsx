@@ -2,12 +2,12 @@
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom'
 import { AppHeader } from './cmps/Header/AppHeader.jsx'
 import { Player } from './cmps/Footer/Player.jsx'
-import { PlaylistIndex } from './pages/PlaylistIndex.jsx'
-import { PlaylistDetails } from './pages/PlaylistDetails.jsx'
+import { StationIndex } from './pages/StationIndex.jsx'
+import { StationDetails } from './pages/StationDetails.jsx'
 import { LeftSidebar } from './cmps/LeftSidebar/LeftSidebar.jsx'
 import { SearchPage } from './pages/SearchPage.jsx'
 import { RightSidebar } from './cmps/RightSidebar/RightSidebar.jsx'
-import { PlaylistEdit } from './pages/PlaylistEdit.jsx'
+import { StationEdit } from './pages/StationEdit.jsx'
 
 import '../src/styles/main.scss'
 
@@ -18,11 +18,11 @@ export function App() {
       <AppHeader />
       <LeftSidebar />
       <Routes>
-        <Route path="/" element={<PlaylistIndex />} />
-        <Route path="/:playlistId" element={<PlaylistDetails />} />
+        <Route path="/" element={<StationIndex />} />
+        <Route path="/:playlistId" element={<StationDetails />} />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/:userId/playlist/edit" element={<PlaylistEdit />}></Route>
-        <Route path="/:userId/playlist/edit/:playlistId" element={<PlaylistEdit />}></Route>
+        <Route path="/:userId/playlist/edit" element={<StationEdit />}></Route>
+        <Route path="/:userId/playlist/edit/:playlistId" element={<StationEdit />}></Route>
       </Routes>
       <RightSidebar />
       <Player />

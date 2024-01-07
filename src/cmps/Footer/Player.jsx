@@ -11,7 +11,7 @@ export function Player() {
 
     return (
         <div className="app-footer flex">
-            <PlayerPlayingCard></PlayerPlayingCard>
+            {/* <PlayerPlayingCard></PlayerPlayingCard> */}
             <YouTubeAudioPlayer volume={volume} setVolume={setVolume} player={player} setPlayer={setPlayer}></YouTubeAudioPlayer>
             <PlayerRightside volume={volume} setVolume={setVolume} player={player} ></PlayerRightside>
         </div>

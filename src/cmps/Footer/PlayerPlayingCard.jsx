@@ -12,7 +12,7 @@ export function PlayerPlayingCard() {
 
     useEffect(() => {
 
-        setisLiked(user.playlists[0].songs.some(fav => fav === song._id))
+        setisLiked(user.stations[0].songs.some(fav => fav === song._id))
 
     }, [user, isLiked])
 
@@ -21,20 +21,17 @@ export function PlayerPlayingCard() {
         let newFav = []
         if (isLiked) {
             console.log('dislike')
-            newFav = user.playlists[0].filter(fav => fav !== song._id)
+            newFav = user.stations[0].filter(fav => fav !== song._id)
         }
         else {
             console.log('like')
-            newFav = user.playlists[0]
+            newFav = user.stations[0]
             newFav.push(song._id)
 
         }
-        userToUpdate = { ...user, playlists: playlists.splice(0, 1, newFav) }
+        userToUpdate = { ...user, stations: stations.splice(0, 1, newFav) }
         updateUser(userToUpdate)
     }
-
-
-
 
     return (
         <div className="playing-card flex" >

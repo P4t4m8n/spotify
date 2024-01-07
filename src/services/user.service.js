@@ -1,13 +1,11 @@
 import { asyncService } from "./async-storage.service"
-import { playListService } from "./playlist.service"
-import { songService } from "./song.service"
+import { stationService } from "./station.service"
 import { utilService } from "./util.service"
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedInUser'
 const STORGE_KEY_USERS = 'usersDB'
 
 _createUsers()
-
 
 export const userService = {
     login,
@@ -37,49 +35,61 @@ async function login({ username, password }) {
 }
 
 async function signup({ username, password, fullname }) {
-    const user = { username, password, fullname, playlists: [], favorites: [] }
-    const newUser = await asyncService.post(STORGE_KEY_USERS, user)
-    return _setLoggedinUser(newUser)
+    try {
+        const user = { username, password, fullname, stations: [], favorites: [] }
+        const newUser = await asyncService.post(STORGE_KEY_USERS, user)
+
+        return _setLoggedinUser(newUser)
+    }
+    catch (err) {
+        throw err
+    }
 }
 
-function logout() {
-    asyncService.removeItem(STORAGE_KEY_LOGGEDIN_USER)
-    return Promise.resolve()
+async function logout() {
+    try {
+        asyncService.removeItem(STORAGE_KEY_LOGGEDIN_USER)
+        return
+    }
+    catch (err) {
+        throw err
+    }
 }
 
 async function update(user) {
-
-    const updateUser = await asyncService.put(STORGE_KEY_USERS, user)
-    _setLoggedinUser(user)
-    return user
+    try {
+        const updateUser = await asyncService.put(STORGE_KEY_USERS, user)
+        _setLoggedinUser(updateUser)
+        return updateUser
+    }
+    catch (err) {
+        throw err
+    }
 
 }
 
-function getEmptyCredentials(username = '', password = '', playlists = [], favorites = []) {
+function getEmptyCredentials(username = '', password = '', stations = [], favorites = []) {
     return {
         username,
         password,
-        playlists,
+        stations,
         favorites,
     }
 }
 
 function getDemoUser() {
-
     let user = getLoggedinUser()
     if (user) return
-    console.log("user:", user)
 
     return {
         _id: '1',
         username: 'bobo',
-        playlists: [playListService.createPlaylist([], 'Liked Songs', 'tracks'), playListService.createPlaylist([], 'Your Episodes', 'you Episodes')],
-
+        stations: [stationService.createStation([], 'Liked Songs', 'tracks'),
+        stationService.createStation([], 'Your Episodes', 'you Episodes')],
     }
 }
 
 function _setLoggedinUser(user) {
-    // const userToSave = { _id, username: user.username, playlists: user.playlists, pfavoritesref: user.favorites }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
 }
@@ -90,20 +100,12 @@ function setDemoUser() {
     return demoUser
 }
 
-// async function getUserPlaylists(user) {
-//    try{
-//     const playlists
-//    }
-
-// }
-
 function _createUsers() {
     let users = utilService.loadFromStorage(STORGE_KEY_USERS)
 
     if (!users || !users.length) {
 
         users = [getDemoUser()]
-        console.log("users:", users)
         utilService.saveToStorage(STORGE_KEY_USERS, users)
     }
 
