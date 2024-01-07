@@ -60,7 +60,7 @@ export function AppHeader() {
             <div className="header-login">
                 {/*user? 
                 <div>`${user.url}`<h3>Hello {user.username}</h3></div> :*/
-                <div className="sign-up">sign up{/*</a>*/}
+                <div className="sign-up"><a href="/sighup">sign up</a>
                 <button className="login"><a href="/login">login </a></button>
                 </div>}
 
