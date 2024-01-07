@@ -1,18 +1,25 @@
+import { useSelector } from "react-redux";
+import { setIsOpen } from "../store/actions/app.actions";
 
 
-export function ReightsideFooter({ player, volume, setVolume }) {
+export function RightsideFooter({ player, volume, setVolume }) {
 
-    function handleVolumeChange(event) {
-        const newVolume = parseInt(event.target.value, 10);
+    const isOpen = useSelector(storeState => storeState.appMoudle.isOpen)
+    console.log("isOpen-foot:", isOpen)
+
+
+    function handleVolumeChange(ev) {
+        const newVolume = parseInt(ev.target.value, 10);
         setVolume(newVolume);
         if (player) {
             player.setVolume(newVolume);
         }
     }
 
-     return (
+    // console.log('Render:right side footer')
+    return (
         <section className="rightside-footer">
-            <button  >npen right modal</button>
+            <button onClick={() => setIsOpen(!isOpen)} >open right modal</button>
             <button>lyrics</button>
             <button>queue</button>
             <div className="volume">

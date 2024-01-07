@@ -9,6 +9,7 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume, setVolume }) {
 
   const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
   const song = useSelector(storeState => storeState.songMoudle.currSong)
+  console.log("song:", song)
   const playlist = useSelector(storeState => storeState.playlistsMoudle.currPlaylist)
 
   const [progress, setProgress] = useState(null)
@@ -45,18 +46,14 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume, setVolume }) {
     }
 
   }, [player, song])
-  console.log("song:", song)
 
 
   if (!song) return <div> loading</div>
 
   async function load() {
-
     loadSong(playlist.songs[playlistIdx.current])
 
-
   }
-
 
   function handleProgressbar(ev) {
 
@@ -126,8 +123,6 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume, setVolume }) {
   }
 
   const { trackId } = song
-  console.log("trackId:", trackId)
-
 
   return (
     <section className='audio' >

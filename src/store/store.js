@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
     userMoudle: userReducer,
     songMoudle: songReducer,
     appMoudle: appRedcuer,
-    sidebarModule: sidebarReducer,
+    // sidebarModule: sidebarReducer,
 
 })
 
