@@ -1,14 +1,64 @@
 .left-sidebar {
     grid-area: left-sidebar;
     overflow-y: auto;
-    overflow-x: hidden;
     position: relative;
     background-color: $clr7;
+
+    .your-library {
+        background-color: transparent;
+    }
+
+    .side-bar-content {
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            grid-template-columns: 48px auto;
+            grid-template-rows: auto;
+
+            img {
+
+                grid-row: 1/ span 2;
+                height: 48px;
+                width: 48px;
+
+            }
+
+            header,
+            div {
+                grid-column: 2;
+            }
+
+            p {
+                grid-row: 2;
+
+                .station-type {
+                    // border: 1px solid red;
+                    margin-right: 5px;
+
+                    &::after {
+                        // background-color: green;
+                        content: '\2022';
+                        display: inline-block;
+                        margin-left: 5px;
+                        // color: purple;
+                    }
+                }
+            }
+
+        }
+
+    }
+
+
+
+
 }
 
-.your-library {
-    background-color: transparent;
-}
+
 
 // Styles for the resizer
 .resizer {
@@ -17,14 +67,7 @@
     height: 100%;
     background-color: red;
     position: absolute;
-    right: 0; // Place it on the right edge inside the sidebar
+    right: 0;
     top: 0;
     z-index: 10;
-}
-
-.side-bar-content {
-    img {
-        width: 100%;
-        border: 10px solid red;
-    }
 }
