@@ -4,6 +4,8 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+  justify-content: end;
+  margin-right: 10em;
 
     
 
@@ -15,6 +17,9 @@
         width: 15em;
         padding: 0.5em;
         margin-bottom: 0.5em;
+        border-radius: 0.5em;
+        margin-top: 1em;
+
     }
 
     input::placeholder {
@@ -31,12 +36,16 @@
         
     }
 
-    button{
-        color: $clr7;
+    .submit{
+        background-color: $clr1;
         margin-bottom: 1em;
         font-size: 0.8em;
         padding: 0.7em;
         border-radius: 1em;
+        font-weight: bold;
+        color:$clr9;
+        margin-top: 1em;
+
     }
 
     button:hover{

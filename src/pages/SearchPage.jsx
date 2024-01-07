@@ -1,5 +1,5 @@
 import { utilService } from '../services/util.service'
-// import { SearchResults } from '../cmps/SearchResults'
+ import { SearchResults } from '../cmps/support/SearchResults'
 
 
 export function SearchPage() {
@@ -10,7 +10,7 @@ export function SearchPage() {
     return (
         <section className='search-page'>
             <h1>Browse all</h1>
-            <SearchResults />
+            {/*<SearchResults />*/}
             <ul className="ganeres-list">
                 {ganers.map(ganere =>
                     <li key={ganere} style={{ backgroundColor: utilService.getRandomColor() }}>{ganere}</li>

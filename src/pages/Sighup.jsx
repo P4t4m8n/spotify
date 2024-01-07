@@ -3,9 +3,9 @@ import { userService } from "../services/user.service.js"
 import { useState } from 'react'
 
 
-export function LoginSignup({isSignup}){
+export function Sighup(){
     const [credentials, setCredentials] = useState(userService.getEmptyCredentials())
-    const [selectedOption, setselectedOption] = useState('noAns')
+    const [selectedOption, setselectedOption] = useState('')
 
 
     function handleChange({ target }) {
@@ -41,7 +41,7 @@ export function LoginSignup({isSignup}){
                 required
                 autoComplete="off"
             />
-            {isSignup && <div>
+            <div>
                 <label> Please enter your name</label><input
                 type="text"
                 name="Nickname"
@@ -74,6 +74,7 @@ export function LoginSignup({isSignup}){
                 type="radio"
                 name="Female"
                 value={credentials.Gender}
+                chacked={selectedOption === 'Female'}
                 onChange={handleChange}
             />
              <label> Other</label>
@@ -81,11 +82,12 @@ export function LoginSignup({isSignup}){
                 type="radio"
                 name="other"
                 value={credentials.Gender}
+                chacked={selectedOption === 'Other'}
                 onChange={handleChange}
             />
             </div>
-            </div>}
-            <button>{isSignup ? 'Signup' : 'Login'}</button>
+            </div>
+            <button className="submit">Signup</button>
         </form>
     )
 }

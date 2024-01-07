@@ -125,24 +125,25 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume }) {
 
   return (
     <section className='audio'>
-
+<div className='buttons'>
       <button onClick={onShuffle}><i className="fa-solid fa-shuffle"></i></button>
       <button onClick={(() => onChangeSong(-1))}><i className="fa-solid fa-backward-step"></i></button>
       <button className='play' onClick={togglePlayPause}>{isPlaying ? <i className="fa-solid fa-pause"></i> : <i className="fa-solid fa-play"></i>}</button>
       <button onClick={(() => onChangeSong(1))}><i className="fa-solid fa-forward-step"></i></button>
       <button onClick={onRepeat}><i className="fa-solid fa-repeat"></i></button>
+      </div>
 
       <YouTube videoId={trackId} opts={opts} onEnd={onEnd} onReady={onReady} />
 
-      <div
+      <div className='progress-line'
         onClick={handleProgressbar}
-        style={{ width: '100%', height: '20px', backgroundColor: 'lightgray' }}>
+        style={{ width: '100%', height: '15px', backgroundColor: 'lightgray',borderRadius:'10px' }}>
         <div
-          style={{ height: '100%', width: `${progress}%`, backgroundColor: 'blue' }}
+          style={{ height: '100%', width: `${progress}%`, backgroundColor: 'blue' ,borderRadius:'10px'}}
         />
       </div>
 
-      <p style={{ color: 'white' }}>time:{(progress === 'NaN') ? '0.00' : progress} </p>
+      <p style={{ color: 'white' }}>{(progress === 'NaN') ? '0.00' : progress} </p>
 
     </section>
   )

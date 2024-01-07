@@ -1,14 +1,20 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { userService } from '../../services/user.service'
 
 import { Search } from "../support/Search"
 
 
 
+
+
+
 export function AppHeader() {
 
-    const user = useSelector((storeState) => storeState.userMoudle.userObj)
+    const dispatch = useDispatch()
+
+
+    //const user = useSelector(storeState => storeState.userMoudle.userObj)
     const [isSignup, setIsSignUp] = useState(false)
     const [credentials, setCredentials] = useState(userService.getEmptyCredentials())
 
@@ -49,48 +55,14 @@ export function AppHeader() {
             </div>
             <Search />
 
-            {/*<div className="login-signup">
-                <form className="login-form" onSubmit={isLogin}>
-                    <input
-                        type="text"
-                        name="username"
-                        value={credentials.username}
-                        placeholder="Username"
-                        onChange={handleChange}
-                        required
-                        autoFocus
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        value={credentials.password}
-                        placeholder="Password"
-                        onChange={handleChange}
-                        required
-                        autoComplete="off"
-                    />
-                    {isSignup && <input
-                        type="text"
-                        name="fullname"
-                        value={credentials.fullname}
-                        placeholder="Full name"
-                        onChange={handleChange}
-                        required
-                    />}
-                    <button>{isSignup ? 'Signup' : 'Login'}</button>
-                </form>
-                <div className="login-btns">
-                    <a href="#" onClick={() => setIsSignUp(!isSignup)}>
-                        {isSignup ?
-                            'Already a member? Login' :
-                            'New user? Signup here'
-                        }
-                    </a>
-                    </div>*/}
+           
 
             <div className="header-login">
-                <a href="/login" className="sign-up">sign up</a>
-                <button className="login"> </button>
+                {/*user? 
+                <div>`${user.url}`<h3>Hello {user.username}</h3></div> :*/
+                <div className="sign-up">sign up{/*</a>*/}
+                <button className="login"><a href="/login">login </a></button>
+                </div>}
 
             </div>
         </div>
