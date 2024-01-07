@@ -1,0 +1,23 @@
+.left-sidebar {
+    grid-area: left-sidebar;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    background-color: $clr7;
+}
+
+.your-library {
+    background-color: transparent;
+}
+
+// Styles for the resizer
+.resizer {
+    cursor: col-resize;
+    width: $panel-gap;
+    height: 100%;
+    background-color: red;
+    position: absolute;
+    right: 0; // Place it on the right edge inside the sidebar
+    top: 0;
+    z-index: 10;
+}

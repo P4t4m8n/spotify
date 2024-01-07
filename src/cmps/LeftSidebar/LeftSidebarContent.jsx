@@ -77,7 +77,7 @@ export function SideBarContent() {
 
     return (
 
-        <div style={{ width: size }} className="side-bar-content">
+        <div className="side-bar-content">
             <header className="side-bar-header">
                 <div className="toggle-library">
                     <button className="your-library">📂<span>Your Library</span></button>

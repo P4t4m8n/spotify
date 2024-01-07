@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux"
 import { useEffect, useRef } from "react"
-import {  loadPlaylist, loadPlaylists } from "../store/actions/playlist.actions"
+import { loadPlaylist, loadPlaylists } from "../store/actions/playlist.actions"
 import { StationList } from "../cmps/main/StationList"
 import { playListService } from "../services/playlist.service"
 import { setPlaying } from "../store/actions/song.action"
-import { AppHeader } from "../cmps/Header/AppHeader"
+// import { AppHeader } from "../cmps/Header/AppHeader"
 
 export function PlaylistIndex() {
 
@@ -35,8 +35,7 @@ export function PlaylistIndex() {
     if (!playlists) return <div>...Loading</div>
 
     return (
-        <div className="main-content">
-            <AppHeader />
+        <div>
             {
                 topics.current.map((subHeading, idx) => {
                     {

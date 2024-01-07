@@ -1,15 +1,9 @@
-// Variables for gaps and sizes
-$sidebar-width: 240px;
-$expanded-sidebar-width: 300px;
-$sidebar-min-width: 200px;
-$main-min-width: 400px;
-
 .main-container {
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-rows: 1fr auto;
     grid-template-areas:
-        "sidebar main"
+        "left-sidebar main"
         "footer footer";
     gap: $panel-gap;
     height: 100vh;
@@ -23,32 +17,9 @@ $main-min-width: 400px;
     }
 }
 
-.sidebar {
-    grid-area: sidebar;
-    overflow-y: auto;
-    overflow-x: hidden;
-    position: relative;
-    background-color: $clr7;
-    // Additional styles
-}
-
-.right-sidebar {
-    grid-area: extra;
-    display: none;
-
-    .main-container.expanded & {
-        display: block;
-    }
-}
-
 .main-content {
     grid-area: main;
     overflow-y: auto;
-
-}
-
-.app-footer {
-    grid-area: footer;
 
 }
 
@@ -56,17 +27,4 @@ $main-min-width: 400px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
-
-}
-
-// Styles for the resizer
-.resizer {
-    cursor: col-resize;
-    width: $panel-gap;
-    height: 100%;
-    background-color: red;
-    position: absolute;
-    right: 0; // Place it on the right edge inside the sidebar
-    top: 0;
-    z-index: 10;
 }

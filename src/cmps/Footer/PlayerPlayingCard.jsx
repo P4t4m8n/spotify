@@ -38,12 +38,12 @@ export function PlayerPlayingCard() {
 
     return (
         <div className="playing-card flex" >
-            <img src={song.songImgUrl} style={{ width: '50px' }}></img>
+            <img src={song.songImgUrl}></img>
             <div>
                 <p>{song.title}</p>
                 <p>{song.artist}</p>
             </div>
-            <button  onClick={onLike}>{(!isLiked) ? <i className="fa-solid fa-heart"></i> : <i className="fa-regular fa-heart"></i>}</button>
+            <button onClick={onLike}>{(!isLiked) ? <i className="fa-solid fa-heart"></i> : <i className="fa-regular fa-heart"></i>}</button>
         </div>
 
     )

@@ -27,7 +27,6 @@ export function PlayerRightside({ player, volume, setVolume }) {
                     max="100"
                     value={volume}
                     onChange={handleVolumeChange}
-                    style={{ width: '100%' }}
                 />
             </div>
             <button>open mini player</button>

@@ -1,0 +1,8 @@
+.right-sidebar {
+    grid-area: extra;
+    display: none;
+
+    .main-container.expanded & {
+        display: block;
+    }
+}

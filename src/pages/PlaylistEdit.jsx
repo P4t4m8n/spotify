@@ -74,7 +74,7 @@ export function PlaylistEdit() {
     const { type, name, amount, createdBy, duration } = playlistToEdit
 
     return (
-        <section className="playlist-page" style={{ height: '1000px !importent' }}>
+        <section className="playlist-page">
             <header>
                 <form onSubmit={onSavePlaylist}>
                     <label htmlFor="file-input">
@@ -120,7 +120,7 @@ export function PlaylistEdit() {
                         </li>
                         {
                             playlistToEdit.songs.map((song, idx) =>
-                                <li key={song._id} className="flex full" style={{ width: '100%' }}>
+                                <li key={song._id} className="flex full">
                                     <button>idx+1</button>
                                     <p>{song.title}</p>
                                     <p>{song.artist}</p>
@@ -154,7 +154,7 @@ export function PlaylistEdit() {
                         <p>Based on whats in this playlist</p>
                         {
                             recommendedList.current.songs.map(song =>
-                                <li key={song._id} className="flex full" style={{ width: '100%' }}>
+                                <li key={song._id} className="flex full">
                                     <div>
                                         <button><img src={song.songImgUrl}></img></button>
                                         <div>
