@@ -1,8 +1,8 @@
-import {  useState } from 'react'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { userService } from '../services/user.service'
+import { userService } from '../../services/user.service'
 
-import { Search } from "./Search"
+import { Search } from "../support/Search"
 
 
 
@@ -47,7 +47,7 @@ export function AppHeader() {
                 <button> <i className="fa-solid fa-chevron-left"></i></button>
                 <button><i className="fa-solid fa-chevron-right"></i></button>
             </div>
-            <Search/>
+            <Search />
 
             {/*<div className="login-signup">
                 <form className="login-form" onSubmit={isLogin}>
@@ -88,12 +88,12 @@ export function AppHeader() {
                     </a>
                     </div>*/}
 
-             <div className="header-login">
-                     <a href="/login" className="sign-up">sign up</a>
-                    <button className="login"> <a href="/login" className="login">login</a></button>
+            <div className="header-login">
+                <a href="/login" className="sign-up">sign up</a>
+                <button className="login"> </button>
 
             </div>
-            </div>
+        </div>
 
     )
 }

@@ -1,12 +1,10 @@
 import { useSelector } from "react-redux"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import {  loadPlaylist, loadPlaylists } from "../store/actions/playlist.actions"
-import { useParams } from "react-router"
-import { Link } from "react-router-dom"
-import { PlaylistList } from "../cmps/PlaylistList"
+import { StationList } from "../cmps/main/StationList"
 import { playListService } from "../services/playlist.service"
 import { setPlaying } from "../store/actions/song.action"
-import { AppHeader } from "../cmps/AppHeader"
+import { AppHeader } from "../cmps/Header/AppHeader"
 
 export function PlaylistIndex() {
 
@@ -39,12 +37,11 @@ export function PlaylistIndex() {
     return (
         <div className="main-content">
             <AppHeader />
-
             {
                 topics.current.map((subHeading, idx) => {
                     {
                         const playlistsFilterd = playlists.filter(playlist => playlist.subHeading === subHeading)
-                        return < PlaylistList isPlaying={isPlaying} currPlaylistId={currplaylist._id} key={idx} idx={idx} playlists={playlistsFilterd} topic={subHeading} onPlayPlaylist={onPlayPlaylist} ></PlaylistList>
+                        return <StationList isPlaying={isPlaying} currPlaylistId={currplaylist._id} key={idx} idx={idx} playlists={playlistsFilterd} topic={subHeading} onPlayPlaylist={onPlayPlaylist} ></StationList>
                     }
                 })
             }

@@ -1,12 +1,11 @@
 import { useSelector } from "react-redux"
-import { utilService } from "../services/util.service"
+import { utilService } from "../../services/util.service"
 
 
 export function RightSidebar() {
 
     const song = useSelector(storeState => storeState.songMoudle.currSong)
     const isOpen = useSelector(storeState => storeState.appMoudle.isOpen)
-    console.log("isOpen-side:", isOpen)
     const width = isOpen ? '400px' : '0px'
 
 

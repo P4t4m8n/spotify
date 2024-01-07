@@ -15,22 +15,18 @@ export function PlaylistDetails() {
 
     async function onLoadPlaylist() {
         const playlist = await loadPlaylist(params.playlistId)
-       
+
         setCurrPlaylist(prevP => ({ ...currPlaylist, ...playlist }))
     }
 
     if (!currPlaylist) return <div>...Loading</div>
 
 
-    console.log("currPlaylist:", currPlaylist)
-
-
-
     const { playlistImgUrl, type, createdBy, name, duration, songs } = currPlaylist
 
     const amount = currPlaylist.songs.length
 
-
+    // console.log('Render Playlist-details')
     return (
         <section className="playlist-page">
             <header>
@@ -53,7 +49,7 @@ export function PlaylistDetails() {
                 {
 
                     songs.map(song =>
-                        <li key={song._id} className="flex full" style={{ width: '100%'}}>
+                        <li key={song._id} className="flex full" style={{ width: '100%' }}>
                             <div>
                                 <button>p</button>
                                 <img src={song.songImgUrl}></img>

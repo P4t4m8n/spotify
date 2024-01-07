@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { utilService } from "../services/util.service"
+import { utilService } from "../src/services/util.service"
 
 
 export function PlaylistsListList({ playlists, header }) {

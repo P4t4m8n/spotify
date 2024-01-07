@@ -1,23 +1,19 @@
 
 import { useState } from 'react'
-import { PlayingCard } from './PlayingCard'
-import { RightsideFooter } from './RightsideFooter'
+import { PlayerPlayingCard } from './PLayerPlayingCard'
 import { YouTubeAudioPlayer } from './YouTubeAudioPlayer'
+import { PlayerRightside } from './PlayerRightside'
 
-
-
-
-
-export function AppFooter() {
+export function Player() {
 
     const [player, setPlayer] = useState(null)
     const [volume, setVolume] = useState(50)
-    
+
     return (
         <div className="app-footer flex">
-            <PlayingCard></PlayingCard>
+            <PlayerPlayingCard></PlayerPlayingCard>
             <YouTubeAudioPlayer volume={volume} setVolume={setVolume} player={player} setPlayer={setPlayer}></YouTubeAudioPlayer>
-            <RightsideFooter  volume={volume} setVolume={setVolume} player={player} ></RightsideFooter>
+            <PlayerRightside volume={volume} setVolume={setVolume} player={player} ></PlayerRightside>
         </div>
     )
 }

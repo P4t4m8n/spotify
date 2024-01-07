@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { playListService } from "../services/playlist.service"
-import { EditMoudle } from "./EditMoudle"
+import { EditMoudle } from "../cmps/LeftSidebar/EditMoudle"
 import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { savePlaylist } from "../store/actions/playlist.actions"

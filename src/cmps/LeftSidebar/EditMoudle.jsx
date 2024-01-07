@@ -18,7 +18,7 @@ export function EditMoudle() {
             </li>
             <li><div>icon</div>
                 <ul>
-                    <li><div>icon</div>Cpoy link to playlist</li>
+                    <li><div>icon</div>Copy link to playlist</li>
                     <li><div>icon</div>Embed playlist</li>
                 </ul></li>
 

@@ -63,7 +63,6 @@ function getSubHeading() {
 
 function getDeafultPlaylist() {
 
-    const tracksId = ['pM6RAz9BE2A', 'zlM0vahvauU', 'npjF032TDDQ', 'eU8P0Ufwpl8']
     let playlist = {
         "_id": utilService.makeId(),
         "name": utilService.makeLorem(2),

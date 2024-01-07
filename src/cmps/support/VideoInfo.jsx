@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { apiService } from '../services/api.service'
+import { apiService } from '../../services/api.service'
 
 export function VideoInfoComponent() {
 

@@ -1,24 +1,19 @@
-import { useState, useEffect, useRef } from "react"
-import { PlaylistList } from "../cmps/PlaylistList"
+import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Logger } from "sass"
-import { SET_FILTER } from "../store/redcuers/app.reducer"
+import { SET_FILTER } from "../../store/redcuers/app.reducer"
 import { Link, useNavigate } from "react-router-dom"
-import { savePlaylist } from "../store/actions/playlist.actions"
-import { playListService } from "../services/playlist.service"
-import { updateUser } from "../store/actions/user.actions"
-// import { getUserPLaylists } from "../store/actions/user.actions"
+import { savePlaylist } from "../../store/actions/playlist.actions"
+import { playListService } from "../../services/playlist.service"
+import { updateUser } from "../../store/actions/user.actions"
 
 
 export function SideBarContent() {
 
     const user = useSelector((storeState) => storeState.userMoudle.userObj)
-    // const currPlaylist = useSelector(storeState => storeState.playlistsMoudle.currPlaylist)
     const filterSortBy = useSelector(storeState => storeState.appMoudle.filterSortBy)
 
 
     const [userPlaylists, setUserPlaylists] = useState(null)
-    // const [isOpen, setIsOpen] = useState(false)
     const [showCreateModal, setShowCreateModal] = useState(false)
     const [showSearch, setShowSearch] = useState(false)
     const [resize, setResize] = useState(false)
@@ -34,14 +29,6 @@ export function SideBarContent() {
 
     }, [])
 
-    // async function loadUserPaylists() {
-    //     try {
-    //         const playlist = await getUserPLaylists(user)
-    //         setUserPlaylists(playlist)
-    //     }
-    //     catch (err) { console.log(err) }
-    // }
-
 
     function handleChange({ target }) {
         let value = target.value
@@ -53,6 +40,7 @@ export function SideBarContent() {
     }
 
     async function onPlayPlaylist(ev, playlistId) {
+
         ev.preventDefault()
         try {
             let playlist
@@ -65,6 +53,7 @@ export function SideBarContent() {
 
 
     async function createPlaylist() {
+
         let newPlaylist = playListService.getEmptyPlaylist('My Playlist #', userPlaylists.length - 1)
         try {
             newPlaylist = await savePlaylist(newPlaylist)
@@ -72,7 +61,6 @@ export function SideBarContent() {
             newUserPlaylists.push(newPlaylist)
 
             const editUser = { ...user, playlists: newUserPlaylists }
-            console.log("editUser:", editUser)
             await updateUser(editUser)
             navigate('/1/playlist/edit/' + newPlaylist._id)
         }
@@ -99,10 +87,7 @@ export function SideBarContent() {
                     {showCreateModal &&
 
                         <ul className="clean-list context">
-                            {/* <li ><Link setUserPlaylists={setUserPlaylists} userPlaylists={userPlaylists} length={userPlaylists.length} to={'/1/playlist/edit'}>
-                                <span>🎵</span>Create a new playlist
-                            </Link>
-                            </li> */}
+
                             <li onClick={createPlaylist}>
                                 <span>🎵</span>Create a new playlist
                             </li>
@@ -150,7 +135,6 @@ export function SideBarContent() {
 
             <section className="side-bar-body">
 
-                {/* <PlaylistList playlists={userPlaylists} onPlayPlaylist={onPlayPlaylist} currPlaylistId={currPlaylistId} ></PlaylistList> */}
                 <ul>
                     {
                         userPlaylists.map(playlist =>

@@ -68,7 +68,7 @@ function getRandomSong() {
         "artist": utilService.makeLorem(1),
         "type": "song",
         "duration": "02:30",
-        "trackId": tracksId[utilService.getRandomIntInclusive(0, 4)],
+        "trackId": tracksId[utilService.getRandomIntInclusive(0, 3)],
         "songImgUrl": "https://i.ytimg.com/vi/COiIC3A0ROM/mqdefault.jpg",
         "addedBy": 'artist',
         "addedAt": Date.now(),

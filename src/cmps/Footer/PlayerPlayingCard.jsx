@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import { updateUser } from "../store/actions/user.actions";
+import { updateUser } from "../../store/actions/user.actions";
 import { useEffect, useState } from "react";
 
 
-export function PlayingCard() {
+export function PlayerPlayingCard() {
 
     const [isLiked, setisLiked] = useState(false)
 

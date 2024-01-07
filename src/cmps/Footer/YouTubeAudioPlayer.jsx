@@ -2,10 +2,10 @@
 import YouTube from 'react-youtube'
 import { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { loadSong, setPlaying } from '../store/actions/song.action'
-import { utilService } from '../services/util.service'
+import { loadSong, setPlaying } from '../../store/actions/song.action'
+import { utilService } from '../../services/util.service'
 
-export function YouTubeAudioPlayer({ player, setPlayer, volume, setVolume }) {
+export function YouTubeAudioPlayer({ player, setPlayer, volume }) {
 
   const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
   const song = useSelector(storeState => storeState.songMoudle.currSong)

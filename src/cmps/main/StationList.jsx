@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 
 
-export function PlaylistList({ playlists, topic, onPlayPlaylist, currPlaylistId }) {
+export function StationList({ playlists, topic, onPlayPlaylist, currPlaylistId }) {
 
     const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
 

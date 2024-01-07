@@ -1,12 +1,10 @@
 import { useSelector } from "react-redux";
-import { setIsOpen } from "../store/actions/app.actions";
+import { setIsOpen } from "../../store/actions/app.actions";
 
 
-export function RightsideFooter({ player, volume, setVolume }) {
+export function PlayerRightside({ player, volume, setVolume }) {
 
     const isOpen = useSelector(storeState => storeState.appMoudle.isOpen)
-    console.log("isOpen-foot:", isOpen)
-
 
     function handleVolumeChange(ev) {
         const newVolume = parseInt(ev.target.value, 10);
