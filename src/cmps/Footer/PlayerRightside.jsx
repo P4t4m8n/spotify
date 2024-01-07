@@ -17,9 +17,10 @@ export function PlayerRightside({ player, volume, setVolume }) {
     // console.log('Render:right side footer')
     return (
         <section className="rightside-footer">
-            <button onClick={() => setIsOpen(!isOpen)} >open right modal</button>
-            <button>lyrics</button>
-            <button>queue</button>
+            <button onClick={() => setIsOpen(!isOpen)}><img className="icon-16" src="src\assets\img\details.svg"></img></button>
+            <button><img className="icon-16" src="src\assets\img\lyrics.svg"></img></button>
+            <button><img className="icon-16" src="src\assets\img\que.svg"></img></button>
+            <button><img className="icon-16" src="src\assets\img\device.svg"></img></button>
             <div className="volume">
                 <input
                     type="range"
@@ -27,10 +28,11 @@ export function PlayerRightside({ player, volume, setVolume }) {
                     max="100"
                     value={volume}
                     onChange={handleVolumeChange}
-                />
+                ></input>
             </div>
-            <button>open mini player</button>
-            <button>full screen</button>
+            <button><img  className="icon-16" src="src\assets\img\vol.svg"></img></button>
+            <button><img className="icon-16" src="src\assets\img\miniPlayer.svg"></img></button>
+            <button><img className="icon-16" src="src\assets\img\fullscreen.svg"></img></button>
         </section>
     )
 }

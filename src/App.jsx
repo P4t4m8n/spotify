@@ -10,6 +10,7 @@ import { RightSidebar } from './cmps/RightSidebar/RightSidebar.jsx'
 import { StationEdit } from './pages/StationEdit.jsx'
 
 import '../src/styles/main.scss'
+// import '../src/footer.css'
 
 export function App() {
 

@@ -36,12 +36,12 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume }) {
       if (player && player.getCurrentTime && player.getDuration) {
         const currentTime = player.getCurrentTime()
         const duration = player.getDuration()
-        setProgress(((currentTime / duration) * 100).toFixed(2))
+        setProgress(((currentTime / duration) ).toFixed(2))
       }
     }
     if (player) {
       clearInterval(intervalRef.current)
-      intervalRef.current = setInterval(updateProgress, 97)
+      intervalRef.current = setInterval(updateProgress, 12)
     }
 
   }, [player, song])
@@ -61,7 +61,7 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume }) {
     const newTime = clickPosition * player.getDuration()
 
     player.seekTo(newTime)
-    setProgress(clickPosition * 100)
+    setProgress(clickPosition )
   }
 
   function onReady(ev) {
@@ -122,29 +122,28 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume }) {
   }
 
   const { trackId } = song
+  const isPlay = isPlaying ? 'pause' : 'play'
 
   return (
     <section className='audio'>
-
-      <button onClick={onShuffle}><i className="fa-solid fa-shuffle"></i></button>
-      <button onClick={(() => onChangeSong(-1))}><i className="fa-solid fa-backward-step"></i></button>
-      <button className='play' onClick={togglePlayPause}>{isPlaying ? <i className="fa-solid fa-pause"></i> : <i className="fa-solid fa-play"></i>}</button>
-      <button onClick={(() => onChangeSong(1))}><i className="fa-solid fa-forward-step"></i></button>
-      <button onClick={onRepeat}><i className="fa-solid fa-repeat"></i></button>
-
-      <YouTube videoId={trackId} opts={opts} onEnd={onEnd} onReady={onReady} />
-
-      <div
-        onClick={handleProgressbar}
-        style={{ width: '100%', height: '20px', backgroundColor: 'lightgray' }}>
-        <div
-          style={{ height: '100%', width: `${progress}%`, backgroundColor: 'blue' }}
-        />
+      <div className='audio-control'>
+        <button onClick={onShuffle}><img className="icon-16" src='src\assets\img\shuffle.svg'></img></button>
+        <button onClick={(() => onChangeSong(-1))}><img className="icon-14" src='src\assets\img\prev.svg'></img></button>
+        <button className='play' onClick={togglePlayPause}><img className="icon-16" src={`src/assets/img/${isPlay}.svg`}></img></button>
+        <button onClick={(() => onChangeSong(1))}><img className="icon-14" src='src\assets\img\next.svg'></img></button>
+        <button onClick={onRepeat}><img className="icon-16" src='src\assets\img\repet.svg'></img></button>
       </div>
 
-      <p style={{ color: 'white' }}>time:{(progress === 'NaN') ? '0.00' : progress} </p>
 
-    </section>
+      <div className='progress-bar'>
+        <p style={{ color: 'white' }}>{(progress === 'NaN') ? '0.00' : progress} </p>
+        <div onClick={handleProgressbar} style={{ width: '100%', height: '2px', backgroundColor: 'darkgray' }}>
+          <div style={{ height: '100%', width: `${progress}%`, backgroundColor: 'lightgray' }} />      </div>
+        <p className='text-left' style={{ color: 'white' }}>{(progress === 'NaN') ? '0.00' : progress} </p>
+      </div>
+      <YouTube className='video' videoId={trackId} opts={opts} onEnd={onEnd} onReady={onReady} />
+
+    </section >
   )
 }
 
