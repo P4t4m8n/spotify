@@ -12,39 +12,38 @@ export function StationIndex() {
     console.log("stations:", stations)
     const currStation = useSelector(storeState => storeState.stationsMoudle.currStation)
     const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
-    
+
     const topics = useRef([])
-    
-    
+
+
     useEffect(() => {
         loadStations()
         topics.current = stationService.getSubHeading()
     }, [])
-    
+
     async function onPlayStation(ev, stationId) {
         ev.preventDefault()
         let station
         try {
             if (stationId !== currStation._id) station = await loadStation(stationId)
             setPlaying()
+        }
+        catch (err) { }
+
     }
-    catch (err) { }
-    
-}
 
 
-console.log("stations:", stations)
+    console.log("stations:", stations)
     if (!stations) return <div>...Loading</div>
 
     return (
         <div className="main-content">
-            <AppHeader />
             {
                 topics.current.map((subHeading, idx) => {
                     {
                         const stationsFilterd = stations.filter(station => station.subHeading === subHeading)
                         return <StationList isPlaying={isPlaying} currStationId={currStation._id} key={idx} idx={idx}
-                                            stations={stationsFilterd} topic={subHeading} onPlayStation={onPlayStation} ></StationList>
+                            stations={stationsFilterd} topic={subHeading} onPlayStation={onPlayStation} ></StationList>
                     }
                 })
             }
