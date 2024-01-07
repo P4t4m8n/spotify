@@ -1,7 +1,7 @@
 .main-container {
     display: grid;
     grid-template-columns: minmax(280px, auto) minmax(400px, auto) 0;
-    grid-template-rows: 1fr auto 1fr;
+    grid-template-rows: 1fr auto 100px;
     grid-template-areas:
         "left-sidebar header extra"
         "left-sidebar main extra"
