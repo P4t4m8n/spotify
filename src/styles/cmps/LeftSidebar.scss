@@ -1,25 +1,62 @@
 .left-sidebar {
-    grid-area: left-sidebar;
-    overflow-y: auto;
-    position: relative;
-    background-color: $clr7;
 
-    .your-library {
-        background-color: transparent;
+    position: relative;
+
+    .left-sidebar-header {
+        background-color: $clr7;
+        padding: 8px 12px;
+        margin-block-end: $panel-gap;
+        border-radius: $panel-gap;
+
+        ul {
+            padding: 8px 12px;
+            margin: 0;
+
+            li {
+                padding: 4px 0;
+                font-weight: 700;
+
+                a {
+                    gap: 20px;
+
+                    p {
+                        margin: 0;
+                        font-size: 24px;
+                    }
+                }
+            }
+        }
     }
 
+
     .side-bar-content {
+        border-radius: $panel-gap;
+        background-color: $clr7;
+
+
+        .your-library {
+            background-color: transparent;
+
+
+        }
 
         ul {
             margin: 0;
             padding: 0;
+
+
         }
 
         li {
             grid-template-columns: 48px auto;
             grid-template-rows: auto;
+            column-gap: 12px;
+            margin: 8px;
+
+
 
             img {
+                background-color: $clr1;
 
                 grid-row: 1/ span 2;
                 height: 48px;
@@ -30,10 +67,15 @@
             header,
             div {
                 grid-column: 2;
+                font-weight: 600;
+
             }
 
             p {
                 grid-row: 2;
+
+                font-size: 0.8125rem;
+                font-weight: 400;
 
                 .station-type {
                     // border: 1px solid red;

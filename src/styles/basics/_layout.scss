@@ -1,6 +1,8 @@
 .main-container {
+    padding: $panel-gap;
+
     display: grid;
-    grid-template-columns: minmax(280px, auto) minmax(400px, auto) 0;
+    grid-template-columns: minmax(280px, auto) minmax(400px, 1fr) 0;
     grid-template-rows: 1fr auto 1fr;
     grid-template-areas:
         "left-sidebar header extra"
@@ -19,18 +21,23 @@
     }
 }
 
+.left-sidebar {
+    grid-area: left-sidebar;
+    overflow-y: auto;
+}
+
 .main-content {
     grid-area: main;
     overflow-y: auto;
 
 }
 
-.search-page{
-    grid-area: main; 
+.search-page {
+    grid-area: main;
 }
 
-.login-form{
-    grid-area: main; 
+.login-form {
+    grid-area: main;
 }
 
 .card-grid {
