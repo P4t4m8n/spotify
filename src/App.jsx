@@ -14,6 +14,7 @@ import { Sighup } from './pages/Sighup.jsx'
 
 
 import '../src/styles/main.scss'
+// import '../src/footer.css'
 
 export function App() {
 

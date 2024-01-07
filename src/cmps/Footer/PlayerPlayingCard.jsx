@@ -33,14 +33,16 @@ export function PlayerPlayingCard() {
         updateUser(userToUpdate)
     }
 
+    const liked = isLiked ? 'green' : ''
+
     return (
-        <div className="playing-card flex" >
+        <div className="playing-card" >
             <img src={song.songImgUrl}></img>
-            <div>
-                <p>{song.title}</p>
+            <div className="playing-card-info">
+                <header>{song.title}</header>
                 <p>{song.artist}</p>
             </div>
-            <button onClick={onLike}>{(!isLiked) ? <i className="fa-solid fa-heart"></i> : <i className="fa-regular fa-heart"></i>}</button>
+            <button onClick={onLike}> <img style={{ width: '100%' }} className="liked" src="src/assets/img/like.svg"></img></button>
         </div>
 
     )
