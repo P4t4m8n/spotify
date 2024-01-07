@@ -1,0 +1,33 @@
+.left-sidebar {
+    display: flex;
+    flex-direction: column;
+    font-family: Monstserrat;
+    font-weight: bold;
+}
+
+.side-bar-header {
+    height: 7rem;
+    /* padding: 8px 12px; */
+}
+
+.side-bar-header li {
+    /* padding: 4px 12px; */
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.side-bar-header li img {
+    height: 1.3rem;
+    width: 1.3rem;
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(292deg) brightness(115%) contrast(94%);
+}
+
+.side-bar-header li span {
+    font-size: 1rem;
+    font-weight: 700;
+    height: 2.2rem;
+    width: 2.2rem !important;
+
+}

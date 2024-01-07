@@ -38,5 +38,5 @@ export function App() {
         <Player />
       </Router>
     </div>
-  );
+  )
 }
