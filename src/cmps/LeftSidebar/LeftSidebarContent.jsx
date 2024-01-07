@@ -134,20 +134,27 @@ export function SideBarContent() {
                 </div>
             </div>
 
-            <section className="side-bar-body">
+            <section className="side-bar-content">
 
                 <ul className="clean-list">
                     {
                         userStations.map(station =>
                             <Link key={station._id} to={'/1/station/edit/' + station._id}>
-                                <li>
-                                    <img src={station.stationImgUrl}></img>
+                                <li className="grid">
+                                    <img className="station-image-left-sidebar" src={station.stationImgUrl}></img>
                                     <header>{station.name}</header>
-                                    <div>
+                                    <p>
+                                        📌
+                                        <span className="station-type">{station.type}</span>
+                                        <span>{station.songs.length} songs</span>
+                                    </p>
+
+
+                                    {/* <div className="flex">
                                         <button>pinned</button>
-                                        <p>{station.type}</p>
+                                        <p className="station-type">{station.type}</p>
                                         <p>{station.songs.length} songs</p>
-                                    </div>
+                                    </div> */}
 
                                 </li>
                             </Link>

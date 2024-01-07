@@ -9,13 +9,53 @@
     }
 
     .side-bar-content {
-        ul li img {
-            // width: 100%;
-            width: 50px;
 
-            border: 10px solid pink;
+        ul {
+            margin: 0;
+            padding: 0;
         }
+
+        li {
+            grid-template-columns: 48px auto;
+            grid-template-rows: auto;
+
+            img {
+
+                grid-row: 1/ span 2;
+                height: 48px;
+                width: 48px;
+
+            }
+
+            header,
+            div {
+                grid-column: 2;
+            }
+
+            p {
+                grid-row: 2;
+
+                .station-type {
+                    // border: 1px solid red;
+                    margin-right: 5px;
+
+                    &::after {
+                        // background-color: green;
+                        content: '\2022';
+                        display: inline-block;
+                        margin-left: 5px;
+                        // color: purple;
+                    }
+                }
+            }
+
+        }
+
     }
+
+
+
+
 }
 
 
