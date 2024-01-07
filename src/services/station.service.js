@@ -119,7 +119,7 @@ function _createStations() {
         let songsIdx = 0
         let songsArr = songService.getSongs()
         console.log("songsArr:", songsArr)
-        for (var k = 0; k < 100; k++) {
+        for (var k = 0; k < 30; k++) {
             let station = {
                 "_id": utilService.makeId(),
                 "name": utilService.makeLorem(2),
