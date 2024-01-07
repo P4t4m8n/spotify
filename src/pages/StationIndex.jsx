@@ -9,7 +9,6 @@ import { loadStations, loadStation } from "../store/actions/station.actions"
 export function StationIndex() {
 
     const stations = useSelector(storeState => storeState.stationsMoudle.stations)
-    console.log("stations:", stations)
     const currStation = useSelector(storeState => storeState.stationsMoudle.currStation)
     const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
 

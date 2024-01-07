@@ -10,9 +10,11 @@ import { updateUser } from "../../store/actions/user.actions"
 export function SideBarContent() {
 
     const user = useSelector((storeState) => storeState.userMoudle.userObj)
+    console.log("user:", user)
     const filterSortBy = useSelector(storeState => storeState.appMoudle.filterSortBy)
 
     const [userStations, setUserStations] = useState(null)
+    console.log("userStations:", userStations)
     const [showCreateModal, setShowCreateModal] = useState(false)
     const [showSearch, setShowSearch] = useState(false)
     const [resize, setResize] = useState(false)
@@ -116,16 +118,16 @@ export function SideBarContent() {
                         <div className="sort-and-view-picker">
                             <ul className="library-sort-by clean-list">
                                 <li>Sort by</li>
-                                <li><a>Recents<span>✔️</span></a></li>
-                                <li><a>Recently Added<span>✔️</span></a></li>
-                                <li><a>Alphabetical<span>✔️</span></a></li>
-                                <li><a>Creator<span>✔️</span></a></li>
+                                <li>Recents<span>✔️</span></li>
+                                <li>Recently Added<span>✔️</span></li>
+                                <li>Alphabetical<span>✔️</span></li>
+                                <li>Creator<span>✔️</span></li>
                             </ul>
                             <ul className="library-view-as clean-list">
                                 <li>View as</li>
-                                <li><a><span>🥪</span>Compact<span>✔️</span></a></li>
-                                <li><a><span>📃</span>List<span>✔️</span></a></li>
-                                <li><a><span>🍫</span>Grid<span>✔️</span></a></li>
+                                <li><span>🥪</span>Compact<span>✔️</span></li>
+                                <li><span>📃</span>List<span>✔️</span></li>
+                                <li><span>🍫</span>Grid<span>✔️</span></li>
                             </ul>
                         </div>
                     }
