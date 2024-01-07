@@ -8,6 +8,10 @@ import { LeftSidebar } from './cmps/LeftSidebar/LeftSidebar.jsx'
 import { SearchPage } from './pages/SearchPage.jsx'
 import { RightSidebar } from './cmps/RightSidebar/RightSidebar.jsx'
 import { StationEdit } from './pages/StationEdit.jsx'
+import { Login } from './pages/Login.jsx'
+import { Sighup } from './pages/Sighup.jsx'
+
+
 
 import '../src/styles/main.scss'
 // import '../src/footer.css'
@@ -23,6 +27,8 @@ export function App() {
         <Routes>
           <Route path="/" element={<StationIndex />} />
           <Route path="/:playlistId" element={<StationDetails />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/sighup" element={<Sighup />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/:userId/playlist/edit" element={<StationEdit />}></Route>
           <Route path="/:userId/playlist/edit/:playlistId" element={<StationEdit />}></Route>

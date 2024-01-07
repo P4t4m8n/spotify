@@ -12,7 +12,7 @@ export function PlayerPlayingCard() {
 
     useEffect(() => {
 
-        setisLiked(user.stations[0].songs.some(fav => fav === song._id))
+        //setisLiked(user.stations[0].songs.some(fav => fav === song._id))
 
     }, [user, isLiked])
 

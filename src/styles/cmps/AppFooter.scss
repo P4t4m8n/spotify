@@ -76,7 +76,7 @@ $play-btn-bg-color: white;
   filter: $green-filter;
 }
 
-.audio {
+.buttons {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -411,3 +411,9 @@ $play-btn-bg-color: white;
 // .fa-solid.fa-heart {
 //   color: $clr1;
 // }
+
+.progress-line{
+  width: '100%'; 
+  height: '20px'; 
+  background-color: 'lightgray';
+}
