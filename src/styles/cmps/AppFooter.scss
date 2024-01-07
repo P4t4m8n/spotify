@@ -1,12 +1,19 @@
 .app-footer {
 
-  grid-area: footer;
+  grid-area: player;
   background-color: #111;
   color: $clr4;
   padding: 20px;
   margin: 10px;
   text-align: center;
   justify-content: space-between;
+  align-self: end;
+
+  height: 150px;
+}
+
+img {
+  height: 100%;
 }
 
 .playing-card {

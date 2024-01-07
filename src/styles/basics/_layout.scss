@@ -5,7 +5,7 @@
     grid-template-areas:
         "left-sidebar header extra"
         "left-sidebar main extra"
-        "footer footer footer";
+        "player player player";
     gap: $panel-gap;
     height: 100vh;
     overflow: hidden;
@@ -15,7 +15,7 @@
         grid-template-areas:
             "left-sidebar header extra"
             "left-sidebar main extra"
-            "footer footer footer";
+            "player player player";
     }
 }
 
