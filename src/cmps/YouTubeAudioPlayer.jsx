@@ -145,10 +145,10 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume, setVolume }) {
       <div
         onClick={handleProgressbar}
       >
-         </div>
         <div
           style={{ height: '100%', width: `${progress}%`, backgroundColor: 'blue' }}
         />
+         </div>
       </div>
       <p style={{ color: 'white' }}>time:{(progress === 'NaN') ? '0.00' : progress} </p>
 
