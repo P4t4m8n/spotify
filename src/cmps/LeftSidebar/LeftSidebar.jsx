@@ -9,7 +9,7 @@ export function LeftSidebar() {
 
 // console.log('Render LeftSidebar')
     return (
-        <div >
+        <div className='left-sidebar'>
             <SideBarHeader />
             <SideBarContent />
         </div>

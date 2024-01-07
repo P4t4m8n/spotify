@@ -15,15 +15,19 @@ export function App() {
 
   return (
     <Router>
-      <AppHeader />
       <LeftSidebar />
-      <Routes>
-        <Route path="/" element={<StationIndex />} />
-        <Route path="/:playlistId" element={<StationDetails />} />
-        <Route path="/search" element={<SearchPage />} />
-        <Route path="/:userId/playlist/edit" element={<StationEdit />}></Route>
-        <Route path="/:userId/playlist/edit/:playlistId" element={<StationEdit />}></Route>
-      </Routes>
+
+      <div className="main-content">
+        <AppHeader />
+        <Routes>
+          <Route path="/" element={<StationIndex />} />
+          <Route path="/:playlistId" element={<StationDetails />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/:userId/playlist/edit" element={<StationEdit />}></Route>
+          <Route path="/:userId/playlist/edit/:playlistId" element={<StationEdit />}></Route>
+        </Routes>
+      </div>
+
       <RightSidebar />
       <Player />
     </Router>

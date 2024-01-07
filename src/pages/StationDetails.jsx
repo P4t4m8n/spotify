@@ -49,7 +49,7 @@ export function StationDetails() {
                 {
 
                     songs.map(song =>
-                        <li key={song._id} className="flex full" style={{ width: '100%' }}>
+                        <li key={song._id} className="flex full">
                             <div>
                                 <button>p</button>
                                 <img src={song.songImgUrl}></img>

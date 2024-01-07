@@ -12,12 +12,18 @@ $clr10: #282828;
 $clr11: #3E3E3E;
 
 
-
 // Breakpoints
 $mobile-breakpoint: 460px;
 $narrow-breakpoint: 720px;
 $normal-breakpoint: 960px;
 
-// Gaps
 
+// Gaps
 $panel-gap: 8px;
+
+
+// Variables for sizes
+$sidebar-width: 240px;
+$expanded-sidebar-width: 300px;
+$sidebar-min-width: 200px;
+$main-min-width: 400px;
