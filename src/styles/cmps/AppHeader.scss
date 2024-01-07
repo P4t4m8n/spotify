@@ -1,27 +1,30 @@
 .app-header {
+
+    grid-template-areas: header;
     background-color: $clr8;
-    color:$clr4;
+    color: $clr4;
     padding: 10px;
     display: flex;
     justify-content: space-between;
     height: 4.065em;
     width: 100%;
-    
-
-  
-
-    
 
 
-    .page-index button{
+
+
+
+
+
+    .page-index button {
         background-color: $clr7;
         border-radius: 50%;
         font-size: 1em;
         color: $clr6;
 
 
-        
+
     }
+
     .header-login {
 
         .sign-up {
@@ -29,23 +32,23 @@
             background-color: $clr8;
             font-weight: bold;
             font-size: 1em;
-           
+
         }
 
-        :hover{
-            color:$clr6;
+        :hover {
+            color: $clr6;
             font-size: 1.1em;
 
-          
+
         }
 
-        .login{
+        .login {
             background-color: $clr6;
-            color:$clr8;
+            color: $clr8;
             border-radius: 32px;
             padding: 0.5em;
             font-size: 1em;
-         }
+        }
 
         img {
             width: 32px;
@@ -55,14 +58,14 @@
         }
     }
 
-.search-box{
-    background-color: $clr11;
-    padding: 1em;
-    border-radius: 2em;
-    width: 120%;
-    text-align: start;
-   border: none;
-}
+    .search-box {
+        background-color: $clr11;
+        padding: 1em;
+        border-radius: 2em;
+        width: 120%;
+        text-align: start;
+        border: none;
+    }
 
     .user-info .btn-link {
         color: $clr2;

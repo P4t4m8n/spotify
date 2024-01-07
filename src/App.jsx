@@ -14,11 +14,11 @@ import '../src/styles/main.scss'
 export function App() {
 
   return (
-    <Router>
-      <LeftSidebar />
+    <div className="main-container">
+      <Router>
 
-      <div className="main-content">
         <AppHeader />
+        <LeftSidebar />
         <Routes>
           <Route path="/" element={<StationIndex />} />
           <Route path="/:playlistId" element={<StationDetails />} />
@@ -26,10 +26,10 @@ export function App() {
           <Route path="/:userId/playlist/edit" element={<StationEdit />}></Route>
           <Route path="/:userId/playlist/edit/:playlistId" element={<StationEdit />}></Route>
         </Routes>
-      </div>
 
-      <RightSidebar />
-      <Player />
-    </Router>
+        <RightSidebar />
+        <Player />
+      </Router>
+    </div>
   );
 }

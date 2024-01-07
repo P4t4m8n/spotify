@@ -37,7 +37,6 @@ export function StationIndex() {
 
     return (
         <div className="main-content">
-            <AppHeader />
             {
                 topics.current.map((subHeading, idx) => {
                     {
