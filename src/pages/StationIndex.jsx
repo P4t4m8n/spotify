@@ -31,8 +31,7 @@ export function StationIndex() {
 
     }
 
-
-    console.log("stations:", stations)
+    // console.log('Render stationIndex')
     if (!stations) return <div>...Loading</div>
 
     return (

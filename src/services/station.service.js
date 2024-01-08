@@ -107,9 +107,8 @@ function getStationDuration(items) {
 
 function _createStations() {
 
-    const subHeadings = [
-        'Made for you', 'Top charts', 'Jump back on', 'Recently played', 'Your top mixes',
-    ]
+    const subHeadings = ['Made for you', 'Top charts', 'Jump back on', 'Recently played', 'Your top mixes',]
+    const descriptions = ['Discover new music based on your preference...', 'Rock out while you play', 'With The Rise against, AFI, The unseen and more']
 
     let stations = utilService.loadFromStorage(STORGE_STATION_KEY)
 
@@ -122,8 +121,9 @@ function _createStations() {
         for (var k = 0; k < 30; k++) {
             let station = {
                 "_id": utilService.makeId(),
-                "name": utilService.makeLorem(2),
+                "name": 'All new music',
                 "subHeading": subHeadings[k % 5],
+                description: descriptions[k % 3],
                 "type": "station",
                 "tags": ["Soul", "Chill"],
                 "stationImgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',

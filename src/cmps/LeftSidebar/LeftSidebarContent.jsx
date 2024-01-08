@@ -10,11 +10,9 @@ import { updateUser } from "../../store/actions/user.actions"
 export function SideBarContent() {
 
     const user = useSelector((storeState) => storeState.userMoudle.userObj)
-    console.log("user:", user)
     const filterSortBy = useSelector(storeState => storeState.appMoudle.filterSortBy)
 
     const [userStations, setUserStations] = useState(null)
-    console.log("userStations:", userStations)
     const [showCreateModal, setShowCreateModal] = useState(false)
     const [showSearch, setShowSearch] = useState(false)
     const [resize, setResize] = useState(false)
@@ -73,7 +71,7 @@ export function SideBarContent() {
 
     const size = resize ? '50px' : '700px'
 
-
+    // console.log('Render leftSideBarContent')
     if (!userStations) return <div>...Loading</div>
 
     return (
