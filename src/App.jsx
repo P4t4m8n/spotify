@@ -1,7 +1,7 @@
 
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-// import { AppHeader } from './cmps/Header/AppHeader.jsx'
+import { AppHeader } from './cmps/Header/AppHeader.jsx'
 import { Player } from './cmps/Footer/Player.jsx'
 import { StationIndex } from './pages/StationIndex.jsx'
 import { StationDetails } from './pages/StationDetails.jsx'
@@ -25,18 +25,19 @@ export function App() {
   return (
     <div className={`main-container ${expandedClass}`}>
       <Router>
-
         <LeftSidebar />
-        {/* <AppHeader /> */}
-        <Routes>
-          <Route path="/" element={<StationIndex />} />
-          <Route path="/:stationId" element={<StationDetails />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/sighup" element={<Sighup />} />
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="/:userId/station/edit" element={<StationEdit />}></Route>
-          <Route path="/:userId/station/edit/:stationId" element={<StationEdit />}></Route>
-        </Routes>
+        <div className="main-content">
+          <AppHeader />
+          <Routes>
+            <Route path="/" element={<StationIndex />} />
+            <Route path="/:stationId" element={<StationDetails />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/sighup" element={<Sighup />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/:userId/station/edit" element={<StationEdit />}></Route>
+            <Route path="/:userId/station/edit/:stationId" element={<StationEdit />}></Route>
+          </Routes>
+        </div>
 
         <RightSidebar />
         <Player />
