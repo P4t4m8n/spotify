@@ -53,12 +53,15 @@
             margin: 8px;
 
             img {
-                background-color: $clr1;
                 border-radius: calc($panel-gap/2);
 
                 grid-row: 1/ span 2;
                 height: 48px;
                 width: 48px;
+            }
+
+            .station-image-left-sidebar {
+                background-color: $clr1;
             }
 
             header,
@@ -68,6 +71,13 @@
             }
 
             p {
+
+                .left-sidebar-pinned-icon {
+                    width: 0.8125rem;
+                    height: 0.8125rem;
+                    margin-inline-end: 8px;
+                }
+
                 grid-row: 2;
                 font-size: 0.8125rem;
                 font-weight: 400;
