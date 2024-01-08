@@ -3,8 +3,9 @@
     // position: relative;
 
     .left-sidebar-header {
+
         background-color: $clr7;
-        padding: 8px 12px;
+        padding: 0 12px;
         margin-block-end: $panel-gap;
         border-radius: $panel-gap;
 
@@ -18,10 +19,14 @@
 
                 a {
                     gap: 20px;
+                    height: 40px;
 
-                    p {
+                    .left-sidebar-home-icon,
+                    .left-sidebar-search-icon {
+                        filter: invert(100%);
                         margin: 0;
-                        font-size: 24px;
+                        width: 24px;
+                        height: 24px;
                     }
                 }
             }
@@ -34,17 +39,9 @@
         background-color: $clr7;
 
 
-        .your-library {
-            background-color: transparent;
-
-
-        }
-
         ul {
             margin: 0;
             padding: 0;
-
-
         }
 
         li {
@@ -53,40 +50,32 @@
             column-gap: 12px;
             margin: 8px;
 
-
-
             img {
                 background-color: $clr1;
 
                 grid-row: 1/ span 2;
                 height: 48px;
                 width: 48px;
-
             }
 
             header,
             div {
                 grid-column: 2;
                 font-weight: 600;
-
             }
 
             p {
                 grid-row: 2;
-
                 font-size: 0.8125rem;
                 font-weight: 400;
 
                 .station-type {
-                    // border: 1px solid red;
                     margin-right: 5px;
 
                     &::after {
-                        // background-color: green;
                         content: '\2022';
                         display: inline-block;
                         margin-left: 5px;
-                        // color: purple;
                     }
                 }
             }
@@ -94,12 +83,17 @@
         }
 
     }
-
-
-
-
 }
 
+.side-bar-type-filter {
+    width: 240px;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.search-sort-toggle-buttons {
+    justify-content: space-between;
+}
 
 
 // Styles for the resizer
