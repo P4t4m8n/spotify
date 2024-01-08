@@ -73,8 +73,7 @@ export function Search() {
           type="text"
           id="txt"
           name="txt"
-          placeholder="What do you want to listen to?"
-        />
+          placeholder="What do you want to listen to?" />
 
       </form>
     </section>

@@ -1,22 +1,63 @@
-.app-header {
+.app-header>* {
 
+    box-sizing: border-box;
+}
+
+.app-header {
     grid-template-areas: header;
     background-color: $clr8;
     color: $clr4;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
+    // padding: 10px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 4.5rem auto 12rem;
+    // justify-content: space-between;
     height: 4.065em;
     width: 100%;
+    padding-inline: 1rem;
+
+
+    .page-index {
+        display: flex;
+        gap: 1rem;
+        width: 4.5rem;
+        height: 2rem;
+        align-self: center;
+
+        button {
+            background-color: black;
+            border-radius: 1000px;
+            padding: 0;
+            margin: 0;
+
+        }
+
+        :last-child {
+            transform: scaleX(-1);
+        }
+
+        img {
+            width: 2rem;
+            height: 2rem;
+            filter: invert(100%) sepia(9%) saturate(7500%) hue-rotate(247deg) brightness(114%) contrast(111%);
+
+        }
+    }
 
     .page-index button {
-        background-color: $clr7;
-        border-radius: 50%;
-        font-size: 1em;
-        color: $clr6;
+        // background-color: $clr7;
+        // border-radius: 50%;
+        // font-size: 1em;
+        // color: $clr6;
     }
 
     .header-login {
+      
+        display: flex;
+        padding: 1rem;
+        justify-content: space-between;
+        align-items: center;
+
         .sign-up {
 
             background-color: $clr8;
@@ -47,17 +88,26 @@
         // }
     }
 
+
     .search-box {
         background-color: $clr11;
         // padding: 1em;
-        border-radius: 2em;
-        // width: 120%;
+        border-radius: 2rem;
+        width: 19rem;
         // text-align: start;
         border: none;
+        // justify-self: start;
+        height: 3rem;
+        margin-left: 2rem;
+        align-self: center;
+
 
         form {
             display: flex;
-            padding-top: 5%;
+            // padding-top: 5%;
+            width: 100%;
+            align-items: center;
+            height: 100%;
         }
 
         img {
@@ -70,6 +120,7 @@
         input {
             background-color: inherit;
             border: none;
+            width: 100%;
 
         }
     }
