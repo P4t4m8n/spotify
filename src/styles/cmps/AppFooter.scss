@@ -302,8 +302,8 @@
 }
 
 .icon-16 {
-  width: 16px;
-  height: 16px;
+  width: 16px !important;
+  height: 16px !important;
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(292deg) brightness(115%) contrast(94%)
 }
 
