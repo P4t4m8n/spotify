@@ -1,5 +1,5 @@
 import { userService } from "../../services/user.service"
-import { SET_USER } from "../redcuers/user.reducer"
+import { EDIT_USER, SET_USER } from "../redcuers/user.reducer"
 import { store } from "../store"
 
 
