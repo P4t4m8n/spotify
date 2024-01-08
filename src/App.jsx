@@ -1,6 +1,7 @@
 
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom'
-import { AppHeader } from './cmps/Header/AppHeader.jsx'
+import { useSelector } from 'react-redux'
+// import { AppHeader } from './cmps/Header/AppHeader.jsx'
 import { Player } from './cmps/Footer/Player.jsx'
 import { StationIndex } from './pages/StationIndex.jsx'
 import { StationDetails } from './pages/StationDetails.jsx'
@@ -18,12 +19,15 @@ import '../src/styles/main.scss'
 
 export function App() {
 
+  const isOpen = useSelector(storeState => storeState.appMoudle.isOpen);
+  const expandedClass = isOpen ? 'expanded' : '';
+
   return (
-    <div className="main-container">
+    <div className={`main-container ${expandedClass}`}>
       <Router>
 
-        <AppHeader />
         <LeftSidebar />
+        {/* <AppHeader /> */}
         <Routes>
           <Route path="/" element={<StationIndex />} />
           <Route path="/:stationId" element={<StationDetails />} />
