@@ -15,8 +15,8 @@ export function Sighup(){
 
     function handleSubmit(ev) {
         ev.preventDefault()
-        onLogin(credentials)
-        //console.log(credentials)
+        //onLogin(credentials)
+        console.log(credentials)
     }
 
     return (
@@ -41,7 +41,6 @@ export function Sighup(){
                 required
                 autoComplete="off"
             />
-            <div>
                 <label> Please enter your name</label><input
                 type="text"
                 name="Nickname"
@@ -50,9 +49,9 @@ export function Sighup(){
                 onChange={handleChange}
                 required
             />
-                        <br/>
+                     
 
-            <label> Date of birth</label>
+            <label> Please enter your date of birth</label>
             <input
                 type="date"
                 name="BirthDate"
@@ -60,33 +59,7 @@ export function Sighup(){
                 onChange={handleChange}
             />
             <br/>
-            <div className="gender">
-            <label> Male</label>
-            <input
-                type="radio"
-                name="Male"
-                value={credentials.Gender}
-                chacked={selectedOption === 'Male'}
-                onChange={handleChange}
-            />
-             <label> Female</label>
-            <input
-                type="radio"
-                name="Female"
-                value={credentials.Gender}
-                chacked={selectedOption === 'Female'}
-                onChange={handleChange}
-            />
-             <label> Other</label>
-            <input
-                type="radio"
-                name="other"
-                value={credentials.Gender}
-                chacked={selectedOption === 'Other'}
-                onChange={handleChange}
-            />
-            </div>
-            </div>
+            
             <button className="submit">Signup</button>
         </form>
     )

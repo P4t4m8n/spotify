@@ -7,11 +7,10 @@
     grid-template-areas: header;
     background-color: $clr7;
     color: $clr4;
-    // padding: 10px;
+    
     display: grid;
     align-items: center;
     grid-template-columns: 4.5rem auto 12rem;
-    // justify-content: space-between;
     height: 4.065em;
     width: 100%;
     padding-inline: 1rem;
@@ -56,14 +55,15 @@
 
         display: flex;
         padding: 1rem;
-        justify-content: space-between;
+        justify-content: end;
         align-items: center;
 
         .sign-up {
 
-            background-color: $clr8;
+            background-color: $clr7;
             font-weight: bold;
             font-size: 1em;
+            margin-right: 1rem;
 
         }
 

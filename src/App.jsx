@@ -28,7 +28,7 @@ export function App() {
           <Route path="/" element={<StationIndex />} />
           <Route path="/:stationId" element={<StationDetails />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/sighup" element={<Sighup />} />
+          <Route path="/signup" element={<Sighup />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/:userId/station/edit" element={<StationEdit />}></Route>
           <Route path="/:userId/station/edit/:stationId" element={<StationEdit />}></Route>

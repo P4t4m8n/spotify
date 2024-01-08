@@ -6,6 +6,7 @@
     flex-direction: column;
   justify-content: end;
   margin-right: 10em;
+  align-items: center;
 
     
 
@@ -30,11 +31,7 @@
 
     }
 
-    .gender{
-        display: flex;
-        align-items: center;
-        
-    }
+   
 
     .submit{
         background-color: $clr1;
