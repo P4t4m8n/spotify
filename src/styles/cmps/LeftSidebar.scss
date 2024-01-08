@@ -112,8 +112,26 @@
     }
 }
 
+.your-library {
+    margin: 0;
+    padding: 12px;
+    align-items: center;
+    gap: 12px;
+}
+
+.right-buttons {
+    gap: 8px;
+    align-items: center;
+    padding: 12px;
+
+    & p {
+        margin: 0;
+    }
+}
+
 .show-create-modal {
     position: absolute;
+    z-index: 10;
 }
 
 .side-bar-type-filter {

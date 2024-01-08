@@ -80,12 +80,12 @@ export function SideBarContent() {
 
             <section className="creation-and-toggle flex">
 
-                <p className="your-library" >
+                <p className="your-library flex" >
                     <img src="src\assets\img\library.svg" className="left-sidebar-library-icon"></img>
                     <span>Your Library</span>
                 </p>
 
-                <div className="right-buttons">
+                <div className="right-buttons flex">
 
                     <p onClick={() => setShowCreateModal(!showCreateModal)} className="inline-block">
                         <span title="Create station or folder">
