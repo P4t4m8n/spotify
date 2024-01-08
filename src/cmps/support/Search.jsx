@@ -61,18 +61,19 @@ export function Search() {
   }
 
   const { txt } = filterBy
+
   return (
-    <section>
+    <section className="search-box">
       <form onSubmit={onFilter}>
-        <label htmlFor="txt"> </label>
+        <img src="src\assets\img\search.svg"></img>
         <input
-          className="search-box"
+
           value={txt}
           onChange={handleChange}
           type="text"
           id="txt"
           name="txt"
-          placeholder="🔍 Search for songs "
+          placeholder="What do you want to listen to?"
         />
 
       </form>

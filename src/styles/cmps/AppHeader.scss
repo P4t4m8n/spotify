@@ -9,26 +9,16 @@
     height: 4.065em;
     width: 100%;
 
-
-
-
-
-
-
     .page-index button {
         background-color: $clr7;
         border-radius: 50%;
         font-size: 1em;
         color: $clr6;
-
-
-
     }
 
     .header-login {
-
         .sign-up {
-        
+
             background-color: $clr8;
             font-weight: bold;
             font-size: 1em;
@@ -38,7 +28,6 @@
         :hover {
             color: $clr6;
             font-size: 1.1em;
-
 
         }
 
@@ -50,46 +39,65 @@
             font-size: 1em;
         }
 
-        img {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
+        // img {
+        //     width: 32px;
+        //     height: 32px;
+        //     border-radius: 50%;
+        //     object-fit: cover;
+        // }
     }
 
     .search-box {
         background-color: $clr11;
-        padding: 1em;
+        // padding: 1em;
         border-radius: 2em;
-        width: 120%;
-        text-align: start;
+        // width: 120%;
+        // text-align: start;
         border: none;
+
+        form {
+            display: flex;
+            padding-top: 5%;
+        }
+
+        img {
+            width: 1rem;
+            height: 1rem;
+            filter: invert(58%) sepia(0%) saturate(1%) hue-rotate(173deg) brightness(87%) contrast(88%);
+
+        }
+
+        input {
+            background-color: inherit;
+            border: none;
+
+        }
     }
 
-    .user-info .btn-link {
-        color: $clr2;
-    }
 
-    nav {
-        font-size: .8em;
-        background-color: $clr5;
-        padding: 5px;
+    // .user-info .btn-link {
+    //     color: $clr2;
+    // }
 
-    }
+    // nav {
+    //     font-size: .8em;
+    //     background-color: $clr5;
+    //     padding: 5px;
 
-    nav a:first-child {
-        margin-right: 30px;
-    }
+    // }
 
-    nav a:not(:first-child) {
-        border-top: 1px solid $clr1;
-        padding: 0 5px;
-        margin: 10px;
-    }
+    // nav a:first-child {
+    //     margin-right: 30px;
+    // }
 
-    nav .active {
-        color: $clr1;
-    }
+    // nav a:not(:first-child) {
+    //     border-top: 1px solid $clr1;
+    //     padding: 0 5px;
+    //     margin: 10px;
+    // }
+
+    // nav .active {
+    //     color: $clr1;
+    // }
 
 }
