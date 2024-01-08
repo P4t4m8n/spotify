@@ -39,10 +39,6 @@
         background-color: $clr7;
 
 
-        .your-library {
-            
-        }
-
         ul {
             margin: 0;
             padding: 0;
@@ -87,12 +83,17 @@
         }
 
     }
-
-
-
-
 }
 
+.side-bar-type-filter {
+    width: 240px;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.search-sort-toggle-buttons {
+    justify-content: space-between;
+}
 
 
 // Styles for the resizer

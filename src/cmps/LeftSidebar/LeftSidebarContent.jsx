@@ -79,9 +79,10 @@ export function SideBarContent() {
     return (
 
         <div className="side-bar-content">
-            <header className="side-bar-header">
+
+            <header className="side-bar-header flex">
                 <div className="toggle-library">
-                    <button className="your-library">📂<span>Your Library</span></button>
+                    <button className="your-library" >📂<span>Your Library</span></button>
                     <button onClick={() => setShowCreateModal(!showCreateModal)}>
                         <span title="Create station or folder">➕</span>
                     </button>
@@ -96,24 +97,30 @@ export function SideBarContent() {
                         </ul>
                     }
 
+                    <button onClick={() => setResize(!resize)}>{resize ? '◀️' : '▶️'}</button>
                 </div>
-                <button onClick={() => setResize(!resize)}>{resize ? '◀️' : '▶️'}</button>
             </header>
 
             <div className="side-bar-filtersort">
 
                 <div className="side-bar-type-filter">
-                    <button>stations</button>
+                    <button>Playlists</button>
+                    <button>Artists</button>
+                    <button>Albums</button>
                     <button>Podcasts & Shows</button>
                 </div>
 
                 <div className="search-sort-view">
-                    <button onClick={() => setShowSearch(!showSearch)} >🔍</button>
-                    {showSearch &&
-                        <input type="text" id="txt" name="txt" value={filterSortBy.txt}
-                            placeholder={"Search in Your Library"} onChange={handleChange} />
-                    }
-                    <button onClick={() => setIsSortOpen(!isSortOpen)}>{filterSortBy.sortBy} 📃</button>
+
+                    <div className="search-sort-toggle-buttons flex">
+                        <button onClick={() => setShowSearch(!showSearch)} >🔍</button>
+                        {showSearch &&
+                            <input type="text" id="txt" name="txt" value={filterSortBy.txt}
+                                placeholder={"Search in Your Library"} onChange={handleChange} />
+                        }
+                        <button onClick={() => setIsSortOpen(!isSortOpen)}>{filterSortBy.sortBy} 📃</button>
+                    </div>
+
                     {isSortOpen &&
                         <div className="sort-and-view-picker">
                             <ul className="library-sort-by clean-list">
@@ -132,6 +139,7 @@ export function SideBarContent() {
                         </div>
                     }
                 </div>
+
             </div>
 
             <section className="side-bar-content">
