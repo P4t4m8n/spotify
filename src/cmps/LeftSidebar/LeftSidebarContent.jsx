@@ -52,7 +52,7 @@ export function SideBarContent() {
 
     async function createStation() {
 
-        let newStation = stationService.getEmptystation('My station #', userStations.length - 1)
+        let newStation = stationService.getEmptyStation('My station #', userStations.length - 1)
 
         try {
             newStation = await saveStation(newStation)
