@@ -1,10 +1,22 @@
-import { useState, useEffect } from "react"
+
+import { useState, useEffect,useRef } from "react"
+import Axios from 'axios'
+
+import {utilService} from '../../services/util.service'
+
+
 
 
 export function Search() {
 
 
+  const axios = Axios.create({
+    withCredentials: true
+})
+
   const [filterBy, setFilterBy] = useState({ txt: '' })
+  //setFilterBy = useRef(utilService.debounce(setFilterBy))
+
   const [videos, setVideos] = useState([])
 
 
@@ -23,12 +35,12 @@ export function Search() {
 
 
   function getVideos(term) {
-    const termVideosMap = storageService.load(KEY) || {}
+    const termVideosMap =  {}
     if (termVideosMap[term]) return Promise.resolve(termVideosMap[term])
 
     console.log('Getting from Network...')
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&type=video&key=${API}&q=${term}`
     const API = 'AIzaSyCp8KMTEjR9frWUGpSnc8Cw5cLVe7wRRDM'
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&type=video&key=${API}&q=${term}`
 
 
     return axios.get(url)
@@ -53,11 +65,11 @@ export function Search() {
 
   function handleChange({ target }) {
     let value = target.value
-    const field = target.name
-    //const type = target.type
-    console.log(value, field)
+    let field = target.name
+    //console.log(value)
 
     setFilterBy((prevFilterBy) => ({ ...prevFilterBy, [field]: value }))
+    getVideos(value)
   }
 
   const { txt } = filterBy
