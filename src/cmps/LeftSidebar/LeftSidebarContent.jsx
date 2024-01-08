@@ -78,15 +78,23 @@ export function SideBarContent() {
 
         <div className="side-bar-content">
 
-            <header className="side-bar-header flex">
-                <div className="toggle-library">
-                    <button className="your-library" >📂<span>Your Library</span></button>
-                    <button onClick={() => setShowCreateModal(!showCreateModal)}>
-                        <span title="Create station or folder">➕</span>
-                    </button>
+            <section className="creation-and-toggle flex">
+
+                <p className="your-library" >
+                    <img src="src\assets\img\library.svg" className="left-sidebar-library-icon"></img>
+                    <span>Your Library</span>
+                </p>
+
+                <div className="right-buttons">
+
+                    <p onClick={() => setShowCreateModal(!showCreateModal)} className="inline-block">
+                        <span title="Create station or folder">
+                            <img src="src\assets\img\plus.svg" className="left-sidebar-plus-icon"></img>
+                        </span>
+                    </p>
                     {showCreateModal &&
 
-                        <ul className="clean-list context">
+                        <ul className="show-create-modal clean-list context">
 
                             <li onClick={createStation}>
                                 <span>🎵</span>Create a new station
@@ -95,28 +103,48 @@ export function SideBarContent() {
                         </ul>
                     }
 
-                    <button onClick={() => setResize(!resize)}>{resize ? '◀️' : '▶️'}</button>
+                    <p onClick={() => setResize(!resize)} className="inline-block">
+                        <span >
+                            {resize ?
+                                <img src="src\assets\img\left_arrow.svg" className="left-sidebar-left-arrow-icon" title="Show less"></img>
+                                : <img src="src\assets\img\right_arrow.svg" className="left-sidebar-right-arrow-icon" title="Show more"></img>}
+                        </span>
+                    </p>
+                    {/* <button onClick={() => setResize(!resize)} className="inline-block">{resize ? '◀️' : '▶️'}</button> */}
+
                 </div>
-            </header>
+                {/* </div> */}
 
-            <div className="side-bar-filtersort">
+            </section>
 
-                <div className="side-bar-type-filter">
+            <section className="side-bar-filtersort">
+
+                <div className="side-bar-type-filter flex">
+                    <button><img src="src\assets\img\scroll_left.svg" className="left-sidebar-scroll-left-icon"></img></button>
                     <button>Playlists</button>
                     <button>Artists</button>
                     <button>Albums</button>
                     <button>Podcasts & Shows</button>
+                    <button><img src="src\assets\img\scroll_right.svg" className="left-sidebar-scroll-right-icon"></img></button>
                 </div>
 
                 <div className="search-sort-view">
 
                     <div className="search-sort-toggle-buttons flex">
-                        <button onClick={() => setShowSearch(!showSearch)} >🔍</button>
+                        <button onClick={() => setShowSearch(!showSearch)} >
+                            <img src="src\assets\img\search.svg" className="left-sidebar-small-search-icon" title="Search in Your Library"></img>
+                        </button>
+                        {/* <button onClick={() => setShowSearch(!showSearch)} >🔍</button> */}
                         {showSearch &&
                             <input type="text" id="txt" name="txt" value={filterSortBy.txt}
                                 placeholder={"Search in Your Library"} onChange={handleChange} />
                         }
-                        <button onClick={() => setIsSortOpen(!isSortOpen)}>{filterSortBy.sortBy} 📃</button>
+                        <button onClick={() => setIsSortOpen(!isSortOpen)}>
+                            <span>Recents</span>
+                            <img src="src\assets\img\filter.svg" className="left-sidebar-small-filter-icon" ></img>
+                            {filterSortBy.sortBy}
+                        </button>
+                        {/* <button onClick={() => setIsSortOpen(!isSortOpen)}>{filterSortBy.sortBy} 📃</button> */}
                     </div>
 
                     {isSortOpen &&
@@ -138,7 +166,7 @@ export function SideBarContent() {
                     }
                 </div>
 
-            </div>
+            </section>
 
             <section className="side-bar-content">
 
@@ -150,7 +178,9 @@ export function SideBarContent() {
                                     <img className="station-image-left-sidebar" src={station.stationImgUrl}></img>
                                     <header>{station.name}</header>
                                     <p>
-                                        📌
+                                        <img src="src\assets\img\pinned.svg" className="left-sidebar-pinned-icon"></img>
+
+                                        {/* 📌 */}
                                         <span className="station-type">{station.type}</span>
                                         <span>{station.songs.length} songs</span>
                                     </p>
