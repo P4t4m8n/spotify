@@ -1,8 +1,6 @@
 .station-details {
     grid-area: main;
-    font-family: Monstserrat !important;
-    height: 100% !important;
-
+    font-family: Monstserrat;
 }
 
 .station-details>* {
@@ -40,8 +38,8 @@
 }
 
 .station-header-file-details img {
-    width: 1.5rem !important;
-    height: 1.5rem !important;
+    width: 1.5em !important;
+    height: 1.5em !important;
 }
 
 .station-details-control {
@@ -137,4 +135,3 @@
 .details-list-control p {
     margin: 0;
 }
-
