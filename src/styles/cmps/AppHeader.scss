@@ -5,7 +5,7 @@
 
 .app-header {
     grid-template-areas: header;
-    background-color: $clr8;
+    background-color: $clr7;
     color: $clr4;
     // padding: 10px;
     display: grid;
@@ -15,6 +15,7 @@
     height: 4.065em;
     width: 100%;
     padding-inline: 1rem;
+    border-radius: $panel-gap;
 
 
     .page-index {
@@ -52,7 +53,7 @@
     }
 
     .header-login {
-      
+
         display: flex;
         padding: 1rem;
         justify-content: space-between;
