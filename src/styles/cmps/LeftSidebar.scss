@@ -110,6 +110,27 @@
     width: 240px;
     overflow-x: scroll;
     white-space: nowrap;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    button {
+        background-color: $clr9-5;
+        font-size: 0.8125rem;
+        font-weight: 400;
+        color: $clr6;
+        border-radius: calc($panel-gap*2);
+        // background-color: hsla(0, 0%, 100%, .07), rgba(0, 0, 0, 0.08);
+    }
+
+    .left-sidebar-scroll-left-icon,
+    .left-sidebar-scroll-right-icon {
+        filter: invert(100%);
+        margin: 0;
+        width: 16px;
+        height: 16px;
+    }
 }
 
 .search-sort-toggle-buttons {
@@ -120,7 +141,8 @@
 
     }
 
-    .left-sidebar-small-search-icon {
+    .left-sidebar-small-search-icon,
+    .left-sidebar-small-filter-icon {
         filter: invert(100%);
         margin: 0;
         width: 16px;
