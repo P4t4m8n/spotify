@@ -56,7 +56,11 @@
     }
 }
 
-// Block helpers
+// display helpers
+
+.hidden {
+    display: none;
+}
 
 .block {
     display: block;

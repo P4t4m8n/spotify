@@ -190,9 +190,9 @@
 .app-footer {
   grid-area: player;
   background-color: #000;
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  grid-template-rows: 72px !important;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 72px;
   justify-content: space-between;
   justify-items: center;
   align-self: end;
@@ -218,7 +218,7 @@
 }
 
 .playing-card-info {
-  font-family: cir;
+  font-family: Montserrat, sans-serif;
   align-self: center;
   padding-inline: 0.7rem;
   height: 32px;
