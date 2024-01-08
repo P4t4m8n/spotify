@@ -80,15 +80,23 @@ export function SideBarContent() {
 
         <div className="side-bar-content">
 
-            <header className="side-bar-header flex">
-                <div className="toggle-library">
-                    <button className="your-library" >📂<span>Your Library</span></button>
-                    <button onClick={() => setShowCreateModal(!showCreateModal)}>
-                        <span title="Create station or folder">➕</span>
-                    </button>
+            <section className="creation-and-toggle flex">
+
+                <p className="your-library" >
+                    <img src="src\assets\img\library.svg" className="left-sidebar-library-icon"></img>
+                    <span>Your Library</span>
+                </p>
+
+                <div className="right-buttons">
+
+                    <p onClick={() => setShowCreateModal(!showCreateModal)} className="inline-block">
+                        <span title="Create station or folder">
+                            <img src="src\assets\img\plus.svg" className="left-sidebar-plus-icon"></img>
+                        </span>
+                    </p>
                     {showCreateModal &&
 
-                        <ul className="clean-list context">
+                        <ul className="show-create-modal clean-list context">
 
                             <li onClick={createStation}>
                                 <span>🎵</span>Create a new station
@@ -97,11 +105,21 @@ export function SideBarContent() {
                         </ul>
                     }
 
-                    <button onClick={() => setResize(!resize)}>{resize ? '◀️' : '▶️'}</button>
-                </div>
-            </header>
+                    <p onClick={() => setResize(!resize)} className="inline-block">
+                        <span >
+                            {resize ?
+                                <img src="src\assets\img\left_arrow.svg" className="left-sidebar-left-arrow-icon" title="Show less"></img>
+                                : <img src="src\assets\img\right_arrow.svg" className="left-sidebar-right-arrow-icon" title="Show more"></img>}
+                        </span>
+                    </p>
+                    {/* <button onClick={() => setResize(!resize)} className="inline-block">{resize ? '◀️' : '▶️'}</button> */}
 
-            <div className="side-bar-filtersort">
+                </div>
+                {/* </div> */}
+
+            </section>
+
+            <section className="side-bar-filtersort">
 
                 <div className="side-bar-type-filter">
                     <button>Playlists</button>
@@ -113,7 +131,10 @@ export function SideBarContent() {
                 <div className="search-sort-view">
 
                     <div className="search-sort-toggle-buttons flex">
-                        <button onClick={() => setShowSearch(!showSearch)} >🔍</button>
+                        <button onClick={() => setShowSearch(!showSearch)} >
+                            <img src="src\assets\img\search.svg" className="left-sidebar-small-search-icon" title="Search in Your Library"></img>
+                        </button>
+                        {/* <button onClick={() => setShowSearch(!showSearch)} >🔍</button> */}
                         {showSearch &&
                             <input type="text" id="txt" name="txt" value={filterSortBy.txt}
                                 placeholder={"Search in Your Library"} onChange={handleChange} />
@@ -140,7 +161,7 @@ export function SideBarContent() {
                     }
                 </div>
 
-            </div>
+            </section>
 
             <section className="side-bar-content">
 

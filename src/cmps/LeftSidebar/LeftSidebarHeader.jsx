@@ -9,7 +9,7 @@ export function SideBarHeader() {
 
                 <li key="home">
                     <Link to={"/"} className="flex align-center">
-                        <img src="src\assets\img\homefull.svg" className="left-sidebar-home-icon"></img>
+                        <img src="src\assets\img\home (2).svg" className="left-sidebar-home-icon"></img>
                         <span>Home</span>
                     </Link>
                 </li>
