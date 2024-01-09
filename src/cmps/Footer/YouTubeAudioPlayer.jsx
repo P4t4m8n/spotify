@@ -18,6 +18,8 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume }) {
   const isShuffle = useRef(false)
   const intervalRef = useRef(null)
 
+ 
+
   const opts = {
     height: '0',
     width: '0',
@@ -27,16 +29,26 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume }) {
     },
   }
 
+  const formatTime = (timeInSeconds) => {
+    const minutes = Math.floor(timeInSeconds / 60)
+    const seconds = Math.floor(timeInSeconds % 60)
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
+  }
+
   useEffect(() => {
 
     if (!song) loadSong(station.songs[stationIdx.current])
     setProgress('0.00')
 
     const updateProgress = () => {
+     
       if (player && player.getCurrentTime && player.getDuration) {
         const currentTime = player.getCurrentTime()
         const duration = player.getDuration()
-        setProgress(((currentTime / duration) ).toFixed(2))
+        const progressPercentage = (currentTime / duration) * 100
+        const timeElapsed = formatTime(currentTime)
+        const time = formatTime(duration )
+        setProgress({ progressPercentage, timeElapsed, time })
       }
     }
     if (player) {
@@ -49,10 +61,10 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume }) {
 
   if (!song) return <div> loading</div>
 
-  // async function load() {
-  //   loadSong(station.songs[stationIdx.current])
+  async function load() {
+    loadSong(station.songs[stationIdx.current])
 
-  // }
+  }
 
   function handleProgressbar(ev) {
 
@@ -135,11 +147,12 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume }) {
       </div>
 
 
-      <div className='progress-bar'>
-        <p style={{ color: 'white' }}>{(progress === 'NaN') ? '0.00' : progress} </p>
-        <div onClick={handleProgressbar} style={{ width: '100%', height: '2px', backgroundColor: 'darkgray' }}>
-          <div style={{ height: '100%', width: `${progress}%`, backgroundColor: 'lightgray' }} />      </div>
-        <p className='text-left' style={{ color: 'white' }}>{(progress === 'NaN') ? '0.00' : progress} </p>
+       <div className='progress-bar'>
+        <p style={{ color: 'white' }}>{progress ? progress.timeElapsed : '0:00'} </p>
+        <div onClick={handleProgressbar} style={{ width: '100%', height: '2px', backgroundColor: 'gray' }}>
+          <div style={{ height: '100%', width: `${progress ? progress.progressPercentage : 0}%`, backgroundColor: 'white' }} />
+        </div>
+        <p className='text-left' style={{ color: 'white' }}>{progress ? progress.time : '0:00'} </p>
       </div>
       <YouTube className='video' videoId={trackId} opts={opts} onEnd={onEnd} onReady={onReady} />
 

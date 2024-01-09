@@ -155,23 +155,22 @@ function getEmptyStation(name = '', idx = '', id = '') {
     return {
         _id: id,
         name: name + idx,
-        subHeading: '',
-        type: "station",
-        tags: [''],
-        stationImgUrl: '/src/assets/img/note.svg',
+        stationListTitle: '',
+        type: "playlist",
+        tags: [],
+        imgUrl: '/src/assets/img/note.svg',
         createdBy: {
             _id: '',
             username: '',
-            profileImg: ''
         },
-        likedByUsers: [''],
+        likedByUsers: 0,
         songs: []
     }
 }
 
 function createStation(songs, name = 'My station #', subHeading = '1', idx = '') {
     return {
-   
+
         "name": name + idx,
         "subHeading": subHeading,
         "type": "station",

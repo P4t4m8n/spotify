@@ -15,6 +15,7 @@ import { Signup } from './pages/Signup.jsx'
 
 
 import '../src/styles/main.scss'
+import { VideoInfoComponent } from './cmps/support/VideoInfo.jsx'
 // import '../src/footer.css'
 
 export function App() {
@@ -24,6 +25,7 @@ export function App() {
 
   return (
     <div className={`main-container ${expandedClass}`}>
+     <VideoInfoComponent></VideoInfoComponent>
       <Router>
         <LeftSidebar />
         <div className="main-content">
