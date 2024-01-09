@@ -1,8 +1,12 @@
 .right-sidebar {
-    grid-area: extra;
-    display: none;
+    // display: none;
+    overflow-y: scroll;
+    background-color: $clr7;
+    padding: 0 12px;
+    margin-block-end: $panel-gap;
+    border-radius: $panel-gap;
+}
 
-    .main-container.expanded & {
-        display: block;
-    }
+.main-container .expanded {
+    display: inline;
 }

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import { useEffect, useRef } from "react"
+import { Fragment, useEffect, useRef } from "react"
 import { StationList } from "../cmps/main/StationList"
 import { stationService } from "../services/station.service"
 import { setPlaying } from "../store/actions/song.action"
@@ -35,33 +35,87 @@ export function StationIndex() {
     if (!stations) return <div>...Loading</div>
 
     return (
-        <div className="main-content">
+        <Fragment >
+            <div className="home-page">
+                <ul className="main-hero" >
+                    <li>
+                        <div className="content">
+                            <img src="src/assets/img/asset 53.jpeg" alt="Daily Mix" />
+                            <p>Daily Mix 1</p>
+                        </div>
+                        <button className="hero-play-button">
+                            <img className="icon-16" src="src/assets/img/play.svg" alt="Play" />
+                        </button>
+                    </li>
+                    <li>
+                        <div className="content">
+                            <img src="src/assets/img/asset 53.jpeg" alt="Daily Mix" />
+                            <p>Daily Mix 2</p>
+                        </div>
+                        <button className="hero-play-button">
+                            <img className="icon-16" src="src/assets/img/play.svg" alt="Play" />
+                        </button>
+                    </li>
+                    <li>
+                        <div className="content">
+                            <img src="src/assets/img/asset 53.jpeg" alt="Daily Mix" />
+                            <p>Daily Mix 3</p>
+                        </div>
+                        <button className="hero-play-button">
+                            <img className="icon-16" src="src/assets/img/play.svg" alt="Play" />
+                        </button>
+                    </li>
+                    <li>
+                        <div className="content">
+                            <img src="src/assets/img/asset 53.jpeg" alt="Daily Mix" />
+                            <p>Daily Mix 4</p>
+                        </div>
+                        <button className="hero-play-button">
+                            <img className="icon-16" src="src/assets/img/play.svg" alt="Play" />
+                        </button>
+                    </li>
+                    <li>
+                        <div className="content">
+                            <img src="src/assets/img/asset 53.jpeg" alt="Daily Mix" />
+                            <p>Daily Mix 5</p>
+                        </div>
+                        <button className="hero-play-button">
+                            <img className="icon-16" src="src/assets/img/play.svg" alt="Play" />
+                        </button>
+                    </li>
+                    <li>
+                        <div className="content">
+                            <img src="src/assets/img/asset 53.jpeg" alt="Daily Mix" />
+                            <p>Daily Mix 6</p>
+                        </div>
+                        <button className="hero-play-button">
+                            <img className="icon-16" src="src/assets/img/play.svg" alt="Play" />
+                        </button>
+                    </li>
 
+                </ul>
+                {/* <ul className="main-hero" >
+                <li><img src="src\assets\img\asset 53.jpeg"></img><p>Daily Mix 1</p><button><img className="icon-16" src={`src/assets/img/play.svg`}></img></button></li>
+                <li><img src="src\assets\img\asset 53.jpeg"></img><p>Daily Mix 2</p><button><img className="icon-16" src={`src/assets/img/play.svg`}></img></button></li>
+                <li><img src="src\assets\img\asset 53.jpeg"></img><p>Daily Mix 3</p><button><img className="icon-16" src={`src/assets/img/play.svg`}></img></button></li>
+                <li><img src="src\assets\img\asset 53.jpeg"></img><p>Daily Mix 4</p><button><img className="icon-16" src={`src/assets/img/play.svg`}></img></button></li>
+                <li><img src="src\assets\img\asset 53.jpeg"></img><p>Daily Mix 5</p><button><img className="icon-16" src={`src/assets/img/play.svg`}></img></button></li>
+                <li><img src="src\assets\img\asset 53.jpeg"></img><p>Daily Mix 6</p><button><img className="icon-16" src={`src/assets/img/play.svg`}></img></button></li>
+            </ul> */}
 
-            <ul className="main-hero" >
-                <li><img src="src\assets\img\asset 53.jpeg"></img><p>Daily Mix 1</p><button><img className="icon-16" src={`src/assets/img/play.svg`}></img></button>                    </li>
-                <li><img src="src\assets\img\asset 53.jpeg"></img><p>Daily Mix 2</p><button><img className="icon-16" src={`src/assets/img/play.svg`}></img></button>                    </li>
-                <li><img src="src\assets\img\asset 53.jpeg"></img><p>Daily Mix 3</p><button><img className="icon-16" src={`src/assets/img/play.svg`}></img></button>                    </li>
-                <li><img src="src\assets\img\asset 53.jpeg"></img><p>Daily Mix 4</p><button><img className="icon-16" src={`src/assets/img/play.svg`}></img></button>                    </li>
-                <li><img src="src\assets\img\asset 53.jpeg"></img><p>Daily Mix 5</p><button><img className="icon-16" src={`src/assets/img/play.svg`}></img></button>                    </li>
-                <li><img src="src\assets\img\asset 53.jpeg"></img><p>Daily Mix 6</p><button><img className="icon-16" src={`src/assets/img/play.svg`}></img></button>                    </li>
+                {
+                    topics.current.map((subHeading, idx) => {
+                        {
+                            const stationsFilterd = stations.filter(station => station.subHeading === subHeading)
+                            return <StationList isPlaying={isPlaying} currStationId={currStation._id
+                            } key={idx} idx={idx}
+                                stations={stationsFilterd} topic={subHeading} onPlayStation={onPlayStation} ></StationList>
+                        }
+                    })
+                }
 
-            </ul>
-
-
-            {
-
-                topics.current.map((subHeading, idx) => {
-                    {
-                        const stationsFilterd = stations.filter(station => station.subHeading === subHeading)
-                        return <StationList isPlaying={isPlaying} currStationId={currStation._id
-                        } key={idx} idx={idx}
-                            stations={stationsFilterd} topic={subHeading} onPlayStation={onPlayStation} ></StationList>
-                    }
-                })
-            }
-        </div >
-
+            </div>
+        </Fragment>
     )
 
 }

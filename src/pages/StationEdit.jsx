@@ -10,14 +10,14 @@ export function StationEdit() {
 
     const user = useSelector(storeState => storeState.userMoudle.userObj)
 
-    const [stationToEdit, setStationToEdit] = useState(stationService.getEmptystation())
+    const [stationToEdit, setStationToEdit] = useState(stationService.getEmptyStation())
     const [mainEditMoudle, setMainEditMoudle] = useState(false)
     const [sortMoudle, setSortMoudle] = useState(false)
     const [isSearchOpen, setIsSearchOpen] = useState(false)
     const [songEditMoudle, setSongEditMoudle] = useState({ id: '', open: false })
 
     const params = useParams()
-    const recommendedList = useRef(stationService.getDeafultstation())
+    const recommendedList = useRef(stationService.getDefaultStation())
 
     useEffect(() => {
         if (params.stationId)
@@ -26,6 +26,7 @@ export function StationEdit() {
     }, [])
 
     async function loadStation(stationId) {
+        console.log("stationId:", stationId)
         try {
 
             const station = await stationService.get(stationId)

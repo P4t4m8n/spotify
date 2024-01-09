@@ -6,16 +6,20 @@ export function RightSidebar() {
 
     const song = useSelector(storeState => storeState.songMoudle.currSong)
     const isOpen = useSelector(storeState => storeState.appMoudle.isOpen)
-    const width = isOpen ? '400px' : '0px'
+    const width = isOpen ? '300px' : '0px'
+    const hiddenClass = isOpen ? '' : 'hidden'
+
 
 
     // console.log('Render-right side bar')
     return (
-        <div className="right-sidebar" style={{ width: width }}>
+        <div className={`right-sidebar ${hiddenClass}`} style={{ width: width }}>
+
             <div className="flex">
                 <h3>Station(playlist) Title</h3>
                 <button>❎</button>
             </div>
+
             <img src="src\assets\img\forward_ohmney.svg"></img>
             <div>
                 <div>
