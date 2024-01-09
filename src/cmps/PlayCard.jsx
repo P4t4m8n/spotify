@@ -14,7 +14,6 @@ export function PlayCard({ item }) {
     let cardType = (item.type === 'playlist') ? station._id : song._id
 
     function onPlayStation(ev) {
-        console.log("item:", item)
         ev.preventDefault()
         if (item.type === 'playlist') {
             if (item._id !== station._id) {
@@ -48,8 +47,7 @@ export function PlayCard({ item }) {
         setPlaying()
     }
 
-    console.log("item.type._id :", item._id)
-    console.log("cardType:", cardType)
+    
     return (
         <button onClick={(ev) => onPlayStation(ev)} className="play-button">
             {isPlaying && item._id === cardType ? <img src="src\assets\img\pause.svg"></img> : <img src="src\assets\img\play.svg"></img>}

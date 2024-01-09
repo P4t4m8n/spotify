@@ -1,21 +1,14 @@
 import { useSelector } from "react-redux"
 import { setIsOpen } from "../../store/actions/app.actions"
-import {  useState } from "react"
 
-
-export function PlayerRightside() {
+export function PlayerRightside({ volume, setVolume }) {
 
     const player = useSelector(storeState => storeState.playerMoudle.player)
-    const [volume, setCurrVolume] = useState(50)
-
 
     function handleVolumeChange(ev) {
         const newVolume = parseInt(ev.target.value, 10)
-
-        setCurrVolume(newVolume)
-        // setVolume(newVolume)
+        setVolume(newVolume)
         if (player) {
-            console.log("player:", player)
             player.setVolume(newVolume)
         }
     }
