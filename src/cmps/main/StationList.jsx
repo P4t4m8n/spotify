@@ -1,10 +1,7 @@
-import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { PlayCard } from "../PlayCard"
 
-export function StationList({ stations, topic, onPlayStation, currStationId: currStationId }) {
-
-    const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
+export function StationList({ stations, topic}) {
 
     return (
         <div className="station">
