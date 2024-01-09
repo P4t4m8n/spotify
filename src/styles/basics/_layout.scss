@@ -40,6 +40,11 @@
     color: pink;
 }
 
+.home-page {
+    display: flex;
+    flex-flow: row wrap;
+    gap: calc($panel-gap*3);
+}
 
 .search-page {
     grid-area: main;
@@ -54,6 +59,7 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
 }
-.station-page{
+
+.station-page {
     grid-area: main;
 }
