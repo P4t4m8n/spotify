@@ -3,7 +3,7 @@ import { userService } from "../services/user.service.js"
 import { useState } from 'react'
 
 
-export function Sighup(){
+export function Signup(){
     const [credentials, setCredentials] = useState(userService.getEmptyCredentials())
     const [selectedOption, setselectedOption] = useState('')
 
