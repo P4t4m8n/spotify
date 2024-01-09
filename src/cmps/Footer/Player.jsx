@@ -8,6 +8,7 @@ export function Player() {
 
     const [player, setPlayer] = useState(null)
     const [volume, setVolume] = useState(50)
+    console.log("volume:", volume)
 
     return (
         <div className="app-footer flex">

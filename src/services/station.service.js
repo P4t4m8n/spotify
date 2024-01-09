@@ -65,7 +65,7 @@ function getDefaultStation() {
         "_id": utilService.makeId(),
         "name": utilService.makeLorem(2),
         "subHeading": 'Welcome to Stainfy',
-        "type": "station",
+        "type": "playlist",
         "tags": ["deafult"],
         "stationImgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
         "createdBy": {
@@ -124,7 +124,7 @@ function _createStations() {
                 "name": 'All new music',
                 "subHeading": subHeadings[k % 5],
                 description: descriptions[k % 3],
-                "type": "station",
+                "type": "playlist",
                 "tags": ["Soul", "Chill"],
                 "stationImgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
                 "createdBy": {

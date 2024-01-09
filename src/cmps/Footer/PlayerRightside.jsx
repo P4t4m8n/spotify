@@ -1,16 +1,22 @@
-import { useSelector } from "react-redux";
-import { setIsOpen } from "../../store/actions/app.actions";
+import { useSelector } from "react-redux"
+import { setIsOpen } from "../../store/actions/app.actions"
+import {  useState } from "react"
 
 
-export function PlayerRightside({ player, volume, setVolume }) {
+export function PlayerRightside() {
 
-    const isOpen = useSelector(storeState => storeState.appMoudle.isOpen)
+    const player = useSelector(storeState => storeState.playerMoudle.player)
+    const [volume, setCurrVolume] = useState(50)
+
 
     function handleVolumeChange(ev) {
-        const newVolume = parseInt(ev.target.value, 10);
-        setVolume(newVolume);
+        const newVolume = parseInt(ev.target.value, 10)
+
+        setCurrVolume(newVolume)
+        // setVolume(newVolume)
         if (player) {
-            player.setVolume(newVolume);
+            console.log("player:", player)
+            player.setVolume(newVolume)
         }
     }
 
@@ -30,7 +36,7 @@ export function PlayerRightside({ player, volume, setVolume }) {
                     onChange={handleVolumeChange}
                 ></input>
             </div>
-            <button><img  className="icon-16" src="src\assets\img\vol.svg"></img></button>
+            <button><img className="icon-16" src="src\assets\img\vol.svg"></img></button>
             <button><img className="icon-16" src="src\assets\img\miniPlayer.svg"></img></button>
             <button><img className="icon-16" src="src\assets\img\fullscreen.svg"></img></button>
         </section>

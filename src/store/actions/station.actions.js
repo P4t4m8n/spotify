@@ -17,6 +17,10 @@ export async function loadStations(filterSortBy = {}) {
 
 }
 
+export function setCurrStation(station) {
+    store.dispatch({ type: SET_CURR_STATION, station })
+}
+
 export async function loadStation(stationId) {
     try {
         const station = await stationService.get(stationId)
@@ -46,7 +50,7 @@ export async function removeStation(stationId) {
 }
 
 export async function saveStation(station) {
-console.log("station:", station)
+    console.log("station:", station)
 
     const type = (station._id) ? EDIT_STATION : ADD_STATION
 

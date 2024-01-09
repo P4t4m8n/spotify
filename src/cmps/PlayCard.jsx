@@ -1,12 +1,58 @@
+import { useSelector } from "react-redux"
+import { loadSong, setPlaying } from "../store/actions/song.action"
+import { setCurrStation } from "../store/actions/station.actions"
 
 
-export function PlayCard({ trackId }) {
+export function PlayCard({ item }) {
+
+    const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
+    const song = useSelector(storeState => storeState.songMoudle.currSong)
+    const station = useSelector(storeState => storeState.stationsMoudle.currStation)
+    const player = useSelector(storeState => storeState.playerMoudle.player)
 
 
+    let cardType = (item.type === 'playlist') ? station._id : song._id
 
+    function onPlayStation(ev) {
+        console.log("item:", item)
+        ev.preventDefault()
+        if (item.type === 'playlist') {
+            if (item._id !== station._id) {
+                setCurrStation(item)
+                loadSong(item.songs[0])
+                if (isPlaying) setPlaying()
+
+            }
+        }
+
+        if (item.type === 'song') {
+            if (item._id !== song._id) {
+                loadSong(item.songs[0])
+                if (isPlaying) setPlaying()
+
+            }
+        }
+
+        togglePlayPause()
+
+    }
+
+    function togglePlayPause() {
+        if (isPlaying) {
+            player.pauseVideo()
+        }
+        else {
+            player.playVideo()
+
+        }
+        setPlaying()
+    }
+
+    console.log("item.type._id :", item._id)
+    console.log("cardType:", cardType)
     return (
-        <button onClick={(ev) => onPlayStation(ev, station._id)} className="play-button">
-            {currStationId === station._id && isPlaying ? <img src="src\assets\img\pause.svg"></img> : <img src="src\assets\img\play.svg"></img>}
+        <button onClick={(ev) => onPlayStation(ev)} className="play-button">
+            {isPlaying && item._id === cardType ? <img src="src\assets\img\pause.svg"></img> : <img src="src\assets\img\play.svg"></img>}
         </button>
     )
 }

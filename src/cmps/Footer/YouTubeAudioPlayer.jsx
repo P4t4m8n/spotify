@@ -4,12 +4,14 @@ import { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { loadSong, setPlaying } from '../../store/actions/song.action'
 import { utilService } from '../../services/util.service'
+import { setPlayer } from '../../store/actions/player.action'
 
-export function YouTubeAudioPlayer({ player, setPlayer, volume }) {
+export function YouTubeAudioPlayer({ volume }) {
 
   const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
   const song = useSelector(storeState => storeState.songMoudle.currSong)
   const station = useSelector(storeState => storeState.stationsMoudle.currStation)
+  const player = useSelector(storeState => storeState.playerMoudle.player)
 
   const [progress, setProgress] = useState(null)
 
@@ -18,7 +20,7 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume }) {
   const isShuffle = useRef(false)
   const intervalRef = useRef(null)
 
- 
+
 
   const opts = {
     height: '0',
@@ -41,13 +43,14 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume }) {
     setProgress('0.00')
 
     const updateProgress = () => {
-     
+
       if (player && player.getCurrentTime && player.getDuration) {
+     
         const currentTime = player.getCurrentTime()
         const duration = player.getDuration()
         const progressPercentage = (currentTime / duration) * 100
         const timeElapsed = formatTime(currentTime)
-        const time = formatTime(duration )
+        const time = formatTime(duration)
         setProgress({ progressPercentage, timeElapsed, time })
       }
     }
@@ -56,7 +59,7 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume }) {
       intervalRef.current = setInterval(updateProgress, 12)
     }
 
-  }, [player, song])
+  }, [player])
 
 
   if (!song) return <div> loading</div>
@@ -73,7 +76,7 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume }) {
     const newTime = clickPosition * player.getDuration()
 
     player.seekTo(newTime)
-    setProgress(clickPosition )
+    setProgress(clickPosition)
   }
 
   function onReady(ev) {
@@ -147,7 +150,7 @@ export function YouTubeAudioPlayer({ player, setPlayer, volume }) {
       </div>
 
 
-       <div className='progress-bar'>
+      <div className='progress-bar'>
         <p style={{ color: 'white' }}>{progress ? progress.timeElapsed : '0:00'} </p>
         <div onClick={handleProgressbar} style={{ width: '100%', height: '2px', backgroundColor: 'gray' }}>
           <div style={{ height: '100%', width: `${progress ? progress.progressPercentage : 0}%`, backgroundColor: 'white' }} />

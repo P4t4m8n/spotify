@@ -5,6 +5,7 @@ import { userReducer } from "./redcuers/user.reducer"
 import { songReducer } from "./redcuers/song.reducer"
 import { appRedcuer } from "./redcuers/app.reducer"
 import { sidebarReducer } from "./redcuers/sidebar.reducer"
+import { playerReducer } from "./redcuers/player.redcuer"
 
 
 
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     songMoudle: songReducer,
     appMoudle: appRedcuer,
     sidebarModule: sidebarReducer,
+    playerMoudle: playerReducer,
 
 })
 
