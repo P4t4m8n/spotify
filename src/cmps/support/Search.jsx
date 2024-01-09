@@ -28,14 +28,12 @@ export function Search() {
       <form >
         <img src="src\assets\img\search.svg"></img>
         <input
-
           value={searchTerm}
           onChange={handleSearchChange}
           type="text"
-          id="txt"
-          name="txt"
+          id="searchTerm"
+          name="searchTerm"
           placeholder="What do you want to listen to?" />
-
       </form>
     </section>
   )

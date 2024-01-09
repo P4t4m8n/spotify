@@ -10,29 +10,49 @@ const URL_PLAYLIST_TUBE = `https://www.googleapis.com/youtube/v3/playlists?key=$
 const URL_WIKI = `https://en.wikipedia.org/w/api.php?&origin=*&action=query&list=search&`
 
 
-
 export const apiService = {
     getContent,
 }
 
- async function getContent(type, search) {
-    const destTube = `part=snippet&q=${search}&type=video`
+ async function getContent( search) {
+    const destTube = `part=snippet&q=${search}&type=video&maxResults=1`
     try{
         
         const responseArtist =   await axios.get(URL_ARTIST_TUBE + destTube)
-        console.log("responseArtist:", responseArtist.data        )
+        console.log("responseArtist:", responseArtist.data.items)
+        const item =  responseArtist.data.items[0]
+        console.log("item:", item)
 
-        const trackId = responseArtist.data.items[0].id.videoId
+        // const results = responseArtist.data.items.map(ytItem=>{
+        //     return {
+            
+        //         title: 'Winamp Intro',
+        //         album: 'Single',
+        //         artist: 'Winamp',
+        //         type: 'song',
+        //         duration: "00:05",
+        //         trackId: 'item.id.videoId',
+        //         songImgUrl: 'item.thumbnails.high.url',
+        //         addedBy: 'artist',
+        //         addedAt: (Date.now() + 1) - Date.now(),
+        //         likedBy: []
+        //     }
+        // })
 
-        let title = responseArtist.data.items[0].snippet.title
+        // const trackId = responseArtist.data.items[0].id.videoId
+
+        // let title = responseArtist.data.items[0].snippet.title
         // const regex = /^([^-]+ - [^-]+)/
-        // const title = item.snippet.title.replace(/\([^)]*\)|\[[^\]]*\]|[^A-Za-z0-9]/g, "")
+        const title =  item.replace(/\([^)]*\)|\[[^\]]*\]|[^A-Za-z0-9]/g, "")
+        console.log("title:", title)
+
+        
         // const destWiki = `srsearch=${title}&format=json`
         
-        let artist
-        let song
-        title = title.replace(/[^a-zA-Z0-9]/g, '')
-     check = title.match(/[^A-Za-z0-9]/)
+    //     let artist
+    //     let song
+    //     title = title.replace(/[^a-zA-Z0-9]/g, '')
+    //  check = title.match(/[^A-Za-z0-9]/)
 
         const imgUrl = responseArtist.data.items[0].snippet.thumbnails.high
 
@@ -74,6 +94,7 @@ export const apiService = {
 //     //     console.log("responsePLaylist:", responsePlaylist.data)
 
 //     //     // const itemsObj = response.data.items.map(item => {
+    
 //     //     //     // return _makeItemObj(item)
 //     //     // })
 
