@@ -118,7 +118,6 @@ function _createStations() {
         stations = []
         let songsIdx = 0
         let songsArr = songService.getSongs()
-        console.log("songsArr:", songsArr)
         for (var k = 0; k < 30; k++) {
             let station = {
                 "_id": utilService.makeId(),
@@ -172,7 +171,7 @@ function getEmptyStation(name = '', idx = '', id = '') {
 
 function createStation(songs, name = 'My station #', subHeading = '1', idx = '') {
     return {
-        "_id": utilService.makeId(),
+   
         "name": name + idx,
         "subHeading": subHeading,
         "type": "station",

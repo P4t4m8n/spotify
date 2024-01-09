@@ -8,9 +8,9 @@ export function loadSong(song) {
     return store.dispatch({ type: SET_SONG, song })
 }
 
-export function setPlaying() {
+export function setPlaying(isPlaying) {
 
-    store.dispatch({ type: SET_PLAYING, wow: 'wow' })
+    store.dispatch({ type: SET_PLAYING, isPlaying })
 }
 
 export function setVolume(lvl) {
