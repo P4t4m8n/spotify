@@ -59,7 +59,7 @@ function loadFromStorage(key) {
     return (data) ? JSON.parse(data) : undefined
 }
 
-function debounce(func, timeout = 300) {
+function debounce(func, timeout = 500) {
     let timer
     return (...args) => {
         clearTimeout(timer)

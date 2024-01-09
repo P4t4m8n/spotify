@@ -1,87 +1,36 @@
-
-import { useState, useEffect,useRef } from "react"
-import Axios from 'axios'
-
-import {utilService} from '../../services/util.service'
-
-
+import { useState } from "react"
+import { useNavigate, useParams } from "react-router"
+import { utilService } from "../../services/util.service"
 
 
 export function Search() {
 
+  const [searchTerm, setSearchTerm] = useState('')
 
-  const axios = Axios.create({
-    withCredentials: true
-})
-
-  const [filterBy, setFilterBy] = useState({ txt: '' })
-  //setFilterBy = useRef(utilService.debounce(setFilterBy))
-
-  const [videos, setVideos] = useState([])
+  const params = useParams()
+  const navigate = useNavigate()
 
 
-
-  useEffect(() => {
-    setFilterBy(filterBy)
-  }, [filterBy])
-
-  function onFilter(ev) {
-    ev.preventDefault()
-    setFilterBy(filterBy)
+  const navigateToSearch = (value) => {
+    navigate('/search/' + value)
   }
 
-  function playSong(id) { }
+  const debouncedNavigate = utilService.debounce(navigateToSearch)
 
-
-
-  function getVideos(term) {
-    const termVideosMap =  {}
-    if (termVideosMap[term]) return Promise.resolve(termVideosMap[term])
-
-    console.log('Getting from Network...')
-    const API = 'AIzaSyCp8KMTEjR9frWUGpSnc8Cw5cLVe7wRRDM'
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&type=video&key=${API}&q=${term}`
-
-
-    return axios.get(url)
-      .then(res => { console.log(res); return res })
-      .then(res => res.data.items)
-      .then(ytVideos => ytVideos.map(ytVideo => ({
-        id: ytVideo.id.videoId,
-        title: ytVideo.snippet.title,
-        img: {
-          url: ytVideo.snippet.thumbnails.default.url,
-          width: ytVideo.snippet.thumbnails.default.width,
-          height: ytVideo.snippet.thumbnails.default.height,
-        }
-      })))
-      .then(videos => {
-        return videos
-      })
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value)
+    debouncedNavigate(event.target.value)
   }
 
-
-
-
-  function handleChange({ target }) {
-    let value = target.value
-    let field = target.name
-    //console.log(value)
-
-    setFilterBy((prevFilterBy) => ({ ...prevFilterBy, [field]: value }))
-    getVideos(value)
-  }
-
-  const { txt } = filterBy
 
   return (
     <section className="search-box">
-      <form onSubmit={onFilter}>
+      <form >
         <img src="src\assets\img\search.svg"></img>
         <input
 
-          value={txt}
-          onChange={handleChange}
+          value={searchTerm}
+          onChange={handleSearchChange}
           type="text"
           id="txt"
           name="txt"
