@@ -2,7 +2,7 @@ import { asyncService } from "./async-storage.service"
 import { stationService } from "./station.service"
 import { utilService } from "./util.service"
 
-const STORAGE_KEY_LOGGEDIN_USER = 'loggedInUser'
+const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 const STORGE_KEY_USERS = 'usersDB'
 
 _createUsers()
@@ -19,14 +19,26 @@ export const userService = {
 }
 
 function getLoggedinUser() {
-    return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
+    let user=JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
+    if(!user)    
+    {
+        user=getDemoUser()
+        _setLoggedinUser(user)
+
+    }
+    return  user
 }
 
 async function login({ username, password }) {
+  
     try {
         const users = asyncService.query(STORGE_KEY_USERS)
-        const user = users.find(user => user.username === username && user.password === password)
-        if (user) return _setLoggedinUser(user)
+        .then(users => {
+            console.log(users)
+        const user = users.find(user => {
+            console.log(user)
+            user.username === username && user.password === password})
+        if (user) return _setLoggedinUser(user)})
     }
     catch (err) {
         throw err
@@ -38,7 +50,7 @@ async function signup({ username, password, fullname }) {
     try {
         const user = { username, password, fullname, stations: [], favorites: [] }
         const newUser = await asyncService.post(STORGE_KEY_USERS, user)
-
+        console.log(newUser)
         return _setLoggedinUser(newUser)
     }
     catch (err) {
@@ -48,7 +60,7 @@ async function signup({ username, password, fullname }) {
 
 async function logout() {
     try {
-        asyncService.removeItem(STORAGE_KEY_LOGGEDIN_USER)
+        sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
         return
     }
     catch (err) {
@@ -78,18 +90,18 @@ function getEmptyCredentials(username = '', password = '', stations = [], favori
 }
 
 function getDemoUser() {
-    let user = getLoggedinUser()
-    if (user) return
-
-    return {
-        _id: '1',
-        username: 'bobo',
+   
+     return {
+        _id: "1",
+        username: 'guest',
         stations: [stationService.createStation([], 'Liked Songs', 'tracks'),
         stationService.createStation([], 'Your Episodes', 'you Episodes')],
     }
+
 }
 
 function _setLoggedinUser(user) {
+    console.log('set user')
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
 }
