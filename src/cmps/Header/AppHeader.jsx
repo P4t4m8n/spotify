@@ -1,48 +1,40 @@
-import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { userService } from '../../services/user.service'
+import { useNavigate, useLocation } from 'react-router-dom'
 
-import { Search } from "../support/Search"
-import { useLocation } from 'react-router-dom'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { Search } from '../support/Search.jsx'
+import { LoginSignup } from './LoginSignup.jsx'
+import { userService } from '../../services/user.service.js'
+import { showErrorMsg } from '../../services/event-bus.service.js'
+import { SET_USER } from '../../store/redcuers/user.reducer.js'
+import { useState } from 'react'
+import { logout } from '../../store/actions/user.actions.js'
 
 
 export function AppHeader() {
 
-    const dispatch = useDispatch()
+    const user = useSelector(storeState => storeState.userMoudle.userObj)
+    //const isSearchOpen = useSelector(storeState => storeState.appMoudle.isSearchOpen)
+    const [showCreateModal, setShowCreateModal] = useState(false)
 
 
-    //const user = useSelector(storeState => storeState.userMoudle.userObj)
-    const [isSignup, setIsSignUp] = useState(false)
-    const [credentials, setCredentials] = useState(userService.getEmptyCredentials())
-
-
-    function handleChange({ target }) {
-        const { name: field, value } = target
-        setCredentials(prevCreds => ({ ...prevCreds, [field]: value }))
-
+    async function onLogout() {
+        try {
+            await logout()
+            console.log('logout')
+        }
+        catch (err) {
+            console.log(err)
+        }
     }
 
-    function isLogin(ev) {
-        ev.preventDefault()
-        isSignup ? onSignup(credentials) : onLogin(credentials)
-    }
+    function ConditionalSearchComponent() {
+        let location = useLocation()
 
-    function onLogin(credentials) {
-        login(credentials)
-            .then(() => {
-                console.log('Logged in successfully')
-            })
-            .catch((err) => { console.log(err) })
+        if (location.pathname === '/search') {
+            return <Search />
+        }
 
-    }
-
-    function onSignup(credentials) {
-        signup(credentials)
-            .then(() => {
-                console.log('Signed in successfully')
-            })
-            .catch((err) => { console.log(err) })
+        return null; // or any other component for different routes
     }
 
 
@@ -53,13 +45,45 @@ export function AppHeader() {
                 <button><img src='src\assets\img\page.svg'></img></button>
                 <button><img src='src\assets\img\page.svg'></img></button>
             </div>
-            <Search></Search>
-            <div className="header-login">
-                <div className="sign-up"> <NavLink to="/signup" >sign up</NavLink></div>
-                <div className="login"><NavLink to="/login" >login</NavLink></div>
-            </div>
+                <ConditionalSearchComponent />
+
+
+            {user ? (
+                < section className='user-form' onClick={() => setShowCreateModal(!showCreateModal)} >
+                    {showCreateModal &&
+                            <ul className="show-create-modal clean-list context user-modal">
+                                <li>
+                                    Profile
+                                </li>
+                                <li onClick={onLogout}>Logout</li>
+                            </ul>
+                            }
+                    <span >
+                    <img src = {user.imgUrl? user.imgUrl : `src/assets/img/user.svg`}></img>  Hello {user.username} </span>
+                </ section >
+            ) : (
+                <section>
+                    <LoginSignup />
+                </section>
+            )}
         </div>
 
 
     )
 }
+
+/*  <p onClick={() => setShowCreateModal(!showCreateModal)} className="inline-block">
+                        <span title="Create station or folder">
+                            <img src="src\assets\img\plus.svg" className="left-sidebar-plus-icon"></img>
+                        </span>
+                    </p>
+                    {showCreateModal &&
+
+                        <ul className="show-create-modal clean-list context">
+
+                            <li onClick={createStation}>
+                                <span>🎵</span>Create a new station
+                            </li>
+                            <li><span>📁</span>Create a station folder</li>
+                        </ul>
+                    }*/

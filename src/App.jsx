@@ -25,7 +25,6 @@ export function App() {
 
   return (
     <div className={`main-container ${expandedClass}`}>
-     <VideoInfoComponent></VideoInfoComponent>
       <Router>
         <LeftSidebar />
         <div className="main-content">
@@ -41,7 +40,6 @@ export function App() {
             <Route path="/:userId/station/edit/:stationId" element={<StationEdit />}></Route>
           </Routes>
         </div>
-
         <RightSidebar />
         <Player />
       </Router>

@@ -2,7 +2,7 @@ import { asyncService } from "./async-storage.service"
 import { stationService } from "./station.service"
 import { utilService } from "./util.service"
 
-const STORAGE_KEY_LOGGEDIN_USER = 'loggedInUser'
+const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 const STORGE_KEY_USERS = 'usersDB'
 
 _createUsers()
@@ -20,26 +20,37 @@ export const userService = {
 
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
+
+
 }
 
-async function login({ username, password }) {
+async function login({ username, password}) {
+
     try {
-        const users = asyncService.query(STORGE_KEY_USERS)
-        const user = users.find(user => user.username === username && user.password === password)
-        if (user) return _setLoggedinUser(user)
+        const users = await asyncService.query(STORGE_KEY_USERS)
+        const newUser = users.find(user => (user.username === username && user.password === password))
+        if (!newUser)
+        newUser = users.find(user => ( user.email === username && user.password === password))
+        
+        if (newUser) {       
+            _setLoggedinUser(newUser)
+            return newUser
+        }
+        else ('err no user')
+
     }
     catch (err) {
         throw err
     }
-
 }
 
-async function signup({ username, password, fullname }) {
+async function signup({ username, password, email }) {
     try {
-        const user = { username, password, fullname, stations: [], favorites: [] }
+        const user = { username, password, email, stations: [], favorites: [] }
         const newUser = await asyncService.post(STORGE_KEY_USERS, user)
-
-        return _setLoggedinUser(newUser)
+        console.log("newUser:", newUser)
+         _setLoggedinUser(newUser)
+         return newUser
     }
     catch (err) {
         throw err
@@ -48,7 +59,7 @@ async function signup({ username, password, fullname }) {
 
 async function logout() {
     try {
-        asyncService.removeItem(STORAGE_KEY_LOGGEDIN_USER)
+        sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
         return
     }
     catch (err) {
@@ -68,8 +79,9 @@ async function update(user) {
 
 }
 
-function getEmptyCredentials(imgUrl = '', username = '', password = '', stations = [], favorites = []) {
+function getEmptyCredentials(email = '', imgUrl ="", username = '', password = '', stations = [], favorites = []) {
     return {
+        email,
         username,
         password,
         stations,
@@ -79,20 +91,18 @@ function getEmptyCredentials(imgUrl = '', username = '', password = '', stations
 }
 
 function getDemoUser() {
-    let user = getLoggedinUser()
-    if (user) return
 
     return {
-        _id: '1',
-        username: 'bobo',
+        _id: "1",
+        username: 'guest',
         stations: [stationService.createStation([], 'Liked Songs', 'tracks'),
         stationService.createStation([], 'Your Episodes', 'you Episodes')],
     }
+
 }
 
 function _setLoggedinUser(user) {
-    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
-    return user
+    return sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
 }
 
 function setDemoUser() {
@@ -106,11 +116,9 @@ function _createUsers() {
 
     if (!users || !users.length) {
 
-        users = [getDemoUser()]
+        users = []
         utilService.saveToStorage(STORGE_KEY_USERS, users)
     }
-
-    _setLoggedinUser(users[0])
 }
 
 

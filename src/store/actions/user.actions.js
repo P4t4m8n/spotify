@@ -2,15 +2,12 @@ import { userService } from "../../services/user.service"
 import { EDIT_USER, SET_USER } from "../redcuers/user.reducer"
 import { store } from "../store"
 
-
 export async function logout() {
-    const newUser = null
+    const user = null
 
     try {
-
         await userService.logout()
-        return store.dispatch({ type: SET_USER, newUser })
-
+        return store.dispatch({ type: SET_USER, user })
     }
     catch (err) {
         console.log('user action -> Cannot logout', err)
@@ -22,7 +19,8 @@ export async function login(credentials) {
 
     try {
         const user = await userService.login(credentials)
-       return store.dispatch({ type: SET_USER, user })
+        
+        return store.dispatch({ type: SET_USER, user })
 
     }
     catch (err) {
@@ -35,8 +33,10 @@ export async function login(credentials) {
 export async function signup(credentials) {
     try {
 
-        const newUser = await userService.signup(credentials)
-        store.dispatch({ type: SET_USER, newUser })
+        const user = await userService.signup(credentials)
+        store.dispatch({ type: SET_USER, user })
+        return user
+
     }
 
     catch (err) {
@@ -57,21 +57,5 @@ export async function updateUser(user) {
     catch (err) {
         throw err
     }
-
 }
 
-// export async function getUserPlaylists(user) {
-//     const userPlaylists = user.playlists
-// }
-
-// export async function loadUsers() {
-//     try {
-//         const users = await userService.getUsers()
-//         store.dispatch({ type: SET_USERS, users })
-//     }
-
-//     catch (err) {
-//         console.log('user action -> Cannot load users', err)
-//         throw err
-//     }
-// }

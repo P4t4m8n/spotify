@@ -1,10 +1,10 @@
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom'
-import { signup } from '../store/actions/user.actions.js'
-import { userService } from "../services/user.service.js"
+import { login, signup } from '../../store/actions/user.actions.js'
+import { userService } from "../../services/user.service.js"
 
 
-export function Signup() {
+export function LoginForm({ isSignup }) {
 
     const [credentials, setCredentials] = useState(userService.getEmptyCredentials())
     const navigate = useNavigate()
@@ -18,8 +18,9 @@ export function Signup() {
     async function onSubmit(ev) {
         ev.preventDefault()
         try {
-            await signup(credentials)
-            console.log('sighned up')
+            if (isSignup) await signup(credentials)
+            else await login(credentials)
+            console.log('looged in')
             navigate('/')
         }
         catch (err) { console.log(err) }
@@ -28,17 +29,15 @@ export function Signup() {
 
     return (
         <form className="login-form" onSubmit={onSubmit}>
-            <label>Email address</label><br />
             <input
-                type="email"
-                name="email"
-                value={credentials.email}
-                placeholder="email"
+                type="text"
+                name="username"
+                value={credentials.username}
+                placeholder="Username"
                 onChange={handleCredentialsChange}
                 required
                 autoFocus
             />
-            <label>password </label><br />
             <input
                 type="password"
                 name="password"
@@ -48,16 +47,15 @@ export function Signup() {
                 required
                 autoComplete="off"
             />
-            <label> <span>Name</span><br />This name will be displayed on your profile </label><br />
-            <input
+            {isSignup && <input
                 type="text"
-                name="username"
+                name="fullname"
                 value={credentials.fullname}
-                placeholder="Name"
+                placeholder="Full name"
                 onChange={handleCredentialsChange}
                 required
-            />
-            <button className="submit">Signup</button>
+            />}
+            <button>{isSignup ? 'Signup' : 'Login'}</button>
         </form>
     )
 }

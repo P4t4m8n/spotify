@@ -24,7 +24,7 @@ export function SideBarContent() {
     const types = ['stations', 'Podcasts & Shows']
 
     useEffect(() => {
-        setUserStations(user.stations)
+      if(user) setUserStations(user.stations)
 
     }, [])
 
