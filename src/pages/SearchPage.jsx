@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 import { apiService } from '../services/api.service'
 import { Fragment, useEffect, useState } from 'react'
 import { Playlist } from '../cmps/main/Playlist'
+import { PlayCard } from '../cmps/PlayCard'
 
 
 export function SearchPage() {
@@ -31,7 +32,7 @@ export function SearchPage() {
 
 
     console.log("searchList:", searchList)
-    console.log("!params.searchTerm:",!params.searchTerm)
+    console.log("!params.searchTerm:", !params.searchTerm)
     // console.log('Render-Search page')
     return (
         <section className='search-page' >
@@ -55,6 +56,7 @@ export function SearchPage() {
                             <p>{searchList[0].title}</p>
                             <p>{searchList[0].type}</p>
                         </div>
+                        <PlayCard item={searchList[0]}></PlayCard>
                     </div>
                     <div className='result-songs'>
                         <header>Songs</header>
@@ -63,6 +65,7 @@ export function SearchPage() {
                                 searchList.map((res, idx) =>
                                     <li key={idx}>
                                         <img src={res.imgUrl}></img>
+                                        <PlayCard item={res}></PlayCard>
                                         <div className='info'>
                                             <header>{res.title}</header>
                                             <p>{res.artist}</p>

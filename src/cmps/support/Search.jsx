@@ -43,7 +43,7 @@ console.log('Render search')
           id="searchTerm"
           name="searchTerm"
           placeholder="What do you want to listen to?" />
-          <button>xx</button>
+          <button>xx </button>
       </form>
     </section>
   )

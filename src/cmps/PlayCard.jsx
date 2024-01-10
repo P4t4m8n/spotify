@@ -4,6 +4,7 @@ import { setCurrStation } from "../store/actions/station.actions"
 
 
 export function PlayCard({ item }) {
+console.log("item:", item)
 
     const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
     const song = useSelector(storeState => storeState.songMoudle.currSong)
