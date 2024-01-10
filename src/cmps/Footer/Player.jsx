@@ -6,14 +6,13 @@ import { PlayerRightside } from './PlayerRightside'
 
 export function Player() {
 
-    const [player, setPlayer] = useState(null)
     const [volume, setVolume] = useState(50)
 
     return (
         <div className="app-footer flex">
             <PlayerPlayingCard />
-            <YouTubeAudioPlayer volume={volume} setVolume={setVolume} player={player} setPlayer={setPlayer}></YouTubeAudioPlayer>
-            <PlayerRightside volume={volume} setVolume={setVolume} player={player} ></PlayerRightside>
+            <YouTubeAudioPlayer volume={volume} ></YouTubeAudioPlayer>
+            <PlayerRightside volume={volume} setVolume={setVolume}  ></PlayerRightside>
         </div>
     )
 }

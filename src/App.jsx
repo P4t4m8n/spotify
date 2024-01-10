@@ -15,6 +15,7 @@ import { Signup } from './pages/Signup.jsx'
 
 
 import '../src/styles/main.scss'
+import { VideoInfoComponent } from './cmps/support/VideoInfo.jsx'
 // import '../src/footer.css'
 
 export function App() {
@@ -24,6 +25,7 @@ export function App() {
 
   return (
     <div className={`main-container ${expandedClass}`}>
+     <VideoInfoComponent></VideoInfoComponent>
       <Router>
         <LeftSidebar />
         <div className="main-content">
@@ -34,6 +36,7 @@ export function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/search" element={<SearchPage />} />
+            <Route path="/search/:searchTerm" element={<SearchPage />} />
             <Route path="/:userId/station/edit" element={<StationEdit />}></Route>
             <Route path="/:userId/station/edit/:stationId" element={<StationEdit />}></Route>
           </Routes>

@@ -7,11 +7,6 @@ import { useLocation } from 'react-router-dom'
 import { NavLink, useNavigate } from 'react-router-dom'
 
 
-
-
-
-
-
 export function AppHeader() {
 
     const dispatch = useDispatch()
@@ -50,15 +45,7 @@ export function AppHeader() {
             .catch((err) => { console.log(err) })
     }
 
-    function ConditionalSearchComponent() {
-        let location = useLocation()
 
-        if (location.pathname === '/search') {
-            return <Search />
-        }
-
-        return null; // or any other component for different routes
-    }
 
     return (
         <div className="app-header">
@@ -66,8 +53,7 @@ export function AppHeader() {
                 <button><img src='src\assets\img\page.svg'></img></button>
                 <button><img src='src\assets\img\page.svg'></img></button>
             </div>
-            <ConditionalSearchComponent />
-
+            <Search></Search>
             <div className="header-login">
                 <div className="sign-up"> <NavLink to="/signup" >sign up</NavLink></div>
                 <div className="login"><NavLink to="/login" >login</NavLink></div>

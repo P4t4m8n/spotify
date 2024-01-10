@@ -68,12 +68,13 @@ async function update(user) {
 
 }
 
-function getEmptyCredentials(username = '', password = '', stations = [], favorites = []) {
+function getEmptyCredentials(imgUrl = '', username = '', password = '', stations = [], favorites = []) {
     return {
         username,
         password,
         stations,
         favorites,
+        imgUrl,
     }
 }
 
