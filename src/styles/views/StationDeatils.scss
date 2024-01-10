@@ -102,22 +102,46 @@
 }
 
 .list-header {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    justify-self: flex-end;
+    display: grid;
+    // grid-template-columns: 1rem 1rem 1rem 1rem;
+    // grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: min-content 55% 25% 15%;
+    grid-column-gap: 16px;
     height: 2rem;
+    align-items: center;
+
 
 }
+
+// .list-header {
+//     display: flex;
+//     justify-content: space-between;
+//     width: 100%;
+//     justify-self: flex-end;
+//     height: 2rem;
+
+// }
 
 
 .station-details-list {
     display: grid;
-    grid-template-columns: 1rem 40% 20% 20% 20%;
+    // grid-template-columns: 1rem 40% 20% 20% 20%;
+    grid-template-columns: min-content 55% 25% 15%;
+    grid-column-gap: 16px;
+
     font-size: .8rem;
+    font-weight: 200;
     height: 2rem;
     align-items: center;
 }
+
+// .station-details-list {
+//     display: grid;
+//     grid-template-columns: 1rem 40% 20% 20% 20%;
+//     font-size: .8rem;
+//     height: 2rem;
+//     align-items: center;
+// }
 
 .station-details-list button {
     background-color: inherit;
