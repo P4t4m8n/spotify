@@ -19,13 +19,17 @@ export function Search() {
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value)
-    debouncedNavigate(event.target.value)
+    // debouncedNavigate(event.target.value)
+  }
+
+  function onSubmit(ev) {
+    debouncedNavigate(searchTerm)
   }
 
 
   return (
     <section className="search-box">
-      <form >
+      <form onSubmit={onSubmit} >
         <p style={{marginRight:"10px"}}></p>
         <img src="src\assets\img\search.svg"></img>
         <input
