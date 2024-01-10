@@ -13,7 +13,7 @@ import { logout } from '../../store/actions/user.actions.js'
 export function AppHeader() {
 
     const user = useSelector(storeState => storeState.userMoudle.userObj)
-    const isSearchOpen = useSelector(storeState => storeState.appMoudle.isSearchOpen)
+    //const isSearchOpen = useSelector(storeState => storeState.appMoudle.isSearchOpen)
 
     async function onLogout() {
         try {
@@ -25,18 +25,32 @@ export function AppHeader() {
         }
     }
 
+    function ConditionalSearchComponent() {
+        let location = useLocation()
+
+        if (location.pathname === '/search') {
+            return <Search />
+        }
+
+        return null; // or any other component for different routes
+    }
+
+
+
     return (
         <div className="app-header">
             <div className="page-index">
                 <button><img src='src\assets\img\page.svg'></img></button>
                 <button><img src='src\assets\img\page.svg'></img></button>
             </div>
+                <ConditionalSearchComponent />
 
-            {isSearchOpen && <Search />}
 
             {user ? (
                 < section className='user-form' >
-                    <span >Hello {user.username} </span>
+                    
+                    <span >
+                    <img src = {user.imgUrl? user.imgUrl : `src/assets/img/user.svg`}></img>  Hello {user.username} </span>
                     <button onClick={onLogout}>Logout</button>
                 </ section >
             ) : (

@@ -1,25 +1,36 @@
 .login-form{
     background-color: $clr9;
     color:$clr6;
-    text-align: center;
+    text-align: left;
     display: flex;
     flex-direction: column;
-  justify-content: end;
-  margin-right: 10em;
-  align-items: center;
+    margin-right: 10em;
+    align-items: flex-start;
+    padding: 20vw;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: light;
 
-    
+    label{
+        font-size: 0.825rem;
+        margin-top: 0.5em;
+        
+
+
+         span{
+            font-weight: bold;
+         }
+    }
 
      input{
-        background-color: $clr7;
-        text-align: left;
+        background-color: $clr7;    
         color:$clr4;
         border: 1px solid $clr6;
-        width: 15em;
-        padding: 0.5em;
-        margin-bottom: 0.5em;
-        border-radius: 0.5em;
-        margin-top: 1em;
+        width: 18rem;
+        padding:1rem;
+        margin-bottom: 0.2em;
+        border-radius: 0.2em;
+       
+        font-size: 1rem;
 
     }
 
@@ -36,12 +47,13 @@
     .submit{
         background-color: $clr1;
         margin-bottom: 1em;
-        font-size: 0.8em;
-        padding: 0.7em;
-        border-radius: 1em;
+        font-size: 1rem;
+        padding: 1rem;
+        border-radius: 3rem;
         font-weight: bold;
         color:$clr9;
-        margin-top: 1em;
+        margin-top: 1.5em;
+        width: 15rem;
 
     }
 
@@ -52,7 +64,18 @@
 }
 
 .user-form{
-text-align: right;
+   display: flex;
+   justify-content: end;
+
+   :hover{
+cursor: pointer;
+   }
+
+
+    span{
+display: flex;
+align-items: center;
+    }
 
  button{
     background-color: inherit;
@@ -61,6 +84,13 @@ text-align: right;
   color: $clr5;
   text-decoration: underline;
     }
+    img{
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-right: 0.5rem;
+      border-radius: 50%;
+      background-color:$clr4;
+  }
  }
 
  .login-page{
@@ -81,17 +111,17 @@ text-align: right;
 
  }
  
- .login-form{
-    display: flex;
-   flex-direction: row;
-    text-align: right;
+ 
 
     button{
         background-color: $clr7;
-     }
+     
         button:hover{
       color: $clr5;
       text-decoration: underline;
         }
+
+   
+ 
 
  }
