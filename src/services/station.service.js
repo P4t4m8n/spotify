@@ -118,6 +118,7 @@ function _createStations() {
         stations = []
         let songsIdx = 0
         let songsArr = songService.getSongs()
+        
         for (var k = 0; k < 30; k++) {
             let station = {
                 "_id": utilService.makeId(),
