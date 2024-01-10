@@ -1,7 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
+import { setSearchOpen } from "../../store/actions/app.actions"
+import { useSelector } from "react-redux"
+
 
 export function SideBarHeader() {
 
+    const isSearchOpen = useSelector(storeState => storeState.appMoudle.isSearchOpen)
+    
     return (
         <div className="left-sidebar-header">
 
@@ -14,7 +19,7 @@ export function SideBarHeader() {
                     </Link>
                 </li>
 
-                <li key="search">
+                <li onClick={() => setSearchOpen(!isSearchOpen)} key="search">
                     <Link to={"/search"} className="flex align-center">
                         <img src="src\assets\img\search.svg" className="left-sidebar-search-icon"></img>
                         <span>Search</span>
@@ -23,6 +28,6 @@ export function SideBarHeader() {
 
             </ul>
 
-        </div>
+        </div >
     )
 }
