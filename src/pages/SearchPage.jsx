@@ -19,12 +19,12 @@ export function SearchPage() {
     }
  
     
-    // console.log('Render-Search page')
+     console.log('Render-Search page')
     return (
         <section className='search-page'>
             <h1>Browse all</h1>
             {/*<SearchResults />*/}
-            <ul className="ganeres-list">
+            <ul className="ganeres-list"> 
                 {ganers.map(ganere =>
                     <li key={ganere} style={{ backgroundColor: utilService.getRandomColor() }}>{ganere}</li>
                 )}
