@@ -6,7 +6,8 @@ export const utilService = {
     saveToStorage,
     animateCSS,
     debounce,
-    getRandomColor
+    getRandomColor,
+    formatTime
 }
 
 function makeId(length = 16) {
@@ -24,11 +25,11 @@ function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
     for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
+        color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
-  }
-  
+}
+
 
 function makeLorem(size = 100) {
     var words = ['The sky', 'above', 'the port', 'was', 'the color of television',
@@ -47,7 +48,7 @@ function makeLorem(size = 100) {
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min)
     max = Math.floor(max)
-    return Math.floor(Math.random() * (max - min + 1)) + min  
+    return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
 function saveToStorage(key, value) {
@@ -59,7 +60,7 @@ function loadFromStorage(key) {
     return (data) ? JSON.parse(data) : undefined
 }
 
-function debounce(func, timeout = 500) {
+function debounce(func, timeout = 3000) {
     let timer
     return (...args) => {
         clearTimeout(timer)
@@ -67,6 +68,12 @@ function debounce(func, timeout = 500) {
             func.apply(this, args)
         }, timeout)
     }
+}
+
+function formatTime(timeInSeconds) {
+    const minutes = Math.floor(timeInSeconds / 60)
+    const seconds = Math.floor(timeInSeconds % 60)
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds} `
 }
 
 

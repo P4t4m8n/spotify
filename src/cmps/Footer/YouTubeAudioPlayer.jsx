@@ -20,8 +20,6 @@ export function YouTubeAudioPlayer({ volume }) {
   const isShuffle = useRef(false)
   const intervalRef = useRef(null)
 
-
-
   const opts = {
     height: '0',
     width: '0',
@@ -29,12 +27,6 @@ export function YouTubeAudioPlayer({ volume }) {
       autoplay: (isPlaying) ? 1 : 0,
       controls: 0,
     },
-  }
-
-  const formatTime = (timeInSeconds) => {
-    const minutes = Math.floor(timeInSeconds / 60)
-    const seconds = Math.floor(timeInSeconds % 60)
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
   }
 
   useEffect(() => {
@@ -45,12 +37,12 @@ export function YouTubeAudioPlayer({ volume }) {
     const updateProgress = () => {
 
       if (player && player.getCurrentTime && player.getDuration) {
-     
+
         const currentTime = player.getCurrentTime()
         const duration = player.getDuration()
         const progressPercentage = (currentTime / duration) * 100
-        const timeElapsed = formatTime(currentTime)
-        const time = formatTime(duration)
+        const timeElapsed = utilService.formatTime(currentTime)
+        const time = utilService.formatTime(duration)
         setProgress({ progressPercentage, timeElapsed, time })
       }
     }
