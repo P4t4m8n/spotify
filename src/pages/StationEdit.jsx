@@ -7,7 +7,7 @@ import { saveStation } from "../store/actions/station.actions"
 import { setPlaying } from "../store/actions/song.action"
 import { Playlist } from "../cmps/main/Playlist"
 import { PlaylistHero } from "../cmps/support/PlaylistHero"
-import { Logger } from "sass"
+import { updateUser } from "../store/actions/user.actions"
 
 
 export function StationEdit() {
@@ -16,6 +16,7 @@ export function StationEdit() {
     const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
 
     const [stationToEdit, setStationToEdit] = useState(stationService.getEmptyStation())
+    // console.log('im expecting a default station object: ', stationToEdit);
     const [isSearchOpen, setIsSearchOpen] = useState(false)
 
     const isEdit = useRef(true)
@@ -40,7 +41,7 @@ export function StationEdit() {
     }
 
     async function onAddSong(ev, song) {
-
+        console.log('song', song);
         recommendedList.current.songs = recommendedList.current.songs.filter(listSong => song._id !== listSong._id)
 
         const songs = stationToEdit.songs
@@ -51,21 +52,39 @@ export function StationEdit() {
 
     function onRemoveSong(ev, songId) {
 
-        console.log('stationToEdit.songs: ', stationToEdit.songs);
         stationToEdit.songs = stationToEdit.songs.filter(listSong => songId !== listSong._id)
         setStationToEdit(() => ({ ...stationToEdit }))
-        onSaveStation(ev)
+        onSaveStation(stationToEdit)
     }
 
 
-    async function onSaveStation(updatedStation) {
+    async function onSaveStation() {
         try {
-            await saveStation(updatedStation)
-            setStationToEdit(prev => ({ ...prev, ...updatedStation }))
+            await saveStation(stationToEdit)
+
+            const x = user.stations
+            const y = x.findIndex(chosenOne => chosenOne._id === stationToEdit._id)
+
+
+            if (y === -1) {
+                console.log('eran taa');
+                return
+            }
+            else {
+
+                x.splice(y, 1, stationToEdit)
+            }
+            const editUser = {
+                ...user, stations: x
+            }
+
+            await updateUser(editUser)
+
         } catch (err) {
             console.log(err)
         }
     }
+    console.log('stationToEdit: ', stationToEdit);
 
     // async function onSaveStation(ev) {
 
@@ -82,15 +101,12 @@ export function StationEdit() {
         let value = target.value
         let field = target.name
         if (field === 'search') {
-            console.log(value)
             return
         }
         setStationToEdit(prevStation => ({ ...prevStation, [field]: value }))
 
     }
 
-    console.log('+++stationToEdit: ', stationToEdit);
-    // console.log('render:stationEdit')
     if (!stationToEdit) return <div>...Loading</div>
 
     const { type, name, amount, createdBy, duration, create, stationImgUrl, songs } = stationToEdit

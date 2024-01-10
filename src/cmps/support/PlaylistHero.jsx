@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
 
 export function PlaylistHero({ onSave, setStationToEdit, stationToEdit }) {
-    console.log('stationToEdit: ', stationToEdit)
-    const [textToEdit, setTextToEdit] = useState(stationToEdit.title)
+
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // onSave(localStation); // Pass the updated station data back to the parent component
+        onSave()
     };
 
     const handleChange = (event) => {
-        setStationToEdit(prev => ({ ...prev, [event.target.name]: event.target.value }))
+
+        setStationToEdit(prev => ({ ...prev, name: event.target.value }))
+
+
     };
 
     return (
@@ -23,9 +26,9 @@ export function PlaylistHero({ onSave, setStationToEdit, stationToEdit }) {
                 <div className="station-hero">
                     <p>{stationToEdit.type}</p>
                     <input
-                        value={stationToEdit.title || ''} // Ensure the value is not undefined
+                        value={stationToEdit.name}
                         onChange={handleChange}
-                        name="title"
+                        name="name"
                         type="text"
                     />
                 </div>
