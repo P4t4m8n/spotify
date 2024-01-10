@@ -20,6 +20,8 @@ export const userService = {
 
 function getLoggedinUser() {
     let user=JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
+    console.log(user)
+
     if(!user)    
     {
         user=getDemoUser()
@@ -32,14 +34,15 @@ function getLoggedinUser() {
 async function login({ username, password }) {
   
     try {
-        const users = asyncService.query(STORGE_KEY_USERS)
-        .then(users => {
-            console.log(users)
-        const user = users.find(user => {
-            console.log(user)
-            user.username === username && user.password === password})
-        if (user) return _setLoggedinUser(user)})
+        const users = await asyncService.query(STORGE_KEY_USERS)
+            //console.log(users, username, password)
+        const newUser = users.find(user => 
+            //console.log(user, user.username,username,(user.username === username && user.password === password))
+            user.username === username && user.password === password)
+        console.log(newUser)
+        if (newUser) return _setLoggedinUser(newUser)
     }
+    
     catch (err) {
         throw err
     }
@@ -104,6 +107,7 @@ function getDemoUser() {
 function _setLoggedinUser(user) {
     console.log('set user')
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
+    //console.log(user)
     return user
 }
 

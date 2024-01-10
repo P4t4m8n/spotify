@@ -15,7 +15,7 @@ export function SearchPage() {
     }
 
     async function getSearchResults(){
-       const searchList = await apiService.getContent(params.searchTerm)
+       //const searchList = await apiService.getContent(params.searchTerm)
     }
  
     

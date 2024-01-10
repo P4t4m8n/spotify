@@ -13,6 +13,8 @@ import { useState } from 'react'
 
 
 
+
+
 export function AppHeader() {
 
 
@@ -45,13 +47,23 @@ export function AppHeader() {
         navigate('/')
     }
 
-
+/*
     function onSignup(credentials) {
         signup(credentials)
             .then(() => {
                 console.log('Signed in successfully')
             })
             .catch((err) => { console.log(err) })
+    }*/
+
+    function ConditionalSearchComponent() {
+        let location = useLocation()
+
+        if (location.pathname === '/search') {
+            return <Search />
+        }
+
+        return null; // or any other component for different routes
     }
 
 
@@ -75,7 +87,7 @@ export function AppHeader() {
                 </ section >
             ) : (
                 <section>
-                    <LoginSignup onSetUser={onSetUser} />
+                    <LoginSignup /*onSetUser={onSetUser}*/ />
                 </section>
             )}
         </div>

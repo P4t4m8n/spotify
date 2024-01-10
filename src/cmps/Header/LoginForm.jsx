@@ -1,30 +1,72 @@
 import { useState } from "react"
 import { userService } from "../../services/user.service.js"
+import { NavLink, useNavigate ,  useLocation} from 'react-router-dom'
+import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service.js'
+import { login, signup } from '../../store/actions/user.actions.js'
+
+
 
 // const { useState } = React
 
+function getEmptyCredentials() {
+    return {
+        fullname: '',
+        username: '',
+        password: '',
+    }
+}
+
 export function LoginForm({ onLogin, isSignup }) {
 
-    const [credentials, setCredentials] = useState(userService.getEmptyCredentials())
-
-    function handleChange({ target }) {
-        const { name: field, value } = target
-        setCredentials(prevCreds => ({ ...prevCreds, [field]: value }))
+    const [credentials, setCredentials] = useState(getEmptyCredentials())
+    const navigate = useNavigate()
+    
+    
+    
+    function handleCredentialsChange(ev) {
+        const field = ev.target.name
+        const value = ev.target.value
+        setCredentials(credentials => ({ ...credentials, [field]: value }))
     }
-
-    function handleSubmit(ev) {
+    
+    async function onSubmit(ev) {
         ev.preventDefault()
-        onLogin(credentials)
+        
+        if (isSignup) {
+            try {
+                const user = await signup(credentials)
+                console.log(user, credentials)
+                showSuccessMsg(`Welcome ${user.fullname}`)
+                navigate('/')
+                
+            }
+            catch (err) {
+                showErrorMsg('Cannot signup')
+
+            }
+        } else {
+            try {
+                const user = await login(credentials)
+                console.log(user, credentials)
+                showSuccessMsg(`Hi again ${user.fullname}`)
+                navigate('/')
+            }
+            catch (err) {
+                showErrorMsg('Cannot login')
+
+            }
+        }
     }
+
 
     return (
-        <form className="login-form" onSubmit={handleSubmit}>
+        <form className="login-form" onSubmit={onSubmit}>
             <input
                 type="text"
                 name="username"
                 value={credentials.username}
                 placeholder="Username"
-                onChange={handleChange}
+                onChange={handleCredentialsChange}
                 required
                 autoFocus
             />
@@ -33,7 +75,7 @@ export function LoginForm({ onLogin, isSignup }) {
                 name="password"
                 value={credentials.password}
                 placeholder="Password"
-                onChange={handleChange}
+                onChange={handleCredentialsChange}
                 required
                 autoComplete="off"
             />
@@ -42,7 +84,7 @@ export function LoginForm({ onLogin, isSignup }) {
                 name="fullname"
                 value={credentials.fullname}
                 placeholder="Full name"
-                onChange={handleChange}
+                onChange={handleCredentialsChange}
                 required
             />}
             <button>{isSignup ? 'Signup' : 'Login'}</button>

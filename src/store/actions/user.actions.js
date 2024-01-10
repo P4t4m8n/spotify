@@ -4,12 +4,12 @@ import { store } from "../store"
 
 
 export async function logout() {
-    const newUser = null
+    const user = null
 
     try {
 
         await userService.logout()
-        return store.dispatch({ type: SET_USER, newUser })
+        return store.dispatch({ type: SET_USER, user })
 
     }
     catch (err) {
@@ -22,6 +22,7 @@ export async function login(credentials) {
 
     try {
         const user = await userService.login(credentials)
+        console.log("user:", user)
        return store.dispatch({ type: SET_USER, user })
 
     }
@@ -35,8 +36,11 @@ export async function login(credentials) {
 export async function signup(credentials) {
     try {
 
-        const newUser = await userService.signup(credentials)
-        store.dispatch({ type: SET_USER, newUser })
+        const user = await userService.signup(credentials)
+        console.log("action.newUser:", user)
+        store.dispatch({ type: SET_USER, user })
+        return user
+
     }
 
     catch (err) {
