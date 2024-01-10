@@ -50,3 +50,48 @@
        
     }
 }
+
+.user-form{
+text-align: right;
+
+ button{
+    background-color: inherit;
+ }
+    button:hover{
+  color: $clr5;
+  text-decoration: underline;
+    }
+ }
+
+ .login-page{
+    display: flex;
+    flex-direction: row;
+    text-align: right;
+    align-items: center;
+
+     button{
+        width: 15rem;
+       
+        background-color: $clr7;
+     }
+        button:hover{
+            color: $clr5;
+            text-decoration: underline;
+     }
+
+ }
+ 
+ .login-form{
+    display: flex;
+   flex-direction: row;
+    text-align: right;
+
+    button{
+        background-color: $clr7;
+     }
+        button:hover{
+      color: $clr5;
+      text-decoration: underline;
+        }
+
+ }
