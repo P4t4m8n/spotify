@@ -58,16 +58,25 @@ export function StationEdit() {
     }
 
 
-    async function onSaveStation(ev) {
-
+    async function onSaveStation(updatedStation) {
         try {
-            await saveStation(stationToEdit)
-
-        }
-        catch (err) {
+            await saveStation(updatedStation)
+            setStationToEdit(prev => ({ ...prev, ...updatedStation }))
+        } catch (err) {
             console.log(err)
         }
     }
+
+    // async function onSaveStation(ev) {
+
+    //     try {
+    //         await saveStation(stationToEdit)
+
+    //     }
+    //     catch (err) {
+    //         console.log(err)
+    //     }
+    // }
 
     function handleChange({ target }) {
         let value = target.value
@@ -80,6 +89,7 @@ export function StationEdit() {
 
     }
 
+    console.log('+++stationToEdit: ', stationToEdit);
     // console.log('render:stationEdit')
     if (!stationToEdit) return <div>...Loading</div>
 
@@ -88,7 +98,9 @@ export function StationEdit() {
 
     return (
         <section className="station-page" >
-            <PlaylistHero stationToEdit={stationToEdit} handleChange={handleChange} ></PlaylistHero>
+            <PlaylistHero stationToEdit={stationToEdit} setStationToEdit={setStationToEdit} onSave={onSaveStation} />
+            {/* <PlaylistHero stationToEdit={stationToEdit} handleChange={handleChange} ></PlaylistHero> */}
+
 
             <div>
                 {stationToEdit.songs && <button onClick={() => setPlaying(!isPlaying)}><img style={{ height: '2rem', width: '2rem' }} src={`/src/assets/img/${play}.svg`}></img></button>}
