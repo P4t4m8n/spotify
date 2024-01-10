@@ -1,48 +1,54 @@
+import { useState } from "react"
+import { useNavigate } from 'react-router-dom'
+import { login } from '../store/actions/user.actions.js'
 import { userService } from "../services/user.service.js"
 
-import { useState } from 'react'
 
+export function Login() {
 
-export function Login(){
     const [credentials, setCredentials] = useState(userService.getEmptyCredentials())
- 
+    const navigate = useNavigate()
 
-
-    function handleChange({ target }) {
-        const { name: field, value } = target
-        setCredentials(prevCreds => ({ ...prevCreds, [field]: value }))
+    function handleCredentialsChange(ev) {
+        const field = ev.target.name
+        const value = ev.target.value
+        setCredentials(credentials => ({ ...credentials, [field]: value }))
     }
 
-    function handleSubmit(ev) {
+    async function onSubmit(ev) {
         ev.preventDefault()
-        onLogin(credentials)
-        //console.log(credentials)
+        try {
+            await login(credentials)
+            console.log('looged in')
+            navigate('/')
+        }
+        catch (err) { console.log(err) }
     }
+
 
     return (
-        <form className="login-form" onSubmit={handleSubmit}>
-                        <label> Please enter your email</label>
+        <form className="login-form" onSubmit={onSubmit}>
+            <label>Email address or name</label><br />
             <input
                 type="text"
                 name="username"
                 value={credentials.username}
-                placeholder="Email"
-                onChange={handleChange}
+                placeholder="Username or email"
+                onChange={handleCredentialsChange}
                 required
                 autoFocus
             />
-                                    <label> Please enter your password</label>
+            <label>password </label><br />
             <input
                 type="password"
                 name="password"
                 value={credentials.password}
                 placeholder="Password"
-                onChange={handleChange}
+                onChange={handleCredentialsChange}
                 required
                 autoComplete="off"
             />
-       
- 
+           
             <button className="submit">Login</button>
         </form>
     )

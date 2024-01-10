@@ -31,7 +31,6 @@ async function query(filterSortBy = {}) {
 }
 
 async function get(stationId) {
-    console.log("stationId:", stationId)
     const station = await asyncService.get(STORGE_STATION_KEY, stationId)
     station.duration = getStationDuration(station.songs)
 

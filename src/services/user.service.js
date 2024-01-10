@@ -24,12 +24,15 @@ function getLoggedinUser() {
 
 }
 
-async function login({ username, password }) {
+async function login({ username, password}) {
 
     try {
         const users = await asyncService.query(STORGE_KEY_USERS)
-        const newUser = users.find(user => user.username === username && user.password === password)
-        if (newUser) {
+        const newUser = users.find(user => (user.username === username && user.password === password))
+        if (!newUser)
+        newUser = users.find(user => ( user.email === username && user.password === password))
+        
+        if (newUser) {       
             _setLoggedinUser(newUser)
             return newUser
         }
@@ -41,11 +44,13 @@ async function login({ username, password }) {
     }
 }
 
-async function signup({ username, password, fullname }) {
+async function signup({ username, password, email }) {
     try {
-        const user = { username, password, fullname, stations: [], favorites: [] }
+        const user = { username, password, email, stations: [], favorites: [] }
         const newUser = await asyncService.post(STORGE_KEY_USERS, user)
-        return _setLoggedinUser(newUser)
+        console.log("newUser:", newUser)
+         _setLoggedinUser(newUser)
+         return newUser
     }
     catch (err) {
         throw err
@@ -74,14 +79,14 @@ async function update(user) {
 
 }
 
-function getEmptyCredentials(fullname = '', imgUrl = '', username = '', password = '', stations = [], favorites = []) {
+function getEmptyCredentials(email = '', imgUrl ="", username = '', password = '', stations = [], favorites = []) {
     return {
+        email,
         username,
         password,
         stations,
         favorites,
         imgUrl,
-        fullname,
     }
 }
 
