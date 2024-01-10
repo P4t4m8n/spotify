@@ -11,33 +11,39 @@ export function Search() {
   const navigate = useNavigate()
 
 
-  const navigateToSearch = (value) => {
-    navigate('/search/' + value)
-  }
+  // const navigateToSearch = (value) => {
+  //   navigate('/search/' + value)
+  // }
 
-  const debouncedNavigate = utilService.debounce(navigateToSearch)
+  // const debouncedNavigate = utilService.debounce(navigateToSearch)
 
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value)
-    // debouncedNavigate(event.target.value)
+  function handleSearchChange (ev) {
+    ev.preventDefault()
+    const value = ev.target.value
+    setSearchTerm(value)
+    // navigate('/search/' + value)
+    // debouncedNavigate(ev.target.value)
   }
 
   function onSubmit(ev) {
-    debouncedNavigate(searchTerm)
+    ev.preventDefault()
+    navigate('/search/' + searchTerm)
+    // debouncedNavigate(searchTerm)
   }
 
-
+console.log('Render search')
   return (
     <section className="search-box">
-      <form onSubmit={onSubmit} >
+      <form onSubmit={onSubmit}  >
         <img src="src\assets\img\search.svg"></img>
         <input
           value={searchTerm}
           onChange={handleSearchChange}
-          type="text"
+          type="search"
           id="searchTerm"
           name="searchTerm"
           placeholder="What do you want to listen to?" />
+          <button>xx</button>
       </form>
     </section>
   )

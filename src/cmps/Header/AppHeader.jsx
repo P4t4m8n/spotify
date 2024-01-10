@@ -25,6 +25,8 @@ export function AppHeader() {
         }
     }
 
+
+    console.log('render apphedaer')
     return (
         <div className="app-header">
             <div className="page-index">
