@@ -68,7 +68,22 @@
    justify-content: end;
 
    :hover{
-cursor: pointer;
+    cursor: pointer;
+   }
+
+   .user-modal{
+    margin-top: 2rem;
+    padding: 0;
+    
+   }
+
+   .user-modal li{
+    
+    padding: 1rem;
+    width: 9rem;
+    box-shadow: inset $clr5;
+    font-size: 0.9rem;
+    text-align: center;
    }
 
 
