@@ -65,7 +65,7 @@ function getDefaultStation() {
         "_id": utilService.makeId(),
         "name": utilService.makeLorem(2),
         "subHeading": 'Welcome to Stainfy',
-        "type": "station",
+        "type": "playlist",
         "tags": ["deafult"],
         "stationImgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
         "createdBy": {
@@ -118,14 +118,13 @@ function _createStations() {
         stations = []
         let songsIdx = 0
         let songsArr = songService.getSongs()
-        console.log("songsArr:", songsArr)
         for (var k = 0; k < 30; k++) {
             let station = {
                 "_id": utilService.makeId(),
                 "name": 'All new music',
                 "subHeading": subHeadings[k % 5],
                 description: descriptions[k % 3],
-                "type": "station",
+                "type": "playlist",
                 "tags": ["Soul", "Chill"],
                 "stationImgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
                 "createdBy": {
@@ -156,23 +155,22 @@ function getEmptyStation(name = '', idx = '', id = '') {
     return {
         _id: id,
         name: name + idx,
-        subHeading: '',
-        type: "station",
-        tags: [''],
-        stationImgUrl: '/src/assets/img/note.svg',
+        stationListTitle: '',
+        type: "playlist",
+        tags: [],
+        imgUrl: '/src/assets/img/note.svg',
         createdBy: {
             _id: '',
             username: '',
-            profileImg: ''
         },
-        likedByUsers: [''],
+        likedByUsers: 0,
         songs: []
     }
 }
 
 function createStation(songs, name = 'My station #', subHeading = '1', idx = '') {
     return {
-        "_id": utilService.makeId(),
+
         "name": name + idx,
         "subHeading": subHeading,
         "type": "station",

@@ -20,16 +20,7 @@ export function StationIndex() {
         topics.current = stationService.getSubHeading()
     }, [])
 
-    async function onPlayStation(ev, stationId) {
-        ev.preventDefault()
-        let station
-        try {
-            if (stationId !== currStation._id) station = await loadStation(stationId)
-            setPlaying()
-        }
-        catch (err) { }
 
-    }
 
     // console.log('Render stationIndex')
     if (!stations) return <div>...Loading</div>
@@ -107,9 +98,7 @@ export function StationIndex() {
                     topics.current.map((subHeading, idx) => {
                         {
                             const stationsFilterd = stations.filter(station => station.subHeading === subHeading)
-                            return <StationList isPlaying={isPlaying} currStationId={currStation._id
-                            } key={idx} idx={idx}
-                                stations={stationsFilterd} topic={subHeading} onPlayStation={onPlayStation} ></StationList>
+                            return <StationList key={idx} stations={stationsFilterd} topic={subHeading}  ></StationList>
                         }
                     })
                 }

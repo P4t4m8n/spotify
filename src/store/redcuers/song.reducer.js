@@ -3,12 +3,13 @@ import { songService } from '../../services/song.service'
 export const SET_SONG = 'SET_SONG'
 export const SET_PLAYING = 'SET_PLAYING'
 export const SET_VOLUME = 'SET_VOLUME'
+export const SET_PLAYER = 'SET_PLAYER'
 
 const initialState = {
     currSong: songService.getDefaultSong(),
     isPlaying: false,
     volume: 50,
-    songs: []
+    songs: [],
 }
 
 export function songReducer(state = initialState, action = {}) {

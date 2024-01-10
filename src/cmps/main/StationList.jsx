@@ -1,9 +1,7 @@
-import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import { PlayCard } from "../PlayCard"
 
-export function StationList({ stations, topic, onPlayStation, currStationId: currStationId }) {
-
-    const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
+export function StationList({ stations, topic}) {
 
     return (
         <div className="station">
@@ -19,9 +17,7 @@ export function StationList({ stations, topic, onPlayStation, currStationId: cur
                                     {station.description}
                                 </p>
                             </div>
-                            <button onClick={(ev) => onPlayStation(ev, station._id)} className="play-button">
-                                {currStationId === station._id && isPlaying ? <img src="src\assets\img\pause.svg"></img> : <img src="src\assets\img\play.svg"></img>}
-                            </button>
+                            <PlayCard item={station} ></PlayCard>
                         </li>
                     </Link>
                 ))}

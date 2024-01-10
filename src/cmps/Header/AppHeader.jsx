@@ -54,15 +54,7 @@ export function AppHeader() {
             .catch((err) => { console.log(err) })
     }
 
-    function ConditionalSearchComponent() {
-        let location = useLocation()
 
-        if (location.pathname === '/search') {
-            return <Search />
-        }
-
-        return null; // or any other component for different routes
-    }
 
     return (
         <div className="app-header">
