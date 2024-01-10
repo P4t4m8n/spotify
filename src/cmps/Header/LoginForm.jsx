@@ -1,61 +1,29 @@
 import { useState } from "react"
-import { userService } from "../../services/user.service.js"
-import { NavLink, useNavigate ,  useLocation} from 'react-router-dom'
-import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service.js'
+import { useNavigate } from 'react-router-dom'
 import { login, signup } from '../../store/actions/user.actions.js'
+import { userService } from "../../services/user.service.js"
 
 
+export function LoginForm({ isSignup }) {
 
-// const { useState } = React
-
-function getEmptyCredentials() {
-    return {
-        fullname: '',
-        username: '',
-        password: '',
-    }
-}
-
-export function LoginForm({ onLogin, isSignup }) {
-
-    const [credentials, setCredentials] = useState(getEmptyCredentials())
+    const [credentials, setCredentials] = useState(userService.getEmptyCredentials())
     const navigate = useNavigate()
-    
-    
-    
+
     function handleCredentialsChange(ev) {
         const field = ev.target.name
         const value = ev.target.value
         setCredentials(credentials => ({ ...credentials, [field]: value }))
     }
-    
+
     async function onSubmit(ev) {
         ev.preventDefault()
-        
-        if (isSignup) {
-            try {
-                const user = await signup(credentials)
-                console.log(user, credentials)
-                showSuccessMsg(`Welcome ${user.fullname}`)
-                navigate('/')
-                
-            }
-            catch (err) {
-                showErrorMsg('Cannot signup')
-
-            }
-        } else {
-            try {
-                const user = await login(credentials)
-                console.log(user, credentials)
-                showSuccessMsg(`Hi again ${user.fullname}`)
-                navigate('/')
-            }
-            catch (err) {
-                showErrorMsg('Cannot login')
-
-            }
+        try {
+            if (isSignup) await signup(credentials)
+            else await login(credentials)
+            console.log('looged in')
+            navigate('/')
         }
+        catch (err) { console.log(err) }
     }
 
 

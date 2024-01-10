@@ -19,41 +19,32 @@ export const userService = {
 }
 
 function getLoggedinUser() {
-    let user=JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
-    console.log(user)
+    return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 
-    if(!user)    
-    {
-        user=getDemoUser()
-        _setLoggedinUser(user)
 
-    }
-    return  user
 }
 
 async function login({ username, password }) {
-  
+
     try {
         const users = await asyncService.query(STORGE_KEY_USERS)
-            //console.log(users, username, password)
-        const newUser = users.find(user => 
-            //console.log(user, user.username,username,(user.username === username && user.password === password))
-            user.username === username && user.password === password)
-        console.log(newUser)
-        if (newUser) return _setLoggedinUser(newUser)
+        const newUser = users.find(user => user.username === username && user.password === password)
+        if (newUser) {
+            _setLoggedinUser(newUser)
+            return newUser
+        }
+        else ('err no user')
+
     }
-    
     catch (err) {
         throw err
     }
-
 }
 
 async function signup({ username, password, fullname }) {
     try {
         const user = { username, password, fullname, stations: [], favorites: [] }
         const newUser = await asyncService.post(STORGE_KEY_USERS, user)
-        console.log(newUser)
         return _setLoggedinUser(newUser)
     }
     catch (err) {
@@ -83,19 +74,20 @@ async function update(user) {
 
 }
 
-function getEmptyCredentials(imgUrl = '', username = '', password = '', stations = [], favorites = []) {
+function getEmptyCredentials(fullname = '', imgUrl = '', username = '', password = '', stations = [], favorites = []) {
     return {
         username,
         password,
         stations,
         favorites,
         imgUrl,
+        fullname,
     }
 }
 
 function getDemoUser() {
-   
-     return {
+
+    return {
         _id: "1",
         username: 'guest',
         stations: [stationService.createStation([], 'Liked Songs', 'tracks'),
@@ -105,10 +97,7 @@ function getDemoUser() {
 }
 
 function _setLoggedinUser(user) {
-    console.log('set user')
-    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
-    //console.log(user)
-    return user
+    return sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
 }
 
 function setDemoUser() {
@@ -122,11 +111,9 @@ function _createUsers() {
 
     if (!users || !users.length) {
 
-        users = [getDemoUser()]
+        users = []
         utilService.saveToStorage(STORGE_KEY_USERS, users)
     }
-
-    _setLoggedinUser(users[0])
 }
 
 
