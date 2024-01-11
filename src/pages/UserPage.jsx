@@ -21,13 +21,13 @@ export function UserPage(){
 }, [])*/
 
 
-
+    let user2={username: user.username,email:user.email}
     if (!user) return <h1>loadings....</h1>
     return user && <div>
-        {console.log(user.username)}
+        {console.log(user2.username)}
         <img src={user.imgUrl ? user.imgUrl : `/src/assets/img/user.svg`}></img> 
-        <h3>Hello {user} </h3>
-        <h4>Email: {user.email}</h4>
+        <h3>Hello {user2.username} </h3>
+        <h4>Email: {user2.email}</h4>
         {/*  <ul className="clean-list">
                     {
                         userStations.map(station =>
