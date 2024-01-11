@@ -10,6 +10,7 @@ import { updateUser } from "../../store/actions/user.actions"
 export function SideBarContent() {
 
     const user = useSelector((storeState) => storeState.userMoudle.userObj)
+    console.log("user:", user)
     const filterSortBy = useSelector(storeState => storeState.appMoudle.filterSortBy)
 
     const [userStations, setUserStations] = useState(null)

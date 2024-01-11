@@ -12,7 +12,7 @@ import { logout } from '../../store/actions/user.actions.js'
 export function AppHeader() {
 
     const user = useSelector(storeState => storeState.userMoudle.userObj)
-    
+    // const isSearchOpen = useSelector(storeState => storeState.appMoudle.isSearchOpen)
     const [showCreateModal, setShowCreateModal] = useState(false)
 
 

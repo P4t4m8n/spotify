@@ -3,6 +3,7 @@ import { useParams } from "react-router"
 import { loadStation } from "../store/actions/station.actions"
 import { useSelector } from "react-redux"
 import { Playlist } from "../cmps/main/Playlist"
+import { LikeCard } from "../cmps/main/LikeCard"
 
 
 export function StationDetails() {
@@ -10,13 +11,8 @@ export function StationDetails() {
     const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
 
     const [currStation, setCurrStation] = useState(null)
-    console.log("currStation:", currStation)
-    const [stationMoudle, setStationMoudle] = useState(false)
-    const [sortMoudle, setSortMoudle] = useState(false)
 
     const params = useParams()
-    console.log("params:", params)
-
 
     useEffect(() => {
         onLoadstation()
@@ -36,8 +32,6 @@ export function StationDetails() {
     const amount = currStation.songs.length
 
     // console.log('Render station-details')
-
-
 
     return (
         <section className="station-details">
@@ -59,7 +53,7 @@ export function StationDetails() {
             <section className="station-details-control">
                 <div className="station-details-control-left">
                     <button className="details-play"><img src={`/src/assets/img/${isPlaying ? 'pause' : 'play'}.svg`}></img></button>
-                    <button className="details-liked"><img src="/src/assets/img/like.svg"></img></button>
+                    <LikeCard item={currStation}></LikeCard>
                     <button className="details-dots"><img src="/src/assets/img/dotsSmall.svg"></img></button>
 
                 </div>
