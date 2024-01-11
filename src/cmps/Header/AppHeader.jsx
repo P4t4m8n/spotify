@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import {  useLocation , Link } from 'react-router-dom'
+import {  useLocation , Link ,useParams} from 'react-router-dom'
 
 
 
@@ -14,6 +14,7 @@ export function AppHeader() {
     const user = useSelector(storeState => storeState.userMoudle.userObj)
     // const isSearchOpen = useSelector(storeState => storeState.appMoudle.isSearchOpen)
     const [showCreateModal, setShowCreateModal] = useState(false)
+    const params = useParams()
 
 
     async function onLogout() {
@@ -27,12 +28,13 @@ export function AppHeader() {
     }
 
     function ConditionalSearchComponent() {
-        let location = useLocation()
-
-        if (location.pathname === '/search') {
-            return <Search />
+        const location = useLocation();
+        const { searchTerm } = useParams();
+    
+        if (location.pathname === '/search' || location.pathname === `/search/:${searchTerm}`) {
+            return <Search />;
         }
-
+    
         return null;
     }
 
