@@ -10,7 +10,7 @@ export function Playlist({ songs, onRemoveSong, isEdit }) {
                     <th>Title</th>
                     <th>Artist</th>
                     <th>Album</th>
-                    <th><img className="icon-16" src="src/assets/img/clock.svg"></img></th>
+                    <th><img className="icon-16" src="/src/assets/img/clock.svg"></img></th>
                 </tr>
             </thead>
             <tbody>
@@ -24,9 +24,9 @@ export function Playlist({ songs, onRemoveSong, isEdit }) {
                             <td>{song.album}</td>
                             <td>
                                 <div className="details-list-control">
-                                    <button><img className="icon-16" src="src/assets/img/like.svg"></img></button>
+                                    <button><img className="icon-16" src="/src/assets/img/like.svg"></img></button>
                                     <p>{song.duration}</p>
-                                    <button><img className="icon-16" src="src/assets/img/dotsSmall.svg"></img></button>
+                                    <button><img className="icon-16" src="/src/assets/img/dotsSmall.svg"></img></button>
                                     {isEdit && <button onClick={(ev) => onRemoveSong(ev, song._id)}>❌</button>}
                                 </div>
                             </td>
@@ -46,7 +46,7 @@ export function Playlist({ songs, onRemoveSong, isEdit }) {
     //             <p>Title</p>
     //             <p>Artist</p>
     //             <p>Album</p>
-    //             <p><img className="icon-16" src="src/assets/img/clock.svg"></img></p>
+    //             <p><img className="icon-16" src="/src/assets/img/clock.svg"></img></p>
     //         </li>
     //         {
     //             songs.map((song, idx) =>
@@ -56,9 +56,9 @@ export function Playlist({ songs, onRemoveSong, isEdit }) {
     //                     <p>{song.artist}</p>
     //                     <p>{song.album}</p>
     //                     <div className="details-list-control">
-    //                         <button><img className="icon-16" src="src/assets/img/like.svg"></img></button>
+    //                         <button><img className="icon-16" src="/src/assets/img/like.svg"></img></button>
     //                         <p>{song.duration}</p>
-    //                         <button><img className="icon-16" src="src/assets/img/dotsSmall.svg"></img></button>
+    //                         <button><img className="icon-16" src="/src/assets/img/dotsSmall.svg"></img></button>
     //                     </div>
     //                 </li>
     //             )
@@ -75,7 +75,7 @@ export function Playlist({ songs, onRemoveSong, isEdit }) {
     //             <p>Title</p>
     //             {/* <p>Artist</p> */}
     //             <p>Album</p>
-    //             <p><img className="icon-16" src="src/assets/img/clock.svg"></img></p>
+    //             <p><img className="icon-16" src="/src/assets/img/clock.svg"></img></p>
     //         </li>
     //         {
     //             songs.map((song, idx) =>
@@ -85,9 +85,9 @@ export function Playlist({ songs, onRemoveSong, isEdit }) {
     //                     {/* <p>{song.artist}</p> */}
     //                     <p>{song.album}</p>
     //                     <div className="details-list-control">
-    //                         <button><img className="icon-16" src="src/assets/img/like.svg"></img></button>
+    //                         <button><img className="icon-16" src="/src/assets/img/like.svg"></img></button>
     //                         <p>{song.duration}</p>
-    //                         <button><img className="icon-16" src="src/assets/img/dotsSmall.svg"></img></button>
+    //                         <button><img className="icon-16" src="/src/assets/img/dotsSmall.svg"></img></button>
     //                     </div>
     //                 </li>
     //             )
@@ -105,7 +105,7 @@ export function Playlist({ songs, onRemoveSong, isEdit }) {
     //             <p>Artist</p>
     //             <p>Album</p>
     //             <p>Date added</p>
-    //             <p><img className="icon-16" src="src/assets/img/clock.svg"></img></p>
+    //             <p><img className="icon-16" src="/src/assets/img/clock.svg"></img></p>
     //         </li>
     //         {
     //             songs.map((song, idx) =>
@@ -116,9 +116,9 @@ export function Playlist({ songs, onRemoveSong, isEdit }) {
     //                     <p>{song.album}</p>
     //                     {/* <div>{song.addedAt}</div> */}
     //                     <div className="details-list-control">
-    //                         <button><img className="icon-16" src="src/assets/img/like.svg"></img></button>
+    //                         <button><img className="icon-16" src="/src/assets/img/like.svg"></img></button>
     //                         <p>{song.duration}</p>
-    //                         <button><img className="icon-16" src="src/assets/img/dotsSmall.svg"></img></button>
+    //                         <button><img className="icon-16" src="/src/assets/img/dotsSmall.svg"></img></button>
     //                     </div>
     //                 </li>
     //             )

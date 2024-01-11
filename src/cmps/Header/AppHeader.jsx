@@ -32,22 +32,22 @@ export function AppHeader() {
     return (
         <div className="app-header">
             <div className="page-index">
-                <button><img src='src\assets\img\page.svg'></img></button>
-                <button><img src='src\assets\img\page.svg'></img></button>
+                <button><img src='\src\assets\img\page.svg'></img></button>
+                <button><img src='\src\assets\img\page.svg'></img></button>
             </div>
 
             {user ? (
                 < section className='user-form' onClick={() => setShowCreateModal(!showCreateModal)} >
                     {showCreateModal &&
-                            <ul className="show-create-modal clean-list context user-modal">
-                                <li>
-                                    Profile
-                                </li>
-                                <li onClick={onLogout}>Logout</li>
-                            </ul>
-                            }
+                        <ul className="show-create-modal clean-list context user-modal">
+                            <li>
+                                Profile
+                            </li>
+                            <li onClick={onLogout}>Logout</li>
+                        </ul>
+                    }
                     <span >
-                    <img src = {user.imgUrl? user.imgUrl : `src/assets/img/user.svg`}></img>  Hello {user.username} </span>
+                        <img src={user.imgUrl ? user.imgUrl : `/src/assets/img/user.svg`}></img>  Hello {user.username} </span>
                 </ section >
             ) : (
                 <section>
@@ -62,7 +62,7 @@ export function AppHeader() {
 
 /*  <p onClick={() => setShowCreateModal(!showCreateModal)} className="inline-block">
                         <span title="Create station or folder">
-                            <img src="src\assets\img\plus.svg" className="left-sidebar-plus-icon"></img>
+                            <img src="\src\assets\img\plus.svg" className="left-sidebar-plus-icon"></img>
                         </span>
                     </p>
                     {showCreateModal &&

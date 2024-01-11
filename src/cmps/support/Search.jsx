@@ -34,8 +34,9 @@ export function Search() {
 console.log('Render search')
   return (
     <section className="search-box">
-      <form onSubmit={onSubmit}  >
-        <img src="src\assets\img\search.svg"></img>
+      <form onSubmit={onSubmit} >
+        <p style={{ marginRight: "10px" }}></p>
+        <img src="\src\assets\img\search.svg"></img>
         <input
           value={searchTerm}
           onChange={handleSearchChange}

@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 
 export function PlaylistHero({ onSave, setStationToEdit, stationToEdit }) {
 
@@ -18,26 +17,30 @@ export function PlaylistHero({ onSave, setStationToEdit, stationToEdit }) {
 
     return (
         <header>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="flex">
                 <label htmlFor="file-input">
                     <input type="file" id="file-input" name="image" onChange={handleChange} accept="image/*" hidden />
-                    <img style={{ height: '2rem', width: '2rem' }} className="upload-img" src={stationToEdit.stationImgUrl || "/src/assets/img/upload.png"} alt="Upload"></img>
+                    <img className="upload-img" src={stationToEdit.stationImgUrl || "/src/assets/img/upload.png"} alt="Upload"></img>
                 </label>
-                <div className="station-hero">
-                    <p>{stationToEdit.type}</p>
-                    <input
-                        value={stationToEdit.name}
-                        onChange={handleChange}
-                        name="name"
-                        type="text"
-                    />
-                </div>
-                <div>
-                    <p>{stationToEdit.createdBy.username || 'Spotify'}</p>
-                    <p>{stationToEdit.amount || ''}</p>
-                    <p>duration: {stationToEdit.duration || ''}</p>
-                </div>
-                <button type="submit">Save Changes</button>
+                <section className="hero-right-section flex">
+
+                    <div className="station-hero">
+                        <p>{stationToEdit.type}</p>
+                        <input
+                            value={stationToEdit.name}
+                            onChange={handleChange}
+                            name="name"
+                            type="text"
+                        />
+                    </div>
+                    <div className="meta flex align-center">
+                        <p>{stationToEdit.createdBy.username || 'Spotify'}</p>
+                        <p>{stationToEdit.amount || ''}</p>
+                        <p>duration: {stationToEdit.duration || ''}</p>
+                        <button type="submit">Save Changes</button> {/* this is in here till we'll make edit modal*/}
+                    </div>
+                </section>
+
             </form>
         </header>
     );
