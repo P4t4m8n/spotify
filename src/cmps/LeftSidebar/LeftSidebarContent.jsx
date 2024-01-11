@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { saveStation } from "../../store/actions/station.actions"
 import { stationService } from "../../services/station.service"
 import { updateUser } from "../../store/actions/user.actions"
+import { Dots, Note } from "../../services/icons.service"
 
 
 export function SideBarContent() {
@@ -52,7 +53,8 @@ export function SideBarContent() {
 
     async function createStation() {
 
-        let newStation = stationService.getEmptyStation('My station #', userStations.length - 1)
+        let newStation = stationService.getEmptyStation('My station #', '', userStations.length - 1)
+        console.log("newStation:", newStation)
 
         try {
             newStation = await saveStation(newStation)
@@ -110,10 +112,8 @@ export function SideBarContent() {
                                 : <img src="\src\assets\img\right_arrow.svg" className="left-sidebar-right-arrow-icon" title="Show more"></img>}
                         </span>
                     </p>
-                    {/* <button onClick={() => setResize(!resize)} className="inline-block">{resize ? '◀️' : '▶️'}</button> */}
 
                 </div>
-                {/* </div> */}
 
             </section>
 
@@ -134,7 +134,6 @@ export function SideBarContent() {
                         <button onClick={() => setShowSearch(!showSearch)} >
                             <img src="\src\assets\img\search.svg" className="left-sidebar-small-search-icon" title="Search in Your Library"></img>
                         </button>
-                        {/* <button onClick={() => setShowSearch(!showSearch)} >🔍</button> */}
                         {showSearch &&
                             <input type="text" id="txt" name="txt" value={filterSortBy.txt}
                                 placeholder={"Search in Your Library"} onChange={handleChange} />
@@ -144,7 +143,6 @@ export function SideBarContent() {
                             <img src="\src\assets\img\filter.svg" className="left-sidebar-small-filter-icon" ></img>
                             {filterSortBy.sortBy}
                         </button>
-                        {/* <button onClick={() => setIsSortOpen(!isSortOpen)}>{filterSortBy.sortBy} 📃</button> */}
                     </div>
 
                     {isSortOpen &&
@@ -175,22 +173,20 @@ export function SideBarContent() {
                         userStations.map(station =>
                             <Link key={station._id} to={'/1/station/edit/' + station._id}>
                                 <li className="grid">
-                                    <img className="station-image-left-sidebar" src={station.stationImgUrl}></img>
+                                    {station.imgUrl ?
+
+                                        <img className="station-image-left-sidebar" src={station.imgUrl}></img> :
+                                        <Note></Note>
+                                    }
                                     <header>{station.name}</header>
                                     <p>
                                         <img src="\src\assets\img\pinned.svg" className="left-sidebar-pinned-icon"></img>
-
-                                        {/* 📌 */}
                                         <span className="station-type">{station.type}</span>
                                         <span>{station.songs.length} songs</span>
                                     </p>
 
 
-                                    {/* <div className="flex">
-                                        <button>pinned</button>
-                                        <p className="station-type">{station.type}</p>
-                                        <p>{station.songs.length} songs</p>
-                                    </div> */}
+
 
                                 </li>
                             </Link>

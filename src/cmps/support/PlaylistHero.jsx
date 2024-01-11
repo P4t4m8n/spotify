@@ -1,72 +1,77 @@
 
-export function PlaylistHero({ onSave, setStationToEdit, stationToEdit }) {
+import React, { useState } from 'react'
+import Button from '@mui/joy/Button'
+import FormControl from '@mui/joy/FormControl'
+import FormLabel from '@mui/joy/FormLabel'
+import Input from '@mui/joy/Input'
+import Modal from '@mui/joy/Modal'
+import ModalDialog from '@mui/joy/ModalDialog'
+import DialogTitle from '@mui/joy/DialogTitle'
+import DialogContent from '@mui/joy/DialogContent'
+import Stack from '@mui/joy/Stack'
+import Add from '@mui/icons-material/Add'
+import { Note } from '../../services/icons.service'
 
+export function PlaylistHero({ handleChange, stationToEdit, onSaveStation }) {
+    const [open, setOpen] = useState(false)
 
+    const { type, name, amount, createdBy, duration, imgUrl } = stationToEdit
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        onSave()
-    };
-
-    const handleChange = (event) => {
-
-        setStationToEdit(prev => ({ ...prev, name: event.target.value }))
-
-
-    };
 
     return (
         <header>
-            <form onSubmit={handleSubmit} className="flex">
+            <form className="flex">
+
                 <label htmlFor="file-input">
                     <input type="file" id="file-input" name="image" onChange={handleChange} accept="image/*" hidden />
-                    <img className="upload-img" src={stationToEdit.stationImgUrl || "/src/assets/img/upload.png"} alt="Upload"></img>
+                    <Note></Note>
                 </label>
-                <section className="hero-right-section flex">
-
+                <div className="hero-right-section flex">
                     <div className="station-hero">
-                        <p>{stationToEdit.type}</p>
-                        <input
-                            value={stationToEdit.name}
-                            onChange={handleChange}
-                            name="name"
-                            type="text"
-                        />
+                        <p>{type}</p>
+                        <React.Fragment>
+                            <Button
+                                variant="outlined"
+                                color="neutral"
+                                startDecorator={<Add />}
+                                onClick={() => setOpen(true)}
+                            >
+                                {name}
+                            </Button>
+                            <Modal open={open} onClose={() => setOpen(false)}>
+                                <ModalDialog>
+                                    <DialogTitle>{name}</DialogTitle>
+                                    <DialogContent>Edit details</DialogContent>
+                                    <form
+                                        onSubmit={(event) => {
+                                            event.preventDefault()
+                                            onSaveStation()
+                                            setOpen(false)
+                                        }}
+                                    >
+                                        <Stack spacing={2}>
+                                            <FormControl>
+                                                <FormLabel>Name</FormLabel>
+                                                <Input autoFocus required value={name} onChange={(event) => handleChange(event)} />
+                                            </FormControl>
+                                            <FormControl>
+                                                <FormLabel>Description</FormLabel>
+                                                <Input />
+                                            </FormControl>
+                                            <Button type="submit">Save</Button>
+                                        </Stack>
+                                    </form>
+                                </ModalDialog>
+                            </Modal>
+                        </React.Fragment>
                     </div>
-                    <div className="meta flex align-center">
-                        <p>{stationToEdit.createdBy.username || 'Spotify'}</p>
-                        <p>{stationToEdit.amount || ''}</p>
-                        <p>duration: {stationToEdit.duration || ''}</p>
-                        <button type="submit">Save Changes</button> {/* this is in here till we'll make edit modal*/}
+                    <div>
+                        <p>{createdBy.username || 'Spotify'}</p>
+                        <p>{amount || ''}</p>
+                        <p>duration: {duration || ''}</p>
                     </div>
-                </section>
-
+                </div>
             </form>
         </header>
-    );
+    )
 }
-// export function PlaylistHero({ handleChange, stationToEdit }) {
-
-//     const { type, name, amount, createdBy, duration, stationImgUrl } = stationToEdit
-
-
-//     return (
-//         <header>
-//             <form>
-//                 <label htmlFor="file-input">
-//                     <input type="file" id="file-input" name="image" onChange={handleChange} accept="image/*" hidden />
-//                     <img style={{ height: '2rem', width: '2rem' }} className="upload-img" src={stationImgUrl || "/src/assets/img/upload.png"}></img>
-//                 </label>
-//                 <div className="station-hero">
-//                     <p>{type}</p>
-//                     <input value={name} id="name" type="text" name="name" onChange={handleChange}></input>
-//                 </div>
-//                 <div>
-//                     <p>{createdBy.username || 'Spotify'}</p>
-//                     <p>{amount || ''}</p>
-//                     <p>duration: {duration || ''}</p>
-//                 </div>
-//             </form>
-//         </header>
-//     )
-// }

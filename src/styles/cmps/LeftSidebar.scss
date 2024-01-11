@@ -38,6 +38,11 @@
         border-radius: $panel-gap;
         background-color: $clr7;
 
+        svg {
+            width: 3rem;
+            height: 3rem;
+            color: white;
+        }
 
         ul {
             margin: 0;
@@ -58,9 +63,7 @@
                 width: 48px;
             }
 
-            .station-image-left-sidebar {
-                background-color: $clr1;
-            }
+
 
             header,
             div {

@@ -1,3 +1,4 @@
+import { stationService } from "../../services/station.service"
 import { userService } from "../../services/user.service"
 import { EDIT_USER, SET_USER } from "../redcuers/user.reducer"
 import { store } from "../store"
@@ -19,7 +20,7 @@ export async function login(credentials) {
 
     try {
         const user = await userService.login(credentials)
-        
+
         return store.dispatch({ type: SET_USER, user })
 
     }
@@ -34,6 +35,10 @@ export async function signup(credentials) {
     try {
 
         const user = await userService.signup(credentials)
+        let fav = stationService.getEmptyStation('Liked Songs', '/src/assets/img/favorits.png')
+        console.log("fav:", fav)
+        fav = await stationService.save(fav)
+        user.stations.push(fav)
         store.dispatch({ type: SET_USER, user })
         return user
 
