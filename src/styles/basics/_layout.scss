@@ -32,6 +32,7 @@
 .main-content {
     grid-area: main;
     overflow-y: auto;
+    
     //this is if we want css variables changed by js
     // --left-sidebar-width: 420px;
     // --panel-width: 292px;
@@ -45,12 +46,6 @@
 .right-sidebar {
     grid-area: right-sidebar;
     color: pink;
-}
-
-.home-page {
-    display: flex;
-    flex-flow: row wrap;
-    gap: calc($panel-gap*3);
 }
 
 .search-page {
@@ -131,7 +126,6 @@
 
             background-color: transparent;
             font-size: 2em;
-            // line-height: 0;
         }
     }
 }
