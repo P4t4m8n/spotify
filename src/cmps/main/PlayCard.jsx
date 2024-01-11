@@ -50,9 +50,8 @@ export function PlayCard({ item }) {
 
     return (
         <button onClick={(ev) => onPlayStation(ev)} className="play-button">
-            {/* {isPlaying && item._id === cardType ? <img src="\src\assets\img\pause.svg"></img> : <img src="\src\assets\img\play.svg"></img>} */}
-            {isPlaying && <Pause />}
-            {!isPlaying && <Play />}
+            {isPlaying && item._id === cardType ? <Pause /> : <Play />}
+
         </button>
     )
 }

@@ -39,6 +39,7 @@ async function get(stationId) {
 }
 
 async function save(station) {
+    console.log("station:", station)
     try {
 
         if (station._id) return await asyncService.put(STORGE_STATION_KEY, station)
@@ -117,7 +118,7 @@ function _createStations() {
         stations = []
         let songsIdx = 0
         let songsArr = songService.getSongs()
-        
+
         for (var k = 0; k < 30; k++) {
             let station = {
                 "_id": utilService.makeId(),
@@ -151,14 +152,14 @@ function _createStations() {
 
 }
 
-function getEmptyStation(name = '', idx = '', id = '') {
+function getEmptyStation(name = '', imgUrl = '', idx = '', id = '') {
     return {
         _id: id,
         name: name + idx,
         stationListTitle: '',
         type: "playlist",
         tags: [],
-        imgUrl: '/src/assets/img/note.svg',
+        imgUrl: imgUrl,
         createdBy: {
             _id: '',
             username: '',

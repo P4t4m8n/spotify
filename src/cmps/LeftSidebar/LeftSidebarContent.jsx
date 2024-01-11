@@ -52,7 +52,7 @@ export function SideBarContent() {
 
     async function createStation() {
 
-        let newStation = stationService.getEmptyStation('My station #', userStations.length - 1)
+        let newStation = stationService.getEmptyStation('My station #',"", userStations.length - 1)
 
         try {
             newStation = await saveStation(newStation)
@@ -110,10 +110,8 @@ export function SideBarContent() {
                                 : <img src="\src\assets\img\right_arrow.svg" className="left-sidebar-right-arrow-icon" title="Show more"></img>}
                         </span>
                     </p>
-                    {/* <button onClick={() => setResize(!resize)} className="inline-block">{resize ? '◀️' : '▶️'}</button> */}
 
                 </div>
-                {/* </div> */}
 
             </section>
 
@@ -134,7 +132,6 @@ export function SideBarContent() {
                         <button onClick={() => setShowSearch(!showSearch)} >
                             <img src="\src\assets\img\search.svg" className="left-sidebar-small-search-icon" title="Search in Your Library"></img>
                         </button>
-                        {/* <button onClick={() => setShowSearch(!showSearch)} >🔍</button> */}
                         {showSearch &&
                             <input type="text" id="txt" name="txt" value={filterSortBy.txt}
                                 placeholder={"Search in Your Library"} onChange={handleChange} />
@@ -144,7 +141,6 @@ export function SideBarContent() {
                             <img src="\src\assets\img\filter.svg" className="left-sidebar-small-filter-icon" ></img>
                             {filterSortBy.sortBy}
                         </button>
-                        {/* <button onClick={() => setIsSortOpen(!isSortOpen)}>{filterSortBy.sortBy} 📃</button> */}
                     </div>
 
                     {isSortOpen &&
@@ -186,11 +182,7 @@ export function SideBarContent() {
                                     </p>
 
 
-                                    {/* <div className="flex">
-                                        <button>pinned</button>
-                                        <p className="station-type">{station.type}</p>
-                                        <p>{station.songs.length} songs</p>
-                                    </div> */}
+                             
 
                                 </li>
                             </Link>
