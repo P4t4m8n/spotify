@@ -1,40 +1,42 @@
 import { utilService } from '../services/util.service'
-import { SearchResults } from '../cmps/support/SearchResults'
 import { useParams } from 'react-router'
 import { apiService } from '../services/api.service'
-import { getSpotify } from '../services/test'
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Playlist } from '../cmps/main/Playlist'
+import { PlayCard } from '../cmps/main/PlayCard'
 
 
 export function SearchPage() {
 
-    const [searchList, setSearchList] = useState([])
+    const [searchList, setSearchList] = useState(null)
 
     const ganers = ["New", 'Music', 'Pop', 'Hip-Hop', 'R&B', 'Latino', 'indi', 'Rock', 'Podcusts', 'Live', 'Sport', 'Maditation', 'Party music', 'Electronic music', 'For sleep']
 
     const params = useParams()
 
-    if (params.searchTerm) {
-        getSearchResults()
-    }
 
-    console.log("params.searchTerm:", (params.searchTerm))
+    useEffect(() => {
+        if (params.searchTerm) getSearchResults()
+
+    }, [params.searchTerm])
+
+
     async function getSearchResults() {
         try {
 
             const searchList = await apiService.getContent(params.searchTerm)
             setSearchList(searchList)
-            console.log("searchList:", searchList)
         }
         catch (err) { console.log(err) }
     }
 
 
-    //  console.log('Render-Search page')
+    console.log("searchList:", searchList)
+    console.log("!params.searchTerm:", !params.searchTerm)
+    // console.log('Render-Search page')
     return (
         <section className='search-page' >
-            {!params.searchTerm  ?
+            {!params.searchTerm &&
                 <Fragment>
                     {console.log('1')}
                     <h1>Browse all</h1>
@@ -44,11 +46,44 @@ export function SearchPage() {
                         )}
                     </ul>
                 </Fragment>
-                :
-                <Playlist songs={searchList} />
             }
-        </section >
+            {searchList &&
+                <div className='search-hero'>
+                    <div className='top-result'>
+                        <header>Top result</header>
+                        <div className='result-card'>
+                            <img src={searchList[0].imgUrl}></img>
+                            <p>{searchList[0].title}</p>
+                            <p>{searchList[0].type}</p>
+                        </div>
+                        <PlayCard item={searchList[0]}></PlayCard>
+                    </div>
+                    <div className='result-songs'>
+                        <header>Songs</header>
+                        <ul>
+                            {
+                                searchList.map((res, idx) =>
+                                    <li key={idx}>
+                                        <img src={res.imgUrl}></img>
+                                        <PlayCard item={res}></PlayCard>
+                                        <div className='info'>
+                                            <header>{res.title}</header>
+                                            <p>{res.artist}</p>
+                                        </div>
+                                        <p>{res.duration}</p>
+                                    </li>
+                                )
+                            }
+                        </ul>
+                    </div>
+                </div>
 
-    )
+
+
+
+            }
+
+            {(!searchList && params.searchTerm) && <div>...loading</div>}
+        </section >)
 
 }

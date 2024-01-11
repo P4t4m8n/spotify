@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { PlayCard } from "../PlayCard"
+import { PlayCard } from "../main/PlayCard"
 
 export function StationList({ stations, topic }) {
     return (

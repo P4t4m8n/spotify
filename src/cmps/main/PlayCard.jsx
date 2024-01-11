@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
-import { loadSong, setPlaying } from "../store/actions/song.action"
-import { setCurrStation } from "../store/actions/station.actions"
+import { loadSong, setPlaying } from "../../store/actions/song.action"
+import { setCurrStation } from "../../store/actions/station.actions"
 
 
 export function PlayCard({ item }) {

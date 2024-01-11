@@ -13,6 +13,7 @@ export function LoginSignup() {
                 <div className="sign-up"> <NavLink to="/signup" >sign up</NavLink></div>
                 <div className="login"><NavLink to="/login" >login</NavLink></div>
            
+            {/* <LoginForm isSignup={isSignup}/> */}
            
         </section >
     )

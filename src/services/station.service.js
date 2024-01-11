@@ -117,15 +117,16 @@ function _createStations() {
         stations = []
         let songsIdx = 0
         let songsArr = songService.getSongs()
+        
         for (var k = 0; k < 30; k++) {
             let station = {
                 "_id": utilService.makeId(),
                 "name": 'All new music',
-                "subHeading": subHeadings[k % 5],
+                stationListTitle: subHeadings[k % 5],
                 description: descriptions[k % 3],
                 "type": "playlist",
                 "tags": ["Soul", "Chill"],
-                "stationImgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
+                imgUrl: 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
                 "createdBy": {
                     "_id": utilService.makeId(),
                     "username": utilService.makeLorem(1),
@@ -174,7 +175,7 @@ function createStation(songs, name = 'My station #', subHeading = '1', idx = '')
         "subHeading": subHeading,
         "type": "station",
         "tags": [''],
-        "stationImgUrl": 'src/assets/img/note.svg',
+        "imgUrl": 'src/assets/img/note.svg',
         "createdBy": {
             "_id": subHeading,
             "username": '',

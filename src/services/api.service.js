@@ -1,7 +1,7 @@
 import axios from "axios"
 import { utilService } from "./util.service"
 
-const API_KEY_YT = 'AIzaSyBu-GdAUp7awvELMR3iigsESqtzB7qLekI'
+const API_KEY_YT = 'AIzaSyB-c85b2LVXNY7RuIUij8swVv4JdRhuSVw'
 const API_KEY_LAST_FM = 'a07417914f1e93617c8e6b02d8f52c86'
 const URL_ARTIST_TUBE = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY_YT}&`
 const URL_PLAYLIST_TUBE = `https://www.googleapis.com/youtube/v3/playlists?key=${API_KEY_YT}&`
@@ -12,23 +12,30 @@ export const apiService = {
 }
 
 async function getContent(search) {
-    const destTube = `part=snippet&q=${search}&type=video&maxResults=10`
+    let results = utilService.loadFromStorage(search)
+    console.log("results:", results)
+
+    if (results ) return results
+
+    const destTube = `part=snippet&q=${search}&videoCategoryId=10&type=video&maxResults=5`
     try {
         const responseArtist = await axios.get(URL_ARTIST_TUBE + destTube)
 
-        const results = responseArtist.data.items.map( ytItem => {
+        results = responseArtist.data.items.map(ytItem => {
             const searchInfo = makeSearchInfoObj(ytItem.snippet.title)
             // const album = _getAlbum(searchInfo)
             // const duration = await _getDuration(ytItem.id.videoId)
             console.log("ytItem.id.videoId:", ytItem.id.videoId)
             return {
+                obj:searchInfo,
+                ori:ytItem.snippet.title,
                 title: searchInfo.item,
                 album: 'single',
                 artist: searchInfo.artist,
                 type: 'song',
                 duration: '',
                 trackId: ytItem.id.videoId,
-                imgUrl: ytItem.snippet.thumbnails.standard,
+                imgUrl: ytItem.snippet.thumbnails.high,
                 addedBy: 'artist',
                 addedAt: Date.now(),
                 likedBy: [],
@@ -36,12 +43,13 @@ async function getContent(search) {
             }
         })
         console.log("results:", results)
+        utilService.saveToStorage(search, results)
         return results
-        
-        
+
+
     }
     catch (err) { throw err }
-    
+
 
 }
 // async function _getAlbum(searchObj) {
