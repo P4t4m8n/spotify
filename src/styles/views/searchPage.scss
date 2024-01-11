@@ -51,6 +51,7 @@
     .result{
         display: flex;
         position: relative;
+
         
         height: 6rem;
         width: 100%;
@@ -58,6 +59,7 @@
         
 
          img{
+            position: relative;
             width: 6rem;
             height:100%;
            
@@ -70,18 +72,28 @@ div .result:hover{
         opacity: 60%;
 }
 
-.play-button{
+.search-play-button{
     position: absolute;
-    background-color: blue;
-    height: 5em;
-    width: 5em;
+    background-color: $clr4;
+    height: 2em;
+    width: 2em;
+    left: 2.5rem;
+    top:35%;
+    border-radius: 50%;
+   opacity: 0;
 }
 
-.play-button.icon-16{
+:hover{
+    opacity: 1;
+}
+
+.search-play-button .icon-16{
     position: absolute;
-    background-color: blue;
-    top: 50%;
-    left:50%;
+    height: 2em;
+    width: 2em;
+    top:0;
+    left: 0;
+    
 }
 
 

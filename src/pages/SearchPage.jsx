@@ -64,12 +64,12 @@ export function SearchPage() {
                                  {/*song.duration = apiService.getDuration(song.trackId)*/}
                                 <div>
                                 <img src={song.imgUrl.url}></img>
-                                <button className="play-button">
+                                <button className="search-play-button">
                             <img className="icon-16" src="/src/assets/img/play.svg" alt="Play" />
                         </button>
                                 </div>
                                 <p> {song.artist} {song.title &&<span>  - {song.title}  </span> }</p>
-                                <p>{apiService.getDuration(song.trackId)}</p>
+                                <p>{/*apiService.getDuration(song.trackId)*/}</p>
                             </div>
                             )}
                             </div>
