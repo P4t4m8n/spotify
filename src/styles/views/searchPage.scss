@@ -29,7 +29,60 @@
     font-weight:bolder;
 
 }
-    .ganeres-list li:hover{
+.ganeres-list li:hover{
         opacity: 70%;
         cursor: pointer;
+}
+
+
+
+.main-img{
+    grid-column: 1;
+    width: auto;
+    height:30vh;
+}
+
+.result-card{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    
+}
+    .result{
+        display: flex;
+        position: relative;
+        
+        height: 6rem;
+        width: 100%;
+        align-items: center;
+        
+
+         img{
+            width: 6rem;
+            height:100%;
+           
+         }
+         
     }
+div .result:hover{
+        cursor: pointer;
+        background-color: $clr11;
+        opacity: 60%;
+}
+
+.play-button{
+    position: absolute;
+    background-color: blue;
+    height: 5em;
+    width: 5em;
+}
+
+.play-button.icon-16{
+    position: absolute;
+    background-color: blue;
+    top: 50%;
+    left:50%;
+}
+
+
+

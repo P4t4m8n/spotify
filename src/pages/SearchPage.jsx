@@ -1,9 +1,10 @@
 import { utilService } from '../services/util.service'
-import { useParams } from 'react-router'
 import { apiService } from '../services/api.service'
 import { Fragment, useEffect, useState } from 'react'
 import { Playlist } from '../cmps/main/Playlist'
 import { PlayCard } from '../cmps/main/PlayCard'
+import { useNavigate, useParams } from "react-router"
+
 
 
 export function SearchPage() {
@@ -13,10 +14,13 @@ export function SearchPage() {
     const ganers = ["New", 'Music', 'Pop', 'Hip-Hop', 'R&B', 'Latino', 'indi', 'Rock', 'Podcusts', 'Live', 'Sport', 'Maditation', 'Party music', 'Electronic music', 'For sleep']
 
     const params = useParams()
+    const navigate = useNavigate()
+
 
 
     useEffect(() => {
         if (params.searchTerm) getSearchResults()
+        else setSearchList(null)
 
     }, [params.searchTerm])
 
@@ -42,7 +46,7 @@ export function SearchPage() {
                     <h1>Browse all</h1>
                     <ul className="ganeres-list">
                         {ganers.map(ganere =>
-                            <li key={ganere} style={{ backgroundColor: utilService.getRandomColor() }}>{ganere}</li>
+                            <li key={ganere} style={{ backgroundColor: utilService.getRandomColor() }} onClick={() => navigate('/search/' + ganere)}>{ganere}</li>
                         )}
                     </ul>
                 </Fragment>
@@ -52,13 +56,27 @@ export function SearchPage() {
                     <div className='top-result'>
                         <header>Top result</header>
                         <div className='result-card'>
-                            <img src={searchList[0].imgUrl}></img>
-                            <p>{searchList[0].title}</p>
-                            <p>{searchList[0].type}</p>
+                        <img className='main-img' src={searchList[0].imgUrl.url}></img>
+                        <div  className='results'>
+                        {searchList.map(song => 
+                           
+                            <div className='result' key={song.trackId}>
+                                 {/*song.duration = apiService.getDuration(song.trackId)*/}
+                                <div>
+                                <img src={song.imgUrl.url}></img>
+                                <button className="play-button">
+                            <img className="icon-16" src="/src/assets/img/play.svg" alt="Play" />
+                        </button>
+                                </div>
+                                <p> {song.artist} {song.title &&<span>  - {song.title}  </span> }</p>
+                                <p>{apiService.getDuration(song.trackId)}</p>
+                            </div>
+                            )}
+                            </div>
                         </div>
                         <PlayCard item={searchList[0]}></PlayCard>
                     </div>
-                    <div className='result-songs'>
+                    {/*<div className='result-songs'>
                         <header>Songs</header>
                         <ul>
                             {
@@ -73,9 +91,9 @@ export function SearchPage() {
                                         <p>{res.duration}</p>
                                     </li>
                                 )
-                            }
+                }
                         </ul>
-                    </div>
+            </div>*/}
                 </div>
 
 
