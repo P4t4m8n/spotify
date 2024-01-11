@@ -49,7 +49,7 @@ export function AppHeader() {
                 < section className='user-form' onClick={() => setShowCreateModal(!showCreateModal)} >
                     {showCreateModal &&
                         <ul className="show-create-modal clean-list context user-modal">
-                            <li >  <Link to={`user/${user._id}`}>Prifile</Link></li>
+                            <li >  <Link to={`user/${user._id}`}>Profile</Link></li>
                             <li onClick={onLogout}>Logout</li>
                         </ul>
                     }
