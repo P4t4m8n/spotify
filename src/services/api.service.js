@@ -9,6 +9,7 @@ const URL_WIKI = `https://en.wikipedia.org/w/api.php?&origin=*&action=query&list
 
 export const apiService = {
     getContent,
+    getDuration,
 }
 
 async function getContent(search) {
@@ -65,6 +66,18 @@ async function getContent(search) {
 //     catch (err) { console.log(err) }
 
 // }
+
+async function getDuration(videoId) {
+    const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${API_KEY_YT}`;
+    try {
+        const duration = await axios(url)
+        console.log("duration:", duration.data.items[0])
+        return duration
+    }
+    catch (err) { console.log(err) }
+
+}
+
 
 async function _getDuration(videoId) {
     const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${API_KEY_YT}`;
