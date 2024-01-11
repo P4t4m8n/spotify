@@ -149,28 +149,13 @@
       width: 100px;
       color: white;
       background-color: white;
+
+      input[type="range"] {
+        height: 0.25rem;
+        border-radius: 3rem;
+      }
     }
   }
-
-  input[type="range"] {
-    height: 0.25rem;
-    border-radius: 3rem;
-  }
-
-  input:hover input[type="range"] ::-webkit-slider-thumb {
-    opacity: 1;
-    width: 10000px;
-  }
-
-
-  // input[type="range"]::-webkit-slider-thumb {
-  //   -webkit-appearance: none;
-  //   appearance: none;
-  //   background-color: #5cd5eb;
-  //   height: 2rem;
-  //   width: 1rem;
-  //   opacity: 0;
-  // }
 
   button {
     background-color: inherit;

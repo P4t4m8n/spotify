@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom"
 import { PlayCard } from "../main/PlayCard"
 
-export function StationList({ stations, topic: stationListTitle }) {
+export function StationList({ stations, stationListTitle }) {
     return (
         <div className="station">
-            <h2 className="station-topic">{stationListTitle}</h2>
             <ul className="station-list" >
+                <h2 className="station-topic">{stationListTitle}</h2>
                 {stations.map((station, idx) => (
                     <Link key={idx} to={`/${station._id}`} className="station-card">
                         <li key={station._id}>
