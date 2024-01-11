@@ -10,8 +10,9 @@ import DialogTitle from '@mui/joy/DialogTitle'
 import DialogContent from '@mui/joy/DialogContent'
 import Stack from '@mui/joy/Stack'
 import Add from '@mui/icons-material/Add'
+import { Note } from '../../services/icons.service'
 
-export function PlaylistHero({ handleChange, stationToEdit,onSaveStation }) {
+export function PlaylistHero({ handleChange, stationToEdit, onSaveStation }) {
     const [open, setOpen] = useState(false)
 
     const { type, name, amount, createdBy, duration, imgUrl } = stationToEdit
@@ -23,7 +24,7 @@ export function PlaylistHero({ handleChange, stationToEdit,onSaveStation }) {
 
                 <label htmlFor="file-input">
                     <input type="file" id="file-input" name="image" onChange={handleChange} accept="image/*" hidden />
-                    <img className="upload-img" src={imgUrl || "/src/assets/img/upload.png"} ></img>
+                    <Note></Note>
                 </label>
                 <div className="hero-right-section flex">
                     <div className="station-hero">

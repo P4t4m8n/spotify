@@ -14,7 +14,6 @@ export const apiService = {
 
 async function getContent(search) {
     let results = utilService.loadFromStorage(search)
-    console.log("results:", results)
 
     if (results ) return results
 

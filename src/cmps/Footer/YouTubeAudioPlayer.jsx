@@ -38,7 +38,7 @@ export function YouTubeAudioPlayer({ volume }) {
 
     const updateProgress = () => {
 
-      if (player && player.getCurrentTime && player.getDuration) {
+      if (player && player.getCurrentTime && player.getDuration ) {
 
         const currentTime = player.getCurrentTime()
         const duration = player.getDuration()
@@ -50,7 +50,7 @@ export function YouTubeAudioPlayer({ volume }) {
     }
     if (player) {
       clearInterval(intervalRef.current)
-      intervalRef.current = setInterval(updateProgress, 12)
+      intervalRef.current = setInterval(updateProgress, 100)
     }
 
   }, [player])

@@ -57,32 +57,6 @@ export function StationEdit() {
     }
 
 
-    // async function onSaveStation() {
-    //     try {
-    //         await saveStation(stationToEdit)
-
-    //         const x = user.stations
-    //         const y = x.findIndex(chosenOne => chosenOne._id === stationToEdit._id)
-
-
-    //         if (y === -1) {
-    //             return
-    //         }
-    //         else {
-
-    //             x.splice(y, 1, stationToEdit)
-    //         }
-    //         const editUser = {
-    //             ...user, stations: x
-    //         }
-
-    //         await updateUser(editUser)
-
-    //     } catch (err) {
-    //         console.log(err)
-    //     }
-    // }
-
     async function onSaveStation(ev) {
 
         try {

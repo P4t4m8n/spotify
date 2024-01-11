@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { saveStation } from "../../store/actions/station.actions"
 import { stationService } from "../../services/station.service"
 import { updateUser } from "../../store/actions/user.actions"
+import { Dots, Note } from "../../services/icons.service"
 
 
 export function SideBarContent() {
@@ -52,7 +53,8 @@ export function SideBarContent() {
 
     async function createStation() {
 
-        let newStation = stationService.getEmptyStation('My station #',"", userStations.length - 1)
+        let newStation = stationService.getEmptyStation('My station #', '', userStations.length - 1)
+        console.log("newStation:", newStation)
 
         try {
             newStation = await saveStation(newStation)
@@ -171,18 +173,20 @@ export function SideBarContent() {
                         userStations.map(station =>
                             <Link key={station._id} to={'/1/station/edit/' + station._id}>
                                 <li className="grid">
-                                    <img className="station-image-left-sidebar" src={station.stationImgUrl}></img>
+                                    {station.imgUrl ?
+
+                                        <img className="station-image-left-sidebar" src={station.imgUrl}></img> :
+                                        <Note></Note>
+                                    }
                                     <header>{station.name}</header>
                                     <p>
                                         <img src="\src\assets\img\pinned.svg" className="left-sidebar-pinned-icon"></img>
-
-                                        {/* 📌 */}
                                         <span className="station-type">{station.type}</span>
                                         <span>{station.songs.length} songs</span>
                                     </p>
 
 
-                             
+
 
                                 </li>
                             </Link>
