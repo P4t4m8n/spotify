@@ -113,14 +113,17 @@ export function StationEdit() {
     const play = isPlaying ? 'pause' : 'play'
 
     return (
+
         <section className="station-page" >
             <PlaylistHero stationToEdit={stationToEdit} setStationToEdit={setStationToEdit} onSave={onSaveStation} />
             {/* <PlaylistHero stationToEdit={stationToEdit} handleChange={handleChange} ></PlaylistHero> */}
 
 
             <div>
-                {stationToEdit.songs && <button onClick={() => setPlaying(!isPlaying)}><img style={{ height: '2rem', width: '2rem' }} src={`/src/assets/img/${play}.svg`}></img></button>}
-                <button>...</button>
+                <div className="play-and-context flex">
+                    {stationToEdit.songs && <button className="play-under-hero" onClick={() => setPlaying(!isPlaying)}><img src={`/src/assets/img/${play}.svg`}></img></button>}
+                    <button className="dot-dot-dot">...</button>
+                </div>
                 {
                     stationToEdit.songs &&
                     <Playlist songs={stationToEdit.songs} onRemoveSong={onRemoveSong} isEdit={isEdit.current}></Playlist>

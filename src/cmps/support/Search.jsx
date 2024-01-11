@@ -30,8 +30,8 @@ export function Search() {
   return (
     <section className="search-box">
       <form onSubmit={onSubmit} >
-        <p style={{marginRight:"10px"}}></p>
-        <img src="src\assets\img\search.svg"></img>
+        <p style={{ marginRight: "10px" }}></p>
+        <img src="\src\assets\img\search.svg"></img>
         <input
           value={searchTerm}
           onChange={handleSearchChange}

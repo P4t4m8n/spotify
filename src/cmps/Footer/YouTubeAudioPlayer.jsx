@@ -134,11 +134,11 @@ export function YouTubeAudioPlayer({ volume }) {
   return (
     <section className='audio'>
       <div className='audio-control'>
-        <button onClick={onShuffle}><img className="icon-16" src='src\assets\img\shuffle.svg'></img></button>
-        <button onClick={(() => onChangeSong(-1))}><img className="icon-14" src='src\assets\img\prev.svg'></img></button>
-        <button className='play' onClick={togglePlayPause}><img className="icon-16" src={`src/assets/img/${isPlay}.svg`}></img></button>
-        <button onClick={(() => onChangeSong(1))}><img className="icon-14" src='src\assets\img\next.svg'></img></button>
-        <button onClick={onRepeat}><img className="icon-16" src='src\assets\img\repet.svg'></img></button>
+        <button onClick={onShuffle}><img className="icon-16" src='\src\assets\img\shuffle.svg'></img></button>
+        <button onClick={(() => onChangeSong(-1))}><img className="icon-14" src='\src\assets\img\prev.svg'></img></button>
+        <button className='play' onClick={togglePlayPause}><img className="icon-16" src={`/src/assets/img/${isPlay}.svg`}></img></button>
+        <button onClick={(() => onChangeSong(1))}><img className="icon-14" src='\src\assets\img\next.svg'></img></button>
+        <button onClick={onRepeat}><img className="icon-16" src='\src\assets\img\repet.svg'></img></button>
       </div>
 
 

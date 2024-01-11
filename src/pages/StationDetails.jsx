@@ -42,13 +42,13 @@ export function StationDetails() {
     return (
         <section className="station-details">
             <header>
-                <img src="src\assets\img\asset 53.jpeg"></img>
+                <img src="\src\assets\img\asset 53.jpeg"></img>
                 <div className="station-header-info">
                     <h2>{type === 'station' ? 'Playlist' : 'Episode'}</h2>
                     <h3>{name}</h3>
                     <h4>{description}</h4>
                     <div className="station-header-file-details">
-                        <img src="src\assets\img\spotify.svg"></img>
+                        <img src="\src\assets\img\spotify.svg"></img>
                         <p>{createdBy.username || 'Spotify'}</p>
                         <p>{amount}</p>
                         <p>about {duration}</p>
@@ -58,13 +58,13 @@ export function StationDetails() {
 
             <section className="station-details-control">
                 <div className="station-details-control-left">
-                    <button className="details-play"><img src={`src/assets/img/${isPlaying ? 'pause' : 'play'}.svg`}></img></button>
-                    <button className="details-liked"><img src="src/assets/img/like.svg"></img></button>
-                    <button className="details-dots"><img src="src/assets/img/dotsSmall.svg"></img></button>
+                    <button className="details-play"><img src={`/src/assets/img/${isPlaying ? 'pause' : 'play'}.svg`}></img></button>
+                    <button className="details-liked"><img src="/src/assets/img/like.svg"></img></button>
+                    <button className="details-dots"><img src="/src/assets/img/dotsSmall.svg"></img></button>
 
                 </div>
                 <div className="station-details-control-right">
-                    <button className="details-sort">Compact <img src="src\assets\img\sort.svg"></img></button>
+                    <button className="details-sort">Compact <img src="\src\assets\img\sort.svg"></img></button>
                 </div>
             </section>
             <Playlist songs={songs}></Playlist>
@@ -84,25 +84,25 @@ export function StationDetails() {
 
 {/* {stationMoudle &&
                         <ul>
-                            <li><button><img src="src\assets\img\addToLib.svg"></img> Add to Your Library</button></li>
-                            <li><button><img src="src\assets\img\addToLib.svg"></img> Remove from profile</button></li>
-                            <li><button><img src="src\assets\img\addToLib.svg"></img> Edit details</button></li>
-                            <li><button><img src="src\assets\img\addToLib.svg"></img> delete</button></li>
+                            <li><button><img src="\src\assets\img\addToLib.svg"></img> Add to Your Library</button></li>
+                            <li><button><img src="\src\assets\img\addToLib.svg"></img> Remove from profile</button></li>
+                            <li><button><img src="\src\assets\img\addToLib.svg"></img> Edit details</button></li>
+                            <li><button><img src="\src\assets\img\addToLib.svg"></img> delete</button></li>
                             <li><button> Exclude from your taste profile</button></li>
-                            <li><p><img src="src\assets\img\addToLib.svg"></img> Add to folder</p>
+                            <li><p><img src="\src\assets\img\addToLib.svg"></img> Add to folder</p>
                                 <ul>
                                     <li><button>Find a folder</button></li>
                                     <li><button>Create folder</button></li>
                                     <li><button>Remove from folders</button></li>
                                 </ul>
                             </li>
-                            <li><p><img src="src\assets\img\addToLib.svg"></img>Share</p>
+                            <li><p><img src="\src\assets\img\addToLib.svg"></img>Share</p>
                                 <ul>
-                                    <li><button> <img src="src\assets\img\addToLib.svg"></img>Copy link to playlist</button></li>
-                                    <li><button><img src="src\assets\img\addToLib.svg"></img>Embed playlist</button></li>
+                                    <li><button> <img src="\src\assets\img\addToLib.svg"></img>Copy link to playlist</button></li>
+                                    <li><button><img src="\src\assets\img\addToLib.svg"></img>Embed playlist</button></li>
                                 </ul>
                             </li>
-                            <li><button><img src="src\assets\img\addToLib.svg"></img> delete</button></li>
-                            <li><button><img src="src\assets\img\addToLib.svg"></img> delete</button></li>
+                            <li><button><img src="\src\assets\img\addToLib.svg"></img> delete</button></li>
+                            <li><button><img src="\src\assets\img\addToLib.svg"></img> delete</button></li>
                         </ul>
                     } */}

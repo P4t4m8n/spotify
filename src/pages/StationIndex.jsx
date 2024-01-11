@@ -31,56 +31,56 @@ export function StationIndex() {
                 <ul className="main-hero" >
                     <li>
                         <div className="content">
-                            <img src="src/assets/img/asset 53.jpeg" alt="Daily Mix" />
+                            <img src="/src/assets/img/asset 53.jpeg" alt="Daily Mix" />
                             <p>Daily Mix 1</p>
                         </div>
                         <button className="hero-play-button">
-                            <img className="icon-16" src="src/assets/img/play.svg" alt="Play" />
+                            <img className="icon-16" src="/src/assets/img/play.svg" alt="Play" />
                         </button>
                     </li>
                     <li>
                         <div className="content">
-                            <img src="src/assets/img/asset 53.jpeg" alt="Daily Mix" />
+                            <img src="/src/assets/img/asset 53.jpeg" alt="Daily Mix" />
                             <p>Daily Mix 2</p>
                         </div>
                         <button className="hero-play-button">
-                            <img className="icon-16" src="src/assets/img/play.svg" alt="Play" />
+                            <img className="icon-16" src="/src/assets/img/play.svg" alt="Play" />
                         </button>
                     </li>
                     <li>
                         <div className="content">
-                            <img src="src/assets/img/asset 53.jpeg" alt="Daily Mix" />
+                            <img src="/src/assets/img/asset 53.jpeg" alt="Daily Mix" />
                             <p>Daily Mix 3</p>
                         </div>
                         <button className="hero-play-button">
-                            <img className="icon-16" src="src/assets/img/play.svg" alt="Play" />
+                            <img className="icon-16" src="/src/assets/img/play.svg" alt="Play" />
                         </button>
                     </li>
                     <li>
                         <div className="content">
-                            <img src="src/assets/img/asset 53.jpeg" alt="Daily Mix" />
+                            <img src="/src/assets/img/asset 53.jpeg" alt="Daily Mix" />
                             <p>Daily Mix 4</p>
                         </div>
                         <button className="hero-play-button">
-                            <img className="icon-16" src="src/assets/img/play.svg" alt="Play" />
+                            <img className="icon-16" src="/src/assets/img/play.svg" alt="Play" />
                         </button>
                     </li>
                     <li>
                         <div className="content">
-                            <img src="src/assets/img/asset 53.jpeg" alt="Daily Mix" />
+                            <img src="/src/assets/img/asset 53.jpeg" alt="Daily Mix" />
                             <p>Daily Mix 5</p>
                         </div>
                         <button className="hero-play-button">
-                            <img className="icon-16" src="src/assets/img/play.svg" alt="Play" />
+                            <img className="icon-16" src="/src/assets/img/play.svg" alt="Play" />
                         </button>
                     </li>
                     <li>
                         <div className="content">
-                            <img src="src/assets/img/asset 53.jpeg" alt="Daily Mix" />
+                            <img src="/src/assets/img/asset 53.jpeg" alt="Daily Mix" />
                             <p>Daily Mix 6</p>
                         </div>
                         <button className="hero-play-button">
-                            <img className="icon-16" src="src/assets/img/play.svg" alt="Play" />
+                            <img className="icon-16" src="/src/assets/img/play.svg" alt="Play" />
                         </button>
                     </li>
 

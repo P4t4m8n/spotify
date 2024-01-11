@@ -37,12 +37,12 @@ export function PlayerPlayingCard() {
 
     return (
         <div className="playing-card" >
-            <img src={song.songImgUrl}></img>
+            <img src={`/${song.songImgUrl}`}></img>
             <div className="playing-card-info">
                 <header>{song.title}</header>
                 <p>{song.artist}</p>
             </div>
-            <button onClick={onLike}> <img style={{ width: '100%' }} className="liked" src="src/assets/img/like.svg"></img></button>
+            <button onClick={onLike}> <img style={{ width: '100%' }} className="liked" src="/src/assets/img/like.svg"></img></button>
         </div>
 
     )

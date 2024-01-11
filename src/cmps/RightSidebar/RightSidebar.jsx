@@ -20,7 +20,7 @@ export function RightSidebar() {
                 <button>❎</button>
             </div>
 
-            <img src="src\assets\img\forward_ohmney.svg"></img>
+            <img src="\src\assets\img\forward_ohmney.svg"></img>
             <div>
                 <div>
                     <p>{song.title}</p>
@@ -32,7 +32,7 @@ export function RightSidebar() {
                     <button>...</button>
                 </div>
 
-                <img src="src\assets\img\forward_ohmney.svg"></img>
+                <img src="\src\assets\img\forward_ohmney.svg"></img>
                 <div>
                     <p>{song.artist}</p>
                     <p>6,546,456</p>
