@@ -11,7 +11,7 @@ export const stationService = {
     get,
     save,
     remove,
-    getSubHeading,
+    getStationListTitle,
     getDefaultStation,
     createStation,
     getUserEpisodes,
@@ -54,7 +54,7 @@ function remove(stationId) {
     return asyncService.remove(stationId)
 }
 
-function getSubHeading() {
+function getStationListTitle() {
     return ['Made for you', 'Top charts', 'Jump back on', 'Recently played', 'Your top mixes']
 }
 
@@ -107,7 +107,7 @@ function getStationDuration(items) {
 
 function _createStations() {
 
-    const subHeadings = ['Made for you', 'Top charts', 'Jump back on', 'Recently played', 'Your top mixes',]
+    const stationListTitle = ['Made for you', 'Top charts', 'Jump back on', 'Recently played', 'Your top mixes',]
     const descriptions = ['Discover new music based on your preference...', 'Rock out while you play', 'With The Rise against, AFI, The unseen and more']
 
     let stations = utilService.loadFromStorage(STORGE_STATION_KEY)
@@ -122,7 +122,7 @@ function _createStations() {
             let station = {
                 "_id": utilService.makeId(),
                 "name": 'All new music',
-                stationListTitle: subHeadings[k % 5],
+                stationListTitle: stationListTitle[k % 5],
                 description: descriptions[k % 3],
                 "type": "playlist",
                 "tags": ["Soul", "Chill"],

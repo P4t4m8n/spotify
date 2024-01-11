@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { updateUser } from "../../store/actions/user.actions";
 import { useEffect, useState } from "react";
+import { LikeCard } from "../main/LikeCard";
 
 
 export function PlayerPlayingCard() {
@@ -10,30 +11,30 @@ export function PlayerPlayingCard() {
     const song = useSelector(storeState => storeState.songMoudle.currSong)
     const user = useSelector(storeState => storeState.userMoudle.userObj)
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        //setisLiked(user.stations[0].songs.some(fav => fav === song._id))
+    //     //setisLiked(user.stations[0].songs.some(fav => fav === song._id))
 
-    }, [user, isLiked])
+    // }, [user, isLiked])
 
-    function onLike() {
-        let userToUpdate
-        let newFav = []
-        if (isLiked) {
-            console.log('dislike')
-            newFav = user.stations[0].filter(fav => fav !== song._id)
-        }
-        else {
-            console.log('like')
-            newFav = user.stations[0]
-            newFav.push(song._id)
+    // function onLike() {
+    //     let userToUpdate
+    //     let newFav = []
+    //     if (isLiked) {
+    //         console.log('dislike')
+    //         newFav = user.stations[0].filter(fav => fav !== song._id)
+    //     }
+    //     else {
+    //         console.log('like')
+    //         newFav = user.stations[0]
+    //         newFav.push(song._id)
 
-        }
-        userToUpdate = { ...user, stations: stations.splice(0, 1, newFav) }
-        updateUser(userToUpdate)
-    }
+    //     }
+    //     userToUpdate = { ...user, stations: stations.splice(0, 1, newFav) }
+    //     updateUser(userToUpdate)
+    // }
 
-    const liked = isLiked ? 'green' : ''
+    // const liked = isLiked ? 'green' : ''
 
     return (
         <div className="playing-card" >
@@ -42,7 +43,8 @@ export function PlayerPlayingCard() {
                 <header>{song.title}</header>
                 <p>{song.artist}</p>
             </div>
-            <button onClick={onLike}> <img  className="liked" src="/src/assets/img/like.svg"></img></button>
+            {/* <button onClick={onLike}> <img  className="liked" src="/src/assets/img/like.svg"></img></button> */}
+            <LikeCard item={song}></LikeCard>
         </div>
 
     )

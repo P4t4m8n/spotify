@@ -1,0 +1,21 @@
+.playing-card button {
+    background-color: inherit;
+    opacity: 70% ;
+}
+.playing-card button:hover {
+   
+    opacity: 1 ;
+}
+
+.playing-card button img {
+    // color: white !important;
+    width: 16px !important;
+    height: 16px !important;
+}
+
+.fill img {
+    filter: invert(61%) sepia(92%) saturate(3307%) hue-rotate(84deg) brightness(122%) contrast(128%);
+    fill: green !important;
+
+}
+

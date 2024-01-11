@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
+import { updateUser } from "../../store/actions/user.actions"
+
 
 
 export function LikeCard({ item }) {
@@ -5,7 +9,24 @@ export function LikeCard({ item }) {
     const [isLiked, setIsLiked] = useState(false)
     const user = useSelector(storeState => storeState.userMoudle.userObj)
 
-    function onLike() {
+    useEffect(() => {
+        let LikeCheck
+        if (user) {
+
+            if (item.type === 'playlist') LikeCheck = user.stations.some(station => station._id === item._id)
+            if (item.type === 'song') LikeCheck = user.favorites.some(song => song._id === item._id)
+
+            if (LikeCheck) setIsLiked(true)
+            else setIsLiked(false)
+        }
+
+    }, [item])
+
+    async function onLike() {
+        if (!user) {
+            console.log('noUser')
+            return
+        }
         let userToUpdate
         let newUserArr = []
 
@@ -14,35 +35,47 @@ export function LikeCard({ item }) {
             if (isLiked) {
                 console.log('dislike')
                 newUserArr = newUserArr.filter(station => station._id === item._id)
+                setIsLiked(false)
             }
             else {
                 newUserArr.push(item)
                 console.log('like')
+                setIsLiked(true)
+
 
             }
             userToUpdate = { ...user, stations: newUserArr }
         }
 
-        else if (typ === 'song') {
+        else if (item.type === 'song') {
 
+            newUserArr = user.favorites
             if (isLiked) {
                 console.log('dislike')
-                newUserArr = user.favorites
-                newUserArr = newUserArr.filter(fav => fav !== item._id)
+                newUserArr = newUserArr.filter(fav => fav._id !== item._id)
+                setIsLiked(false)
+
             }
             else {
                 console.log('like')
                 newUserArr.push(item)
+                setIsLiked(true)
+
             }
             userToUpdate = { ...user, favorites: newUserArr }
         }
-        updateUser(userToUpdate)
+        try {
+
+            await updateUser(userToUpdate)
+        }
+        catch (err) { console.log(err) }
     }
 
-    const liked = isLiked ? 'fill' : 'empty'
 
     return (
-        <button onClick={onLike}> <img className="liked" src="/src/assets/img/like.svg"></img></button>
+        <button className={"like " + (isLiked ? 'fill animate__shakeX' : 'empty animate__pulse')} onClick={onLike}>
+            <img className="liked" src={isLiked ? "/src/assets/img/likeFull.svg" : "/src/assets/img/like.svg"} />
+        </button>
 
     )
 }

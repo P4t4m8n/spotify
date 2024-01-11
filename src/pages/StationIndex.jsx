@@ -9,15 +9,12 @@ import { loadStations, loadStation } from "../store/actions/station.actions"
 export function StationIndex() {
 
     const stations = useSelector(storeState => storeState.stationsMoudle.stations)
-    const currStation = useSelector(storeState => storeState.stationsMoudle.currStation)
-    const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
 
-    const topics = useRef([])
-
+    const stationListTitle = useRef([])
 
     useEffect(() => {
         loadStations()
-        topics.current = stationService.getSubHeading()
+        stationListTitle.current = stationService.getStationListTitle()
     }, [])
 
 
@@ -95,10 +92,10 @@ export function StationIndex() {
             </ul> */}
 
                 {
-                    topics.current.map((subHeading, idx) => {
+                    stationListTitle.current.map((stationListTitle, idx) => {
                         {
-                            const stationsFilterd = stations.filter(station => station.subHeading === subHeading)
-                            return <StationList key={idx} stations={stationsFilterd} topic={subHeading}  ></StationList>
+                            const stationsFilterd = stations.filter(station => station.stationListTitle === stationListTitle)
+                            return <StationList key={idx} stations={stationsFilterd} stationListTitle={stationListTitle}  ></StationList>
                         }
                     })
                 }
