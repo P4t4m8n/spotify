@@ -35,8 +35,6 @@ export function AppHeader() {
                 <button><img src='src\assets\img\page.svg'></img></button>
                 <button><img src='src\assets\img\page.svg'></img></button>
             </div>
-                <ConditionalSearchComponent />
-
 
             {user ? (
                 < section className='user-form' onClick={() => setShowCreateModal(!showCreateModal)} >
