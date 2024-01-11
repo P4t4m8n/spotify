@@ -166,25 +166,29 @@
 //     margin: 0;
 // }
 
-.main-hero .hero-play-button {
-    width: 32px;
-    height: 32px;
-    background-color: #1db954;
-    border: none;
-    border-radius: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
+// .main-hero .hero-play-button {
+//     width: 48px;
+//     /* Define a specific width */
+//     height: 48px;
+//     /* Define a specific height */
+//     background-color: #1db954;
+//     border: none;
+//     border-radius: 100%;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     cursor: pointer;
+//     margin-left: auto;
+//     /* This keeps the button aligned to the right */
+// }
 
 
-.hero-play-button img.icon-16 {
-    margin: 0;
-    // width: 100%;
-    // height: 100%;
-    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
-}
+// .hero-play-button img.icon-16 {
+//     margin: 0;
+//     // width: 100%;
+//     // height: 100%;
+//     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+// }
 
 @media (max-width: 1024px) {
     .main-hero {
@@ -242,19 +246,67 @@
     margin-top: 4px;
 }
 
-.station-list button {
-    margin-top: 12px;
-    padding: 8px 16px;
-    background-color: #1db954;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
+.station-card {
+    position: relative;
+    transition: all ease-in-out;
+
+    &:hover {
+        button {
+            animation: moveUp 0.3s ease-in-out;
+            // display: block;
+            opacity: 1;
+        }
+    }
+
+    button {
+        position: absolute;
+        top: 45%;
+        right: 15%;
+        background-color: #1db954;
+        border: none;
+        border-radius: 100%;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        height: 3rem;
+        width: 3rem;
+        // display: none;
+        opacity: 0;
+        animation: moveDown .3s ease-in-out forwards;
+
+
+        svg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
 }
 
-.station-list button:hover {
-    background-color: #1ed760;
+@keyframes moveUp {
+    from {
+        top: 50%;
+        opacity: 0;
+    }
+
+    to {
+        top: 45%;
+        opacity: 1;
+    }
+
 }
+
+@keyframes moveDown {
+    from {
+        top: 45%;
+        opacity: 1;
+    }
+
+    to {
+        top: 50%;
+        opacity: 0;
+    }
+}
+
 
 .station-topic {
     color: #fff;
@@ -300,45 +352,9 @@
 
 }
 
-.play-button {
-    margin-top: auto;
-    padding: 8px 16px;
-    background-color: #1db954;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    // transition:all  ease-in-out ;
-}
 
-.play-button:hover {
-    background-color: #1ed760;
-}
 
-.play-button {
-    position: absolute;
-    top: 43%;
-    right: 10%;
-    background-color: #1db954;
-    border: none;
-    border-radius: 100% !important;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s;
-    transition: opacity ease-in-out;
-    height: 3rem;
-    width: 3rem;
-    opacity: 0;
-}
 
-.station-card:hover .play-button {
-    background-color: #1ed760;
-    opacity: 1;
-    transition: opacity ease-in-out;
-}
 
 
 .button-icon {

@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
 import { setIsOpen } from "../../store/actions/app.actions"
+import { Details, FullScreen, Lyric, Queue, Volume } from "../../services/icons.service"
 
 export function PlayerRightside({ volume, setVolume }) {
 
@@ -13,13 +14,25 @@ export function PlayerRightside({ volume, setVolume }) {
         }
     }
 
+
+    function toggleFullScreen(ev) {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen()
+           
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen()
+            }
+        }
+    }
+
     // console.log('Render:right side footer')
     return (
         <section className="rightside-footer">
-            <button onClick={() => setIsOpen(!isOpen)}><img className="icon-16" src="\src\assets\img\details.svg"></img></button>
-            <button><img className="icon-16" src="\src\assets\img\lyrics.svg"></img></button>
-            <button><img className="icon-16" src="\src\assets\img\que.svg"></img></button>
-            <button><img className="icon-16" src="\src\assets\img\device.svg"></img></button>
+            <button onClick={() => setIsOpen(!isOpen)}><Details></Details></button>
+            <button><Lyric></Lyric></button>
+            <button><Queue></Queue></button>
+            <button onClick={() => setVolume(volume * (-100))}><Volume></Volume></button>
             <div className="volume">
                 <input
                     type="range"
@@ -29,9 +42,7 @@ export function PlayerRightside({ volume, setVolume }) {
                     onChange={handleVolumeChange}
                 ></input>
             </div>
-            <button><img className="icon-16" src="\src\assets\img\vol.svg"></img></button>
-            <button><img className="icon-16" src="\src\assets\img\miniPlayer.svg"></img></button>
-            <button><img className="icon-16" src="\src\assets\img\fullscreen.svg"></img></button>
+            <button onClick={toggleFullScreen}><FullScreen></FullScreen></button>
         </section>
     )
 }

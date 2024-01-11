@@ -1,3 +1,4 @@
+import { LikeCard } from "./LikeCard";
 
 
 export function Playlist({ songs, onRemoveSong, isEdit }) {
@@ -10,7 +11,7 @@ export function Playlist({ songs, onRemoveSong, isEdit }) {
                     <th>Title</th>
                     <th>Artist</th>
                     <th>Album</th>
-                    <th><img className="icon-16" src="/src/assets/img/clock.svg"></img></th>
+                    <th><img className="icon-16" style={{ width: '2rem', height: '2rem' }} src="/src/assets/img/clock.svg"></img></th>
                 </tr>
             </thead>
             <tbody>
@@ -24,9 +25,9 @@ export function Playlist({ songs, onRemoveSong, isEdit }) {
                             <td>{song.album}</td>
                             <td>
                                 <div className="details-list-control">
-                                    <button><img className="icon-16" src="/src/assets/img/like.svg"></img></button>
+                                    <LikeCard item={song}></LikeCard>
                                     <p>{song.duration}</p>
-                                    <button><img className="icon-16" src="/src/assets/img/dotsSmall.svg"></img></button>
+                                    <button><img className="icon-16" style={{ width: '2rem', height: '2rem' }} src="/src/assets/img/dotsSmall.svg"></img></button>
                                     {isEdit && <button onClick={(ev) => onRemoveSong(ev, song._id)}>❌</button>}
                                 </div>
                             </td>

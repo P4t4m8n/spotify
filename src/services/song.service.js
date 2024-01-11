@@ -70,7 +70,7 @@ function getRandomSong() {
         "type": "song",
         "duration": "02:30",
         "trackId": tracksId[utilService.getRandomIntInclusive(0, 3)],
-        "songImgUrl": "https://i.ytimg.com/vi/COiIC3A0ROM/mqdefault.jpg",
+        "imgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
         "addedBy": 'artist',
         "addedAt": Date.now(),
         "likedBy": [((utilService.getRandomIntInclusive() > 0.5) ? "1" : "")]

@@ -21,13 +21,12 @@ export function UserPage(){
 }, [])*/
 
 
-    let user2={username: user.username,email:user.email}
+    let loggedInUser={username: user.username,email:user.email, imgUrl:user.imgUrl}
     if (!user) return <h1>loadings....</h1>
-    return user && <div>
-        {console.log(user2.username)}
-        <img src={user.imgUrl ? user.imgUrl : `/src/assets/img/user.svg`}></img> 
-        <h3>Hello {user2.username} </h3>
-        <h4>Email: {user2.email}</h4>
+    return user && <div className='user-page'>
+        <img src={loggedInUser.imgUrl ? user.imgUrl : `/src/assets/img/user.svg`}></img> 
+        <h3>Hello {loggedInUser.username} </h3>
+        <h4>Email: {loggedInUser.email}</h4>
         {/*  <ul className="clean-list">
                     {
                         userStations.map(station =>

@@ -43,6 +43,7 @@
 }
 
 .station-details-control {
+    padding: 1.5rem;
     display: flex;
     height: 6rem;
     width: 100%;
@@ -51,27 +52,38 @@
 
 }
 
-.station-details-control-left img {
-    width: 2rem;
-    height: 2rem;
-}
 
-.details-play img {
-    width: 1.2rem;
-    height: 1.2rem;
+.station-details-control-left {
+    display: grid;
+    grid-template-columns: 50% 25% 25%;
+    gap:.5rem;
 
-}
+    .play-button {
+        background-color: #1db954;
+        position: relative;
+        color: white;
+        border: none;
+        border-radius: 100%;
+        cursor: pointer;
+        height: 3rem;
+        width: 3rem;
+        display: block;
+        opacity: 1;
 
-.details-play {
-    background-color: #1db954;
-    color: white;
-    border: none;
-    border-radius: 100%;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    height: 3rem;
-    width: 3rem;
-    align-self: center;
+        svg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
+
+    .like {
+        svg {
+            max-width: 2rem;
+            max-height: 2rem;
+            min-width: 1.5rem;
+            min-height: 1.5rem;
+        }
+    }
 }
 
 .details-liked {

@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 import { loadSong, setPlaying } from "../../store/actions/song.action"
 import { setCurrStation } from "../../store/actions/station.actions"
+import { Pause, Play } from "../../services/icons.service"
 
 
 export function PlayCard({ item }) {
@@ -47,10 +48,11 @@ export function PlayCard({ item }) {
         setPlaying()
     }
 
-
     return (
         <button onClick={(ev) => onPlayStation(ev)} className="play-button">
-            {isPlaying && item._id === cardType ? <img src="\src\assets\img\pause.svg"></img> : <img src="\src\assets\img\play.svg"></img>}
+            {/* {isPlaying && item._id === cardType ? <img src="\src\assets\img\pause.svg"></img> : <img src="\src\assets\img\play.svg"></img>} */}
+            {isPlaying && <Pause />}
+            {!isPlaying && <Play />}
         </button>
     )
 }
