@@ -55,7 +55,7 @@ export function StationDetails() {
                 <div className="station-details-control-left">
                     <PlayCard item={currStation}></PlayCard>
                     <LikeCard item={currStation}></LikeCard>
-                    <button className="details-dots"><img src="/src/assets/img/dotsSmall.svg"></img></button>
+                    <button className="details-dots"><img style={{ width: '2rem', height: '2rem' }} src="/src/assets/img/dotsSmall.svg"></img></button>
 
                 </div>
                 <div className="station-details-control-right">

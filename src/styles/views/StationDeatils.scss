@@ -54,7 +54,9 @@
 
 
 .station-details-control-left {
-    display: flex;
+    display: grid;
+    grid-template-columns: 50% 25% 25%;
+    gap:.5rem;
 
     .play-button {
         background-color: #1db954;
@@ -69,16 +71,18 @@
         display: block;
         opacity: 1;
 
-        img {
-            width: 1.2rem;
-            height: 1.2rem;
+        svg {
+            width: 1.5rem;
+            height: 1.5rem;
         }
     }
 
     .like {
         svg {
-            width: 2rem;
-            height: 2rem;
+            max-width: 2rem;
+            max-height: 2rem;
+            min-width: 1.5rem;
+            min-height: 1.5rem;
         }
     }
 }
