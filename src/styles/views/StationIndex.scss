@@ -1,9 +1,7 @@
-.main-content>* {
-    box-sizing: border-box;
-    font-family: Monstserrat, sans-serif;
-}
-
+////////////// this will have to move into a class one down in the hierarchy //////////////
 .main-content {
+    font-family: Monstserrat, sans-serif;
+
     display: flex;
     flex-direction: column;
     background-color: #121212;
@@ -12,7 +10,7 @@
 }
 
 .station-list {
-    display: flex;
+    display: grid;
     flex-wrap: wrap;
     gap: 1rem;
     justify-content: center;
@@ -70,8 +68,10 @@
     gap: 0.5em;
     width: 100%;
     padding: 0;
-    margin: 0 2rem;
+    margin: 0;
+
     // box-sizing: border-box;
+
 }
 
 @media (max-width: 1024px) {
@@ -119,6 +119,13 @@
 //     row-gap: .5em;
 // }
 
+
+.home-page h1 {
+    margin: 0;
+    // padding: 0;
+    background-color: yellowsd;
+}
+
 .main-hero li {
     // width: 350px;
     // height: 3rem;
@@ -160,10 +167,8 @@
 // }
 
 .main-hero .hero-play-button {
-    width: 48px;
-    /* Define a specific width */
-    height: 48px;
-    /* Define a specific height */
+    width: 32px;
+    height: 32px;
     background-color: #1db954;
     border: none;
     border-radius: 100%;
@@ -171,8 +176,6 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    margin-left: auto;
-    /* This keeps the button aligned to the right */
 }
 
 

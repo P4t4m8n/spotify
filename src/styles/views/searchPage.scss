@@ -1,35 +1,37 @@
-
-.ganeres-list{
+.ganeres-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     grid-template-rows: repeat(auto-fill, minmax(150px, 1fr));
     gap: 0.5rem;
+    padding: 0;
     overflow: hidden;
-    
+
 }
 
 
 
 
-.ganeres-list h1{
-    
-    font-weight:bolder;
+.ganeres-list h1 {
+
+    font-weight: bolder;
+
 }
 
-.ganeres-list li{
-   display: flex;  
-   flex-direction: column;
+.ganeres-list li {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 0;
     list-style: none;
-    height:150px;
-    width:100%; 
-    border-radius: 0.3em; 
+    height: 150px;
+    width: 100%;
+    border-radius: 0.3em;
     padding: 0.5em;
     font-size: 1.5rem;
-    font-weight:bolder;
+    font-weight: bolder;
 
 }
-    .ganeres-list li:hover{
-        opacity: 70%;
-        cursor: pointer;
-    }
+
+.ganeres-list li:hover {
+    opacity: 70%;
+    cursor: pointer;
+}

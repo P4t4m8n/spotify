@@ -7,13 +7,13 @@
     grid-template-areas: header;
     background-color: $clr7;
     color: $clr4;
-    
+
     display: grid;
     align-items: center;
     grid-template-columns: 4.5rem auto 12rem;
     height: 4.065em;
     width: 100%;
-    padding-inline: 1rem;
+    // padding-inline: 1rem;
     border-radius: $panel-gap;
 
 
@@ -94,11 +94,11 @@
         margin-left: 2rem;
         align-self: center;
 
-       
 
 
-        input:focus{
-           outline: none;
+
+        input:focus {
+            outline: none;
         }
 
         form {
@@ -107,10 +107,10 @@
             align-items: center;
             height: 100%;
         }
-        
+
 
         img {
-           
+
             width: 1rem;
             height: 1rem;
             filter: invert(58%) sepia(0%) saturate(1%) hue-rotate(173deg) brightness(87%) contrast(88%);
@@ -121,18 +121,18 @@
             background-color: inherit;
             border: none;
             width: 100%;
-            color:$clr5;
+            color: $clr5;
             padding-left: 0.5rem;
 
         }
 
-        input:hover::placeholder{
-            color:$clr4;
+        input:hover::placeholder {
+            color: $clr4;
         }
 
     }
 
-    
+
 
     // .user-info .btn-link {
     //     color: $clr2;

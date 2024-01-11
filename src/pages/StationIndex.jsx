@@ -25,6 +25,7 @@ export function StationIndex() {
     return (
         <Fragment >
             <div className="home-page">
+                <h1>Good evening</h1>
                 <ul className="main-hero" >
                     <li>
                         <div className="content">
