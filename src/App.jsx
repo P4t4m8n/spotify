@@ -11,6 +11,8 @@ import { RightSidebar } from './cmps/RightSidebar/RightSidebar.jsx'
 import { StationEdit } from './pages/StationEdit.jsx'
 import { Login } from './pages/Login.jsx'
 import { Signup } from './pages/Signup.jsx'
+import { UserPage } from './pages/UserPage.jsx'
+
 
 
 
@@ -38,6 +40,8 @@ export function App() {
             <Route path="/search/:searchTerm" element={<SearchPage />} />
             <Route path="/:userId/station/edit" element={<StationEdit />}></Route>
             <Route path="/:userId/station/edit/:stationId" element={<StationEdit />}></Route>
+            <Route path="user/:userId" element={<UserPage />}></Route>
+
           </Routes>
         </div>
         <RightSidebar />
