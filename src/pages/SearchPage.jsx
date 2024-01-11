@@ -3,7 +3,7 @@ import { useParams } from 'react-router'
 import { apiService } from '../services/api.service'
 import { Fragment, useEffect, useState } from 'react'
 import { Playlist } from '../cmps/main/Playlist'
-import { PlayCard } from '../cmps/PlayCard'
+import { PlayCard } from '../cmps/main/PlayCard'
 
 
 export function SearchPage() {

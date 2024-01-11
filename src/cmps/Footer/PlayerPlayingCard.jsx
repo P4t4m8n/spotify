@@ -42,7 +42,7 @@ export function PlayerPlayingCard() {
                 <header>{song.title}</header>
                 <p>{song.artist}</p>
             </div>
-            <button onClick={onLike}> <img style={{ width: '100%' }} className="liked" src="/src/assets/img/like.svg"></img></button>
+            <button onClick={onLike}> <img  className="liked" src="/src/assets/img/like.svg"></img></button>
         </div>
 
     )
