@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux'
 import { loadSong, setPlaying } from '../../store/actions/song.action'
 import { utilService } from '../../services/util.service'
 import { setPlayer } from '../../store/actions/player.action'
+import { PlayCard } from '../main/PlayCard'
+import { Next, Prev, Shuffle, Repeat } from '../../services/icons.service'
 
 export function YouTubeAudioPlayer({ volume }) {
 
@@ -134,18 +136,18 @@ export function YouTubeAudioPlayer({ volume }) {
   return (
     <section className='audio'>
       <div className='audio-control'>
-        <button onClick={onShuffle}><img className="icon-16" src='\src\assets\img\shuffle.svg'></img></button>
-        <button onClick={(() => onChangeSong(-1))}><img className="icon-14" src='\src\assets\img\prev.svg'></img></button>
-        <button className='play' onClick={togglePlayPause}><img className="icon-16" src={`/src/assets/img/${isPlay}.svg`}></img></button>
-        <button onClick={(() => onChangeSong(1))}><img className="icon-14" src='\src\assets\img\next.svg'></img></button>
-        <button onClick={onRepeat}><img className="icon-16" src='\src\assets\img\repet.svg'></img></button>
+        <button onClick={onShuffle}><Shuffle></Shuffle></button>
+        <button onClick={(() => onChangeSong(-1))}><Prev></Prev></button>
+        <PlayCard item={song}></PlayCard>
+        <button onClick={(() => onChangeSong(1))}><Next></Next></button>
+        <button onClick={onRepeat}><Repeat></Repeat></button>
       </div>
 
 
       <div className='progress-bar'>
         <p style={{ color: 'white' }}>{progress ? progress.timeElapsed : '0:00'} </p>
-        <div onClick={handleProgressbar} style={{ width: '100%', height: '2px', backgroundColor: 'gray' }}>
-          <div style={{ height: '100%', width: `${progress ? progress.progressPercentage : 0}%`, backgroundColor: 'white' }} />
+        <div onClick={handleProgressbar} className="bar" style={{ width: '100%', height: '4px', backgroundColor: 'gray' }}>
+          <div className='bar-mov' style={{ height: '100%', width: `${progress ? progress.progressPercentage : 0}%`, backgroundColor: 'white' }} />
         </div>
         <p className='text-left' style={{ color: 'white' }}>{progress ? progress.time : '0:00'} </p>
       </div>

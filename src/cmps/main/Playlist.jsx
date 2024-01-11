@@ -1,3 +1,5 @@
+import { Dots } from "../../services/icons.service";
+import { LikeCard } from "./LikeCard";
 
 
 export function Playlist({ songs, onRemoveSong, isEdit }) {
@@ -24,9 +26,9 @@ export function Playlist({ songs, onRemoveSong, isEdit }) {
                             <td>{song.album}</td>
                             <td>
                                 <div className="details-list-control">
-                                    <button><img className="icon-16" src="/src/assets/img/like.svg"></img></button>
+                                    <LikeCard item={song}></LikeCard>
                                     <p>{song.duration}</p>
-                                    <button><img className="icon-16" src="/src/assets/img/dotsSmall.svg"></img></button>
+                                <Dots></Dots>
                                     {isEdit && <button onClick={(ev) => onRemoveSong(ev, song._id)}>❌</button>}
                                 </div>
                             </td>

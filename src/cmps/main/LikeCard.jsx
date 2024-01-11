@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { updateUser } from "../../store/actions/user.actions"
-
+import { Heart } from '../../services/icons.service'
+import { FullHeart } from '../../services/icons.service'
 
 
 export function LikeCard({ item }) {
 
     const [isLiked, setIsLiked] = useState(false)
-    console.log("isLiked:", isLiked)
     const user = useSelector(storeState => storeState.userMoudle.userObj)
-    console.log("user:", user)
 
     useEffect(() => {
         let LikeCheck
@@ -29,17 +28,14 @@ export function LikeCard({ item }) {
             console.log('noUser')
             return
         }
-        
+
         let userToUpdate
         let newUserArr = []
 
         if (item.type === 'playlist') {
             newUserArr = user.stations
-            console.log("newUserArr:", newUserArr)
             if (isLiked) {
-                console.log('dislike')
                 newUserArr = newUserArr.filter(station => station._id !== item._id)
-                console.log("newUserArr:", newUserArr)
                 setIsLiked(false)
             }
             else {
@@ -75,8 +71,9 @@ export function LikeCard({ item }) {
     }
 
     return (
-        <button className={"like " + (isLiked ? 'fill animate__shakeX' : 'empty animate__pulse')} onClick={onLike}>
-            <img className="liked" src={isLiked ? "/src/assets/img/likeFull.svg" : "/src/assets/img/like.svg"} />
+        <button className={"like animate__animated " + (isLiked ? 'fill animate__shakeX' : 'empty animate__heartBeat')} onClick={onLike}>
+            {isLiked && <FullHeart />}
+            {!isLiked && <Heart />}
         </button>
 
     )

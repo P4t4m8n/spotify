@@ -4,6 +4,7 @@ import { loadStation } from "../store/actions/station.actions"
 import { useSelector } from "react-redux"
 import { Playlist } from "../cmps/main/Playlist"
 import { LikeCard } from "../cmps/main/LikeCard"
+import { PlayCard } from "../cmps/main/PlayCard"
 
 
 export function StationDetails() {
@@ -52,7 +53,7 @@ export function StationDetails() {
 
             <section className="station-details-control">
                 <div className="station-details-control-left">
-                    <button className="details-play"><img src={`/src/assets/img/${isPlaying ? 'pause' : 'play'}.svg`}></img></button>
+                    <PlayCard item={currStation}></PlayCard>
                     <LikeCard item={currStation}></LikeCard>
                     <button className="details-dots"><img src="/src/assets/img/dotsSmall.svg"></img></button>
 
