@@ -55,14 +55,14 @@ export function AppHeader() {
                             <li onClick={onLogout}>Logout</li>
                         </ul>
                     }
-                    <p className='user-buttons grid'>
+                    <div className='user-buttons grid'>
 
                         Hello <span>  {user.username}</span>
 
                         <div className='user-image-container flex'>
                             <img src={user.imgUrl ? user.imgUrl : `/src/assets/img/user.svg`}></img>
                         </div>
-                    </p>
+                    </div>
                 </ section >
             ) : (
                 <section className='contents'>

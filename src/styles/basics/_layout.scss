@@ -27,6 +27,7 @@
 .left-sidebar {
     grid-area: left-sidebar;
     overflow-y: auto;
+    flex:1;
 }
 
 .main-content {
