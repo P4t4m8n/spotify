@@ -31,7 +31,7 @@
 
 .main-content {
     grid-area: main;
-    overflow-y: auto;
+    // overflow-y: auto; ////////////OLD
 
     //this is if we want css variables changed by js
     // --left-sidebar-width: 420px;
@@ -41,6 +41,8 @@
 
     padding: calc($panel-gap*2) calc($panel-gap*3);
     border-radius: $panel-gap;
+}
+.home-page{overflow-y: auto;////////////////////NEW
 }
 
 .right-sidebar {

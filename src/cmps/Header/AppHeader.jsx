@@ -7,14 +7,15 @@ import { Search } from '../support/Search.jsx'
 import { LoginSignup } from './LoginSignup.jsx'
 import { useState } from 'react'
 import { logout } from '../../store/actions/user.actions.js'
+import { Backwords, UserIcon } from '../../services/icons.service.jsx'
+import { Forward } from '@mui/icons-material'
 
 
 export function AppHeader() {
 
     const user = useSelector(storeState => storeState.userMoudle.userObj)
-    // const isSearchOpen = useSelector(storeState => storeState.appMoudle.isSearchOpen)
+    const isSearchOpen = useSelector(storeState => storeState.appMoudle.isSearchOpen)
     const [showCreateModal, setShowCreateModal] = useState(false)
-    const params = useParams()
 
 
     async function onLogout() {
@@ -27,26 +28,10 @@ export function AppHeader() {
         }
     }
 
-    function ConditionalSearchComponent() {
-        const location = useLocation();
-        const { searchTerm } = useParams();
-
-        if (location.pathname === '/search' || location.pathname === `/search/:${searchTerm}`) {
-            return <Search />;
-        }
-
-        return null;
-    }
-
-
-
     return (
         <div className="app-header">
-            <div className="page-index">
-                <button><img src='\src\assets\img\page.svg'></img></button>
-                <button><img src='\src\assets\img\page.svg'></img></button>
-            </div>
-            <ConditionalSearchComponent />
+          
+            {isSearchOpen && <Search></Search>}
             {user ? (
                 < section className='user-form' onClick={() => setShowCreateModal(!showCreateModal)} >
                     {showCreateModal &&
@@ -60,7 +45,7 @@ export function AppHeader() {
                         Hello <span>  {user.username}</span>
 
                         <div className='user-image-container flex'>
-                            <img src={user.imgUrl ? user.imgUrl : `/src/assets/img/user.svg`}></img>
+                            {user.imgUrl ? <img src={user.imgUrl}></img> : <UserIcon></UserIcon>}
                         </div>
                     </p>
                 </ section >

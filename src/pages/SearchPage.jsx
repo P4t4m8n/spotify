@@ -10,27 +10,17 @@ import { useNavigate, useParams } from "react-router"
 export function SearchPage() {
 
     const [searchList, setSearchList] = useState(null)
-    
-    const ganers = ["New", 'Music', 'Pop', 'Hip-Hop', 'Rap', 'Latino', 'indi', 'Rock', 'Podcusts', 'Live', 'Sport', 'Meditation', 'Party', 'Electronic', 'For sleep']
-    
 
-
+    const genres = ["New", 'Music', 'Pop', 'Hip-Hop', 'Rap', 'Latino', 'indi', 'Rock', 'Podcusts', 'Live', 'Sport', 'Meditation', 'Party', 'Electronic', 'For sleep']
 
     const params = useParams()
     const navigate = useNavigate()
 
-
-
     useEffect(() => {
-        if (params.searchTerm) getSearchResults()
-        else setSearchList(null)
-
+        params.searchTerm ? fetchSearchResults() : setSearchList(null)
     }, [params.searchTerm])
 
-  
-
-
-    async function getSearchResults() {
+    async function fetchSearchResults() {
         try {
 
             const searchList = await apiService.getContent(params.searchTerm)
@@ -39,9 +29,6 @@ export function SearchPage() {
         catch (err) { console.log(err) }
     }
 
-
-    console.log("searchList:", searchList)
-    console.log("!params.searchTerm:", !params.searchTerm)
     // console.log('Render-Search page')
     return (
         <section className='search-page' >
@@ -49,7 +36,7 @@ export function SearchPage() {
                 <Fragment>
                     <h1>Browse all</h1>
                     <ul className="ganeres-list">
-                        {ganers.map(ganere =>
+                        {genres.map(ganere =>
                             <li key={ganere} style={{ backgroundColor: utilService.getRandomColor() }} onClick={() => navigate('/search/' + ganere)}>
                                 {ganere}<img src={`src/assets/img/${ganere}.jpg`}></img></li>
                         )}
@@ -61,49 +48,26 @@ export function SearchPage() {
                     <div className='top-result'>
                         <header>Top result</header>
                         <div className='result-card'>
-                        <img className='main-img' src={searchList[0].imgUrl.url}></img>
-                        <div  className='results'>
-                        {searchList.map(song => 
-                           
-                            <div className='result' key={song.trackId}>
-                                 {/*song.duration = apiService.getDuration(song.trackId)*/}
-                                <div>
-                                <img src={song.imgUrl.url}></img>
-                                <button className="search-play-button">
-                            <img className="icon-16" src="/src/assets/img/play.svg" alt="Play" />
-                        </button>
-                                </div>
-                                <p> {song.artist} {song.title &&<span>  - {song.title}  </span> }</p>
-                                <p>{/*apiService.getDuration(song.trackId)*/}</p>
-                            </div>
-                            )}
+                            <img className='main-img' src={searchList[0].imgUrl}></img>
+                            <div className='results'>
+                                {searchList.map(song =>
+                                    <div className='result' key={song.trackId}>
+                                        <div>
+                                            <img src={song.imgUrl}></img>
+                                            <PlayCard item={song}></PlayCard>
+                                        </div>
+                                        <div>
+                                            <header>{song.title}</header>
+                                            <h1>{song.artist}</h1>
+                                            <h2>{song.duration}</h2>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
-                        {/* <PlayCard item={searchList[0]}></PlayCard> */}
                     </div>
-                    {/*<div className='result-songs'>
-                        <header>Songs</header>
-                        <ul>
-                            {
-                                searchList.map((res, idx) =>
-                                    <li key={idx}>
-                                        <img src={res.imgUrl}></img>
-                                        <PlayCard item={res}></PlayCard>
-                                        <div className='info'>
-                                            <header>{res.title}</header>
-                                            <p>{res.artist}</p>
-                                        </div>
-                                        <p>{res.duration}</p>
-                                    </li>
-                                )
-                }
-                        </ul>
-            </div>*/}
+
                 </div>
-
-
-
-
             }
 
             {(!searchList && params.searchTerm) && <div>...loading</div>}

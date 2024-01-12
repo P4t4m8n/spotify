@@ -12,7 +12,7 @@ export function SideBarHeader() {
 
             <ul className="clean-list">
 
-                <li key="home">
+                <li key="home" onClick={() => setSearchOpen(false)}>
                     <Link to={"/"} className="flex align-center">
                         <img src="\src\assets\img\homefull.svg" className="left-sidebar-home-icon"></img>
                         <span>Home</span>

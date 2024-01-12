@@ -20,7 +20,6 @@ export function SideBarContent() {
 
     const [userStations, setUserStations] = useState(null)
     const [filterSort, setFilterSort] = useState({ name: '', sortBy: '' })
-    console.log("filterSort:", filterSort)
     const [showSearch, setShowSearch] = useState(false)
     const [resize, setResize] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
