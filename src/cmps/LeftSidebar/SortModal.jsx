@@ -1,24 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-export function SortByModal({ isOpen, onClose, onSortOptionSelected }) {
+export function SortByModal({ isOpen, onClose, setFilterSort, filterSort }) {
 
     const modalRef = useRef()
 
     const [sortOptions, setSortOptions] = useState([
-        { label: 'Alphabetical', value: 'name', checked: false },
-        { label: 'Recents', value: 'CreatedAt', checked: false },
+        { label: 'name', value: 'name', checked: false },
+        { label: 'CreatedAt', value: 'CreatedAt', checked: false },
 
     ])
 
-    const handleSortOptionSelected = (value, checked) => {
+    function handleSortOptionSelected(value, checked) {
         const updatedOptions = sortOptions.map(option =>
             option.value === value ? { ...option, checked } : option
         )
-        setSortOptions(updatedOptions)
+        console.log("updatedOptions:", updatedOptions)
+        setFilterSort(prev => ({ ...prev, sortBy: value }))
     }
 
-    const handleClickOutside = (e) => {
-        if (modalRef.current && !modalRef.current.contains(e.target)) {
+    function handleClickOutside(ev) {
+        if (modalRef.current && !modalRef.current.contains(ev.target)) {
             onClose()
         }
     }

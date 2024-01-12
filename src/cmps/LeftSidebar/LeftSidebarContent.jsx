@@ -20,13 +20,11 @@ export function SideBarContent() {
 
     const [userStations, setUserStations] = useState(null)
     const [filterSort, setFilterSort] = useState({ name: '', sortBy: '' })
-    const [showCreateModal, setShowCreateModal] = useState(false)
+    console.log("filterSort:", filterSort)
     const [showSearch, setShowSearch] = useState(false)
     const [resize, setResize] = useState(false)
-    const [isSortOpen, setIsSortOpen] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
 
-    const dispatch = useDispatch()
     const navigate = useNavigate()
 
 
@@ -39,34 +37,18 @@ export function SideBarContent() {
         }
     }, [user])
 
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
     function FilterList() {
         const regex = new RegExp(filterSort.name, 'i')
         let newList = userStations.filter(station => regex.test(station.name))
-        newList.sort((stationA, stationB) => stationA.name.localeCompare(stationB.name))
+        if (filterSort.sortBy === 'name') newList.sort((stationA, stationB) => stationA.name.localeCompare(stationB.name))
+        else if (filterSort.sortBy === 'createAt') newList.sort((stationA, stationB) => stationA.createdAt - toyB.stationB)
         console.log("newList:", newList)
         setUserStations(newList)
 
-
     }
 
-    function handleSortOptionSelected(sortBy) {
-        console.log("sortBy:", sortBy)
-        // let value = target.value
-        // let field = target.name
 
-        // const filterSort = { ...filterSort, [field]: value }
 
-        // dispatch({ type: SET_FILTER, filterSort })
-    }
 
     function openModal() { setIsModalOpen(true) }
     function closeModal() { setIsModalOpen(false) }
@@ -139,9 +121,6 @@ export function SideBarContent() {
             </section>
 
             <section className="side-bar-filtersort">
-
-
-
                 <div className="search-sort-view">
 
                     <div className="search-sort-toggle-buttons flex">
@@ -160,10 +139,9 @@ export function SideBarContent() {
                             />
                         }
                         <button className="sort" onClick={openModal}>
-                            {!showSearch && <span>Recents</span>}
                             <Sort></Sort>
                             {filterSort.sortBy}
-                            {isModalOpen && <SortByModal isOpen={isModalOpen} onClose={closeModal} onSortOptionSelected={handleSortOptionSelected}> </SortByModal>}
+                            {isModalOpen && <SortByModal setFilterSort={setFilterSort} isOpen={isModalOpen} onClose={closeModal} filterSort={filterSort}> </SortByModal>}
                         </button>
                     </div>
 
