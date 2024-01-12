@@ -16,6 +16,12 @@
     justify-content: center;
     align-items: stretch;
     padding: 0;
+    // background-color: #181818;
+}
+
+.station-list li:hover {
+    // transform: scale(1.05);
+    background-color: #282828;
 }
 
 .station-list li {
@@ -25,6 +31,7 @@
     border-radius: .5rem;
     // flex-basis: calc(33.333% - 1rem);
     // flex-grow: 1;
+    height: 100%;
 
     display: flex;
     flex-direction: column;
@@ -69,19 +76,20 @@
 
 
 
-.station-list>*:hover {
-    transform: scale(1.05);
-    background-color: #282828;
-}
+
 
 .main-hero {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: var(--item-height);
+    grid-auto-rows: $--item-height;
     gap: 0.5em;
     width: 100%;
     padding: 0;
-    margin: 0;
+    margin: 16px 0 0;
+
+    & button {
+        background-color: transparent;
+    }
 
 }
 
@@ -94,13 +102,18 @@
 
 .main-hero li {
     display: flex;
-    background-color: #b3b3b3;
+    background-color: hsla(0, 0%, 100%, .07);
     opacity: 70%;
-    border-radius: 0.5rem;
+    border-radius: 4px;
+    transition: background-color .3s ease;
+}
 
+.main-hero li:hover {
+    background: hsla(0, 0%, 100%, .2);
 }
 
 .main-hero .content {
+    color: white;
     display: flex;
     align-items: center;
     flex-grow: 1;
@@ -110,8 +123,8 @@
     width: 3rem;
     height: 3rem;
     object-fit: scale-down;
-    border-top-left-radius: 0.5rem;
-    border-bottom-left-radius: 0.5rem;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
     margin-right: 1em;
 
 }
@@ -140,17 +153,15 @@
 
 
 .station-list img {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .5);
     border-radius: 8px;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    margin-bottom: 16px;
+
 }
 
-.station-list p {
-    font-size: 1rem;
-    margin-top: 8px;
-    color: #fff;
-}
 
 .station-list .station-songs {
     font-size: 0.8rem;
@@ -227,8 +238,8 @@
 .station-topic {
     color: #fff;
     font-size: 1.5rem;
-    margin-bottom: 20px;
-    padding: 2rem 0 0;
+    margin-bottom: 8px;
+    padding: 1rem 0 0;
 }
 
 
@@ -250,14 +261,16 @@
     font-weight: bold;
     margin-bottom: 5px;
     text-align: start;
-    font-size: 0.8rem !important;
-    width: 100% !important;
+    // font-size: 0.8rem !important;
+    // width: 100% !important;
 }
 
 .station-description {
-    color: #818181 !important;
-    font-size: .6rem !important;
+    font-family: 'Montserrat-Light', sans-serif;
+    color: #818181;
+    font-size: .875rem;
     text-align: start;
+    font-weight: normal;
 
 }
 

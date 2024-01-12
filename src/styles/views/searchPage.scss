@@ -27,7 +27,16 @@
     border-radius: 0.3em;
     padding: 0.5em;
     font-size: 1.5rem;
-    font-weight: bolder;
+    font-weight:bolder;
+    overflow: hidden;
+
+    img{
+        width: 7rem;
+        height:7rem;
+        transform: rotate(25deg) translate(30%,-2%);
+        place-self: end;
+        overflow: hidden;
+    }
 
 }
 .ganeres-list li:hover{
@@ -78,6 +87,7 @@ div .result:hover{
     background-color: $clr4;
     height: 2em;
     width: 2em;
+    padding: 0.2em;
     left: 2.5rem;
     top:35%;
     border-radius: 50%;
@@ -94,7 +104,9 @@ div .result:hover{
     width: 2em;
     top:0;
     left: 0;
-    
+    font-size: 1em;
+    padding: 0.5em;
+
 }
 
 
