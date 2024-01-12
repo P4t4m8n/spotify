@@ -56,7 +56,7 @@
 .station-details-control-left {
     display: grid;
     grid-template-columns: 50% 25% 25%;
-    gap:.5rem;
+    gap: .5rem;
 
     .play-button {
         background-color: #1db954;
@@ -126,90 +126,43 @@
 
 
 .song-list {
-    width: 100%; // Ensure the table fills the container
-    table-layout: fixed; // Use fixed layout to control column widths
-
-    th,
-    td {
-        overflow: hidden; // Prevent content from spilling out
-        text-overflow: ellipsis; // Add ellipsis to overflowing text
-        white-space: nowrap; // Keep the content on a single line
-        text-align: start;
-    }
-
-    th:last-child,
-    td:last-child {
-        text-align: center; // Center-align the content of the last cell
-    }
-
-    th:nth-child(1),
-    td:nth-child(1) {
-        width: var(--tracklist-index-column-width, 16px);
-    }
-
-    th:nth-child(2),
-    td:nth-child(2) {
-        min-width: 120px;
-        width: var(--col1, 6fr);
-    }
-
-    th:nth-child(3),
-    td:nth-child(3) {
-        min-width: 120px;
-        width: var(--col2, 4fr);
-    }
-
-    th:nth-child(4),
-    td:nth-child(4) {
-        min-width: 120px;
-        width: var(--col3, 3fr);
-    }
-
-    th:nth-child(5),
-    td:nth-child(5) {
-        min-width: 120px;
-        width: var(--col4, 1fr);
-    }
+    grid-template-columns: auto 6fr 4fr 3fr 1fr;
+    padding: 0 16px;
 }
 
-// .song-list {
-//     th:nth-child(1) {
-//         width: 16px;
-//     }
+.list-header {
 
-//     // Column for #
-//     th:nth-child(2) {
-//         width: calc(6fr);
-//     }
+    // padding: 0 16px;
 
-//     // Column for Title
-//     th:nth-child(3) {
-//         width: calc(4fr);
-//     }
+    font-size: 0.8rem;
+    align-items: center;
 
-//     // Column for Artist
-//     th:nth-child(4) {
-//         width: calc(3fr);
-//     }
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: subgrid;
+}
 
-//     // Column for Album
-//     th:nth-child(5) {
-//         width: calc(1fr);
-//     }
+.list-header::after {
+    content: '';
+    display: block;
+    border-bottom: 1px solid hsla(0, 0%, 100%, .1);
+    width: 100%;
+    grid-column: 1 / -1;
+}
 
-//     // Column for Clock Icon
+// .bottom-border{
+//     border-bottom: 1px solid hsla(0, 0%, 100%, .1);
+//     width: 100%;
 // }
 
 .station-details-list {
     font-size: 0.8rem;
-    font-weight: 200;
-    height: 2rem;
     align-items: center;
-    justify-content: center;
 
-    width: 100%;
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: subgrid;
 }
-
 
 
 .station-details-list button {
@@ -229,66 +182,3 @@
 .details-list-control p {
     margin: 0;
 }
-
-
-
-
-// .list-header {
-//     display: grid;
-//     // grid-template-columns: 1rem 1rem 1rem 1rem;
-//     // grid-template-columns: repeat(4, 1fr);
-//     grid-template-columns: 16px 6fr 4fr 3fr 1fr;
-//     grid-column-gap: 16px;
-//     height: 2rem;
-//     align-items: center;
-
-
-// }
-
-// // .list-header {
-// //     display: flex;
-// //     justify-content: space-between;
-// //     width: 100%;
-// //     justify-self: flex-end;
-// //     height: 2rem;
-
-// // }
-
-
-
-// .station-details-list {
-//     display: grid;
-//     // grid-template-columns: 1rem 40% 20% 20% 20%;
-//     grid-template-columns: 16px 6fr 4fr 3fr 1fr;
-//     grid-column-gap: 16px;
-
-//     font-size: .8rem;
-//     font-weight: 200;
-//     height: 2rem;
-//     align-items: center;
-// }
-
-// // .station-details-list {
-// //     display: grid;
-// //     grid-template-columns: 1rem 40% 20% 20% 20%;
-// //     font-size: .8rem;
-// //     height: 2rem;
-// //     align-items: center;
-// // }
-
-// .station-details-list button {
-//     background-color: inherit;
-// }
-
-// .station-details-list img {
-//     filter: invert(58%) sepia(0%) saturate(1%) hue-rotate(173deg) brightness(87%) contrast(88%);
-// }
-
-// .details-list-control {
-//     display: flex;
-//     align-items: center;
-// }
-
-// .details-list-control p {
-//     margin: 0;
-// }
