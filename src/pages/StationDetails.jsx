@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react"
 import { useParams } from "react-router"
 import { loadStation } from "../store/actions/station.actions"
-import { useSelector } from "react-redux"
 import { Playlist } from "../cmps/main/Playlist"
 import { LikeCard } from "../cmps/main/LikeCard"
 import { PlayCard } from "../cmps/main/PlayCard"
 import ColorThief from 'colorthief'
+import { Dots } from "../services/icons.service"
 
 
 
@@ -31,6 +31,7 @@ export function StationDetails() {
                 const palette = colorThief.getPalette(img, 5)
                 const gradientColors = palette.map(rgb => `rgb(${rgb.join(',')})`)
                 setGradient(`linear-gradient(to right, ${gradientColors.join(', ')})`)
+                document.body.style.backgroundColor = gradient
             }
         }
 
@@ -73,12 +74,12 @@ export function StationDetails() {
                 <div className="station-details-control-left">
                     <PlayCard item={currStation}></PlayCard>
                     <LikeCard item={currStation}></LikeCard>
-                    <button className="details-dots"><img style={{ width: '2rem', height: '2rem' }} src="/src/assets/img/dotsSmall.svg"></img></button>
+                    <button className="details-dots"><Dots></Dots></button>
 
                 </div>
-                <div className="station-details-control-right">
-                    <button className="details-sort">Compact <img src="\src\assets\img\sort.svg"></img></button>
-                </div>
+                {/* <div className="station-details-control-right">
+                    <button className="details-sort"><Sort></Sort></button>
+                </div> */}
             </section>
             <Playlist songs={songs}></Playlist>
         </section >

@@ -18,6 +18,7 @@ import { UserPage } from './pages/UserPage.jsx'
 
 import '../src/styles/main.scss'
 import { VideoInfoComponent } from './cmps/support/VideoInfo.jsx'
+import { ModalProvider } from './cmps/main/tests/ModelProvider.jsx'
 // import '../src/footer.css'
 
 export function App() {
@@ -26,27 +27,28 @@ export function App() {
   const expandedClass = isOpen ? 'expanded' : '';
 
   return (
-    <div className={`main-container ${expandedClass}`}>
-      <Router>
-        <LeftSidebar />
-        <div className="main-content">
-          <AppHeader />
-          <Routes>
-            <Route path="/" element={<StationIndex />} />
-            <Route path="/:stationId" element={<StationDetails />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/search" element={<SearchPage />} />
-            <Route path="/search/:searchTerm" element={<SearchPage />} />
-            <Route path="/:userId/station/edit" element={<StationEdit />}></Route>
-            <Route path="/:userId/station/edit/:stationId" element={<StationEdit />}></Route>
-            <Route path="user/:userId" element={<UserPage />}></Route>
 
-          </Routes>
-        </div>
-        <RightSidebar />
-        <Player />
-      </Router>
-    </div>
+      <div className={`main-container ${expandedClass}`}>
+        <Router>
+          <LeftSidebar />
+          <div className="main-content">
+            <AppHeader />
+            <Routes>
+              <Route path="/" element={<StationIndex />} />
+              <Route path="/:stationId" element={<StationDetails />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/search" element={<SearchPage />} />
+              <Route path="/search/:searchTerm" element={<SearchPage />} />
+              <Route path="/:userId/station/edit" element={<StationEdit />}></Route>
+              <Route path="/:userId/station/edit/:stationId" element={<StationEdit />}></Route>
+              <Route path="user/:userId" element={<UserPage />}></Route>
+
+            </Routes>
+          </div>
+          <RightSidebar />
+          <Player />
+        </Router>
+      </div>
   )
 }

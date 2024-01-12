@@ -42,13 +42,9 @@ export function SideBarContent() {
         let newList = userStations.filter(station => regex.test(station.name))
         if (filterSort.sortBy === 'name') newList.sort((stationA, stationB) => stationA.name.localeCompare(stationB.name))
         else if (filterSort.sortBy === 'createAt') newList.sort((stationA, stationB) => stationA.createdAt - toyB.stationB)
-        console.log("newList:", newList)
         setUserStations(newList)
 
     }
-
-
-
 
     function openModal() { setIsModalOpen(true) }
     function closeModal() { setIsModalOpen(false) }
@@ -86,8 +82,6 @@ export function SideBarContent() {
         FilterList()
         if (!target.value) setUserStations([...user.stations])
     }
-
-
 
     // console.log('Render leftSideBarContent')
     if (!userStations) return <div>...Loading</div>

@@ -6,7 +6,8 @@ export const SET_IS_SEARCH_OPEN = "SET_IS_SEARCH_OPEN"
 const initialSate = {
     filterSortBy: { txt: '', sortBy: '', likeBy: '' },
     isOpen: false,
-    isSearchOpen: false
+    isSearchOpen: false,
+    grident: []
 }
 
 export function appRedcuer(state = initialSate, action = {}) {
@@ -19,7 +20,7 @@ export function appRedcuer(state = initialSate, action = {}) {
 
         case SET_IS_OPEN:
             { return { ...state, isOpen: action.isOpen } }
-            
+
         case SET_IS_SEARCH_OPEN:
             { return { ...state, isSearchOpen: action.isSearchOpen } }
 
