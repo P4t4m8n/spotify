@@ -10,8 +10,11 @@ import { useNavigate, useParams } from "react-router"
 export function SearchPage() {
 
     const [searchList, setSearchList] = useState(null)
+    
+    const ganers = ["New", 'Music', 'Pop', 'Hip-Hop', 'Rap', 'Latino', 'indi', 'Rock', 'Podcusts', 'Live', 'Sport', 'Meditation', 'Party', 'Electronic', 'For sleep']
+    
 
-    const ganers = ["New", 'Music', 'Pop', 'Hip-Hop', 'R&B', 'Latino', 'indi', 'Rock', 'Podcusts', 'Live', 'Sport', 'Maditation', 'Party music', 'Electronic music', 'For sleep']
+
 
     const params = useParams()
     const navigate = useNavigate()
@@ -23,6 +26,8 @@ export function SearchPage() {
         else setSearchList(null)
 
     }, [params.searchTerm])
+
+  
 
 
     async function getSearchResults() {
@@ -42,11 +47,11 @@ export function SearchPage() {
         <section className='search-page' >
             {!params.searchTerm &&
                 <Fragment>
-                    {console.log('1')}
                     <h1>Browse all</h1>
                     <ul className="ganeres-list">
                         {ganers.map(ganere =>
-                            <li key={ganere} style={{ backgroundColor: utilService.getRandomColor() }} onClick={() => navigate('/search/' + ganere)}>{ganere}</li>
+                            <li key={ganere} style={{ backgroundColor: utilService.getRandomColor() }} onClick={() => navigate('/search/' + ganere)}>
+                                {ganere}<img src={`src/assets/img/${ganere}.jpg`}></img></li>
                         )}
                     </ul>
                 </Fragment>
