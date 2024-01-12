@@ -28,14 +28,19 @@ export function StationDetails() {
 
             img.onload = async () => {
                 const colorThief = new ColorThief()
-                const palette = colorThief.getPalette(img, 5)
+                const palette = colorThief.getPalette(img, 2)
                 const gradientColors = palette.map(rgb => `rgb(${rgb.join(',')})`)
-                setGradient(`linear-gradient(to right, ${gradientColors.join(', ')})`)
-                document.body.style.backgroundColor = gradient
+                setGradient(`linear-gradient(to bottom, 
+                    ${gradientColors[0]} 0%, 
+                    ${gradientColors[1]} 25%, 
+                    ${gradientColors[0]} 50%, 
+                    #000000 75%,   
+                    #000000 100%)`)
+                document.querySelector('.main-content').style.background = gradient
             }
         }
 
-    }, [currStation])
+    }, [currStation,gradient])
 
 
     async function onLoadstation() {
@@ -55,7 +60,7 @@ export function StationDetails() {
 
     return (
         <section className="station-details" >
-            <header className="station-header" style={{ background: gradient }}>
+            <header className="station-header" >
                 <img src={imgUrl}></img>
                 <div className="station-header-info">
                     <h2>{type === 'station' ? 'Playlist' : 'Song'}</h2>
