@@ -7,31 +7,69 @@
     margin: 0;
 }
 
-.station-details header {
+.station-header {
     display: flex;
+    align-items: center;
+    background-color: #181818;
+    color: #fff;
+    padding: 20px;
 
+    img {
+        width: 200px;
+        height: auto;
+        margin-right: 20px;
+        border-radius: 4px;
+    }
+
+    .station-header-info {
+        display: flex;
+        flex-direction: column;
+        font-weight: 200;
+
+        h2 {
+            font-size: 1.2em;
+            color: #1db954;
+        }
+
+        h3 {
+            font-size: 2rem;
+            margin: 5px 0;
+        }
+
+        h4 {
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+
+        >div {
+            display: flex;
+            align-items: center;
+
+            :nth-child(2)::after {
+                content:'•';
+                padding-left: .5em;
+            }
+
+            img {
+                width: 24px;
+                height: 24px;
+                margin-right: 10px;
+            }
+
+            p {
+                margin-right: 15px;
+                font-size: 0.9em;
+            }
+        }
+    }
 }
 
-.station-details header img {
-    width: 13rem;
-    height: 13rem;
-    border-radius: .2rem;
-}
 
-.station-header-info {
-    display: flex;
-    flex-direction: column;
-    padding-left: 1.5rem;
-}
 
-.station-header-info h2 {
-    font-size: .7rem;
-    margin-bottom: 1rem;
-}
 
-.station-header-info h3 {
-    font-size: 4.0rem;
-}
+
+
+
 
 .station-header-file-details {
     display: flex;
@@ -56,7 +94,7 @@
 .station-details-control-left {
     display: grid;
     grid-template-columns: 50% 25% 25%;
-    gap:.5rem;
+    gap: .5rem;
 
     .play-button {
         background-color: #1db954;
@@ -117,12 +155,6 @@
     height: 1rem;
     filter: invert(58%) sepia(0%) saturate(1%) hue-rotate(173deg) brightness(87%) contrast(88%);
 }
-
-
-
-
-
-
 
 
 .song-list {
