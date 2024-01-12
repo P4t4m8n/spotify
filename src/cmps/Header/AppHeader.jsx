@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import {  useLocation , Link ,useParams} from 'react-router-dom'
+import { useLocation, Link, useParams } from 'react-router-dom'
 
 
 
@@ -30,11 +30,11 @@ export function AppHeader() {
     function ConditionalSearchComponent() {
         const location = useLocation();
         const { searchTerm } = useParams();
-    
+
         if (location.pathname === '/search' || location.pathname === `/search/:${searchTerm}`) {
             return <Search />;
         }
-    
+
         return null;
     }
 
@@ -55,11 +55,17 @@ export function AppHeader() {
                             <li onClick={onLogout}>Logout</li>
                         </ul>
                     }
-                    <span >
-                        <img src={user.imgUrl ? user.imgUrl : `/src/assets/img/user.svg`}></img>  Hello {user.username} </span>
+                    <p className='user-buttons grid'>
+
+                        Hello <span>  {user.username}</span>
+
+                        <div className='user-image-container flex'>
+                            <img src={user.imgUrl ? user.imgUrl : `/src/assets/img/user.svg`}></img>
+                        </div>
+                    </p>
                 </ section >
             ) : (
-                <section>
+                <section className='contents'>
                     <LoginSignup />
                 </section>
             )}
