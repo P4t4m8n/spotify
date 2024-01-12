@@ -36,7 +36,6 @@ export async function signup(credentials) {
 
         const user = await userService.signup(credentials)
         let fav = stationService.getEmptyStation('Liked Songs', '/src/assets/img/favorits.png')
-        console.log("fav:", fav)
         fav = await stationService.save(fav)
         user.stations.push(fav)
         store.dispatch({ type: SET_USER, user })
@@ -52,6 +51,7 @@ export async function signup(credentials) {
 }
 
 export async function updateUser(user) {
+console.log("user:", user)
 
     try {
         const updatedUser = await userService.update(user)
