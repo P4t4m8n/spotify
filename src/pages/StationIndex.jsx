@@ -26,6 +26,7 @@ export function StationIndex() {
     return (
         <Fragment >
             <div className="home-page">
+                <h1>Good evening</h1>
                 <ul className="main-hero" >
                     <li>
                         <div className="content">
@@ -88,6 +89,7 @@ export function StationIndex() {
                 {
                     stationListTitle.current.map((stationListTitle, idx) => {
                         {
+
                             const stationsFilterd = stations.filter(station => station.stationListTitle === stationListTitle)
                             return <StationList key={idx} stations={stationsFilterd} stationListTitle={stationListTitle}  ></StationList>
                         }
