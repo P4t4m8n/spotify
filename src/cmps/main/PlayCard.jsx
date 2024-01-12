@@ -5,30 +5,30 @@ import { Pause, Play } from "../../services/icons.service"
 
 
 export function PlayCard({ item }) {
+console.log("item:", item)
 
     const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
     const song = useSelector(storeState => storeState.songMoudle.currSong)
     const station = useSelector(storeState => storeState.stationsMoudle.currStation)
     const player = useSelector(storeState => storeState.playerMoudle.player)
-
-
+    
+    
     let cardType = (item.type === 'playlist') ? station._id : song._id
-
+    
     function onPlayStation(ev) {
         ev.preventDefault()
         if (item.type === 'playlist') {
             if (item._id !== station._id) {
                 setCurrStation(item)
                 loadSong(item.songs[0])
-                if (isPlaying) setPlaying()
-
+                if (isPlaying) setPlaying(false)
             }
         }
 
         if (item.type === 'song') {
             if (item._id !== song._id) {
                 loadSong(item.songs[0])
-                if (isPlaying) setPlaying()
+                if (isPlaying) setPlaying(false)
 
             }
         }
@@ -38,6 +38,7 @@ export function PlayCard({ item }) {
     }
 
     function togglePlayPause() {
+        console.log("isPlaying:", isPlaying)
         if (isPlaying) {
             player.pauseVideo()
         }
@@ -50,9 +51,8 @@ export function PlayCard({ item }) {
 
     return (
         <button onClick={(ev) => onPlayStation(ev)} className="play-button">
-            {/* {isPlaying && item._id === cardType ? <img src="\src\assets\img\pause.svg"></img> : <img src="\src\assets\img\play.svg"></img>} */}
-            {isPlaying && <Pause />}
-            {!isPlaying && <Play />}
+            {isPlaying && item._id === cardType ? <Pause /> : <Play />}
+
         </button>
     )
 }

@@ -8,9 +8,19 @@ export function PlayerRightside({ volume, setVolume }) {
 
     function handleVolumeChange(ev) {
         const newVolume = parseInt(ev.target.value, 10)
+        console.log("newVolume:", newVolume)
         setVolume(newVolume)
         if (player) {
             player.setVolume(newVolume)
+        }
+    }
+
+    function onSetVolume(ev) {
+        let vol = 100
+        if (volume > 0) vol = 0
+        setVolume(vol)
+        if (player) {
+            player.setVolume(vol)
         }
     }
 
@@ -18,7 +28,7 @@ export function PlayerRightside({ volume, setVolume }) {
     function toggleFullScreen(ev) {
         if (!document.fullscreenElement) {
             document.documentElement.requestFullscreen()
-           
+
         } else {
             if (document.exitFullscreen) {
                 document.exitFullscreen()
@@ -32,7 +42,7 @@ export function PlayerRightside({ volume, setVolume }) {
             <button onClick={() => setIsOpen(!isOpen)}><Details></Details></button>
             <button><Lyric></Lyric></button>
             <button><Queue></Queue></button>
-            <button onClick={() => setVolume(volume * (-100))}><Volume></Volume></button>
+            <button onClick={onSetVolume}><Volume></Volume></button>
             <div className="volume">
                 <input
                     type="range"

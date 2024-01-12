@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { PlayCard } from "../main/PlayCard"
 
-export function StationList({ stations, topic: stationListTitle }) {
+export function StationList({ stations, stationListTitle }) {
     return (
         <div className="station">
             <h2 className="station-topic">{stationListTitle}</h2>

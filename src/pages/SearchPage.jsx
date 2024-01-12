@@ -79,7 +79,7 @@ export function SearchPage() {
                             )}
                             </div>
                         </div>
-                        <PlayCard item={searchList[0]}></PlayCard>
+                        {/* <PlayCard item={searchList[0]}></PlayCard> */}
                     </div>
                     {/*<div className='result-songs'>
                         <header>Songs</header>

@@ -18,13 +18,15 @@ export function StationIndex() {
     }, [])
 
 
-
+    
     // console.log('Render stationIndex')
     if (!stations) return <div>...Loading</div>
+
 
     return (
         <Fragment >
             <div className="home-page">
+                <h1>Good evening</h1>
                 <ul className="main-hero" >
                     <li>
                         <div className="content">
@@ -82,18 +84,12 @@ export function StationIndex() {
                     </li>
 
                 </ul>
-                {/* <ul className="main-hero" >
-                <li><img src="src\assets\img\asset 53.jpeg"></img><p>Daily Mix 1</p><button><img className="icon-16" src={`src/assets/img/play.svg`}></img></button></li>
-                <li><img src="src\assets\img\asset 53.jpeg"></img><p>Daily Mix 2</p><button><img className="icon-16" src={`src/assets/img/play.svg`}></img></button></li>
-                <li><img src="src\assets\img\asset 53.jpeg"></img><p>Daily Mix 3</p><button><img className="icon-16" src={`src/assets/img/play.svg`}></img></button></li>
-                <li><img src="src\assets\img\asset 53.jpeg"></img><p>Daily Mix 4</p><button><img className="icon-16" src={`src/assets/img/play.svg`}></img></button></li>
-                <li><img src="src\assets\img\asset 53.jpeg"></img><p>Daily Mix 5</p><button><img className="icon-16" src={`src/assets/img/play.svg`}></img></button></li>
-                <li><img src="src\assets\img\asset 53.jpeg"></img><p>Daily Mix 6</p><button><img className="icon-16" src={`src/assets/img/play.svg`}></img></button></li>
-            </ul> */}
+
 
                 {
                     stationListTitle.current.map((stationListTitle, idx) => {
                         {
+
                             const stationsFilterd = stations.filter(station => station.stationListTitle === stationListTitle)
                             return <StationList key={idx} stations={stationsFilterd} stationListTitle={stationListTitle}  ></StationList>
                         }

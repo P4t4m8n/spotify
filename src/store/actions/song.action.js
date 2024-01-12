@@ -9,6 +9,7 @@ export function loadSong(song) {
 }
 
 export function setPlaying(isPlaying) {
+console.log("isPlaying:", isPlaying)
 
     store.dispatch({ type: SET_PLAYING, isPlaying })
 }
