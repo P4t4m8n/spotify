@@ -1,12 +1,13 @@
 
 import YouTube from 'react-youtube'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { loadSong, setPlaying } from '../../store/actions/song.action'
 import { utilService } from '../../services/util.service'
 import { setPlayer } from '../../store/actions/player.action'
 import { PlayCard } from '../main/PlayCard'
-import { Next, Prev, Shuffle, Repeat } from '../../services/icons.service'
+import { Next, Prev, Shuffle, Repeat, Play, Pause } from '../../services/icons.service'
+import { ProgressBar } from './ProgressBar'
 
 export function YouTubeAudioPlayer({ volume }) {
 
@@ -15,12 +16,10 @@ export function YouTubeAudioPlayer({ volume }) {
   const station = useSelector(storeState => storeState.stationsMoudle.currStation)
   const player = useSelector(storeState => storeState.playerMoudle.player)
 
-  const [progress, setProgress] = useState(null)
 
   const stationIdx = useRef(0)
   const isRepeat = useRef(false)
   const isShuffle = useRef(false)
-  const intervalRef = useRef(null)
 
   const opts = {
     height: '0',
@@ -31,51 +30,28 @@ export function YouTubeAudioPlayer({ volume }) {
     },
   }
 
-  useEffect(() => {
-
-    if (!song) loadSong(station.songs[stationIdx.current])
-    setProgress('0.00')
-
-    const updateProgress = () => {
-
-      if (player && player.getCurrentTime && player.getDuration ) {
-
-        const currentTime = player.getCurrentTime()
-        const duration = player.getDuration()
-        const progressPercentage = (currentTime / duration) * 100
-        const timeElapsed = utilService.formatTime(currentTime)
-        const time = utilService.formatTime(duration)
-        setProgress({ progressPercentage, timeElapsed, time })
-      }
-    }
-    if (player) {
-      clearInterval(intervalRef.current)
-      intervalRef.current = setInterval(updateProgress, 100)
-    }
-
-  }, [player])
-
 
   if (!song) return <div> loading</div>
 
-  async function load() {
-    loadSong(station.songs[stationIdx.current])
+  function onPlayStation(ev) {
+    ev.preventDefault()
+    if (item.type === 'playlist') {
+      if (item._id !== station._id) {
+        setCurrStation(item)
+        loadSong(item.songs[0])
+        if (isPlaying) setPlaying(false)
+      }
+    }
 
-  }
+    if (item.type === 'song') {
+      if (item._id !== song._id) {
+        loadSong(item.songs[0])
+        if (isPlaying) setPlaying(false)
 
-  function handleProgressbar(ev) {
+      }
+    }
 
-    const progressBar = ev.target
-    const clickPosition = (ev.clientX - progressBar.getBoundingClientRect().left) / progressBar.offsetWidth
-    const newTime = clickPosition * player.getDuration()
-
-    player.seekTo(newTime)
-    setProgress(clickPosition)
-  }
-
-  function onReady(ev) {
-    setPlayer(ev.target)
-    ev.target.setVolume(volume)
+    togglePlayPause()
 
   }
 
@@ -119,6 +95,12 @@ export function YouTubeAudioPlayer({ volume }) {
     loadSong(station.songs[stationIdx.current])
   }
 
+  function onReady(ev) {
+    setPlayer(ev.target)
+    ev.target.setVolume(volume)
+
+  }
+
   function togglePlayPause() {
     if (isPlaying) {
       player.pauseVideo()
@@ -131,7 +113,6 @@ export function YouTubeAudioPlayer({ volume }) {
   }
 
   const { trackId } = song
-  const isPlay = isPlaying ? 'pause' : 'play'
 
   return (
     <section className='audio'>
@@ -142,15 +123,7 @@ export function YouTubeAudioPlayer({ volume }) {
         <button onClick={(() => onChangeSong(1))}><Next></Next></button>
         <button onClick={onRepeat}><Repeat></Repeat></button>
       </div>
-
-
-      <div className='progress-bar'>
-        <p style={{ color: 'white' }}>{progress ? progress.timeElapsed : '0:00'} </p>
-        <div onClick={handleProgressbar} className="bar" style={{ width: '100%', height: '4px', backgroundColor: 'gray' }}>
-          <div className='bar-mov' style={{ height: '100%', width: `${progress ? progress.progressPercentage : 0}%`, backgroundColor: 'white' }} />
-        </div>
-        <p className='text-left' style={{ color: 'white' }}>{progress ? progress.time : '0:00'} </p>
-      </div>
+      <ProgressBar son={song} player={player} station={station} stationIdx={stationIdx} />
       <YouTube className='video' videoId={trackId} opts={opts} onEnd={onEnd} onReady={onReady} />
 
     </section >
