@@ -30,7 +30,7 @@ export function Playlist({ songs, onRemoveSong, isEdit }) {
                                 <div className="details-list-control">
                                     <LikeCard item={song}></LikeCard>
                                     <p>{song.duration}</p>
-                                    <button><Dots></Dots></button>
+                                    {/* <button><Dots></Dots></button> */}
                                     {isEdit && <button onClick={(ev) => onRemoveSong(ev, song._id)}>❌</button>}
                                 </div>
                             </div>

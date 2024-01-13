@@ -34,7 +34,7 @@ export function StationEdit() {
 
             const station = await stationService.get(stationId)
             setStationToEdit(station)
-           
+
         }
         catch (err) { console.log(err) }
     }
@@ -53,7 +53,7 @@ export function StationEdit() {
 
         try {
             const savedSation = await saveStation(stationToEdit)
-            
+
         }
         catch (err) {
             console.log(err)
@@ -85,6 +85,8 @@ export function StationEdit() {
     const { type, name, amount, createdBy, duration, create, stationImgUrl, songs } = stationToEdit
     const play = isPlaying ? 'pause' : 'play'
 
+    let counter = 0
+
     return (
 
         <section className="station-page" >
@@ -101,7 +103,7 @@ export function StationEdit() {
                     <Playlist songs={stationToEdit.songs} onRemoveSong={onRemoveSong} isEdit={isEdit.current}></Playlist>
                 }
             </div>
-            <div onClick={() => setIsSearchOpen(!isSearchOpen)}>{isSearchOpen ? 'X' : 'Find more'}</div>
+            <div className="find-more" onClick={() => setIsSearchOpen(!isSearchOpen)}>{isSearchOpen ? 'X' : 'Find more'}</div>
             {
                 isSearchOpen ?
                     <div>
@@ -111,30 +113,33 @@ export function StationEdit() {
 
                     </div>
                     :
-                    <ul className="song-list">
-                        <header>Recommended</header>
-                        <p>Based on whats in this station</p>
-                        {
-                            recommendedList.current.songs.map(song =>
-                                <li key={song._id} className="flex full" style={{ width: '100%' }}>
-                                    <div>
-                                        <button><img src={song.songImgUrl}></img></button>
-                                        <div>
+                    <div>
+                        <p className="recommended">Recommended</p>
+                        <p className="under-recommended">Based on whats in this station</p>
+                        <ul className="under-song-list grid">
+                            {
+                                recommendedList.current.songs.map(song =>
+                                    <li key={song._id} className="add-song-to-station-li clean-list">
+                                        <p className="counter">{++counter}</p>
+
+                                        <div className="title-image-play grid">
+                                            <button><img src={song.imgUrl}></img></button>
                                             <p>{song.title}</p>
-                                            <p>{song.artist}</p>
                                         </div>
-                                    </div>
 
-                                    <p>{song.album}</p>
-                                    <div>
+                                        <p>{song.artist}</p>
 
-                                        <button onClick={(ev) => onAddSong(ev, song)}>Add</button>
-                                    </div>
+                                        <p>{song.album}</p>
 
-                                </li>
-                            )
-                        }
-                    </ul>
+                                        <div class="add-to-station-container">
+                                            <button className="add-to-station-button" onClick={(ev) => onAddSong(ev, song)}>Add</button>
+                                        </div>
+
+                                    </li>
+                                )
+                            }
+                        </ul>
+                    </div>
             }
         </section >
     )
