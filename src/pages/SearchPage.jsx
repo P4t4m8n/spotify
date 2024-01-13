@@ -11,7 +11,6 @@ export function SearchPage() {
 
     const [searchList, setSearchList] = useState(null)
     const user = useSelector(storeState => storeState.userMoudle.userObj)
-    console.log("user:", user)
 
     const genres = ["New", 'Music', 'Pop', 'Hip-Hop', 'Rap', 'Latino', 'indi', 'Rock', 'Podcusts', 'Live', 'Sport', 'Meditation', 'Party', 'Electronic', 'For sleep']
 
@@ -34,11 +33,7 @@ export function SearchPage() {
     async function onSaveSong(song) {
         try {
             saveSong(song)
-            // const dowloaded = user.stations
-            // dowloaded[1].push(song)
-            console.log("user:", user)
             user.stations[1].songs.push(song)
-            console.log("user:", user)
             updateUser(user)
           
         }

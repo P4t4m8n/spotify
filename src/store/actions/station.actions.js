@@ -36,9 +36,6 @@ export async function setUserStations(stations) {
     }
     const updatedStations = await Promise.all(promisesSongs)
     const newStations = [...fav, ...updatedStations]
-    console.log("newStations:", newStations)
-    console.log("newStations:", newStations[0])
-    console.log("newStations:", newStations[0])
     store.dispatch({ type: SET_USER_STATIONS, newStations })
     return newStations
 }

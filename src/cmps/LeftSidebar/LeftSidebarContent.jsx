@@ -17,7 +17,6 @@ import MenuItem from '@mui/material/MenuItem';
 export function SideBarContent() {
 
     const user = useSelector((storeState) => storeState.userMoudle.userObj)
-    console.log("user:", user)
 
     const userStations = useSelector((storeState) => storeState.stationsMoudle.userStations)
     const [filterSort, setFilterSort] = useState({ name: '', sortBy: '' })

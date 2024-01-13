@@ -9,11 +9,9 @@ export function LikeCard({ item }) {
 
     const [isLiked, setIsLiked] = useState(false)
     const user = useSelector(storeState => storeState.userMoudle.userObj)
-    console.log("user:", user)
 
     useEffect(() => {
         let LikeCheck
-        console.log("user.stations:", user.stations)
         if (user && user.stations && user.stations.length) {
 
             if (item.type === 'playlist') LikeCheck = user.stations.some(station => station._id === item._id)
