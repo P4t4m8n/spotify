@@ -27,6 +27,7 @@
 .left-sidebar {
     grid-area: left-sidebar;
     overflow-y: auto;
+    flex:1;
 }
 
 .main-content {
@@ -67,7 +68,7 @@
 .station-page {
     grid-area: main;
 
-    padding: 24px;
+    // padding: 24px;
 
     form {
         gap: calc($panel-gap*2);

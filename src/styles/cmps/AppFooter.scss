@@ -25,6 +25,7 @@
   height: 56px;
   align-items: center;
   gap: 1.5rem;
+  padding-left: $panel-gap;
 
   .playing-card-info {
     font-family: Montserrat, sans-serif;
@@ -50,7 +51,7 @@
   img {
     width: 56px;
     height: 56px;
-    border-radius: .5rem;
+    border-radius: 4px;
   }
 }
 
@@ -63,14 +64,15 @@
   width: 100%;
   align-self: center;
   height: 100%;
-  justify-content: space-around;
+  justify-content: center;
 
   .audio-control {
     display: flex;
     align-self: center;
     gap: 1rem;
     align-items: center;
-    height: 2rem;
+    // height: 2rem;
+    margin-bottom: $panel-gap;
 
     button {
       background-color: inherit;

@@ -30,29 +30,30 @@ export function AppHeader() {
 
     return (
         <div className="app-header">
-          
+
             {isSearchOpen && <Search></Search>}
 
 
-            
+
             {user ? (
                 < section className='user-form' onClick={() => setShowCreateModal(!showCreateModal)} >
+
                     {showCreateModal &&
                         <ul className="show-create-modal clean-list context user-modal">
                             <li >  <Link to={`user/${user._id}`}>Profile</Link></li>
                             <li onClick={onLogout}>Logout</li>
                         </ul>
                     }
-             
-
+                    <div className='user-buttons grid'>
                         <div className='user-image-container flex'>
                             {user.imgUrl ? <img src={user.imgUrl}></img> : <UserIcon></UserIcon>}
                         </div>
-               
+                    </div>
+
                 </ section >
             ) : (
                 <section className='contents'>
-                    <LoginSignup />
+                    <LoginSignup></LoginSignup>
                 </section>
             )}
         </div>
