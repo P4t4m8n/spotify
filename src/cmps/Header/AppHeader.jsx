@@ -40,14 +40,12 @@ export function AppHeader() {
                             <li onClick={onLogout}>Logout</li>
                         </ul>
                     }
-                    <p className='user-buttons grid'>
-
-                        Hello <span>  {user.username}</span>
+             
 
                         <div className='user-image-container flex'>
                             {user.imgUrl ? <img src={user.imgUrl}></img> : <UserIcon></UserIcon>}
                         </div>
-                    </p>
+               
                 </ section >
             ) : (
                 <section className='contents'>

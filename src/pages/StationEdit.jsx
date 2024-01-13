@@ -42,38 +42,31 @@ export function StationEdit() {
     async function onAddSong(ev, song) {
         recommendedList.current.songs = recommendedList.current.songs.filter(listSong => song._id !== listSong._id)
 
-        const songs = { ...stationToEdit }
-        songs.songs.push(song)
-        setStationToEdit(songs)
-        onSaveStation(stationToEdit)
-        
+        const songs = stationToEdit.songs
+        songs.push(song)
+        setStationToEdit(prevStation => ({ ...prevStation, songs: songs }))
+        onSaveStation()
+
     }
-
-    function onRemoveSong(ev, songId) {
-
-        stationToEdit.songs = stationToEdit.songs.filter(listSong => songId !== listSong._id)
-        setStationToEdit(() => ({ ...stationToEdit }))
-        onSaveStation(stationToEdit)
-    }
-
 
     async function onSaveStation(ev) {
 
         try {
-            console.log("stationToEdit:", stationToEdit)
             const savedSation = await saveStation(stationToEdit)
-            console.log("savedSation:", savedSation)
-
-
-            console.log("user.stations:", user.stations)
-            console.log("user.stations:", user.stations)
-            updateUser(user)
-
+            
         }
         catch (err) {
             console.log(err)
         }
     }
+    function onRemoveSong(ev, songId) {
+
+        stationToEdit.songs = stationToEdit.songs.filter(listSong => songId !== listSong._id)
+        setStationToEdit(() => ({ ...stationToEdit }))
+        onSaveStation()
+    }
+
+
 
     function handleChange({ target }) {
         console.log("target:", target)

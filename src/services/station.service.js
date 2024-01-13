@@ -151,14 +151,14 @@ function _createStations() {
 
 }
 
-function getEmptyStation(name = '', idx = '') {
+function getEmptyStation(name = '', idx = '',imgUrl='') {
     return {
     
         name: name + idx,
         stationListTitle: '',
         type: "playlist",
         tags: [],
-        imgUrl: '',
+        imgUrl: imgUrl,
         createdBy: {
             _id: '',
             username: '',
