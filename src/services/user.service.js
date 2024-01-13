@@ -43,7 +43,6 @@ async function login({ username, password }) {
 }
 
 async function signup({ username, password, email, stations }) {
-    console.log("stations:", stations)
     try {
         const user = { username, password, email, stations, favorites: [] }
         const newUser = await asyncService.post(STORGE_KEY_USERS, user)
