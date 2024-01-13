@@ -19,7 +19,7 @@ export function PlaylistHero({ handleChange, stationToEdit, onSaveStation }) {
 
 
     return (
-        <header>
+        <header className="station-hero">
             <form className="flex">
 
                 <label htmlFor="file-input">
@@ -27,7 +27,7 @@ export function PlaylistHero({ handleChange, stationToEdit, onSaveStation }) {
                     <Note></Note>
                 </label>
                 <div className="hero-right-section flex">
-                    <div className="station-hero">
+                    <div>
                         <p>{type}</p>
                         <React.Fragment>
                             <Button
@@ -66,7 +66,7 @@ export function PlaylistHero({ handleChange, stationToEdit, onSaveStation }) {
                         </React.Fragment>
                     </div>
                     <div>
-                        <p>{createdBy.username || 'Spotify'}</p>
+                        <p>{createdBy.username || 'TubeFy'}</p>
                         <p>{amount || ''}</p>
                         <p>duration: {duration || ''}</p>
                     </div>

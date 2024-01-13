@@ -9,16 +9,16 @@ export function Playlist({ songs, onRemoveSong, isEdit }) {
         <div>
             <ul className="song-list grid clean-list">
                 <li className="list-header">
-                    <p>#</p>
+                    <p> #</p>
                     <p>Title</p>
                     <p>Artist</p>
                     <p>Album</p>
                     <p><Clock></Clock></p>
                 </li>
 
-            </ul>
-            <div className="mother-fucking-line"></div>
-            <ul className="song-list grid clean-list">
+
+                {/* <div className="seperator"></div> */}
+
                 {
                     songs.map((song, idx) =>
                         <li key={song._id} className="station-details-list">

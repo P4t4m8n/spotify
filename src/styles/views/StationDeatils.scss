@@ -160,6 +160,11 @@
 
 .list-header {
 
+    border-bottom: 1px solid hsla(0, 0%, 100%, .1);
+    margin-bottom: 16px;
+
+    color: $clr13;
+
     padding: 0 16px;
 
     height: 36px;
@@ -185,11 +190,11 @@
     }
 }
 
-.mother-fucking-line {
-    border-bottom: 1px solid hsla(0, 0%, 100%, .1);
-    margin-bottom: 16px;
-    // border-collapse: collapse;
-}
+// .seperator {
+//     border-bottom: 1px solid hsla(0, 0%, 100%, .1);
+//     margin-bottom: 16px;
+//     // border-collapse: collapse;
+// }
 
 // this didnt work as expected but use as needed
 // .list-header::after {
@@ -215,20 +220,29 @@
 
     height: 56px;
 
+    p:first-of-type {
+        text-align: end;
+    }
+
     &:hover {
         background-color: hsla(0, 0%, 100%, .1);
+        border-radius: 4px;
     }
 
     .artist-and-image {
-        // display: grid;
-        // grid-auto-flow: column;
+        color: $clr6;
+
         grid-template-columns: max-content auto;
         align-items: center;
+
+
 
         img {
             margin-right: 12px;
 
         }
+
+
     }
 
 }
