@@ -53,7 +53,8 @@ export function Playlist({ songs, onRemoveSong, isEdit, id, user, onChangePlayli
                     </li>
                 ))}
 
-            </ul>
+                </ul>
+            </DndContext>
         </div >
     )
 }
