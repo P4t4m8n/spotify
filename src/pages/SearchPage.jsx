@@ -10,7 +10,6 @@ import { updateUser } from '../store/actions/user.actions'
 export function SearchPage() {
 
     const [searchList, setSearchList] = useState(null)
-    console.log("searchList:", searchList)
     const user = useSelector(storeState => storeState.userMoudle.userObj)
 
     const genres = ["New", 'Music', 'Pop', 'Hip-Hop', 'Rap', 'Latino', 'indi', 'Rock', 'Podcusts', 'Live', 'Sport', 'Meditation', 'Party', 'Electronic', 'For sleep']
@@ -32,14 +31,15 @@ export function SearchPage() {
     }
 
     async function onSaveSong(song) {
+        console.log("song:", song)
         try {
             saveSong(song)
-            const songs = user.stations[0].songs
-            songs.push(song)
-            const stations = user.stations
-            stations[0].songs = songs
-            const newUser = { ...user, stations: stations }
-            updateUser(newUser)
+            // const songs = user.stations[0].songs
+            // songs.push(song)
+            // const stations = user.stations
+            // stations[0].songs = songs
+            // const newUser = { ...user, stations: stations }
+            // updateUser(newUser)
         }
         catch (err) { console.log(err) }
     }
@@ -75,8 +75,8 @@ export function SearchPage() {
                                             <header>{song.name}</header>
                                             <h1>{song.artist}</h1>
                                             <h2>{song.duration}</h2>
-                                            {user && <button onClick={() => onSaveSong(song)}>ADD</button>}
                                         </div>
+                                            {user && <button onClick={() => onSaveSong(song)}>ADD</button>}
                                     </div>
                                 )}
                             </div>

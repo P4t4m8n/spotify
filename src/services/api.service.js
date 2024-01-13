@@ -24,8 +24,6 @@ async function getContent(search) {
             try {
                 const searchInfo = parseSongString(ytItem.snippet.title)
                 const duration = await _getDuration(ytItem.id.videoId)
-                console.log("searchInfo:", searchInfo)
-                console.log("duration:", duration)
                 return {
 
                     name: searchInfo.name,
@@ -72,7 +70,6 @@ async function _getDuration(videoId) {
 }
 
 function formatDuration(duration) {
-    console.log("duration:", duration)
     const regex = /PT(\d+)M(\d+)S/
     const matches = duration.match(regex)
 
