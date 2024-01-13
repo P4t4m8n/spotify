@@ -1,10 +1,9 @@
 import { Clock, Dots } from "../../services/icons.service";
 import { LikeCard } from "./LikeCard";
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 
 
-export function Playlist({ songs, onRemoveSong, isEdit }) {
+export function Playlist({ songs, onRemoveSong, isEdit, id, user, onChangePlaylist }) {
 
 
     return (
@@ -36,6 +35,19 @@ export function Playlist({ songs, onRemoveSong, isEdit }) {
                                 <p>{song.duration}</p>
                                 <button><Dots></Dots></button>
                                 {isEdit && <button onClick={(ev) => onRemoveSong(ev, song._id)}>❌</button>}
+                                {isEdit &&
+
+                                    <select onChange={(ev) => onChangePlaylist(ev, song, id)}>
+                                        {
+                                            user.stations.map((station, idx) => {
+                                                return (station._id === id) ? <option key={idx} value="same">Current Playlist</option> :
+                                                    <option key={idx} value={idx}>Play list num {idx}</option>
+                                            })
+                                        }
+
+
+                                    </select>
+                                }
                             </div>
                         </div>
                     </li>

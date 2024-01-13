@@ -76,6 +76,7 @@ export async function saveStation(station) {
         const savedStation = await stationService.save(station)
         console.log("savedStation:", savedStation)
         store.dispatch({ type: type, station: savedStation })
+        console.log("savedStation:", savedStation)
         return savedStation
     }
     catch (err) {
