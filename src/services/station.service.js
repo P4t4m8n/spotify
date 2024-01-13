@@ -23,6 +23,7 @@ function get(stationId) {
 }
 
 function save(station) {
+    station.duration= _getStationDuration(station.songs)
     const edit = 'edit/'
     if (station._id) return httpService.put(BASE_URL + edit + station._id, station)
     return httpService.post(BASE_URL + edit,station)

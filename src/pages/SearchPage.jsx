@@ -75,7 +75,7 @@ export function SearchPage() {
                                             <header>{song.name}</header>
                                             <h1>{song.artist}</h1>
                                             <h2>{song.duration}</h2>
-                                            {user && <button onClick={() => onSaveSong(song)}></button>}
+                                            {user && <button onClick={() => onSaveSong(song)}>ADD</button>}
                                         </div>
                                     </div>
                                 )}

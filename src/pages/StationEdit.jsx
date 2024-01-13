@@ -34,7 +34,7 @@ export function StationEdit() {
 
             const station = await stationService.get(stationId)
             setStationToEdit(station)
-            stationToEdit.amount = stationService.getStationDuration(stationToEdit.songs)
+           
         }
         catch (err) { console.log(err) }
     }
