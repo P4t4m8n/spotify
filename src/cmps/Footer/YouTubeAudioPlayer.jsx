@@ -123,7 +123,7 @@ export function YouTubeAudioPlayer({ volume }) {
         <button onClick={(() => onChangeSong(1))}><Next></Next></button>
         <button onClick={onRepeat}><Repeat></Repeat></button>
       </div>
-      <ProgressBar son={song} player={player} station={station} stationIdx={stationIdx} isPlaying={isPlaying} />
+      <ProgressBar song={song} player={player} station={station} stationIdx={stationIdx} isPlaying={isPlaying} />
       <YouTube className='video' videoId={trackId} opts={opts} onEnd={onEnd} onReady={onReady} />
 
     </section >

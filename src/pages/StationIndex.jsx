@@ -2,9 +2,7 @@ import { useSelector } from "react-redux"
 import { Fragment, useEffect, useRef } from "react"
 import { StationList } from "../cmps/main/StationList"
 import { stationService } from "../services/station.service"
-import { setPlaying } from "../store/actions/song.action"
-import { AppHeader } from "../cmps/Header/AppHeader"
-import { loadStations, loadStation } from "../store/actions/station.actions"
+import { loadStations } from "../store/actions/station.actions"
 
 export function StationIndex() {
 
@@ -18,7 +16,7 @@ export function StationIndex() {
     }, [])
 
 
-    
+
     // console.log('Render stationIndex')
     if (!stations) return <div>...Loading</div>
 

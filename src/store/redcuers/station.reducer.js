@@ -9,7 +9,7 @@ export const SET_USER_STATIONS = 'SET_USER_STATIONS'
 
 const intialState = {
     stations: [],
-    currStation: stationService.getDefaultStation(),
+    currStation: {},
     userStations: []
 
 }

@@ -12,6 +12,7 @@ import { Dots } from "../services/icons.service"
 export function StationDetails() {
 
     const [currStation, setCurrStation] = useState(null)
+    console.log("currStation:", currStation)
     const [gradient, setGradient] = useState(null)
 
     const params = useParams()

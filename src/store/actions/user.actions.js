@@ -34,10 +34,11 @@ export async function login(credentials) {
 export async function signup(credentials) {
     try {
 
-        const user = await userService.signup(credentials)
-        let fav = stationService.getEmptyStation('Liked Songs','', '/src/assets/img/favorits.png')
+        let fav = stationService.getEmptyStation('Liked Songs', '', '/src/assets/img/favorits.png')
         fav = await stationService.save(fav)
-        user.stations.push(fav)
+        credentials.stations = [fav]
+        const user = await userService.signup(credentials)
+        console.log("user:", user)
         store.dispatch({ type: SET_USER, user })
         return user
 
@@ -51,13 +52,12 @@ export async function signup(credentials) {
 }
 
 export async function updateUser(user) {
-console.log("user:", user)
+    console.log("user:", user)
 
     try {
         const updatedUser = await userService.update(user)
         store.dispatch({ type: EDIT_USER, updatedUser })
         return updatedUser
-
     }
     catch (err) {
         throw err

@@ -1,81 +1,75 @@
-import { asyncService } from "./async-storage.service"
+import { httpService } from "./http.service"
 import { utilService } from "./util.service"
 
-const STORAGE_SONGS_KEY = 'songs_DB'
+const BASE_URL = 'song/'
 
 export const songService = {
     query,
     getDefaultSong,
-    getRandomSong,
     getSongById,
-    getSongs,
+    save,
+    remove,
+    getEmptysong,
+    getRandomSong,
+    getSongs
 }
 
-_createSongs()
 
-async function query(filterSortBy = {}) {
-    const { likedBy, txt } = filterSortBy
-    let filteredSortSongs = []
-    try {
-        const songs = await asyncService.query(STORAGE_SONGS_KEY)
 
-        if (txt) { }
+function query(filterSortBy = {}) {
 
-        if (likedBy) {
-            filteredSortSongs = songs.filter(song => song.likedBy.some(liked => liked === likedBy))
-        }
-        return filteredSortSongs
-    }
-    catch (err) {
-        throw err
-    }
+    return httpService.get(BASE_URL, filterSortBy)
+    // const { likedBy, txt } = filterSortBy
+    // let filteredSortSongs = []
+    // try {
+    //     const songs = await asyncService.query(STORAGE_SONGS_KEY)
+
+    //     if (txt) { }
+
+    //     if (likedBy) {
+    //         filteredSortSongs = songs.filter(song => song.likedBy.some(liked => liked === likedBy))
+    //     }
+    //     return filteredSortSongs
+    // }
+    // catch (err) {
+    //     throw err
+    // }
 
 }
 
-async function getSongById(songId) {
-    try {
-        const station = await asyncService.get(STORAGE_SONGS_KEY, songId)
-        return station
-    }
-    catch (err) {
-        throw err
-    }
+function getSongById(songId) {
+    return httpService.get(BASE_URL + songId)
 }
 
-function getDefaultSong() {
+
+function save(song) {
+    const edit = 'edit/'
+    if (song._id) return httpService.put(BASE_URL + edit + song._id)
+    return httpService.post(BASE_URL + edit)
+}
+
+function remove(songId) {
+    return httpService.delete(BASE_URL + songId)
+}
+
+function getEmptysong(name = '', artist = '', duration = '', imgUrl = '', addedBy = 'YoutubeFy') {
     return {
-        _id: '2',
-        title: 'Winamp Intro',
-        album: 'Single',
-        artist: 'Winamp',
+
+        name: name,
+        artist: artist,
         type: 'song',
-        duration: "00:05",
-        trackId: 'oQid2jSU7Ww',
-        songImgUrl: 'src/assets/img/winamp.svg',
-        addedBy: 'artist',
-        addedAt: (Date.now() + 1) - Date.now(),
-        likedBy: []
+        duration: duration,
+        trackId: '',
+        imgUrl: imgUrl,
+        addedBy: addedBy,
+        addedAt: Date.now(),
+        likedByUsers: []
     }
 }
 
-function getRandomSong() {
 
-    
-    const tracksId = ['pM6RAz9BE2A', 'zlM0vahvauU', 'npjF032TDDQ', 'eU8P0Ufwpl8']
-    return {
-        "_id": utilService.makeId(),
-        "title": utilService.makeLorem(2),
-        "album": utilService.makeLorem(2),
-        "artist": utilService.makeLorem(1),
-        "type": "song",
-        "duration": "02:30",
-        "trackId": tracksId[utilService.getRandomIntInclusive(0, 3)],
-        "imgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
-        "addedBy": 'artist',
-        "addedAt": Date.now(),
-        "likedBy": [((utilService.getRandomIntInclusive() > 0.5) ? "1" : "")]
-    }
-}
+
+
 
 function getSongs() {
     return utilService.loadFromStorage(STORAGE_SONGS_KEY)
@@ -96,5 +90,40 @@ function _createSongs() {
     }
     utilService.saveToStorage(STORAGE_SONGS_KEY, songs)
     return songs
+}
+
+function getDefaultSong() {
+    return {
+        _id: '2',
+        title: 'Winamp Intro',
+        album: 'Single',
+        artist: 'Winamp',
+        type: 'song',
+        duration: "00:05",
+        trackId: 'oQid2jSU7Ww',
+        songImgUrl: 'src/assets/img/winamp.svg',
+        addedBy: 'artist',
+        addedAt: (Date.now() + 1) - Date.now(),
+        likedBy: []
+    }
+}
+
+function getRandomSong() {
+
+
+    const tracksId = ['pM6RAz9BE2A', 'zlM0vahvauU', 'npjF032TDDQ', 'eU8P0Ufwpl8']
+    return {
+        "_id": utilService.makeId(),
+        "title": utilService.makeLorem(2),
+        "album": utilService.makeLorem(2),
+        "artist": utilService.makeLorem(1),
+        "type": "song",
+        "duration": "02:30",
+        "trackId": tracksId[utilService.getRandomIntInclusive(0, 3)],
+        "imgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
+        "addedBy": 'artist',
+        "addedAt": Date.now(),
+        "likedBy": [((utilService.getRandomIntInclusive() > 0.5) ? "1" : "")]
+    }
 }
 

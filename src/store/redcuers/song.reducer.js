@@ -9,7 +9,6 @@ const initialState = {
     currSong: songService.getDefaultSong(),
     isPlaying: false,
     volume: 50,
-    songs: [],
 }
 
 export function songReducer(state = initialState, action = {}) {

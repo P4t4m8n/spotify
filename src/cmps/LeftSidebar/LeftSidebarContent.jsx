@@ -17,9 +17,9 @@ import MenuItem from '@mui/material/MenuItem';
 export function SideBarContent() {
 
     const user = useSelector((storeState) => storeState.userMoudle.userObj)
+    console.log("user:", user)
 
     const userStations = useSelector((storeState) => storeState.stationsMoudle.userStations)
-    console.log("userStations:", userStations)
     const [filterSort, setFilterSort] = useState({ name: '', sortBy: '' })
     const [showSearch, setShowSearch] = useState(false)
     const [resize, setResize] = useState(false)
@@ -30,7 +30,7 @@ export function SideBarContent() {
 
     useEffect(() => {
         if (user) {
-
+            console.log("user:", user)
             getUserStations(user.stations)
 
 
@@ -47,7 +47,7 @@ export function SideBarContent() {
     }
 
     async function getUserStations(stations) {
-        
+
         setUserStations(stations)
     }
 
@@ -90,7 +90,7 @@ export function SideBarContent() {
 
     // console.log('Render leftSideBarContent')
     if (!userStations) return <div>...Loading</div>
-    console.log("userStations:", userStations)
+
     return (
 
         <div className="side-bar-content" >
@@ -152,6 +152,7 @@ export function SideBarContent() {
                     {
                         userStations.map(station =>
                             <Link key={station._id} to={'/1/station/edit/' + station._id}>
+                                {console.log("userStations:", userStations)}
                                 <li className="grid">
                                     {station.imgUrl ?
                                         <img className="station-image-left-sidebar" src={station.imgUrl}></img> :

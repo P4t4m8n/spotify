@@ -18,7 +18,8 @@ export function Signup() {
     async function onSubmit(ev) {
         ev.preventDefault()
         try {
-            await signup(credentials)
+            var t = await signup(credentials)
+            console.log("t:", t)
             console.log('sighned up')
             navigate('/')
         }

@@ -32,6 +32,9 @@ export function AppHeader() {
         <div className="app-header">
           
             {isSearchOpen && <Search></Search>}
+
+
+            
             {user ? (
                 < section className='user-form' onClick={() => setShowCreateModal(!showCreateModal)} >
                     {showCreateModal &&
