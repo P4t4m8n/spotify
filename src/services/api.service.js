@@ -9,83 +9,82 @@ const URL_WIKI = `https://en.wikipedia.org/w/api.php?&origin=*&action=query&list
 
 export const apiService = {
     getContent,
-    getDuration,
+
 }
 
 async function getContent(search) {
-    let results = utilService.loadFromStorage(search)
+    let results
 
-    if (results ) return results
-
-    const destTube = `part=snippet&q=${search}&videoCategoryId=10&type=video&maxResults=5`
+    const destTube = `part=snippet&q=${search}&videoCategoryId=10&type=video&maxResults=1`
     try {
         const responseArtist = await axios.get(URL_ARTIST_TUBE + destTube)
 
-        results = responseArtist.data.items.map(ytItem => {
-            const searchInfo = makeSearchInfoObj(ytItem.snippet.title)
-            // const album = _getAlbum(searchInfo)
-            // const duration = await _getDuration(ytItem.id.videoId)
-            return {
-                obj:searchInfo,
-                ori:ytItem.snippet.title,
-                title: searchInfo.item,
-                album: 'single',
-                artist: searchInfo.artist,
-                type: 'song',
-                duration: '',
-                trackId: ytItem.id.videoId,
-                imgUrl: ytItem.snippet.thumbnails.high,
-                addedBy: 'artist',
-                addedAt: Date.now(),
-                likedBy: [],
-                tags: [ytItem.tags]
+        const promisesSongs = responseArtist.data.items.map(async ytItem => {
+            try {
+
+                const searchInfo = parseSongString(ytItem.snippet.title)
+                console.log("searchInfo:", searchInfo)
+                const duration = await _getDuration(ytItem.id.videoId)
+                console.log("duration:", duration)
+                return {
+                    obj: searchInfo,
+                    title: searchInfo.title,
+                    album: 'single',
+                    artist: searchInfo.artist,
+                    type: 'song',
+                    duration: duration,
+                    trackId: ytItem.id.videoId,
+                    imgUrl: ytItem.snippet.thumbnails.high.url,
+                    addedBy: 'artist',
+                    addedAt: Date.now(),
+                    likedBy: [],
+                    tags: []
+                }
             }
+            catch (err) { throw err }
         })
+        const results = await Promise.all(promisesSongs)
         utilService.saveToStorage(search, results)
         return results
-
 
     }
     catch (err) { throw err }
 
-
 }
 
-async function getDuration(videoId) {
-    const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${API_KEY_YT}`;
-    try {
-        const duration = await axios(url)
-        console.log("duration:", duration.data.items[0])
-        return duration
-    }
-    catch (err) { console.log(err) }
+function parseSongString(songString) {
+    const parts = songString.split(' - ')
+    if (parts.length === 2) return { artist: parts[0] || '', title: parts[1] || '' }
+    else if (parts.length === 1) return { artist: 'Unknown' || '', title: parts[0] || '' }
+    else return { artist: 'Unknown', title: 'Unknown' }
 
 }
 
 
 async function _getDuration(videoId) {
-    const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${API_KEY_YT}`;
+    const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${API_KEY_YT}`
     try {
         const duration = await axios(url)
-        console.log("duration:", duration.data.items[0])
-        return duration
+        const fixDuration = formatDuration(duration.data.items[0].contentDetails.duration)
+        return fixDuration
     }
     catch (err) { console.log(err) }
 
 }
 
-function makeSearchInfoObj(searchRes) {
+function formatDuration(duration) {
+    console.log("duration:", duration)
+    const regex = /PT(\d+)M(\d+)S/
+    const matches = duration.match(regex)
 
-    const dashIndex = searchRes.indexOf('-')
-    if (dashIndex === -1) {
-        return { artist: searchRes, item: "" }
+    if (matches && matches.length === 3) {
+        const minutes = matches[1]
+        const seconds = matches[2]
+        return `${minutes}:${seconds}`
     }
 
-    const artist = searchRes.substring(0, dashIndex).trim()
-
-    let item = searchRes.substring(dashIndex + 1).trim()
-    item = item.replace(/\[.*?\]|\(.*?\)|\{.*?\}/g, "").trim()
-
-    return { artist, item }
+    return "Invalid format"
 }
+
+
 

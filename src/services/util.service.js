@@ -60,15 +60,16 @@ function loadFromStorage(key) {
     return (data) ? JSON.parse(data) : undefined
 }
 
-function debounce(func, timeout = 3000) {
-    let timer
-    return (...args) => {
-        clearTimeout(timer)
-        timer = setTimeout(() => {
-            func.apply(this, args)
-        }, timeout)
+function debounce(func, delay = 2000) {
+    let timeoutId
+    return function(...args) {
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => {
+        func.apply(this, args)
+      }, delay)
     }
-}
+  }
+  
 
 function formatTime(timeInSeconds) {
     const minutes = Math.floor(timeInSeconds / 60)

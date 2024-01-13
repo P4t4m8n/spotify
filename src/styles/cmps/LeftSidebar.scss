@@ -1,7 +1,5 @@
 .left-sidebar {
 
-    // position: relative;
-
     .left-sidebar-header {
 
         background-color: $clr7;
@@ -33,71 +31,151 @@
         }
     }
 
-
     .side-bar-content {
         border-radius: $panel-gap;
         background-color: $clr7;
+        padding-bottom: 1rem;
 
         svg {
-            width: 3rem;
-            height: 3rem;
-            color: white;
+            filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(292deg) brightness(2005%) contrast(100%);
+            opacity: 70%;
         }
 
         ul {
             margin: 0;
             padding: 0;
+            height: 100%;
         }
 
-        li {
-            grid-template-columns: 48px auto;
-            grid-template-rows: auto;
-            column-gap: 12px;
-            margin: 8px;
+        a {
 
-            img {
-                border-radius: calc($panel-gap/2);
-
-                grid-row: 1/ span 2;
-                height: 48px;
-                width: 48px;
+            :hover {
+                background-color: $clr10;
             }
 
+            li {
 
+                grid-template-columns: 48px auto;
+                grid-template-rows: auto;
+                column-gap: 12px;
+                margin: 1rem;
 
-            header,
-            div {
-                grid-column: 2;
-                font-weight: 600;
-            }
+                img,
+                .svg-box {
+                    border-radius: calc($panel-gap/2);
+                    background-color: #282828;
 
-            p {
+                    grid-row: 1/ span 2;
+                    height: 48px;
+                    width: 48px;
 
-                .left-sidebar-pinned-icon {
-                    width: 0.8125rem;
-                    height: 0.8125rem;
-                    margin-inline-end: 8px;
-                }
+                    svg {
+                        scale: .5;
 
-                grid-row: 2;
-                font-size: 0.8125rem;
-                font-weight: 400;
-
-                .station-type {
-                    margin-right: 5px;
-
-                    &::after {
-                        content: '\2022';
-                        display: inline-block;
-                        margin-left: 5px;
                     }
                 }
+
+                header {
+                    grid-column: 2;
+                    font-weight: 600;
+                }
+
+                p {
+                    display: flex;
+                    gap: 0.3rem;
+                    opacity: 70%;
+
+                    svg {
+                        filter: invert(100%) sepia(0%) saturate(500%) hue-rotate(200deg) brightness(115%) contrast(400%);
+                        width: .75rem;
+                        height: .75rem;
+                        fill: rgb(4, 153, 11);
+                    }
+
+                    .left-sidebar-pinned-icon {
+                        width: 0.8125rem;
+                        height: 0.8125rem;
+                        margin-inline-end: 8px;
+                    }
+
+                    grid-row: 2;
+                    font-size: 0.8125rem;
+                    font-weight: 400;
+
+                    .station-type {
+
+                        &::after {
+                            content: '\2022';
+                            display: inline-block;
+                            margin-left: 4px;
+                        }
+                    }
+                }
+
             }
 
         }
-
     }
 }
+
+.sort-modal {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #282828;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    border-radius: 1rem;
+    width: 160px;
+
+    .modal-item {
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            background: transparent;
+            width: 20px;
+            height: 20px;
+            position: relative;
+            cursor: pointer;
+            opacity: 0;
+
+            &:checked+label::after {
+                content: '✔';
+                position: absolute;
+                right: 0;
+                top: 0;
+                color: green;
+                font-size: 20px;
+            }
+        }
+
+        label {
+            margin-right: 24px;
+            user-select: none;
+            cursor: pointer;
+            position: relative;
+            padding: 0 24px 0 0;
+
+            &::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 20px;
+                height: 20px;
+                border-radius: 3px;
+            }
+
+
+        }
+    }
+}
+
 
 .creation-and-toggle {
     justify-content: space-between;
@@ -107,10 +185,11 @@
     .left-sidebar-right-arrow-icon,
     .left-sidebar-left-arrow-icon {
         filter: invert(100%);
-        margin: 0;
         width: 24px;
         height: 24px;
     }
+
+    padding: .5rem;
 }
 
 .your-library {
@@ -118,12 +197,31 @@
     padding: 12px;
     align-items: center;
     gap: 12px;
+
+
+    svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+
+    span {
+        width: 100px;
+        font-weight: 700;
+    }
+
+
 }
 
 .right-buttons {
     gap: 8px;
     align-items: center;
     padding: 12px;
+
+    svg {
+        width: 1rem;
+        height: 1rem;
+    }
 
     & p {
         margin: 0;
@@ -164,19 +262,30 @@
 
 .search-sort-toggle-buttons {
     justify-content: space-between;
+    align-items: center;
+
+    svg {
+        width: 1rem;
+        height: 1rem;
+    }
 
     button {
         background-color: transparent;
+        padding: 1rem;
+        position: relative;
 
     }
 
-    .left-sidebar-small-search-icon,
-    .left-sidebar-small-filter-icon {
-        filter: invert(100%);
-        margin: 0;
-        width: 16px;
-        height: 16px;
+    .sort {
+        display: flex;
+        gap: 0.3rem;
     }
+
+
+
+
+
+
 }
 
 

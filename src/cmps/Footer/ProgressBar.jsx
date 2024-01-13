@@ -24,7 +24,7 @@ export function ProgressBar({ song, station, player, stationIdx }) {
                 setProgress({ progressPercentage, timeElapsed, time })
             }
         }
-        if (player) {
+        if (player ) {
             clearInterval(intervalRef.current)
             intervalRef.current = setInterval(updateProgress, 237)
         }

@@ -50,7 +50,6 @@ export async function removeStation(stationId) {
 }
 
 export async function saveStation(station) {
-    console.log("station:", station)
 
     const type = (station._id) ? EDIT_STATION : ADD_STATION
 

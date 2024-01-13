@@ -39,7 +39,6 @@ async function get(stationId) {
 }
 
 async function save(station) {
-    console.log("station:", station)
     try {
 
         if (station._id) return await asyncService.put(STORGE_STATION_KEY, station)
@@ -152,14 +151,14 @@ function _createStations() {
 
 }
 
-function getEmptyStation(name = '', imgUrl = '', idx = '', id = '') {
+function getEmptyStation(name = '', idx = '') {
     return {
-        _id: id,
+    
         name: name + idx,
         stationListTitle: '',
         type: "playlist",
         tags: [],
-        imgUrl: imgUrl,
+        imgUrl: '',
         createdBy: {
             _id: '',
             username: '',
