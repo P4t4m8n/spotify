@@ -3,7 +3,6 @@ import { PlayCard } from "../main/PlayCard"
 
 export function StationList({ stations, stationListTitle }) {
 
-    console.log('render stalist')
 
     return (
         <div className="station">

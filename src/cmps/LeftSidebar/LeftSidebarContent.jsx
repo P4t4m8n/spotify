@@ -12,6 +12,11 @@ import { SortByModal } from "./SortModal"
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import React from 'react';
+import { DndContext } from '@dnd-kit/core';
+
+import { Draggable } from './Draggable';
+import { Droppable } from './Droppable';
 
 
 export function SideBarContent() {
@@ -35,7 +40,6 @@ export function SideBarContent() {
 
         // }
     }, [user])
-    console.log("user:", user)
 
     function FilterList() {
         const regex = new RegExp(filterSort.name, 'i')
@@ -60,7 +64,7 @@ export function SideBarContent() {
 
         try {
             newStation = await saveStation(newStation)
-            const newUserStations = userStations
+            const newUserStations = user.stations
             newUserStations.push(newStation)
             const editUser = { ...user, stations: newUserStations }
             await updateUser(editUser)
@@ -76,8 +80,7 @@ export function SideBarContent() {
         if (!target.value) setUserStations([...user.stations])
     }
 
-    console.log('Render leftSideBarContent')
-    if (!userStations) return <div>...Loading</div>
+    if (!userStations || !user) return <div>...Loading</div>
 
     return (
 
@@ -136,31 +139,33 @@ export function SideBarContent() {
             </section >
 
             <section className="side-bar-content">
-                <ul className="clean-list">
-                    {
-                        user.stations.map(station =>
-                            <Link key={station._id} to={'/1/station/edit/' + station._id}>
-                                <li className="grid">
-                                    {station.imgUrl ?
-                                        <img className="station-image-left-sidebar" src={station.imgUrl}></img> :
-                                        <div className="svg-box">
-                                            <Note></Note>
-                                        </div>
-                                    }
-                                    <header>{station.name}</header>
-                                    <p>
-                                        <Pin></Pin>
-                                        <span className="station-type">{station.type}</span>
-                                        <span>{station.songs.length} songs</span>
-                                    </p>
+                <DndContext>
 
+                    <ul>
+                        {
+                            user.stations.map((station) => (
+                                <Droppable key={station._id}>
+                                    <Link key={station._id} to={'/1/station/edit/' + station._id}>
+                                        <li className="grid">
+                                            {station.imgUrl ?
+                                                <img className="station-image-left-sidebar" src={station.imgUrl}></img> :
+                                                <div className="svg-box">
+                                                    <Note></Note>
+                                                </div>
+                                            }
+                                            <header>{station.name}</header>
+                                            <p>
+                                                <Pin></Pin>
+                                                <span className="station-type">{station.type}</span>
+                                                <span>{station.songs.length} songs</span>
+                                            </p>
 
-
-                                </li>
-                            </Link>
-                        )
-                    }
-                </ul>
+                                        </li>
+                                    </Link>
+                                </Droppable>
+                            ))}
+                    </ul>
+                </DndContext>
             </section>
         </div >
     )

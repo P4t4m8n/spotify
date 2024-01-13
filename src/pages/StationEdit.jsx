@@ -9,11 +9,13 @@ import { Playlist } from "../cmps/main/Playlist"
 import { PlaylistHero } from "../cmps/support/PlaylistHero"
 import { updateUser } from "../store/actions/user.actions"
 import { PlayCard } from "../cmps/main/PlayCard"
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { onDragEnd } from "../services/dnd"
 
 
 export function StationEdit() {
 
-    // const user = useSelector(storeState => storeState.userMoudle.userObj)
+    const user = useSelector(storeState => storeState.userMoudle.userObj)
 
     const [stationToEdit, setStationToEdit] = useState(stationService.getEmptyStation())
     const [isSearchOpen, setIsSearchOpen] = useState(false)
@@ -33,7 +35,6 @@ export function StationEdit() {
         try {
 
             const station = await loadStation(stationId)
-            console.log("station:", station)
             setStationToEdit(station)
 
         }
@@ -67,7 +68,14 @@ export function StationEdit() {
         onSaveStation()
     }
 
+    function onChangePlaylist(ev, song, stationId) {
+        onRemoveSong(ev, song._id)
 
+        console.log("ev.target.value:", ev.target.value)
+        const newPlay = user.stations[ev.target.value]
+        newPlay.songs.push(song)
+        saveStation(newPlay)
+    }
 
     function handleChange({ target }) {
         console.log("target:", target)
@@ -84,8 +92,6 @@ export function StationEdit() {
     if (!stationToEdit) return <div>...Loading</div>
 
     const { type, name, amount, createdBy, duration, create, imgUrl, songs } = stationToEdit
-    console.log("stationToEdit:", stationToEdit)
-    console.log('Render stationEdit')
 
     let counter = 0
 
@@ -101,8 +107,9 @@ export function StationEdit() {
                 </div>
                 {
                     stationToEdit.songs &&
-                    <Playlist songs={stationToEdit.songs} onRemoveSong={onRemoveSong} isEdit={isEdit.current}></Playlist>
+                    <Playlist onChangePlaylist={onChangePlaylist} user={user} songs={stationToEdit.songs} id={stationToEdit._id} onRemoveSong={onRemoveSong} isEdit={isEdit.current} />
                 }
+
             </div>
             <div className="find-more" onClick={() => setIsSearchOpen(!isSearchOpen)}>{isSearchOpen ? 'X' : 'Find more'}</div>
             {

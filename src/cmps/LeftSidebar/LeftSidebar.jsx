@@ -7,7 +7,6 @@ import { SideBarContent } from "./LeftSidebarContent.jsx"
 
 export function LeftSidebar() {
 
-console.log('Render LeftSidebar')
     return (
         <div className='left-sidebar'>
             <SideBarHeader />

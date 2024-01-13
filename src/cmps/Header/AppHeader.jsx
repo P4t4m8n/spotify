@@ -27,7 +27,6 @@ export function AppHeader() {
             console.log(err)
         }
     }
-    console.log('render hedaer')
 
     return (
         <div className="app-header">
