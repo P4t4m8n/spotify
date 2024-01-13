@@ -28,12 +28,14 @@ export function SideBarContent() {
 
 
     useEffect(() => {
-        if (user) {
-            getUserStations(user.stations)
+        // if (user && user.stations && user.stations.length) {
+        //     console.log("user:", user)
+        //     getUserStations(user.stations)
 
 
-        }
+        // }
     }, [user])
+    console.log("user:", user)
 
     function FilterList() {
         const regex = new RegExp(filterSort.name, 'i')
@@ -45,24 +47,12 @@ export function SideBarContent() {
     }
 
     async function getUserStations(stations) {
-
         setUserStations(stations)
     }
 
     function openModal() { setIsModalOpen(true) }
     function closeModal() { setIsModalOpen(false) }
 
-    async function onPlayStation(ev, stationId) {
-
-        ev.preventDefault()
-        try {
-            let station
-            if (stationId !== currStation._id) station = await loadStation(stationId)
-            setPlaying()
-        }
-        catch (err) { }
-
-    }
 
     async function createStation() {
 
@@ -86,7 +76,7 @@ export function SideBarContent() {
         if (!target.value) setUserStations([...user.stations])
     }
 
-    // console.log('Render leftSideBarContent')
+    console.log('Render leftSideBarContent')
     if (!userStations) return <div>...Loading</div>
 
     return (
@@ -148,7 +138,7 @@ export function SideBarContent() {
             <section className="side-bar-content">
                 <ul className="clean-list">
                     {
-                        userStations.map(station =>
+                        user.stations.map(station =>
                             <Link key={station._id} to={'/1/station/edit/' + station._id}>
                                 <li className="grid">
                                     {station.imgUrl ?

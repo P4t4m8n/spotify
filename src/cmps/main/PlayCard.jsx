@@ -47,6 +47,7 @@ export function PlayCard({ item }) {
         }
         setPlaying()
     }
+    // console.log('render play')
 
     return (
         <button onClick={(ev) => onPlayStation(ev)} className="play-button">

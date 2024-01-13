@@ -18,13 +18,14 @@ export function Signup() {
     async function onSubmit(ev) {
         ev.preventDefault()
         try {
-            await signup(credentials)
+           const t = await signup(credentials)
             console.log("t:", t)
             navigate('/')
         }
         catch (err) { console.log(err) }
     }
 
+    console.log('Render singup')
 
     return (
         <form className="login-form" onSubmit={onSubmit}>

@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router"
 import { useSelector } from 'react-redux'
 import { saveSong } from '../store/actions/song.action'
 import { updateUser } from '../store/actions/user.actions'
+import { saveStation } from '../store/actions/station.actions'
 
 export function SearchPage() {
 
@@ -33,14 +34,15 @@ export function SearchPage() {
     async function onSaveSong(song) {
         try {
             saveSong(song)
-            user.stations[1].songs.push(song)
-            updateUser(user)
-          
+            const downloadStation = user.stations[1]
+            downloadStation.songs.push(song)
+            saveStation(downloadStation)
+
         }
         catch (err) { console.log(err) }
     }
 
-    // console.log('Render-Search page')
+    console.log('Render-Search page')
     return (
         <section className='search-page' >
             {!params.searchTerm &&

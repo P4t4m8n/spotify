@@ -39,9 +39,11 @@ export async function signup(credentials) {
         fav = await stationService.save(fav)
         downloaded = await stationService.save(downloaded)
         credentials.stations = [fav,downloaded]
+
         const user = await userService.signup(credentials)
+        
+        console.log("user:", user)
         store.dispatch({ type: SET_USER, user })
-        return user
 
     }
 

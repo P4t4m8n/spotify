@@ -23,7 +23,7 @@ export function Search() {
 
 
 
-  // console.log('Render search')
+  console.log('Render search')
   return (
     <section className="search-box">
       <form  >

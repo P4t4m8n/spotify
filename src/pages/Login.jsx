@@ -25,7 +25,7 @@ export function Login() {
         catch (err) { console.log(err) }
     }
 
-
+console.log('render login')
     return (
         <form className="login-form" onSubmit={onSubmit}>
             <label>Email address or name</label><br />
