@@ -32,7 +32,7 @@ export function App() {
             <Route path="/search/:searchTerm" element={<SearchPage />} />
             <Route path="/:userId/station/edit" element={<StationEdit />}></Route>
             <Route path="/:userId/station/edit/:stationId" element={<StationEdit />}></Route>
-            <Route path="user/:userId" element={<UserPage />}></Route>
+            {/* <Route path="user/:userId" element={<UserPage />}></Route> */}
           </Routes>
         </div>
         <RightSidebar />

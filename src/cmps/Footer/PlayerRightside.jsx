@@ -36,7 +36,7 @@ export function PlayerRightside({ volume, setVolume }) {
         }
     }
 
-    // console.log('Render:right side footer')
+    console.log('Render:right side footer')
     return (
         <section className="rightside-footer">
             <button onClick={() => setIsOpen(!isOpen)}><Details></Details></button>

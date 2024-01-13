@@ -19,7 +19,7 @@ export function UserPage(){
     }}
     fetchUser()
 }, [])*/
-
+console.log('userpage')
 
     let loggedInUser={username: user.username,email:user.email, imgUrl:user.imgUrl}
     if (!user) return <h1>loadings....</h1>

@@ -39,6 +39,7 @@ export function VideoInfoComponent() {
         console.log("videoData:", videoData)
     }
 
+    console.log('render video')
 
     return (
         <section>

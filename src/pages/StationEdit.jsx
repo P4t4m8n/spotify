@@ -3,17 +3,17 @@ import { stationService } from "../services/station.service"
 import { EditMoudle } from "../cmps/LeftSidebar/EditMoudle"
 import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
-import { saveStation } from "../store/actions/station.actions"
+import { loadStation, saveStation } from "../store/actions/station.actions"
 import { setPlaying } from "../store/actions/song.action"
 import { Playlist } from "../cmps/main/Playlist"
 import { PlaylistHero } from "../cmps/support/PlaylistHero"
 import { updateUser } from "../store/actions/user.actions"
+import { PlayCard } from "../cmps/main/PlayCard"
 
 
 export function StationEdit() {
 
     // const user = useSelector(storeState => storeState.userMoudle.userObj)
-    const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
 
     const [stationToEdit, setStationToEdit] = useState(stationService.getEmptyStation())
     const [isSearchOpen, setIsSearchOpen] = useState(false)
@@ -25,16 +25,17 @@ export function StationEdit() {
 
     useEffect(() => {
         if (params.stationId)
-            loadStation(params.stationId)
+            onLoadStation(params.stationId)
 
     }, [params.stationId])
 
-    async function loadStation(stationId) {
+    async function onLoadStation(stationId) {
         try {
 
-            const station = await stationService.get(stationId)
+            const station = await loadStation(stationId)
+            console.log("station:", station)
             setStationToEdit(station)
-           
+
         }
         catch (err) { console.log(err) }
     }
@@ -53,7 +54,7 @@ export function StationEdit() {
 
         try {
             const savedSation = await saveStation(stationToEdit)
-            
+
         }
         catch (err) {
             console.log(err)
@@ -82,18 +83,18 @@ export function StationEdit() {
 
     if (!stationToEdit) return <div>...Loading</div>
 
-    const { type, name, amount, createdBy, duration, create, stationImgUrl, songs } = stationToEdit
-    const play = isPlaying ? 'pause' : 'play'
+    const { type, name, amount, createdBy, duration, create, imgUrl, songs } = stationToEdit
+    console.log("stationToEdit:", stationToEdit)
+    console.log('Render stationEdit')
 
     return (
 
         <section className="station-page" >
             <PlaylistHero stationToEdit={stationToEdit} handleChange={handleChange} onSaveStation={onSaveStation} ></PlaylistHero>
 
-
             <div>
                 <div className="play-and-context flex">
-                    {stationToEdit.songs && <button className="play-under-hero" onClick={() => setPlaying(!isPlaying)}><img src={`/src/assets/img/${play}.svg`}></img></button>}
+                    {stationToEdit.songs && <PlayCard item={stationToEdit}></PlayCard>}
                     <button className="dot-dot-dot">...</button>
                 </div>
                 {

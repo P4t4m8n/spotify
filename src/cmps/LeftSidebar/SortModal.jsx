@@ -31,6 +31,7 @@ export function SortByModal({ isOpen, onClose, setFilterSort, filterSort }) {
 
     if (!isOpen) return null
 
+    console.log('render sort')
 
     return (
 

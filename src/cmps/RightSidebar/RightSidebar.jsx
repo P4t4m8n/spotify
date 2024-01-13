@@ -11,7 +11,7 @@ export function RightSidebar() {
 
 
 
-    // console.log('Render-right side bar')
+    console.log('Render-right side bar')
     return (
         <div className={`right-sidebar ${hiddenClass}`} style={{ width: width }}>
 

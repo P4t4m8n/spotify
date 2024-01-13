@@ -2,6 +2,7 @@
 
 export function EditMoudle() {
 
+    console.log('render mou')
 
     return (
         <ul>

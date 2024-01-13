@@ -7,6 +7,7 @@ import { PlayerRightside } from './PlayerRightside'
 export function Player() {
 
     const [volume, setVolume] = useState(50)
+    console.log('render player')
 
     return (
         <div className="app-footer flex">

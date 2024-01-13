@@ -2,6 +2,9 @@ import { Link } from "react-router-dom"
 import { PlayCard } from "../main/PlayCard"
 
 export function StationList({ stations, stationListTitle }) {
+
+    console.log('render stalist')
+
     return (
         <div className="station">
             <h2 className="station-topic">{stationListTitle}</h2>

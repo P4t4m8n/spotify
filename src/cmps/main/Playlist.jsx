@@ -3,7 +3,9 @@ import { LikeCard } from "./LikeCard";
 
 
 export function Playlist({ songs, onRemoveSong, isEdit }) {
-    console.log(songs)
+
+    console.log('render polay')
+
     return (
 
         <div>
