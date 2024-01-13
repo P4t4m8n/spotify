@@ -9,11 +9,8 @@ import { Arrow, ArrowBack, Create, Dots, Libary, Note, Pin, Plus, SearchSvg, Sor
 import { Search } from "@mui/icons-material"
 import { Input } from "@mui/joy"
 import { SortByModal } from "./SortModal"
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+
 import React from 'react';
-import { DndContext } from '@dnd-kit/core';
 
 
 
