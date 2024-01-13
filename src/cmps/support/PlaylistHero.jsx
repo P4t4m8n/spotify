@@ -17,7 +17,7 @@ export function PlaylistHero({ handleChange, stationToEdit, onSaveStation }) {
 
     const { type, name, amount, createdBy, duration, imgUrl } = stationToEdit
 
-    console.log('render hero')
+    // console.log('render hero')
 
     return (
         <header>

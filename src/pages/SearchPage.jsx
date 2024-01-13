@@ -33,9 +33,10 @@ export function SearchPage() {
 
     async function onSaveSong(song) {
         try {
-            saveSong(song)
+            const savedSong = await saveSong(song)
+            console.log("savedSong:", savedSong)
             const downloadStation = user.stations[1]
-            downloadStation.songs.push(song)
+            downloadStation.songs.push(savedSong)
             saveStation(downloadStation)
 
         }

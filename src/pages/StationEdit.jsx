@@ -9,6 +9,8 @@ import { Playlist } from "../cmps/main/Playlist"
 import { PlaylistHero } from "../cmps/support/PlaylistHero"
 import { updateUser } from "../store/actions/user.actions"
 import { PlayCard } from "../cmps/main/PlayCard"
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { onDragEnd } from "../services/dnd"
 
 
 export function StationEdit() {
@@ -33,7 +35,6 @@ export function StationEdit() {
         try {
 
             const station = await loadStation(stationId)
-            console.log("station:", station)
             setStationToEdit(station)
 
         }
@@ -85,7 +86,6 @@ export function StationEdit() {
 
     const { type, name, amount, createdBy, duration, create, imgUrl, songs } = stationToEdit
     console.log("stationToEdit:", stationToEdit)
-    console.log('Render stationEdit')
 
     return (
 
@@ -99,8 +99,9 @@ export function StationEdit() {
                 </div>
                 {
                     stationToEdit.songs &&
-                    <Playlist songs={stationToEdit.songs} onRemoveSong={onRemoveSong} isEdit={isEdit.current}></Playlist>
+                    <Playlist songs={stationToEdit.songs} onRemoveSong={onRemoveSong} isEdit={isEdit.current} />
                 }
+
             </div>
             <div onClick={() => setIsSearchOpen(!isSearchOpen)}>{isSearchOpen ? 'X' : 'Find more'}</div>
             {
