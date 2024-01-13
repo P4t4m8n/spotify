@@ -12,6 +12,7 @@ import { Dots } from "../services/icons.service"
 export function StationDetails() {
 
     const [currStation, setCurrStation] = useState(null)
+    console.log("currStation:", currStation)
     const [gradient, setGradient] = useState(null)
 
     const params = useParams()
@@ -36,7 +37,7 @@ export function StationDetails() {
                     ${gradientColors[0]} 50%, 
                     #000000 75%,   
                     #000000 100%)`)
-                // document.querySelector('.main-content').style.background = gradient
+                document.querySelector('.main-content').style.background = gradient
             }
         }
 

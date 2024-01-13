@@ -32,6 +32,9 @@ export function AppHeader() {
         <div className="app-header">
           
             {isSearchOpen && <Search></Search>}
+
+
+            
             {user ? (
                 < section className='user-form' onClick={() => setShowCreateModal(!showCreateModal)} >
                     {showCreateModal &&
@@ -43,11 +46,12 @@ export function AppHeader() {
                     <div className='user-buttons grid'>
 
                         Hello <span>  {user.username}</span>
+             
 
                         <div className='user-image-container flex'>
                             {user.imgUrl ? <img src={user.imgUrl}></img> : <UserIcon></UserIcon>}
                         </div>
-                    </div>
+               
                 </ section >
             ) : (
                 <section className='contents'>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { SET_FILTER } from "../../store/redcuers/app.reducer"
 import { Link, useNavigate } from "react-router-dom"
-import { saveStation } from "../../store/actions/station.actions"
+import { saveStation, setUserStations } from "../../store/actions/station.actions"
 import { stationService } from "../../services/station.service"
 import { updateUser } from "../../store/actions/user.actions"
 import { Arrow, ArrowBack, Create, Dots, Libary, Note, Pin, Plus, SearchSvg, Sort } from "../../services/icons.service"
@@ -18,7 +18,7 @@ export function SideBarContent() {
 
     const user = useSelector((storeState) => storeState.userMoudle.userObj)
 
-    const [userStations, setUserStations] = useState(null)
+    const userStations = useSelector((storeState) => storeState.stationsMoudle.userStations)
     const [filterSort, setFilterSort] = useState({ name: '', sortBy: '' })
     const [showSearch, setShowSearch] = useState(false)
     const [resize, setResize] = useState(false)
@@ -29,8 +29,7 @@ export function SideBarContent() {
 
     useEffect(() => {
         if (user) {
-
-            setUserStations([...user.stations])
+            getUserStations(user.stations)
 
 
         }
@@ -40,9 +39,14 @@ export function SideBarContent() {
         const regex = new RegExp(filterSort.name, 'i')
         let newList = userStations.filter(station => regex.test(station.name))
         if (filterSort.sortBy === 'name') newList.sort((stationA, stationB) => stationA.name.localeCompare(stationB.name))
-        else if (filterSort.sortBy === 'createAt') newList.sort((stationA, stationB) => stationA.createdAt - toyB.stationB)
+        else if (filterSort.sortBy === 'createAt') newList.sort((stationA, stationB) => stationA.createdAt - stationB.createdAt)
         setUserStations(newList)
 
+    }
+
+    async function getUserStations(stations) {
+
+        setUserStations(stations)
     }
 
     function openModal() { setIsModalOpen(true) }
@@ -171,3 +175,5 @@ export function SideBarContent() {
         </div >
     )
 }
+
+

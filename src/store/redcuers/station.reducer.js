@@ -5,10 +5,11 @@ export const SET_CURR_STATION = 'SET_CURR_STATION'
 export const ADD_STATION = 'ADD_STATION'
 export const EDIT_STATION = 'EDIT_STATION'
 export const REMOVE_STATION = 'REMOVE_STATION'
+export const SET_USER_STATIONS = 'SET_USER_STATIONS'
 
 const intialState = {
     stations: [],
-    currStation: stationService.getDefaultStation(),
+    currStation: {},
     userStations: []
 
 }
@@ -36,6 +37,9 @@ export function stationsReducer(state = intialState, action = {}) {
             stations = state.stations.fill(stations =>
                 stations._id !== action.station._id)
             return { ...state, stations }
+
+            case SET_USER_STATIONS:
+                return {...state ,userStations:action.newStations}
 
         default:
             return state

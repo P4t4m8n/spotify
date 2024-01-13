@@ -1,10 +1,8 @@
-import { asyncService } from "./async-storage.service"
+import { httpService } from "./http.service"
 import { songService } from "./song.service"
 import { utilService } from "./util.service"
 
-const STORGE_STATION_KEY = 'station_DB'
-
-_createStations()
+const BASE_URL = 'station/'
 
 export const stationService = {
     query,
@@ -13,49 +11,47 @@ export const stationService = {
     remove,
     getStationListTitle,
     getDefaultStation,
-    createStation,
-    getUserEpisodes,
     getEmptyStation,
-    getStationDuration,
 }
 
-async function query(filterSortBy = {}) {
-    try {
-        const stations = await asyncService.query(STORGE_STATION_KEY)
-        return stations
-    }
-    catch (err) {
-        throw err
-    }
-
+function query(filterSortBy = {}) {
+    return httpService.get(BASE_URL, filterSortBy)
 }
 
-async function get(stationId) {
-    const station = await asyncService.get(STORGE_STATION_KEY, stationId)
-    station.duration = getStationDuration(station.songs)
-
-    return station
-
+function get(stationId) {
+    return httpService.get(BASE_URL + stationId)
 }
 
-async function save(station) {
-    try {
-
-        if (station._id) return await asyncService.put(STORGE_STATION_KEY, station)
-        return await asyncService.post(STORGE_STATION_KEY, station)
-    }
-    catch (err) {
-        throw err
-    }
+function save(station) {
+    station.duration= _getStationDuration(station.songs)
+    const edit = 'edit/'
+    if (station._id) return httpService.put(BASE_URL + edit + station._id, station)
+    return httpService.post(BASE_URL + edit,station)
 }
 
 function remove(stationId) {
-
-    return asyncService.remove(stationId)
+    return httpService.delete(BASE_URL + stationId)
 }
 
 function getStationListTitle() {
     return ['Made for you', 'Top charts', 'Jump back on', 'Recently played', 'Your top mixes']
+}
+
+function getEmptyStation(name = '', idx = '', imgUrl = '') {
+    return {
+
+        name: name + idx,
+        stationListTitle: '',
+        type: "playlist",
+        tags: [],
+        imgUrl: imgUrl,
+        createdBy: {
+            _id: '',
+            username: '',
+        },
+        likedByUsers: 0,
+        songs: []
+    }
 }
 
 function getDefaultStation() {
@@ -63,7 +59,7 @@ function getDefaultStation() {
     let station = {
         "_id": utilService.makeId(),
         "name": utilService.makeLorem(2),
-        "subHeading": 'Welcome to Stainfy',
+        "stationListTitle": 'Welcome to YoutubeFy',
         "type": "playlist",
         "tags": ["deafult"],
         "stationImgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
@@ -84,11 +80,7 @@ function getDefaultStation() {
     return station
 }
 
-function getUserEpisodes() {
-    return { songs: [{ artist: '' }, { artist: '' }, { artist: '' }] }
-}
-
-function getStationDuration(items) {
+function _getStationDuration(items) {
     let totalMinutes = 0
 
     items.forEach(item => {
@@ -105,83 +97,3 @@ function getStationDuration(items) {
     return formattedTotalRunTime
 }
 
-function _createStations() {
-
-    const stationListTitle = ['Made for you', 'Top charts', 'Jump back on', 'Recently played', 'Your top mixes',]
-    const descriptions = ['Discover new music based on your preference...', 'Rock out while you play', 'With The Rise against, AFI, The unseen and more']
-
-    let stations = utilService.loadFromStorage(STORGE_STATION_KEY)
-
-    if (!stations || !stations.length) {
-
-        stations = []
-        let songsIdx = 0
-        let songsArr = songService.getSongs()
-
-        for (var k = 0; k < 30; k++) {
-            let station = {
-                "_id": utilService.makeId(),
-                "name": 'All new music',
-                stationListTitle: stationListTitle[k % 5],
-                description: descriptions[k % 3],
-                "type": "playlist",
-                "tags": ["Soul", "Chill"],
-                imgUrl: 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
-                "createdBy": {
-                    "_id": utilService.makeId(),
-                    "username": utilService.makeLorem(1),
-                    "profileImg": ""
-                },
-                "likedByUsers": ['', '']
-            }
-
-            let songs = []
-            for (var i = songsIdx; i < songsIdx + 15; i++) {
-                songs.push(songsArr[i])
-            }
-            songsIdx += 15
-            if (songsIdx > 200) songsIdx = 0
-            station.songs = songs
-            stations.push(station)
-        }
-        utilService.saveToStorage(STORGE_STATION_KEY, stations)
-    }
-
-    return stations
-
-}
-
-function getEmptyStation(name = '', idx = '') {
-    return {
-    
-        name: name + idx,
-        stationListTitle: '',
-        type: "playlist",
-        tags: [],
-        imgUrl: '',
-        createdBy: {
-            _id: '',
-            username: '',
-        },
-        likedByUsers: 0,
-        songs: []
-    }
-}
-
-function createStation(songs, name = 'My station #', subHeading = '1', idx = '') {
-    return {
-
-        "name": name + idx,
-        "subHeading": subHeading,
-        "type": "station",
-        "tags": [''],
-        "imgUrl": 'src/assets/img/note.svg',
-        "createdBy": {
-            "_id": subHeading,
-            "username": '',
-            "profileImg": ''
-        },
-        "likedByUsers": [''],
-        songs: [...songs]
-    }
-}

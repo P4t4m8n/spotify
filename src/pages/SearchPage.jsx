@@ -1,15 +1,16 @@
 import { utilService } from '../services/util.service'
 import { apiService } from '../services/api.service'
 import { Fragment, useEffect, useState } from 'react'
-import { Playlist } from '../cmps/main/Playlist'
 import { PlayCard } from '../cmps/main/PlayCard'
 import { useNavigate, useParams } from "react-router"
-
-
+import { useSelector } from 'react-redux'
+import { saveSong } from '../store/actions/song.action'
+import { updateUser } from '../store/actions/user.actions'
 
 export function SearchPage() {
 
     const [searchList, setSearchList] = useState(null)
+    const user = useSelector(storeState => storeState.userMoudle.userObj)
 
     const genres = ["New", 'Music', 'Pop', 'Hip-Hop', 'Rap', 'Latino', 'indi', 'Rock', 'Podcusts', 'Live', 'Sport', 'Meditation', 'Party', 'Electronic', 'For sleep']
 
@@ -25,6 +26,20 @@ export function SearchPage() {
 
             const searchList = await apiService.getContent(params.searchTerm)
             setSearchList(searchList)
+        }
+        catch (err) { console.log(err) }
+    }
+
+    async function onSaveSong(song) {
+        console.log("song:", song)
+        try {
+            saveSong(song)
+            // const songs = user.stations[0].songs
+            // songs.push(song)
+            // const stations = user.stations
+            // stations[0].songs = songs
+            // const newUser = { ...user, stations: stations }
+            // updateUser(newUser)
         }
         catch (err) { console.log(err) }
     }
@@ -57,10 +72,11 @@ export function SearchPage() {
                                             <PlayCard item={song}></PlayCard>
                                         </div>
                                         <div>
-                                            <header>{song.title}</header>
+                                            <header>{song.name}</header>
                                             <h1>{song.artist}</h1>
                                             <h2>{song.duration}</h2>
                                         </div>
+                                            {user && <button onClick={() => onSaveSong(song)}>ADD</button>}
                                     </div>
                                 )}
                             </div>
