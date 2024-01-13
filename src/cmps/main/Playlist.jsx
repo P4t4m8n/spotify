@@ -16,6 +16,9 @@ export function Playlist({ songs, onRemoveSong, isEdit }) {
                     <p><Clock></Clock></p>
                 </li>
 
+            </ul>
+            <div className="mother-fucking-line"></div>
+            <ul className="song-list grid clean-list">
                 {
                     songs.map((song, idx) =>
                         <li key={song._id} className="station-details-list">
@@ -36,7 +39,7 @@ export function Playlist({ songs, onRemoveSong, isEdit }) {
                 }
 
             </ul>
-        </div>
+        </div >
     )
 
 
