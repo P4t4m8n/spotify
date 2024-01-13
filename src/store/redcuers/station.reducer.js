@@ -38,8 +38,8 @@ export function stationsReducer(state = intialState, action = {}) {
                 stations._id !== action.station._id)
             return { ...state, stations }
 
-            case SET_USER_STATIONS:
-                return {...state ,userStations:action.newStations}
+        case SET_USER_STATIONS:
+            return { ...state, userStations: action.newStations }
 
         default:
             return state

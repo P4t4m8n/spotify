@@ -9,13 +9,15 @@ export function LikeCard({ item }) {
 
     const [isLiked, setIsLiked] = useState(false)
     const user = useSelector(storeState => storeState.userMoudle.userObj)
+    console.log("user:", user)
 
     useEffect(() => {
         let LikeCheck
-        if (user) {
+        console.log("user.stations:", user.stations)
+        if (user && user.stations && user.stations.length) {
 
             if (item.type === 'playlist') LikeCheck = user.stations.some(station => station._id === item._id)
-            if (item.type === 'song') LikeCheck = user.favorites.some(song => song._id === item._id)
+            if (item.type === 'song') LikeCheck = user.stations[0].some(song => song._id === item._id)
 
             if (LikeCheck) setIsLiked(true)
             else setIsLiked(false)
@@ -48,24 +50,23 @@ export function LikeCard({ item }) {
 
         else if (item.type === 'song') {
 
-            newUserArr = user.favorites
+
             let favArr = user.stations[0].songs
-            console.log("favArr:", favArr)
             if (isLiked) {
                 console.log('dislike')
-                newUserArr = newUserArr.filter(fav => fav._id !== item._id)
                 favArr = favArr.filter(fav => fav._id !== item._id)
                 setIsLiked(false)
 
             }
             else {
                 console.log('like')
-                newUserArr.push(item)
                 favArr.push(item)
                 setIsLiked(true)
-                user.stations[0].songs = favArr
+                const stations = user.stations
+                stations[0].push(favArr)
+
             }
-            userToUpdate = { ...user, favorites: newUserArr }
+            userToUpdate = { ...user, stations: stations }
         }
         try {
 

@@ -43,9 +43,9 @@ function getSongById(songId) {
 
 
 function save(song) {
-    console.log("song:", song)
     const edit = 'edit/'
     if (song._id) return httpService.put(BASE_URL + edit + song._id, song)
+
     return httpService.post(BASE_URL + edit, song)
 }
 

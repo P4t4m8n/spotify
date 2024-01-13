@@ -43,9 +43,13 @@ async function login({ username, password }) {
 }
 
 async function signup({ username, password, email, stations }) {
+    console.log("stations:", stations)
+
     try {
-        const user = { username, password, email, stations, favorites: [] }
+        const user = { username, password, email, stations: stations, favorites: [] }
+        console.log("user:", user.stations)
         const newUser = await asyncService.post(STORGE_KEY_USERS, user)
+        console.log("user:", user.stations)
         console.log("newUser:", newUser)
         _setLoggedinUser(newUser)
         return newUser

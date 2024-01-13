@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 import { userService } from '../services/user.service.js'
 
 export function UserPage(){
-    const [user, setUser] = useState(userService.getLoggedinUser())
+    // const [user, setUser] = useState(userService.getLoggedinUser())
    
     /*useEffect(() => {
         async function fetchUser(){

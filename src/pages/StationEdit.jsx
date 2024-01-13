@@ -12,7 +12,7 @@ import { updateUser } from "../store/actions/user.actions"
 
 export function StationEdit() {
 
-    const user = useSelector(storeState => storeState.userMoudle.userObj)
+    // const user = useSelector(storeState => storeState.userMoudle.userObj)
     const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
 
     const [stationToEdit, setStationToEdit] = useState(stationService.getEmptyStation())

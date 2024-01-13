@@ -11,6 +11,7 @@ export function SearchPage() {
 
     const [searchList, setSearchList] = useState(null)
     const user = useSelector(storeState => storeState.userMoudle.userObj)
+    console.log("user:", user)
 
     const genres = ["New", 'Music', 'Pop', 'Hip-Hop', 'Rap', 'Latino', 'indi', 'Rock', 'Podcusts', 'Live', 'Sport', 'Meditation', 'Party', 'Electronic', 'For sleep']
 
@@ -31,15 +32,15 @@ export function SearchPage() {
     }
 
     async function onSaveSong(song) {
-        console.log("song:", song)
         try {
             saveSong(song)
-            // const songs = user.stations[0].songs
-            // songs.push(song)
-            // const stations = user.stations
-            // stations[0].songs = songs
-            // const newUser = { ...user, stations: stations }
-            // updateUser(newUser)
+            // const dowloaded = user.stations
+            // dowloaded[1].push(song)
+            console.log("user:", user)
+            user.stations[1].songs.push(song)
+            console.log("user:", user)
+            updateUser(user)
+          
         }
         catch (err) { console.log(err) }
     }
@@ -76,7 +77,7 @@ export function SearchPage() {
                                             <h1>{song.artist}</h1>
                                             <h2>{song.duration}</h2>
                                         </div>
-                                            {user && <button onClick={() => onSaveSong(song)}>ADD</button>}
+                                        {user && <button onClick={() => onSaveSong(song)}>ADD</button>}
                                     </div>
                                 )}
                             </div>

@@ -23,8 +23,8 @@ export function setCurrStation(station) {
 
 export async function setUserStations(stations) {
 
-    const fav = [stations[0]]
-    let promisesSongs = stations.splice(0, 1)
+    const fav = [stations[0],stations[1]]
+    let promisesSongs = stations.splice(0, 2)
     try {
         promisesSongs = stations.map(async station => {
             return await stationService.get(station._id)
@@ -36,6 +36,9 @@ export async function setUserStations(stations) {
     }
     const updatedStations = await Promise.all(promisesSongs)
     const newStations = [...fav, ...updatedStations]
+    console.log("newStations:", newStations)
+    console.log("newStations:", newStations[0])
+    console.log("newStations:", newStations[0])
     store.dispatch({ type: SET_USER_STATIONS, newStations })
     return newStations
 }
