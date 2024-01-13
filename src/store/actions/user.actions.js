@@ -35,8 +35,10 @@ export async function signup(credentials) {
     try {
 
         let fav = stationService.getEmptyStation('Liked Songs', '', '/src/assets/img/favorits.png')
+        let downloaded = stationService.getEmptyStation('Downloaded', '', '/src/assets/img/favorits.png')
         fav = await stationService.save(fav)
-        credentials.stations = [fav]
+        downloaded = await stationService.save(downloaded)
+        credentials.stations = [fav,downloaded]
         const user = await userService.signup(credentials)
         console.log("user:", user)
         store.dispatch({ type: SET_USER, user })

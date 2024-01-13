@@ -11,9 +11,6 @@ export function loadSong(song) {
 
 
 export async function saveSong(song) {
-    console.log("song:", song)
-    const type = (song._id) ? EDIT_S : ADD_song
-
     try {
         const savedsong = await songService.save(song)
        
@@ -25,7 +22,6 @@ export async function saveSong(song) {
     }
 }
 export function setPlaying(isPlaying) {
-    console.log("isPlaying:", isPlaying)
 
     store.dispatch({ type: SET_PLAYING, isPlaying })
 }
