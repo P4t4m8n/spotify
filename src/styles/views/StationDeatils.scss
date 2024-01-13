@@ -148,11 +148,20 @@
 .song-list {
     grid-template-columns: auto 6fr 4fr 3fr 1fr;
     padding: 0 16px;
+    column-gap: 16px;
+
+
+    img {
+        width: 40px;
+        border-radius: calc($panel-gap/2);
+    }
 }
 
 .list-header {
 
     // padding: 0 16px;
+    height: 56px;
+
 
     font-size: 0.8rem;
     align-items: center;
@@ -168,20 +177,21 @@
         filter: invert(70%) sepia(70%) saturate(0%) hue-rotate(173deg) brightness(150%) contrast(88%);
 
     }
+
+    & p:last-of-type {
+        justify-self: center;
+    }
 }
 
-.list-header::after {
-    content: '';
-    display: block;
-    border-bottom: 1px solid hsla(0, 0%, 100%, .1);
-    width: 100%;
-    grid-column: 1 / -1;
-}
-
-// .bottom-border{
+// this didnt work as expected but use as needed
+// .list-header::after {
+//     content: '';
+//     display: block;
 //     border-bottom: 1px solid hsla(0, 0%, 100%, .1);
 //     width: 100%;
+//     grid-column: 1 / -1;
 // }
+
 
 .station-details-list {
     font-size: 0.8rem;
@@ -191,6 +201,19 @@
     display: grid;
     grid-template-columns: subgrid;
     color: #a7a7a7;
+
+    height: 56px;
+
+    &:hover {
+        background-color: hsla(0, 0%, 100%, .1);
+    }
+
+    .artist-and-image {
+        // display: grid;
+        grid-auto-flow: column;
+        align-items: center;
+    }
+
 }
 
 

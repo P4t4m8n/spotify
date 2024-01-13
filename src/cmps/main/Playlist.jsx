@@ -3,7 +3,7 @@ import { LikeCard } from "./LikeCard";
 
 
 export function Playlist({ songs, onRemoveSong, isEdit }) {
-
+    console.log(songs)
     return (
 
         <div>
@@ -20,17 +20,17 @@ export function Playlist({ songs, onRemoveSong, isEdit }) {
                     songs.map((song, idx) =>
                         <li key={song._id} className="station-details-list">
                             <p>{idx + 1}</p>
-                            <p>{song.title}</p>
+                            <div className="artist-and-image grid">  <img src={song.imgUrl} /> {song.title}</div>
                             <p>{song.artist}</p>
                             <p>{song.album}</p>
-                            <p>
+                            <div>
                                 <div className="details-list-control">
                                     <LikeCard item={song}></LikeCard>
                                     <p>{song.duration}</p>
                                     <button><Dots></Dots></button>
                                     {isEdit && <button onClick={(ev) => onRemoveSong(ev, song._id)}>❌</button>}
                                 </div>
-                            </p>
+                            </div>
                         </li>
                     )
                 }
