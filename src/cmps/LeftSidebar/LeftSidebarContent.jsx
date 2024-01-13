@@ -15,8 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 import React from 'react';
 import { DndContext } from '@dnd-kit/core';
 
-import { Draggable } from './Draggable';
-import { Droppable } from './Droppable';
+
 
 
 export function SideBarContent() {
@@ -139,12 +138,10 @@ export function SideBarContent() {
             </section >
 
             <section className="side-bar-content">
-                <DndContext>
 
                     <ul>
                         {
                             user.stations.map((station) => (
-                                <Droppable key={station._id}>
                                     <Link key={station._id} to={'/1/station/edit/' + station._id}>
                                         <li className="grid">
                                             {station.imgUrl ?
@@ -162,10 +159,8 @@ export function SideBarContent() {
 
                                         </li>
                                     </Link>
-                                </Droppable>
                             ))}
                     </ul>
-                </DndContext>
             </section>
         </div >
     )

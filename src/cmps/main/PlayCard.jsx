@@ -37,7 +37,6 @@ export function PlayCard({ item }) {
     }
 
     function togglePlayPause() {
-        console.log("isPlaying:", isPlaying)
         if (isPlaying) {
             player.pauseVideo()
         }

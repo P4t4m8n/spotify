@@ -54,7 +54,6 @@ export function Playlist({ songs, onRemoveSong, isEdit, id, user, onChangePlayli
                 ))}
 
                 </ul>
-            </DndContext>
         </div >
     )
 }
