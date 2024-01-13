@@ -9,7 +9,6 @@ export function PlayerPlayingCard() {
 
     const song = useSelector(storeState => storeState.songMoudle.currSong)
 
-    console.log('render card')
 
     return (
         <div className="playing-card" >

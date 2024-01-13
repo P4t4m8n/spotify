@@ -8,7 +8,6 @@ export function PlayerRightside({ volume, setVolume }) {
 
     function handleVolumeChange(ev) {
         const newVolume = parseInt(ev.target.value, 10)
-        console.log("newVolume:", newVolume)
         setVolume(newVolume)
         if (player) {
             player.setVolume(newVolume)
@@ -36,7 +35,7 @@ export function PlayerRightside({ volume, setVolume }) {
         }
     }
 
-    console.log('Render:right side footer')
+    // console.log('Render:right side footer')
     return (
         <section className="rightside-footer">
             <button onClick={() => setIsOpen(!isOpen)}><Details></Details></button>

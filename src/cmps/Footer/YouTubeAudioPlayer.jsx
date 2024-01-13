@@ -113,7 +113,6 @@ export function YouTubeAudioPlayer({ volume }) {
   }
 
   const { trackId } = song
-  console.log('render toyube')
 
   return (
     <section className='audio'>
