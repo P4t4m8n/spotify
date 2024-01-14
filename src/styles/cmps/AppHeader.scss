@@ -4,7 +4,7 @@
 }
 
 .app-header {
-    background-color:inherit;
+    background-color: inherit;
     color: $clr4;
 
     display: grid;
@@ -34,9 +34,9 @@
 
         }
 
-      
 
-        
+
+
     }
 
 
@@ -86,10 +86,16 @@
         align-items: center;
         justify-content: center;
         background-color: rgba(0, 0, 0, .54);
+
+        svg {
+            width: 24px;
+            border-radius: 12px;
+            fill: #A7A7A7;
+        }
     }
 
     .search-box {
-        background-color: $clr11;
+        background-color: #242424;
         border-radius: 2rem;
         width: 19rem;
         border: none;
