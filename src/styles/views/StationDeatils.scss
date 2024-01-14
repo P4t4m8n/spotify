@@ -80,6 +80,34 @@
     align-items: center;
     justify-content: space-between;
 
+    .station-details-control-left {
+        display: flex;
+        gap:2rem;
+        align-items: center;
+
+        .play-button {
+            background-color: green;
+            width: 3rem;
+            height: 3rem;
+
+            svg {
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+        }
+
+        .like {
+            width: 2rem;
+            height: 2rem;
+
+            svg {
+                height: inherit, ;
+                width: inherit;
+                opacity: 70%;
+            }
+        }
+    }
+
 }
 
 //////////////////////change for play button
@@ -101,6 +129,8 @@
             height: 1.5rem;
         }
     }
+
+
 
 }
 
