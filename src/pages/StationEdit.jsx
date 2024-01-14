@@ -33,7 +33,7 @@ export function StationEdit() {
 
     }, [params.stationId, user.stations])
 
-    useBackgroundFromImage(stationToEdit.imgUrl)
+    useBackgroundFromImage(stationToEdit ? stationToEdit.imgUrl : null);
 
     async function onLoadStation(stationId) {
         try {
