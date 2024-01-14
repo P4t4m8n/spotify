@@ -94,10 +94,20 @@
         align-content: space-between;
         flex-wrap: wrap;
 
+        >* {
+            >* {
+                font-family: Monstserrat;
+
+                padding-left: 0;
+            }
+
+        }
+
         p {
             font-size: .9rem;
             max-height: 20px;
             min-height: 18px;
+            // padding-left: 1rem;
 
         }
 
@@ -109,13 +119,15 @@
                 font-size: 3rem;
             }
         }
-        .hero-details{
+
+        .hero-details {
             display: flex;
-            justify-content: space-evenly;
-            
-            img{
-                width: 100%;
+            justify-content: space-between;
+            p{
+
+                font-size: .7rem;
             }
+
 
         }
 

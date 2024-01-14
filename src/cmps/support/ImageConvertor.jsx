@@ -29,10 +29,10 @@ export function ImageConvertor({ itemToEdit,setItemToEdit }) {
         }
     }
 
-    const handleSaveImage = () => {
+    function handleSaveImage () {
         if (image) {
             if (item.type === 'Playlist'){
-
+                setItemToEdit(prev=>({...prev,imgUrl:image}))
             }
         }
     }

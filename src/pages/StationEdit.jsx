@@ -56,7 +56,6 @@ export function StationEdit() {
 
             setStationToEdit(prevStation => {
                 const updatedStation = { ...prevStation, imgUrl: imgUrl }
-                console.log("updatedStation:", updatedStation)
                 onSaveStation(updatedStation)
                 return updatedStation
             })
@@ -118,9 +117,7 @@ export function StationEdit() {
     if (!stationToEdit) return <div>...Loading</div>
 
 
-    const { type, name, amount, createdBy, duration, create, imgUrl, songs } = stationToEdit
-    console.log("amount:", amount)
-    console.log("duration:", duration)
+    const {  songs } = stationToEdit
 
     return (
 

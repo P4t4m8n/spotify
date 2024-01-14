@@ -12,6 +12,7 @@ export const stationService = {
     getStationListTitle,
     getDefaultStation,
     getEmptyStation,
+    convertTimeFormat,
 }
 
 function query(filterSortBy = {}) {
@@ -51,7 +52,8 @@ function getEmptyStation(name = '', idx = '', imgUrl = '') {
             username: '',
         },
         likedByUsers: 0,
-        songs: []
+        songs: [],
+        duration: ''
     }
 }
 
@@ -89,14 +91,14 @@ function _getStationDuration(items) {
         const timeParts = item.duration.split(':').map(part => parseInt(part, 10))
 
         if (timeParts.length === 2) {
-            totalMinutes += timeParts[0] 
-            totalMinutes += timeParts[1] / 60 
-        } else if (timeParts.length === 3) { 
-            totalMinutes += timeParts[0] * 60 
+            totalMinutes += timeParts[0]
+            totalMinutes += timeParts[1] / 60
+        } else if (timeParts.length === 3) {
+            totalMinutes += timeParts[0] * 60
             totalMinutes
 
-                += timeParts[1] 
-            totalMinutes += timeParts[2] / 60 
+                += timeParts[1]
+            totalMinutes += timeParts[2] / 60
         }
     })
     const totalHours = Math.floor(totalMinutes / 60)
@@ -110,3 +112,17 @@ function _getStationDuration(items) {
 
     return formattedTotalRunTime
 }
+
+function convertTimeFormat(timeStr) {
+    const parts = timeStr.split(':').map(part => parseInt(part, 10))
+
+    if (parts.length === 2) {
+        return `${parts[0]} minutes and ${parts[1]} seconds`;
+    } else if (parts.length === 3) {
+        return `${parts[0]} hours and ${parts[1]} minutes and ${parts[2]} seconds`
+    } else {
+        return 'Invalid format'
+    }
+}
+
+
