@@ -1,11 +1,10 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect,  useState } from "react"
 import { useParams } from "react-router"
 import { loadStation } from "../store/actions/station.actions"
 import { Playlist } from "../cmps/main/Playlist"
 import { LikeCard } from "../cmps/main/LikeCard"
 import { PlayCard } from "../cmps/main/PlayCard"
 import ColorThief from 'colorthief'
-import { Dots } from "../services/icons.service"
 
 
 
@@ -53,7 +52,6 @@ export function StationDetails() {
     if (!currStation) return <div>...Loading</div>
 
     const { imgUrl, type, createdBy, name, duration, songs, description } = currStation
-    console.log("songs:", songs)
 
     const amount = currStation.songs.length
 

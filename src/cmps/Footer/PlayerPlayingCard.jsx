@@ -9,8 +9,6 @@ export function PlayerPlayingCard() {
 
     const song = useSelector(storeState => storeState.songMoudle.currSong)
     const user = useSelector(storeState => storeState.userMoudle.userObj)
-    console.log("user:", user)
-
 
     return (
         <div className="playing-card" >

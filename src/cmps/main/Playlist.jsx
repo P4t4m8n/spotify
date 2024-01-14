@@ -7,8 +7,6 @@ import { SongPreview } from "./SongPreview";
 
 
 export function Playlist({ songs, onRemoveSong, isEdit, id, user, onChangePlaylist }) {
-console.log("songs:", songs)
-
 
     return (
 
