@@ -42,7 +42,6 @@ export async function signup(credentials) {
 
         const user = await userService.signup(credentials)
         
-        console.log("user:", user)
         store.dispatch({ type: SET_USER, user })
 
     }
@@ -55,7 +54,6 @@ export async function signup(credentials) {
 }
 
 export async function updateUser(user) {
-    console.log("user:", user)
 
     try {
         const updatedUser = await userService.update(user)

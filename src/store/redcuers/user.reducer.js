@@ -17,6 +17,7 @@ export function userReducer(state = initialState, action = {}) {
 
         case EDIT_USER:
 
+            console.log("action.updatedUser:", action.updatedUser)
             return { ...state, userObj: action.updatedUser }
 
         default:
