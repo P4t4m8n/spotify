@@ -3,6 +3,8 @@ import { Fragment, useEffect, useRef } from "react"
 import { StationList } from "../cmps/main/StationList"
 import { stationService } from "../services/station.service"
 import { loadStations } from "../store/actions/station.actions"
+import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
+
 
 export function StationIndex() {
 
@@ -15,11 +17,11 @@ export function StationIndex() {
         stationListTitle.current = stationService.getStationListTitle()
     }, [])
 
+    useBackgroundFromImage('')
 
 
     if (!stations) return <div>...Loading</div>
     // console.log('Render stationIndex')
-
 
     return (
         <Fragment >

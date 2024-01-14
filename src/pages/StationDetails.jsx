@@ -1,52 +1,31 @@
-import { useEffect,  useState } from "react"
+import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import { loadStation } from "../store/actions/station.actions"
 import { Playlist } from "../cmps/main/Playlist"
 import { LikeCard } from "../cmps/main/LikeCard"
 import { PlayCard } from "../cmps/main/PlayCard"
-import ColorThief from 'colorthief'
+import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
 
 
 
 export function StationDetails() {
 
     const [currStation, setCurrStation] = useState(null)
-    const [gradient, setGradient] = useState(null)
-
     const params = useParams()
 
     useEffect(() => {
         onLoadstation()
-    }, [params.stationId])
+    }, [params.stationsId])
 
-    useEffect(() => {
-        if (currStation) {
-            const img = new Image()
-            img.crossOrigin = 'Anonymous'
-            img.src = currStation.imgUrl
+    useBackgroundFromImage(currStation ? currStation.imgUrl : null);
 
-            img.onload = async () => {
-                const colorThief = new ColorThief()
-                const palette = colorThief.getPalette(img, 2)
-                const gradientColors = palette.map(rgb => `rgb(${rgb.join(',')})`)
-                setGradient(`linear-gradient(to bottom, 
-                    ${gradientColors[0]} 0%, 
-                    ${gradientColors[1]} 25%, 
-                    ${gradientColors[0]} 50%, 
-                    #000000 75%,   
-                    #000000 100%)`)
-                document.querySelector('.main-content').style.background = gradient
-            }
-        }
 
-    }, [currStation,gradient])
+
 
 
     async function onLoadstation() {
         const station = await loadStation(params.stationId)
-
-        setCurrStation(prevStation => ({ ...prevStation, ...station }))
-
+        setCurrStation(station)
     }
 
     if (!currStation) return <div>...Loading</div>
@@ -55,7 +34,7 @@ export function StationDetails() {
 
     const amount = currStation.songs.length
 
-    // console.log('Render station-details')
+    console.log('Render station-details')
 
     return (
         <section className="station-details" >
@@ -80,7 +59,7 @@ export function StationDetails() {
                     <LikeCard item={currStation}></LikeCard>
 
                 </div>
-              
+
             </section>
             <Playlist songs={songs}></Playlist>
         </section >
