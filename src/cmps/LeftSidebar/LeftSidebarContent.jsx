@@ -91,14 +91,13 @@ export function SideBarContent() {
 
                 <div className="right-buttons flex animate__animated animate__rubberBand">
 
-                    <button onClick={createStation} className="animate__animated animate__rubberBand">
+                    <button onClick={createStation} className="plus-icon-left animate__animated animate__rubberBand">
                         <Plus></Plus>
                     </button>
 
                     <p className="inline-block">
-                        <span >
+                        <span className="arrow-icon-left">
                             <Arrow></Arrow>
-
                         </span>
                     </p>
 
