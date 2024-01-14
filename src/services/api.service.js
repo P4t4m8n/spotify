@@ -1,7 +1,7 @@
 import axios from "axios"
 import { utilService } from "./util.service"
 
-const API_KEY_YT = 'AIzaSyBu-GdAUp7awvELMR3iigsESqtzB7qLekI'
+const API_KEY_YT = 'AIzaSyB-c85b2LVXNY7RuIUij8swVv4JdRhuSVw'
 const API_KEY_LAST_FM = 'a07417914f1e93617c8e6b02d8f52c86'
 const URL_ARTIST_TUBE = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY_YT}&`
 const URL_PLAYLIST_TUBE = `https://www.googleapis.com/youtube/v3/playlists?key=${API_KEY_YT}&`
@@ -24,6 +24,7 @@ async function getContent(search) {
             try {
                 const searchInfo = parseSongString(ytItem.snippet.title)
                 const duration = await _getDuration(ytItem.id.videoId)
+                console.log("duration:", duration)
                 return {
 
                     name: searchInfo.name,
@@ -62,6 +63,7 @@ async function _getDuration(videoId) {
     const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${API_KEY_YT}`
     try {
         const duration = await axios(url)
+        console.log("duration:", duration)
         const fixDuration = formatDuration(duration.data.items[0].contentDetails.duration)
         return fixDuration
     }
@@ -70,16 +72,33 @@ async function _getDuration(videoId) {
 }
 
 function formatDuration(duration) {
-    const regex = /PT(\d+)M(\d+)S/
+    console.log("duration:", duration)
+
+    if (duration === 'P0D') return '99:99:99'
+
+    const regex = /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/
     const matches = duration.match(regex)
 
-    if (matches && matches.length === 3) {
-        const minutes = matches[1]
-        const seconds = matches[2]
-        return `${minutes}:${seconds}`
+    if (matches) {
+        const hours = matches[1] ? parseInt(matches[1], 10) : 0
+        const minutes = matches[2] ? parseInt(matches[2], 10) : 0
+        const seconds = matches[3] ? parseInt(matches[3], 10) : 0
+
+        if (hours > 0) {
+            return `${padWithZero(hours)}:${padWithZero(minutes)}:${padWithZero(seconds)}`
+        } else {
+            return `${padWithZero(minutes)}:${padWithZero(seconds)}`
+        }
     }
-    return "Invalid format"
+    return "01:00"
 }
+
+function padWithZero(number) {
+    return number.toString().padStart(2, '0')
+}
+
+
+
 
 
 

@@ -12,6 +12,7 @@ import { PlayCard } from "../cmps/main/PlayCard"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { onDragEnd } from "../services/dnd"
 import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
+import { uploadService } from "../services/upload.service"
 
 
 
@@ -30,6 +31,7 @@ export function StationEdit() {
     useEffect(() => {
         if (params.stationId)
             onLoadStation(params.stationId)
+        
 
     }, [params.stationId, user.stations])
 
@@ -45,6 +47,36 @@ export function StationEdit() {
         catch (err) { console.log(err) }
     }
 
+
+    async function onUplodImg(ev) {
+        const file = ev.target.files[0]
+        try {
+            const imgUrl = await uploadService.uploadImg(file)
+
+
+            setStationToEdit(prevStation => {
+                const updatedStation = { ...prevStation, imgUrl: imgUrl }
+                onSaveStation(updatedStation)
+                return updatedStation
+            })
+        }
+        catch (err) {
+            console.log('err:', err)
+        }
+
+    }
+
+    async function onSaveStation(updatedStation = stationToEdit) {
+
+        try {
+            const savedSation = await saveStation(updatedStation)
+
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
     async function onAddSong(ev, song) {
         recommendedList.current.songs = recommendedList.current.songs.filter(listSong => song._id !== listSong._id)
 
@@ -55,16 +87,6 @@ export function StationEdit() {
 
     }
 
-    async function onSaveStation(ev) {
-
-        try {
-            const savedSation = await saveStation(stationToEdit)
-
-        }
-        catch (err) {
-            console.log(err)
-        }
-    }
     function onRemoveSong(ev, songId) {
 
         stationToEdit.songs = stationToEdit.songs.filter(listSong => songId !== listSong._id)
@@ -94,12 +116,13 @@ export function StationEdit() {
 
     if (!stationToEdit) return <div>...Loading</div>
 
-    const { type, name, amount, createdBy, duration, create, imgUrl, songs } = stationToEdit
+
+    const {  songs } = stationToEdit
 
     return (
 
         <section className="station-page" >
-            <PlaylistHero stationToEdit={stationToEdit} handleChange={handleChange} onSaveStation={onSaveStation} ></PlaylistHero>
+            <PlaylistHero stationToEdit={stationToEdit} handleChange={handleChange} onSaveStation={onSaveStation} onUplodImg={onUplodImg} ></PlaylistHero>
 
             <div>
                 <div className="play-and-context flex">

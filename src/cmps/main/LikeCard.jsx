@@ -13,9 +13,12 @@ export function LikeCard({ item }) {
     useEffect(() => {
        
         let LikeCheck
-        if (item.type === 'Playlist') LikeCheck = user.stations.some(station => station._id === item._id)
-        if (item.type === 'song') {
-            LikeCheck = user.stations[0].songs.some(song => song._id === item._id)
+        if(user){
+
+            if (item.type === 'Playlist') LikeCheck = user.stations.some(station => station._id === item._id)
+            if (item.type === 'song') {
+                LikeCheck = user.stations[0].songs.some(song => song._id === item._id)
+        }
         }
 
         if (LikeCheck) setIsLiked(true)
@@ -36,7 +39,6 @@ export function LikeCard({ item }) {
             userToUpdate = handlePlaylistLike(user, item, isLiked, setIsLiked)
         } else if (item.type === 'song') {
             userToUpdate = handleSongLike(user, item, isLiked, setIsLiked)
-            console.log("userToUpdate:", userToUpdate)
         }
 
         try {
@@ -75,8 +77,6 @@ export function LikeCard({ item }) {
         return { ...user, stations: updatedStations }
     }
     // console.log('render like')
-    console.log('liked:', isLiked)
-    console.log('liked:', item)
     return (
         <button className={"like animate__animated " + (isLiked ? 'fill animate__shakeX' : 'empty animate__heartBeat')} onClick={onLike}>
             {isLiked ? <FullHeart /> : <Heart />}

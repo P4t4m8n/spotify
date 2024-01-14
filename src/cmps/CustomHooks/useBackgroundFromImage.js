@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import ColorThief from 'colorthief'
 
 export function useBackgroundFromImage(imageUrl) {
+    console.log("imageUrl:", imageUrl)
 
     const [gradient, setGradient] = useState('linear-gradient(to bottom, #1db954 0%, #121212 100%)')
 
@@ -12,7 +13,7 @@ export function useBackgroundFromImage(imageUrl) {
             const img = new Image()
             img.crossOrigin = 'Anonymous'
             img.src = imageUrl
-
+            console.log('1')
             img.onload = async () => {
                 const colorThief = new ColorThief()
                 const palette = colorThief.getPalette(img, 2)
@@ -26,10 +27,12 @@ export function useBackgroundFromImage(imageUrl) {
 
             }
         }
+        else setGradient('linear-gradient(to bottom, #1db954 0%, #121212 100%)')
 
     }, [imageUrl])
 
     useEffect(() => {
         document.querySelector('.main-content').style.background = gradient
+        console.log("gradient:", gradient)
     }, [gradient])
 }
