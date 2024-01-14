@@ -29,7 +29,7 @@ export function StationEdit() {
         if (params.stationId)
             onLoadStation(params.stationId)
 
-    }, [params.stationId,user.stations])
+    }, [params.stationId, user.stations])
 
     async function onLoadStation(stationId) {
         try {
@@ -69,6 +69,7 @@ export function StationEdit() {
     }
 
     function onChangePlaylist(ev, song, stationId) {
+        if (ev.target.value === 'same') return
         onRemoveSong(ev, song._id)
 
         const newPlay = user.stations[ev.target.value]
@@ -121,9 +122,9 @@ export function StationEdit() {
                         <p className="under-recommended">Based on whats in this station</p>
                         <ul className="under-song-list grid">
                             {
-                                recommendedList.current.songs.map((song,idx) =>
+                                recommendedList.current.songs.map((song, idx) =>
                                     <li key={song._id} className="add-song-to-station-li clean-list">
-                                        <p className="counter">{idx+1}</p>
+                                        <p className="counter">{idx + 1}</p>
 
                                         <div className="title-image-play grid">
                                             <button><img src={song.imgUrl}></img></button>

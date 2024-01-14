@@ -56,7 +56,7 @@ export function SideBarContent() {
 
     async function createStation() {
 
-        let newStation = stationService.getEmptyStation('My station #', userStations.length - 1)
+        let newStation = stationService.getEmptyStation('My station #', user.stations.length - 1)
 
         try {
             newStation = await saveStation(newStation)
@@ -136,28 +136,28 @@ export function SideBarContent() {
 
             <section className="side-bar-content">
 
-                    <ul>
-                        {
-                            user.stations.map((station,idx) => (
-                                    <Link key={station._id} to={'/1/station/edit/' + station._id}>
-                                        <li className="grid">
-                                            {station.imgUrl ?
-                                                <img className="station-image-left-sidebar" src={station.imgUrl}></img> :
-                                                <div className="svg-box">
-                                                    <Note></Note>
-                                                </div>
-                                            }
-                                            <header>{station.name}</header>
-                                            <p>
-                                                <Pin></Pin>
-                                                <span className="station-type">{station.type}</span>
-                                                <span>{station.songs.length} songs</span>
-                                            </p>
+                <ul>
+                    {
+                        user.stations.map((station, idx) => (
+                            <Link key={station._id} to={'/1/station/edit/' + station._id}>
+                                <li className="grid">
+                                    {station.imgUrl ?
+                                        <img className="station-image-left-sidebar" src={station.imgUrl}></img> :
+                                        <div className="svg-box">
+                                            <Note></Note>
+                                        </div>
+                                    }
+                                    <header>{station.name}</header>
+                                    <p>
+                                        <Pin></Pin>
+                                        <span className="station-type">{station.type}</span>
+                                        <span>{station.songs.length} songs</span>
+                                    </p>
 
-                                        </li>
-                                    </Link>
-                            ))}
-                    </ul>
+                                </li>
+                            </Link>
+                        ))}
+                </ul>
             </section>
         </div >
     )

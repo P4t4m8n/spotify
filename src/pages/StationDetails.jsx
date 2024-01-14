@@ -53,6 +53,7 @@ export function StationDetails() {
     if (!currStation) return <div>...Loading</div>
 
     const { imgUrl, type, createdBy, name, duration, songs, description } = currStation
+    console.log("songs:", songs)
 
     const amount = currStation.songs.length
 
