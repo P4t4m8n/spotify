@@ -9,7 +9,6 @@ export function Playlist({ songs, onRemoveSong, isEdit, id, user, onChangePlayli
     return (
 
         <div>
-             <DndContext>
             <ul className="song-list grid clean-list">
                 <li className="list-header">
                     <p> #</p>

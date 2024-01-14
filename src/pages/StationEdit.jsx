@@ -139,7 +139,7 @@ export function StationEdit() {
 
                                         <p>{song.album}</p>
 
-                                        <div class="add-to-station-container">
+                                        <div className="add-to-station-container">
                                             <button className="add-to-station-button" onClick={(ev) => onAddSong(ev, song)}>Add</button>
                                         </div>
 
