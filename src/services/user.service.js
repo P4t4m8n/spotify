@@ -68,8 +68,10 @@ async function logout() {
 }
 
 async function update(user) {
+    console.log("user:", user)
     try {
         const updateUser = await asyncService.put(STORGE_KEY_USERS, user)
+        console.log("updateUser:", updateUser)
         _setLoggedinUser(updateUser)
         return updateUser
     }

@@ -65,7 +65,7 @@ export function SearchPage() {
                             <div className='results'>
                                 {searchList.map(song =>
                                     <div className='result' key={song.trackId}>
-                                        <div>
+                                        <div className='img-play-con'>
                                             <img src={song.imgUrl}></img>
                                             <PlayCard item={song}></PlayCard>
                                         </div>

@@ -138,7 +138,7 @@ export function SideBarContent() {
 
                     <ul>
                         {
-                            user.stations.map((station) => (
+                            user.stations.map((station,idx) => (
                                     <Link key={station._id} to={'/1/station/edit/' + station._id}>
                                         <li className="grid">
                                             {station.imgUrl ?

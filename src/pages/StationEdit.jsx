@@ -29,7 +29,7 @@ export function StationEdit() {
         if (params.stationId)
             onLoadStation(params.stationId)
 
-    }, [params.stationId])
+    }, [params.stationId,user.stations])
 
     async function onLoadStation(stationId) {
         try {
@@ -71,14 +71,12 @@ export function StationEdit() {
     function onChangePlaylist(ev, song, stationId) {
         onRemoveSong(ev, song._id)
 
-        console.log("ev.target.value:", ev.target.value)
         const newPlay = user.stations[ev.target.value]
         newPlay.songs.push(song)
         saveStation(newPlay)
     }
 
     function handleChange({ target }) {
-        console.log("target:", target)
         let value = target.value
         let field = target.name
         if (field === 'search') {
@@ -93,7 +91,6 @@ export function StationEdit() {
 
     const { type, name, amount, createdBy, duration, create, imgUrl, songs } = stationToEdit
 
-
     return (
 
         <section className="station-page" >
@@ -102,7 +99,6 @@ export function StationEdit() {
             <div>
                 <div className="play-and-context flex">
                     {songs && <PlayCard item={stationToEdit}></PlayCard>}
-                    <button className="dot-dot-dot">...</button>
                 </div>
                 {
                     songs &&

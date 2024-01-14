@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { Clock } from "../../services/icons.service";
 import { LikeCard } from "./LikeCard";
+import { PlayCard } from "./PlayCard";
+import { SongPreview } from "./SongPreview";
 
 
 
@@ -21,35 +24,13 @@ export function Playlist({ songs, onRemoveSong, isEdit, id, user, onChangePlayli
             </ul>
             <ul className="song-list grid clean-list">
                 {songs.map((song, idx) => (
-                    <li key={song._id} className="station-details-list">
-                        <p>{idx + 1}</p>
-                        <div className="artist-and-image grid">  <img src={song.imgUrl} /> {song.title}</div>
-                        <p>{song.artist}</p>
-                        <p>{song.album}</p>
-                        <div>
-                            <div className="details-list-control">
-                                <LikeCard item={song}></LikeCard>
-                                <p>{song.duration}</p>
-                                {isEdit && <button onClick={(ev) => onRemoveSong(ev, song._id)}>❌</button>}
-                                {isEdit &&
-
-                                    <select onChange={(ev) => onChangePlaylist(ev, song, id)}>
-                                        {
-                                            user.stations.map((station, idx) => {
-                                                return (station._id === id) ? <option key={idx} value="same">Current Playlist</option> :
-                                                    <option key={idx} value={idx}>Play list num {idx}</option>
-                                            })
-                                        }
-
-
-                                    </select>
-                                }
-                            </div>
-                        </div>
-                    </li>
+                    <SongPreview key={idx} idx={idx} song={song} isEdit={isEdit}
+                        onRemoveSong={onRemoveSong} onChangePlaylist={onChangePlaylist}
+                        user={user} id={id}>
+                    </SongPreview>
                 ))}
 
-                </ul>
+            </ul>
         </div >
     )
 }

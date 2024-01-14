@@ -25,52 +25,51 @@ export function LikeCard({ item }) {
 
     async function onLike() {
         if (!user) {
-            console.log('noUser')
+            console.log('No user found')
             return
         }
-
+    
         let userToUpdate
-        let newUserArr = []
-
+    
         if (item.type === 'playlist') {
-            newUserArr = user.stations
-            if (isLiked) {
-                newUserArr = newUserArr.filter(station => station._id !== item._id)
-                setIsLiked(false)
-            }
-            else {
-                newUserArr.push(item)
-                console.log('like')
-                setIsLiked(true)
-            }
-            userToUpdate = { ...user, stations: newUserArr }
+            userToUpdate = handlePlaylistLike(user, item, isLiked, setIsLiked)
+        } else if (item.type === 'song') {
+            userToUpdate = handleSongLike(user, item, isLiked, setIsLiked)
         }
-
-        else if (item.type === 'song') {
-
-
-            let favArr = user.stations[0].songs
-            if (isLiked) {
-                console.log('dislike')
-                favArr = favArr.filter(fav => fav._id !== item._id)
-                setIsLiked(false)
-
-            }
-            else {
-                console.log('like')
-                favArr.push(item)
-                setIsLiked(true)
-                const stations = user.stations
-                stations[0].push(favArr)
-
-            }
-            userToUpdate = { ...user, stations: stations }
-        }
+    
         try {
-
             await updateUser(userToUpdate)
+        } catch (err) {
+            console.error('Error updating user:', err)
         }
-        catch (err) { console.log(err) }
+    }
+    
+    function handlePlaylistLike(user, item, isLiked, setIsLikedCallback) {
+        let updatedStations = user.stations
+        if (isLiked) {
+            updatedStations = updatedStations.filter(station => station._id !== item._id)
+            setIsLikedCallback(false)
+        } else {
+            updatedStations = [...updatedStations, item]
+            setIsLikedCallback(true)
+        }
+        return { ...user, stations: updatedStations }
+    }
+    
+    function handleSongLike(user, item, isLiked, setIsLikedCallback) {
+        let updatedStations = [...user.stations]
+        let favSongs = updatedStations[0].songs
+    
+        if (isLiked) {
+            favSongs = favSongs.filter(fav => fav._id !== item._id)
+            setIsLikedCallback(false)
+        } else {
+            favSongs = [...favSongs, item]
+            setIsLikedCallback(true)
+        }
+    
+        updatedStations[0].songs = favSongs
+        return { ...user, stations: updatedStations }
     }
     // console.log('render like')
 

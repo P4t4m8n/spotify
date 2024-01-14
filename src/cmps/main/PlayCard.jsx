@@ -5,6 +5,7 @@ import { Pause, Play } from "../../services/icons.service"
 
 
 export function PlayCard({ item }) {
+console.log("item:", item)
 
     const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
     const song = useSelector(storeState => storeState.songMoudle.currSong)
@@ -15,6 +16,7 @@ export function PlayCard({ item }) {
     let cardType = (item.type === 'playlist') ? station._id : song._id
     
     function onPlayStation(ev) {
+        console.log("ev:", ev)
         ev.preventDefault()
         if (item.type === 'playlist') {
             if (item._id !== station._id) {
@@ -26,7 +28,7 @@ export function PlayCard({ item }) {
 
         if (item.type === 'song') {
             if (item._id !== song._id) {
-                loadSong(item.songs[0])
+                loadSong(item)
                 if (isPlaying) setPlaying(false)
 
             }
