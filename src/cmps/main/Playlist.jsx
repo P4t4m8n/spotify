@@ -1,4 +1,4 @@
-import { Clock, Dots } from "../../services/icons.service";
+import { Clock } from "../../services/icons.service";
 import { LikeCard } from "./LikeCard";
 
 
@@ -19,7 +19,6 @@ export function Playlist({ songs, onRemoveSong, isEdit, id, user, onChangePlayli
                 </li>
 
             </ul>
-            {/* <div className="mother-fucking-line"></div> */}
             <ul className="song-list grid clean-list">
                 {songs.map((song, idx) => (
                     <li key={song._id} className="station-details-list">
@@ -31,7 +30,6 @@ export function Playlist({ songs, onRemoveSong, isEdit, id, user, onChangePlayli
                             <div className="details-list-control">
                                 <LikeCard item={song}></LikeCard>
                                 <p>{song.duration}</p>
-                                {/* <button><Dots></Dots></button> */}
                                 {isEdit && <button onClick={(ev) => onRemoveSong(ev, song._id)}>❌</button>}
                                 {isEdit &&
 

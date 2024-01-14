@@ -93,7 +93,6 @@ export function StationEdit() {
 
     const { type, name, amount, createdBy, duration, create, imgUrl, songs } = stationToEdit
 
-    let counter = 0
 
     return (
 
@@ -102,12 +101,12 @@ export function StationEdit() {
 
             <div>
                 <div className="play-and-context flex">
-                    {stationToEdit.songs && <PlayCard item={stationToEdit}></PlayCard>}
+                    {songs && <PlayCard item={stationToEdit}></PlayCard>}
                     <button className="dot-dot-dot">...</button>
                 </div>
                 {
-                    stationToEdit.songs &&
-                    <Playlist onChangePlaylist={onChangePlaylist} user={user} songs={stationToEdit.songs} id={stationToEdit._id} onRemoveSong={onRemoveSong} isEdit={isEdit.current} />
+                    songs &&
+                    <Playlist onChangePlaylist={onChangePlaylist} user={user} songs={songs} id={stationToEdit._id} onRemoveSong={onRemoveSong} isEdit={isEdit.current} />
                 }
 
             </div>
@@ -126,9 +125,9 @@ export function StationEdit() {
                         <p className="under-recommended">Based on whats in this station</p>
                         <ul className="under-song-list grid">
                             {
-                                recommendedList.current.songs.map(song =>
+                                recommendedList.current.songs.map((song,idx) =>
                                     <li key={song._id} className="add-song-to-station-li clean-list">
-                                        <p className="counter">{++counter}</p>
+                                        <p className="counter">{idx+1}</p>
 
                                         <div className="title-image-play grid">
                                             <button><img src={song.imgUrl}></img></button>
