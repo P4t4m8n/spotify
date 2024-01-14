@@ -1,0 +1,124 @@
+.station-hero {
+    background-color: inherit;
+    color: white;
+    padding: 20px;
+    display: flex;
+    align-items: normal;
+    justify-content: space-between;
+
+    label {
+        width: 14.5rem;
+        height: 14.5rem;
+        cursor: pointer;
+        position: relative;
+
+        .note-svg {
+            width: 3rem;
+            height: 3rem;
+            position: relative;
+            z-index: 1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: invert(70%) sepia(150%) saturate(50%) hue-rotate(173deg) brightness(150%) contrast(3%);
+            opacity: 1;
+        }
+
+        img {
+            position: absolute;
+            z-index: 3;
+            border-radius: 1rem;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 1;
+            object-fit: scale-down;
+
+        }
+
+        div {
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+            z-index: 4;
+
+            .pencil-svg {
+                width: 3rem;
+                height: 3rem;
+                z-index: 4;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                filter: brightness(0) invert(1);
+
+
+
+
+            }
+
+            p {
+                bottom: 30%;
+                position: absolute;
+                z-index: 4;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: .9;
+                filter: brightness(0) invert(1);
+
+
+            }
+        }
+
+        &:hover {
+            div {
+
+                opacity: 1;
+            }
+
+            .note-svg {
+                opacity: 0;
+            }
+
+            img {
+                opacity: 50%;
+            }
+
+        }
+    }
+
+    .hero-right-section {
+        padding-top: 10%;
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        align-content: space-between;
+        flex-wrap: wrap;
+
+        p {
+            font-size: .9rem;
+            max-height: 20px;
+            min-height: 18px;
+
+        }
+
+        .hero-moudle {
+            height: 6rem;
+
+            >* {
+                border: none;
+                font-size: 3rem;
+            }
+        }
+        .hero-details{
+            display: flex;
+            justify-content: space-evenly;
+            
+            img{
+                width: 100%;
+            }
+
+        }
+
+
+    }
+}

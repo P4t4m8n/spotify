@@ -23,10 +23,11 @@ function get(stationId) {
 }
 
 function save(station) {
-    station.duration= _getStationDuration(station.songs)
+    station.duration = _getStationDuration(station.songs)
+    console.log("station:", station)
     const edit = 'edit/'
     if (station._id) return httpService.put(BASE_URL + edit + station._id, station)
-    return httpService.post(BASE_URL + edit,station)
+    return httpService.post(BASE_URL + edit, station)
 }
 
 function remove(stationId) {
@@ -81,19 +82,31 @@ function getDefaultStation() {
 }
 
 function _getStationDuration(items) {
+    console.log("items:", items)
     let totalMinutes = 0
 
     items.forEach(item => {
-        const [hours, minutes] = item.duration.split(':')
-        totalMinutes += parseInt(hours, 10) * 60 + parseInt(minutes, 10)
+        const timeParts = item.duration.split(':').map(part => parseInt(part, 10))
+
+        if (timeParts.length === 2) {
+            totalMinutes += timeParts[0] 
+            totalMinutes += timeParts[1] / 60 
+        } else if (timeParts.length === 3) { 
+            totalMinutes += timeParts[0] * 60 
+            totalMinutes
+
+                += timeParts[1] 
+            totalMinutes += timeParts[2] / 60 
+        }
     })
-
     const totalHours = Math.floor(totalMinutes / 60)
-    const remainingMinutes = totalMinutes % 60
+    const remainingMinutes = Math.floor(totalMinutes % 60)
+    const remainingSeconds = Math.round((totalMinutes - Math.floor(totalMinutes)) * 60)
 
-    const formattedTotalRunTime = `${String(totalHours).padStart(2, '0')}:
-    ${String(remainingMinutes).padStart(2, '0')}`
+    let formattedTotalRunTime = `${String(totalHours).padStart(2, '0')}:${String(remainingMinutes).padStart(2, '0')}`
+    if (remainingSeconds > 0) {
+        formattedTotalRunTime += `:${String(remainingSeconds).padStart(2, '0')}`
+    }
 
     return formattedTotalRunTime
 }
-

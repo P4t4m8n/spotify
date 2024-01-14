@@ -10,9 +10,9 @@ import DialogTitle from '@mui/joy/DialogTitle'
 import DialogContent from '@mui/joy/DialogContent'
 import Stack from '@mui/joy/Stack'
 import Add from '@mui/icons-material/Add'
-import { Note } from '../../services/icons.service'
+import { Note, Pencil } from '../../services/icons.service'
 
-export function PlaylistHero({ handleChange, stationToEdit, onSaveStation }) {
+export function PlaylistHero({ handleChange, stationToEdit, onSaveStation, onUplodImg }) {
     const [open, setOpen] = useState(false)
 
     const { type, name, amount, createdBy, duration, imgUrl } = stationToEdit
@@ -24,17 +24,21 @@ export function PlaylistHero({ handleChange, stationToEdit, onSaveStation }) {
             <form className="flex">
 
                 <label htmlFor="file-input">
-                    <input type="file" id="file-input" name="image" onChange={handleChange} accept="image/*" hidden />
+                    <input type="file" id="file-input" name="image" onChange={onUplodImg} hidden />
                     <Note></Note>
+                    <img src={imgUrl}></img>
+                    <div>
+                        <Pencil></Pencil>
+                        <p>Choose Photo</p>
+                    </div>
                 </label>
                 <div className="hero-right-section flex">
-                    <div>
-                        <p>{type}</p>
+                    <p>{type}</p>
+                    <div className='hero-moudle'>
                         <React.Fragment>
                             <Button
                                 variant="outlined"
                                 color="neutral"
-                                startDecorator={<Add />}
                                 onClick={() => setOpen(true)}
                             >
                                 {name}
@@ -66,10 +70,10 @@ export function PlaylistHero({ handleChange, stationToEdit, onSaveStation }) {
                             </Modal>
                         </React.Fragment>
                     </div>
-                    <div>
-                        <p>{createdBy.username || 'TubeFy'}</p>
-                        <p>{amount || ''}</p>
-                        <p>duration: {duration || ''}</p>
+                    <div className='hero-details'>
+                        <p>{createdBy.username || 'TubiFy'}</p>
+                        <p>{amount} songs,</p>
+                        <p>about {duration}</p>
                     </div>
                 </div>
             </form>
