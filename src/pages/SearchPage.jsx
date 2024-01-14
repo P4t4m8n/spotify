@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import { saveSong } from '../store/actions/song.action'
 import { updateUser } from '../store/actions/user.actions'
 import { saveStation } from '../store/actions/station.actions'
+import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
 
 export function SearchPage() {
 
@@ -21,6 +22,9 @@ export function SearchPage() {
     useEffect(() => {
         params.searchTerm ? fetchSearchResults() : setSearchList(null)
     }, [params.searchTerm])
+
+    useBackgroundFromImage('')
+
 
     async function fetchSearchResults() {
         try {

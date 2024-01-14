@@ -18,7 +18,9 @@ export function StationList({ stations, stationListTitle }) {
                                     {station.description}
                                 </p>
                             </div>
-                            <PlayCard item={station} ></PlayCard>
+                            <div>
+                                <PlayCard item={station} ></PlayCard>
+                            </div>
                         </li>
                     </Link>
                 ))}

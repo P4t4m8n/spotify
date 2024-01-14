@@ -11,6 +11,8 @@ import { updateUser } from "../store/actions/user.actions"
 import { PlayCard } from "../cmps/main/PlayCard"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { onDragEnd } from "../services/dnd"
+import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
+
 
 
 export function StationEdit() {
@@ -30,6 +32,8 @@ export function StationEdit() {
             onLoadStation(params.stationId)
 
     }, [params.stationId, user.stations])
+
+    useBackgroundFromImage(stationToEdit ? stationToEdit.imgUrl : null);
 
     async function onLoadStation(stationId) {
         try {

@@ -48,9 +48,11 @@ export function PlayCard({ item }) {
         setPlaying()
     }
     // console.log('render play')
+    let showPlay = ''
+    if (isPlaying && item._id === cardType) showPlay = 'show'
 
     return (
-        <button onClick={(ev) => onPlayStation(ev)} className="play-button">
+        <button onClick={(ev) => onPlayStation(ev)} className={"play-button " + showPlay}>
             {isPlaying && item._id === cardType ? <Pause /> : <Play />}
 
         </button>
