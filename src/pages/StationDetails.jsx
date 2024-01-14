@@ -56,7 +56,7 @@ export function StationDetails() {
 
     const amount = currStation.songs.length
 
-    console.log('Render station-details')
+    // console.log('Render station-details')
 
     return (
         <section className="station-details" >
@@ -79,12 +79,9 @@ export function StationDetails() {
                 <div className="station-details-control-left">
                     <PlayCard item={currStation}></PlayCard>
                     <LikeCard item={currStation}></LikeCard>
-                    <button className="details-dots"><Dots></Dots></button>
 
                 </div>
-                {/* <div className="station-details-control-right">
-                    <button className="details-sort"><Sort></Sort></button>
-                </div> */}
+              
             </section>
             <Playlist songs={songs}></Playlist>
         </section >

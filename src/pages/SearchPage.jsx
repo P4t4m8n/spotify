@@ -42,7 +42,7 @@ export function SearchPage() {
         catch (err) { console.log(err) }
     }
 
-    console.log('Render-Search page')
+    // console.log('Render-Search page')
     return (
         <section className='search-page' >
             {!params.searchTerm &&
