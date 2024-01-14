@@ -44,10 +44,10 @@ export function SearchPage() {
 
     // console.log('Render-Search page')
     return (
-        <section className='search-page' >
+        <section>
             {!params.searchTerm &&
                 <Fragment>
-                    <h1>Browse all</h1>
+                    <h1 className='browse-all'>Browse all</h1>
                     <ul className="ganeres-list">
                         {genres.map(ganere =>
                             <li key={ganere} style={{ backgroundColor: utilService.getRandomColor() }} onClick={() => navigate('/search/' + ganere)}>

@@ -9,14 +9,6 @@
 }
 
 
-
-
-.ganeres-list h1 {
-
-    font-weight: bolder;
-
-}
-
 .ganeres-list li {
     display: flex;
     flex-direction: column;
@@ -137,4 +129,8 @@ div .result:hover {
     font-size: 1em;
     padding: 0.5em;
 
+}
+
+.browse-all {
+    margin: 16px 0;
 }
