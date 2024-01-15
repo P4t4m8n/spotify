@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { PlayCard } from "./PlayCard"
 import { LikeCard } from "./LikeCard"
 import { useSelector } from "react-redux"
@@ -11,6 +11,9 @@ export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong,
     const activeContextMenuId = useSelector(storeState => storeState.appMoudle.playlistContextMenu)
     const [isHover, setIsHover] = useState(false)
     const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 })
+
+    const contextMenuRef = useRef(null)
+
 
 
     function onSetIsHover(ev, hover) {
@@ -28,10 +31,18 @@ export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong,
         if (activeContextMenuId !== song._id) setContextMenu(null)
     }
 
-    window.onclick = () => {
-
-        closeContextMenu()
+    function handleClickOutside(event) {
+        if (contextMenuRef.current && !contextMenuRef.current.contains(event.target)) {
+            setContextMenu(null)
+        }
     }
+
+    useEffect(() => {
+        window.addEventListener('click', handleClickOutside)
+        return () => {
+            window.removeEventListener('click', handleClickOutside)
+        }
+    }, [])
 
     return (
         <li key={idx} className="station-details-list"
@@ -41,7 +52,7 @@ export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong,
 
         >
             <p >{isHover ? <PlayCard item={song}></PlayCard> : idx + 1}</p>
-            <div className="artist-and-image grid">  <img src={song.imgUrl} /> {song.title}</div>
+            <div className="artist-and-image grid">  <div className="img-list-con"><img src={song.imgUrl} /> </div>{song.name}</div>
             <p >
                 {song.artist}</p>
             <p>{song.album}</p>
@@ -53,7 +64,7 @@ export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong,
                 </div>
             </div>
             {activeContextMenuId === song._id && (
-                <ul className="context-menu" style={{ position: 'absolute', top: `${contextMenuPosition.y}px`, left: `${contextMenuPosition.x}px` }}>
+                <ul ref={contextMenuRef} className="context-menu" style={{ position: 'absolute', top: `${contextMenuPosition.y}px`, left: `${contextMenuPosition.x}px` }}>
                     <li>
                         <select onChange={(ev) => onChangePlaylist(ev, song, id, isSearch)} className="playlist-select">
                             {user.stations.map((station, idx) => (

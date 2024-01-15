@@ -19,12 +19,12 @@ async function getContent(search) {
     const destTube = `part=snippet&q=${search}&videoCategoryId=10&type=video&maxResults=${maxResults}`
     try {
         const responseArtist = await axios.get(URL_ARTIST_TUBE + destTube)
+        console.log("URL_ARTIST_TUBE + destTube:", URL_ARTIST_TUBE + destTube)
 
         const promisesSongs = responseArtist.data.items.map(async ytItem => {
             try {
                 const searchInfo = parseSongString(ytItem.snippet.title)
                 const duration = await _getDuration(ytItem.id.videoId)
-                console.log("duration:", duration)
                 return {
 
                     name: searchInfo.name,
@@ -32,7 +32,7 @@ async function getContent(search) {
                     type: 'song',
                     duration: duration,
                     trackId: ytItem.id.videoId,
-                    imgUrl: ytItem.snippet.thumbnails.high.url,
+                    imgUrl: ytItem.snippet.thumbnails.medium.url,
                     addedBy: 'artist',
                     addedAt: Date.now(),
                     likedBy: [],

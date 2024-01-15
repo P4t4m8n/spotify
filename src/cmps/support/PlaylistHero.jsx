@@ -21,66 +21,66 @@ export function PlaylistHero({ handleChange, stationToEdit, onSaveStation, onUpl
 
 
 
-// console.log('render hero')
+    // console.log('render hero')
 
-return (
-    <header className="station-hero">
-        <form className="flex">
+    return (
+        <header className="station-hero">
+            <form className="flex">
 
-            <label htmlFor="file-input">
-                <input type="file" id="file-input" name="image" onChange={onUplodImg} hidden />
-                <Note></Note>
-              <img src={''}></img>
-                <div>
-                    <Pencil></Pencil>
-                    <p>Choose Photo</p>
+                <label htmlFor="file-input">
+                    <input type="file" id="file-input" name="image" onChange={onUplodImg} hidden />
+                    <Note></Note>
+                    <img onLoad={(ev) => ev.target.style.visibility = 'visible'} onError={(ev) => ev.target.style.visibility = 'hidden'} src={imgUrl}></img>
+                    <div>
+                        <Pencil></Pencil>
+                        <p>Choose Photo</p>
+                    </div>
+                </label>
+                <div className="hero-right-section flex">
+                    <p>{type}</p>
+                    <div className='hero-moudle'>
+                        <React.Fragment>
+                            <Button
+                                variant="outlined"
+                                color="neutral"
+                                onClick={() => setOpen(true)}
+                            >
+                                {name}
+                            </Button>
+                            <Modal open={open} onClose={() => setOpen(false)}>
+                                <ModalDialog>
+                                    <DialogTitle>{name}</DialogTitle>
+                                    <DialogContent>Edit details</DialogContent>
+                                    <form
+                                        onSubmit={(event) => {
+                                            event.preventDefault()
+                                            onSaveStation()
+                                            setOpen(false)
+                                        }}
+                                    >
+                                        <Stack spacing={2}>
+                                            <FormControl>
+                                                <FormLabel>Name</FormLabel>
+                                                <Input autoFocus required value={name} onChange={(event) => handleChange(event)} />
+                                            </FormControl>
+                                            <FormControl>
+                                                <FormLabel>Description</FormLabel>
+                                                <Input />
+                                            </FormControl>
+                                            <Button type="submit">Save</Button>
+                                        </Stack>
+                                    </form>
+                                </ModalDialog>
+                            </Modal>
+                        </React.Fragment>
+                    </div>
+                    <div className='hero-details'>
+                        <p className='user-dot'>{createdBy.username || 'TubiFy'}</p>
+                        <p>{amount} songs,</p>
+                        <p>about {duration}</p>
+                    </div>
                 </div>
-            </label>
-            <div className="hero-right-section flex">
-                <p>{type}</p>
-                <div className='hero-moudle'>
-                    <React.Fragment>
-                        <Button
-                            variant="outlined"
-                            color="neutral"
-                            onClick={() => setOpen(true)}
-                        >
-                            {name}
-                        </Button>
-                        <Modal open={open} onClose={() => setOpen(false)}>
-                            <ModalDialog>
-                                <DialogTitle>{name}</DialogTitle>
-                                <DialogContent>Edit details</DialogContent>
-                                <form
-                                    onSubmit={(event) => {
-                                        event.preventDefault()
-                                        onSaveStation()
-                                        setOpen(false)
-                                    }}
-                                >
-                                    <Stack spacing={2}>
-                                        <FormControl>
-                                            <FormLabel>Name</FormLabel>
-                                            <Input autoFocus required value={name} onChange={(event) => handleChange(event)} />
-                                        </FormControl>
-                                        <FormControl>
-                                            <FormLabel>Description</FormLabel>
-                                            <Input />
-                                        </FormControl>
-                                        <Button type="submit">Save</Button>
-                                    </Stack>
-                                </form>
-                            </ModalDialog>
-                        </Modal>
-                    </React.Fragment>
-                </div>
-                <div className='hero-details'>
-                    <p className='user-dot'>{createdBy.username || 'TubiFy'}</p>
-                    <p>{amount} songs,</p>
-                    <p>about {duration}</p>
-                </div>
-            </div>
-        </form>
-    </header>
-)
+            </form>
+        </header>
+    )
 }
