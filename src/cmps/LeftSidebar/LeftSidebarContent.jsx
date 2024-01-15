@@ -18,45 +18,19 @@ import React from 'react';
 export function SideBarContent() {
 
     const user = useSelector((storeState) => storeState.userMoudle.userObj)
-
-    const userStations = useSelector((storeState) => storeState.stationsMoudle.userStations)
+    console.log("user:", user)
     const currStation = useSelector((storeState) => storeState.stationsMoudle.currStation)
+
     const [filterSort, setFilterSort] = useState({ name: '', sortBy: '' })
     const [showSearch, setShowSearch] = useState(false)
-    const [resize, setResize] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     const navigate = useNavigate()
-
-
-    useEffect(() => {
-        // if (user && user.stations && user.stations.length) {
-        //     console.log("user:", user)
-        //     getUserStations(user.stations)
-
-
-        // }
-    }, [user])
-
-
-    function FilterList() {
-        const regex = new RegExp(filterSort.name, 'i')
-        let newList = userStations.filter(station => regex.test(station.name))
-        if (filterSort.sortBy === 'name') newList.sort((stationA, stationB) => stationA.name.localeCompare(stationB.name))
-        else if (filterSort.sortBy === 'createAt') newList.sort((stationA, stationB) => stationA.createdAt - stationB.createdAt)
-        setUserStations(newList)
-
-    }
-
-    // async function getUserStations(stations) {
-    //     setUserStations(stations)
-    // }
 
     function openModal() { setIsModalOpen(true) }
     function closeModal() { setIsModalOpen(false) }
 
     async function createStation() {
-
         let newStation = stationService.getEmptyStation('My station #', user.stations.length - 1)
 
         try {
@@ -65,7 +39,7 @@ export function SideBarContent() {
             newUserStations.push(newStation)
             const editUser = { ...user, stations: newUserStations }
             await updateUser(editUser)
-            navigate('/1/station/edit/' + newStation._id)
+            navigate('/station/edit/' + newStation._id)
         }
         catch (err) { console.log(err) }
 
@@ -77,7 +51,16 @@ export function SideBarContent() {
         if (!target.value) setUserStations([...user.stations])
     }
 
-    if (!userStations || !user) return <div>...Loading</div>
+    function FilterList() {
+        const regex = new RegExp(filterSort.name, 'i')
+        let newList = user.stations.filter(station => regex.test(station.name))
+        if (filterSort.sortBy === 'name') newList.sort((stationA, stationB) => stationA.name.localeCompare(stationB.name))
+        else if (filterSort.sortBy === 'createAt') newList.sort((stationA, stationB) => stationA.createdAt - stationB.createdAt)
+        setUserStations(newList)
+
+    }
+
+    if ( !user) return <div>...Loading</div>
 
 
     return (
@@ -96,12 +79,6 @@ export function SideBarContent() {
                     <button onClick={createStation} className="plus-icon-left animate__animated animate__rubberBand">
                         <Plus></Plus>
                     </button>
-
-                    <p className="inline-block">
-                        <span className="arrow-icon-left">
-                            <Arrow></Arrow>
-                        </span>
-                    </p>
 
                 </div>
 

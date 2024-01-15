@@ -48,8 +48,14 @@ function logout() {
     return httpService.post(AUTH_URL + 'logout')
 }
 
-function update(credentials) {
-    return httpService.put(USER_URL + credentials._id, credentials)
+async function update(credentials) {
+    try {
+        const user = await httpService.put(USER_URL + credentials._id, credentials)
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(user))
+        return user
+    } catch (err) {
+        throw err
+    }
 }
 
 function remove(userId) {

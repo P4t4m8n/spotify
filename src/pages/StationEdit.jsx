@@ -32,7 +32,7 @@ export function StationEdit() {
     const params = useParams()
 
     useEffect(() => {
-        if (params.stationId)
+        if (params.stationId && user)
             onLoadStation(params.stationId)
 
     }, [params.stationId, user.stations])

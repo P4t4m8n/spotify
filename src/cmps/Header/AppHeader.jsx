@@ -22,9 +22,9 @@ export function AppHeader() {
 
     async function onLogout() {
         try {
+            navigate('/')
             await logout()
             console.log('logout')
-            navigate('/')
         }
         catch (err) {
             console.log(err)
