@@ -23,8 +23,25 @@ export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong,
 
     function handleContextMenu(ev) {
         ev.preventDefault()
+        
+        const menuWidth = 160 
+        const menuHeight = 160 
+        
+        let xPosition = ev.clientX
+        let yPosition = ev.clientY
+        
+        
+        if (xPosition + menuWidth > window.innerWidth) {
+            xPosition = ev.clientX - menuWidth
+        }
+    
+    
+        if (yPosition + menuHeight > window.innerHeight) {
+            yPosition = ev.clientY - menuHeight
+        }
+        
         setContextMenu(song.trackId)
-        setContextMenuPosition({ x: ev.clientX, y: ev.clientY })
+        setContextMenuPosition({ x: xPosition, y: yPosition })
     }
 
 
