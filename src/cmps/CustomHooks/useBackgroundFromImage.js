@@ -21,9 +21,9 @@ export function useBackgroundFromImage(imageUrl) {
                 setGradient(`linear-gradient(to bottom, 
                     ${gradientColors[0]} 0%, 
                     ${gradientColors[1]} 25%, 
-                    ${gradientColors[0]} 50%, 
-                    #000000 75%,   
-                    #000000 100%)`)
+                    #121212 50%, 
+                    #121212 75%,   
+                    #121212 100%)`)
 
             }
         }
