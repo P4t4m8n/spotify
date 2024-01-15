@@ -1,23 +1,16 @@
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { stationService } from "../services/station.service"
-import { EditMoudle } from "../cmps/LeftSidebar/EditMoudle"
 import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { loadStation, saveStation } from "../store/actions/station.actions"
-import { saveSong, setPlaying } from "../store/actions/song.action"
+import { saveSong, } from "../store/actions/song.action"
 import { Playlist } from "../cmps/main/Playlist"
 import { PlaylistHero } from "../cmps/support/PlaylistHero"
 import { updateUser } from "../store/actions/user.actions"
 import { PlayCard } from "../cmps/main/PlayCard"
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { onDragEnd } from "../services/dnd"
 import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
 import { uploadService } from "../services/upload.service"
-import { utilService } from "../services/util.service"
-import { Search } from "@mui/icons-material"
-import { apiService } from "../services/api.service"
 import { EditSearch } from "../cmps/search/EditSearch"
-
 
 
 export function StationEdit() {
@@ -26,7 +19,6 @@ export function StationEdit() {
 
     const [stationToEdit, setStationToEdit] = useState(stationService.getEmptyStation())
     const [searchList, setSearchList] = useState(null)
-
 
     const isEdit = useRef(true)
     const params = useParams()
@@ -54,7 +46,6 @@ export function StationEdit() {
         const file = ev.target.files[0]
         try {
             const imgUrl = await uploadService.uploadImg(file)
-
 
             setStationToEdit(prevStation => {
                 const updatedStation = { ...prevStation, imgUrl: imgUrl }
@@ -143,7 +134,6 @@ export function StationEdit() {
 
         <section className="station-page" >
             <PlaylistHero stationToEdit={stationToEdit} handleChange={handleChange} onSaveStation={onSaveStation} onUplodImg={onUplodImg} ></PlaylistHero>
-
             {songs &&
                 <div>
                     <div className="play-and-context flex">
@@ -153,9 +143,6 @@ export function StationEdit() {
                 </div>
             }
             <EditSearch onSaveSong={onSaveSong} user={user}></EditSearch>
-
-
-
         </section >
     )
 }

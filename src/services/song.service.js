@@ -1,5 +1,4 @@
 import { httpService } from "./http.service"
-import { utilService } from "./util.service"
 
 const BASE_URL = 'song/'
 
@@ -10,37 +9,18 @@ export const songService = {
     save,
     remove,
     getEmptysong,
-    getRandomSong,
-    getSongs
+    
+    
 }
 
-
-
 function query(filterSortBy = {}) {
-
     return httpService.get(BASE_URL, filterSortBy)
-    // const { likedBy, txt } = filterSortBy
-    // let filteredSortSongs = []
-    // try {
-    //     const songs = await asyncService.query(STORAGE_SONGS_KEY)
-
-    //     if (txt) { }
-
-    //     if (likedBy) {
-    //         filteredSortSongs = songs.filter(song => song.likedBy.some(liked => liked === likedBy))
-    //     }
-    //     return filteredSortSongs
-    // }
-    // catch (err) {
-    //     throw err
-    // }
 
 }
 
 function getSongById(songId) {
     return httpService.get(BASE_URL + songId)
 }
-
 
 function save(song) {
     const edit = 'edit/'
@@ -64,15 +44,8 @@ function getEmptysong(name = '', artist = '', duration = '', imgUrl = '', addedB
         imgUrl: imgUrl,
         addedBy: addedBy,
         addedAt: Date.now(),
-        likedByUsers: []
     }
 }
-
-function getSongs() {
-    return utilService.loadFromStorage(STORAGE_SONGS_KEY)
-}
-
-
 
 function getDefaultSong() {
     return {
@@ -90,22 +63,5 @@ function getDefaultSong() {
     }
 }
 
-function getRandomSong() {
 
-
-    const tracksId = ['pM6RAz9BE2A', 'zlM0vahvauU', 'npjF032TDDQ', 'eU8P0Ufwpl8']
-    return {
-        "_id": utilService.makeId(),
-        "title": utilService.makeLorem(2),
-        "album": utilService.makeLorem(2),
-        "artist": utilService.makeLorem(1),
-        "type": "song",
-        "duration": "02:30",
-        "trackId": tracksId[utilService.getRandomIntInclusive(0, 3)],
-        "imgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
-        "addedBy": 'artist',
-        "addedAt": Date.now(),
-        "likedBy": [((utilService.getRandomIntInclusive() > 0.5) ? "1" : "")]
-    }
-}
 

@@ -21,7 +21,6 @@ export function StationIndex() {
 
 
     if (!stations) return <div>...Loading</div>
-    // console.log('Render stationIndex')
 
     return (
         <Fragment >
@@ -89,7 +88,6 @@ export function StationIndex() {
                 {
                     stationListTitle.current.map((stationListTitle, idx) => {
                         {
-
                             const stationsFilterd = stations.filter(station => station.stationListTitle === stationListTitle)
                             return <StationList key={idx} stations={stationsFilterd} stationListTitle={stationListTitle}  ></StationList>
                         }

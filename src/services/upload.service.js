@@ -1,10 +1,7 @@
-import { httpService } from "./http.service"
 
 export const uploadService = {
   uploadImg
 }
-
-
 
 async function uploadImg(file) {
   const CLOUD_NAME = "dpnevk8db"
@@ -21,12 +18,6 @@ async function uploadImg(file) {
       body: formData
     })
 
-    // const data = {
-    //   method: 'POST',
-    //   body: formData
-    // }
-    // const res = httpService.post(UPLOAD_URL, formData)
-    // console.log("res:", res)
     const imgUrl = await res.json()
     return imgUrl.url
   } catch (err) {

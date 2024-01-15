@@ -54,7 +54,6 @@ function update(credentials) {
 
 function remove(userId) {
     httpService.delete(USER_URL + userId)
-
 }
 
 function getById(userId) {

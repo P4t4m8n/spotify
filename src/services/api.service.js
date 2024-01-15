@@ -58,7 +58,6 @@ function parseSongString(songString) {
 
 }
 
-
 async function _getDuration(videoId) {
     const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${API_KEY_YT}`
     try {

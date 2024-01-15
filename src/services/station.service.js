@@ -1,6 +1,5 @@
 import { httpService } from "./http.service"
-import { songService } from "./song.service"
-import { utilService } from "./util.service"
+
 
 const BASE_URL = 'station/'
 
@@ -10,7 +9,6 @@ export const stationService = {
     save,
     remove,
     getStationListTitle,
-    getDefaultStation,
     getEmptyStation,
     convertTimeFormat,
 }
@@ -56,32 +54,6 @@ function getEmptyStation(name = '', idx = '', imgUrl = '') {
     }
 }
 
-function getDefaultStation() {
-
-    let station = {
-        "_id": utilService.makeId(),
-        "name": utilService.makeLorem(2),
-        "stationListTitle": 'Welcome to YoutubeFy',
-        "type": "playlist",
-        "tags": ["deafult"],
-        "stationImgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
-        "createdBy": {
-            "_id": utilService.makeId(),
-            "username": utilService.makeLorem(1),
-            "profileImg": ""
-        },
-        "likedByUsers": ['', '']
-    }
-
-    let songs = []
-    for (var i = 0; i < 15; i++) {
-        let song = songService.getRandomSong()
-        songs.push(song)
-    }
-    station.songs = songs
-    return station
-}
-
 function _getStationDuration(items) {
     let totalMinutes = 0
 
@@ -123,7 +95,7 @@ function convertTimeFormat(timeStr) {
         if (parts[1] > 0) formattedTime.push(`${parts[1]} minutes`)
         if (parts[2] > 0) formattedTime.push(`${parts[2]} seconds`)
     } else {
-        return 'Invalid format'
+        return '00:42'
     }
 
     return formattedTime.join(' and ')

@@ -19,10 +19,6 @@ export function StationDetails() {
 
     useBackgroundFromImage(currStation ? currStation.imgUrl : null);
 
-
-
-
-
     async function onLoadstation() {
         const station = await loadStation(params.stationId)
         setCurrStation(station)
@@ -57,9 +53,7 @@ export function StationDetails() {
                 <div className="station-details-control-left">
                     <PlayCard item={currStation}></PlayCard>
                     <LikeCard item={currStation}></LikeCard>
-
                 </div>
-
             </section>
             <Playlist songs={songs}></Playlist>
         </section >
