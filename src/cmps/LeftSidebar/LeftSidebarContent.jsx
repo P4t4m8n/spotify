@@ -66,7 +66,7 @@ export function SideBarContent() {
             newUserStations.push(newStation)
             const editUser = { ...user, stations: newUserStations }
             await updateUser(editUser)
-            navigate('/1/station/edit/' + newStation._id)
+            navigate('/station/edit/' + newStation._id)
         }
         catch (err) { console.log(err) }
 
@@ -142,7 +142,6 @@ export function SideBarContent() {
                     {
                         user.stations.map((station, idx) => (
                             <Link key={station._id} to={'/station/edit/' + station._id}>
-                                {/* <li className="grid" > */}
                                 <li className={`grid ${currStation._id === station._id ? 'active-class' : ''}`}>
 
                                     {station.imgUrl ?
