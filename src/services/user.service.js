@@ -2,7 +2,6 @@ import { asyncService } from "./async-storage.service"
 import { stationService } from "./station.service"
 import { utilService } from "./util.service"
 
-
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 const STORGE_KEY_USERS = 'usersDB'
 
@@ -22,8 +21,6 @@ export const userService = {
 
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
-
-
 }
 
 async function login({ username, password }) {
