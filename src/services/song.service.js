@@ -96,13 +96,13 @@ function _createSongs() {
 function getDefaultSong() {
     return {
         _id: '2',
-        title: 'Winamp Intro',
+        name: 'Winamp Intro',
         album: 'Single',
         artist: 'Winamp',
         type: 'song',
         duration: "00:05",
         trackId: 'oQid2jSU7Ww',
-        songImgUrl: 'src/assets/img/winamp.svg',
+        songImgUrl: '/src/assets/img/winamp.svg',
         addedBy: 'artist',
         addedAt: (Date.now() + 1) - Date.now(),
         likedBy: []
