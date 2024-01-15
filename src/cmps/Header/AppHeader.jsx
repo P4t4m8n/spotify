@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 
 
@@ -17,7 +17,9 @@ export function AppHeader() {
 
     const [showCreateModal, setShowCreateModal] = useState(false)
 
-    const navigate = useNavigate()
+    const location = useLocation()
+    console.log(location, 'location')
+    const isSearchShown = location.pathname.includes('search')
 
 
     async function onLogout() {
@@ -34,7 +36,9 @@ export function AppHeader() {
     return (
         <div className="app-header">
 
-            {isSearchOpen && <Search></Search>}
+            {isSearchShown && <Search />}
+
+
 
             {user ? (
                 < section className='user-form' onClick={() => setShowCreateModal(!showCreateModal)} >

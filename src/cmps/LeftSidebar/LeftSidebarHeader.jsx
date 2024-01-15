@@ -19,7 +19,8 @@ export function SideBarHeader() {
                     </Link>
                 </li>
 
-                <li onClick={() => setSearchOpen(!isSearchOpen)} key="search">
+                <li key="search">
+                    {/* <li onClick={() => setSearchOpen(!isSearchOpen)} key="search"> */}
                     <Link to={"/search"} className="flex align-center">
                         <img src="\src\assets\img\search.svg" className="left-sidebar-search-icon"></img>
                         <span>Search</span>
