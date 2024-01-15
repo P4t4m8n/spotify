@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { useLocation, Link, useParams } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 
@@ -7,14 +7,14 @@ import { Search } from '../support/Search.jsx'
 import { LoginSignup } from './LoginSignup.jsx'
 import { useState } from 'react'
 import { logout } from '../../store/actions/user.actions.js'
-import { Backwords, UserIcon } from '../../services/icons.service.jsx'
-import { Forward } from '@mui/icons-material'
+import { UserIcon } from '../../services/icons.service.jsx'
 
 
 export function AppHeader() {
 
     const user = useSelector(storeState => storeState.userMoudle.userObj)
     const isSearchOpen = useSelector(storeState => storeState.appMoudle.isSearchOpen)
+
     const [showCreateModal, setShowCreateModal] = useState(false)
 
     const location = useLocation()
@@ -26,6 +26,7 @@ export function AppHeader() {
         try {
             await logout()
             console.log('logout')
+            navigate('/')
         }
         catch (err) {
             console.log(err)

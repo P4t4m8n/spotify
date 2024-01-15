@@ -30,9 +30,9 @@ export function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/search/:searchTerm" element={<SearchPage />} />
-            <Route path="/:userId/station/edit" element={<StationEdit />}></Route>
-            <Route path="/:userId/station/edit/:stationId" element={<StationEdit />}></Route>
-            {/* <Route path="user/:userId" element={<UserPage />}></Route> */}
+            <Route path="/station/edit" element={<StationEdit />}></Route>
+            <Route path="/station/edit/:stationId" element={<StationEdit />}></Route>
+            <Route path="user/:userId" element={<UserPage />}></Route>
           </Routes>
         </div>
         <RightSidebar />

@@ -141,7 +141,7 @@ export function SideBarContent() {
                 <ul>
                     {
                         user.stations.map((station, idx) => (
-                            <Link key={station._id} to={'/1/station/edit/' + station._id}>
+                            <Link key={station._id} to={'/station/edit/' + station._id}>
                                 {/* <li className="grid" > */}
                                 <li className={`grid ${currStation._id === station._id ? 'active-class' : ''}`}>
 

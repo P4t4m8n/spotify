@@ -4,7 +4,6 @@ import { SongPreview } from "./SongPreview";
 
 
 export function Playlist({onSaveSong, songs, onRemoveSong, isEdit, id, user, onChangePlaylist,isSearch }) {
-console.log("songs:", songs)
 
     return (
 

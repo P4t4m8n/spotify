@@ -32,7 +32,12 @@ export function EditSearch({ user, onSaveSong, }) {
 
     async function addSong(ev, song) {
         ev.preventDefault()
-        onSaveSong(song)
+        setSearchResults(prevResults => {
+            const newResults = prevResults.filter(res => res._id !== song._id)
+            onSaveSong(song)
+            return newResults
+        })
+
 
     }
 

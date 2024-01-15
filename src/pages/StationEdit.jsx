@@ -39,8 +39,6 @@ export function StationEdit() {
 
     useBackgroundFromImage(stationToEdit ? stationToEdit.imgUrl : null)
 
-
-
     async function onLoadStation(stationId) {
         try {
 
@@ -118,7 +116,6 @@ export function StationEdit() {
 
     function onChangePlaylist(ev, song, stationId, isSearch) {
         ev.preventDefault()
-        ev.stopPropagation()
         if (ev.target.value === 'same') return
         if (isSearch) onAddSong(ev, song)
         onRemoveSong(ev, song._id)
@@ -134,9 +131,7 @@ export function StationEdit() {
         if (field === 'search') {
             return
         }
-
         setStationToEdit(prevStation => ({ ...prevStation, name: value }))
-
     }
 
     if (!stationToEdit) return <div>...Loading</div>
