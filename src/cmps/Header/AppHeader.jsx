@@ -17,6 +17,10 @@ export function AppHeader() {
     const isSearchOpen = useSelector(storeState => storeState.appMoudle.isSearchOpen)
     const [showCreateModal, setShowCreateModal] = useState(false)
 
+    const location = useLocation()
+    console.log(location, 'location')
+    const isSearchShown = location.pathname.includes('search')
+
 
     async function onLogout() {
         try {
@@ -31,7 +35,7 @@ export function AppHeader() {
     return (
         <div className="app-header">
 
-            {isSearchOpen && <Search></Search>}
+            {isSearchShown && <Search />}
 
 
 
