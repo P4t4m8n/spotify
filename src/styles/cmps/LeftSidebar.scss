@@ -1,5 +1,8 @@
 .left-sidebar {
 
+    display: flex;
+    flex-direction: column;
+
     .left-sidebar-header {
 
         background-color: $clr7;
@@ -34,6 +37,7 @@
     .side-bar-content {
         border-radius: $panel-gap;
         background-color: $clr7;
+        flex-grow: 1;
 
         svg {
             filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(292deg) brightness(2005%) contrast(100%);
@@ -42,23 +46,20 @@
 
         ul {
             margin: 0;
-            padding: 0 $panel-gap;
+            padding: 0 $panel-gap $panel-gap;
             height: 100%;
         }
 
         a {
             display: block;
             // padding: 0 $panel-gap;
-            transition: background-color 2s ease;
-
 
             &:hover {
                 border-radius: 6px;
-
-                background-color: $clr10;
+                background-color: $clr12;
             }
 
-            &:active {
+            .active-class {
                 border-radius: 6px;
                 background-color: $clr10;
             }
