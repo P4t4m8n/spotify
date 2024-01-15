@@ -7,6 +7,7 @@ import { store } from "../store"
 export async function loadStations(filterSortBy = {}) {
     try {
         const stations = await stationService.query(filterSortBy)
+        console.log("stations:", stations)
         store.dispatch({ type: SET_STATIONS, stations })
         console.log('Load complete')
     }
@@ -55,7 +56,6 @@ export async function loadStation(stationId) {
 
 export async function removeStation(stationId) {
 
-    store.dispatch({ type: REMOVE_STATION, stationId })
 
     try {
         stationService.remove(stationId)

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { SET_FILTER } from "../../store/redcuers/app.reducer"
 import { Link, useNavigate } from "react-router-dom"
-import { saveStation, setUserStations } from "../../store/actions/station.actions"
+import { removeStation, saveStation, setUserStations } from "../../store/actions/station.actions"
 import { stationService } from "../../services/station.service"
 import { updateUser } from "../../store/actions/user.actions"
 import { Arrow, ArrowBack, Create, Dots, Libary, Note, Pin, Plus, SearchSvg, Sort } from "../../services/icons.service"
@@ -19,11 +19,12 @@ export function SideBarContent() {
 
     const user = useSelector((storeState) => storeState.userMoudle.userObj)
     console.log("user:", user)
-    const currStation = useSelector((storeState) => storeState.stationsMoudle.currStation)
+    // const currStation = useSelector((storeState) => storeState.stationsMoudle.currStation)
 
     const [filterSort, setFilterSort] = useState({ name: '', sortBy: '' })
     const [showSearch, setShowSearch] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [stationInFoucs, setStationInFoucs] = useState(null)
 
     const navigate = useNavigate()
 
@@ -45,6 +46,19 @@ export function SideBarContent() {
 
     }
 
+    async function onRemoveStation(ev, stationId) {
+
+        ev.preventDefault()
+        const newStations = user.stations.filter(station => station._id !== stationId)
+        try {
+            const editUser = { ...user, stations: newStations }
+            await updateUser(editUser)
+            await removeStation(stationId)
+        }
+        catch (err) { console.log(err) }
+
+    }
+
     function handleChange({ target }) {
         setFilterSort(prev => ({ ...prev, name: target.value }))
         FilterList()
@@ -60,7 +74,7 @@ export function SideBarContent() {
 
     }
 
-    if ( !user) return <div>...Loading</div>
+    if (!user) return <div>...Loading</div>
 
 
     return (
@@ -117,9 +131,9 @@ export function SideBarContent() {
                 <ul>
                     {
                         user.stations.map((station, idx) => (
-                            <Link key={station._id} to={'/station/edit/' + station._id}>
+                            <Link onClick={() => setStationInFoucs(station)} key={station._id} to={'/station/edit/' + station._id}>
                                 {/* <li className="grid" > */}
-                                <li className={`grid ${currStation._id === station._id ? 'active-class' : ''}`}>
+                                <li className={`grid ${(stationInFoucs && stationInFoucs._id === station._id) ? 'active-class' : ''}`}>
 
                                     {station.imgUrl ?
                                         <img className="station-image-left-sidebar" src={station.imgUrl}></img> :
@@ -132,6 +146,7 @@ export function SideBarContent() {
                                         <Pin></Pin>
                                         <span className="station-type">{station.type}</span>
                                         <span>{station.songs.length} songs</span>
+                                        {/* <button onClick={(ev) => onRemoveStation(ev, station._id)}>X</button> */}
                                     </p>
 
                                 </li>

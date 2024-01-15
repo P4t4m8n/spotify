@@ -19,10 +19,6 @@ export function StationDetails() {
 
     useBackgroundFromImage(currStation ? currStation.imgUrl : null);
 
-
-
-
-
     async function onLoadstation() {
         const station = await loadStation(params.stationId)
         setCurrStation(station)

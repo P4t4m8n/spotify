@@ -5,7 +5,6 @@ import { stationService } from "../services/station.service"
 import { loadStations } from "../store/actions/station.actions"
 import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
 
-
 export function StationIndex() {
 
     const stations = useSelector(storeState => storeState.stationsMoudle.stations)
