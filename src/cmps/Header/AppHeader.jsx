@@ -17,6 +17,8 @@ export function AppHeader() {
 
     const [showCreateModal, setShowCreateModal] = useState(false)
 
+    const navigate = useNavigate()
+
     const location = useLocation()
     console.log(location, 'location')
     const isSearchShown = location.pathname.includes('search')
@@ -24,8 +26,8 @@ export function AppHeader() {
 
     async function onLogout() {
         try {
-            navigate('/')
             await logout()
+            navigate('/')
             console.log('logout')
         }
         catch (err) {
