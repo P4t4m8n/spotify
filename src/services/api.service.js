@@ -15,6 +15,7 @@ export const apiService = {
 }
 
 async function getContent(search) {
+    console.log('api call')
 
     const destTube = `part=snippet&q=${search}&videoCategoryId=10&type=video&maxResults=${maxResults}`
     try {

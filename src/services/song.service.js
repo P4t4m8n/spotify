@@ -68,41 +68,22 @@ function getEmptysong(name = '', artist = '', duration = '', imgUrl = '', addedB
     }
 }
 
-
-
-
-
 function getSongs() {
     return utilService.loadFromStorage(STORAGE_SONGS_KEY)
 }
 
-function _createSongs() {
 
-    let songs = utilService.loadFromStorage(STORAGE_SONGS_KEY)
-
-    if (!songs || !songs.length) {
-
-        songs = []
-        for (var i = 0; i < 200; i++) {
-            let song = getRandomSong()
-            songs.push(song)
-        }
-
-    }
-    utilService.saveToStorage(STORAGE_SONGS_KEY, songs)
-    return songs
-}
 
 function getDefaultSong() {
     return {
         _id: '2',
-        title: 'Winamp Intro',
+        name: 'Winamp Intro',
         album: 'Single',
         artist: 'Winamp',
         type: 'song',
         duration: "00:05",
         trackId: 'oQid2jSU7Ww',
-        songImgUrl: 'src/assets/img/winamp.svg',
+        songImgUrl: '/src/assets/img/winamp.svg',
         addedBy: 'artist',
         addedAt: (Date.now() + 1) - Date.now(),
         likedBy: []
