@@ -1,7 +1,4 @@
-import { useState } from "react";
 import { Clock } from "../../services/icons.service";
-import { LikeCard } from "./LikeCard";
-import { PlayCard } from "./PlayCard";
 import { SongPreview } from "./SongPreview";
 
 
@@ -16,7 +13,6 @@ export function Playlist({ songs, onRemoveSong, isEdit, id, user, onChangePlayli
                     <p> #</p>
                     <p>Title</p>
                     <p>Artist</p>
-                    <p>Album</p>
                     <p><Clock></Clock></p>
                 </li>
 

@@ -8,7 +8,6 @@ export function PlayerPlayingCard() {
 
     const song = useSelector(storeState => storeState.songMoudle.currSong)
     const user = useSelector(storeState => storeState.userMoudle.userObj)
-console.log('play')
     return (
         <div className="playing-card" >
             <img src={`${song.imgUrl}`}></img>

@@ -9,7 +9,6 @@ import ModalDialog from '@mui/joy/ModalDialog'
 import DialogTitle from '@mui/joy/DialogTitle'
 import DialogContent from '@mui/joy/DialogContent'
 import Stack from '@mui/joy/Stack'
-import Add from '@mui/icons-material/Add'
 import { Note, Pencil } from '../../services/icons.service'
 import { stationService } from '../../services/station.service'
 
@@ -31,7 +30,7 @@ return (
             <label htmlFor="file-input">
                 <input type="file" id="file-input" name="image" onChange={onUplodImg} hidden />
                 <Note></Note>
-                <img src={imgUrl}></img>
+              <img src={''}></img>
                 <div>
                     <Pencil></Pencil>
                     <p>Choose Photo</p>

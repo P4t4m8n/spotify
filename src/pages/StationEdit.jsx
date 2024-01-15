@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { stationService } from "../services/station.service"
 import { EditMoudle } from "../cmps/LeftSidebar/EditMoudle"
 import { useParams } from "react-router-dom"
@@ -9,25 +9,27 @@ import { Playlist } from "../cmps/main/Playlist"
 import { PlaylistHero } from "../cmps/support/PlaylistHero"
 import { updateUser } from "../store/actions/user.actions"
 import { PlayCard } from "../cmps/main/PlayCard"
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { onDragEnd } from "../services/dnd"
 import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
 import { uploadService } from "../services/upload.service"
+import { utilService } from "../services/util.service"
 
 
 
 export function StationEdit() {
 
     const user = useSelector(storeState => storeState.userMoudle.userObj)
-    console.log("user:", user)
 
     const [stationToEdit, setStationToEdit] = useState(stationService.getEmptyStation())
     const [isSearchOpen, setIsSearchOpen] = useState(false)
+    const [searchTerm, setSearchTerm] = useState('')
+
 
     const isEdit = useRef(true)
 
     const params = useParams()
-    const recommendedList = useRef(stationService.getDefaultStation())
+    const searchList = useRef([])
 
     useEffect(() => {
         if (params.stationId)
@@ -36,7 +38,33 @@ export function StationEdit() {
 
     }, [params.stationId, user.stations])
 
-    useBackgroundFromImage(stationToEdit ? stationToEdit.imgUrl : null);
+    useBackgroundFromImage(stationToEdit ? stationToEdit.imgUrl : null)
+
+    const debouncedSearch = useCallback(utilService.debounce((value) => {
+        fetchSearchResults(value)
+    }), [])
+
+    async function fetchSearchResults(value) {
+        try {
+
+            const searchResults = await apiService.getContent(value)
+            searchList.current = searchResults
+        }
+        catch (err) { console.log(err) }
+    }
+
+    function handleSearchChange(ev) {
+        ev.preventDefault()
+        const value = ev.target.value
+        setSearchTerm(value)
+        debouncedSearch(value)
+    }
+
+    function handleSearchChange(ev) {
+        ev.preventDefault()
+        const value = ev.target.value
+        setSearchTerm(value)
+    }
 
     async function onLoadStation(stationId) {
         try {
@@ -71,13 +99,9 @@ export function StationEdit() {
 
         try {
             const savedSation = await saveStation(updatedStation)
-            console.log("savedSation:", savedSation)
             const userStations = user.stations
-            console.log("userStations:", userStations)
             const idx = userStations.findIndex(stations => stations._id === savedSation._id)
-            console.log("idx:", idx)
             userStations.splice(idx, 1, savedSation)
-            console.log("userStations:", userStations)
             updateUser({ ...user, stations: userStations })
 
         }
@@ -87,6 +111,8 @@ export function StationEdit() {
     }
 
     async function onAddSong(ev, song) {
+        ev.preventDefault()
+        ev.stopPropagation()
         recommendedList.current.songs = recommendedList.current.songs.filter(listSong => song._id !== listSong._id)
 
         const songs = stationToEdit.songs
@@ -97,6 +123,8 @@ export function StationEdit() {
     }
 
     function onRemoveSong(ev, songId) {
+        ev.preventDefault()
+        ev.stopPropagation()
 
         stationToEdit.songs = stationToEdit.songs.filter(listSong => songId !== listSong._id)
         setStationToEdit(() => ({ ...stationToEdit }))
@@ -104,6 +132,8 @@ export function StationEdit() {
     }
 
     function onChangePlaylist(ev, song, stationId) {
+        ev.preventDefault()
+        ev.stopPropagation()
         if (ev.target.value === 'same') return
         onRemoveSong(ev, song._id)
 
@@ -133,54 +163,43 @@ export function StationEdit() {
         <section className="station-page" >
             <PlaylistHero stationToEdit={stationToEdit} handleChange={handleChange} onSaveStation={onSaveStation} onUplodImg={onUplodImg} ></PlaylistHero>
 
-            <div>
-                <div className="play-and-context flex">
-                    {songs && <PlayCard item={stationToEdit}></PlayCard>}
-                </div>
-                {
-                    songs &&
+            {songs &&
+                <div>
+                    <div className="play-and-context flex">
+                        <PlayCard item={stationToEdit}></PlayCard>
+                    </div>
                     <Playlist onChangePlaylist={onChangePlaylist} user={user} songs={songs} id={stationToEdit._id} onRemoveSong={onRemoveSong} isEdit={isEdit.current} />
-                }
-
-            </div>
-            <div className="find-more" onClick={() => setIsSearchOpen(!isSearchOpen)}>{isSearchOpen ? 'X' : 'Find more'}</div>
-            {
-                isSearchOpen ?
-                    <div>
-                        <hedaer>Lets find</hedaer>
-                        <input type="search" id="search" name="search" value={filterSortBy.txt}
-                            placeholder={"Search in Your Library"} onChange={handleChange} />
-
-                    </div>
-                    :
-                    <div>
-                        <p className="recommended">Recommended</p>
-                        <p className="under-recommended">Based on whats in this station</p>
-                        <ul className="under-song-list grid">
-                            {
-                                recommendedList.current.songs.map((song, idx) =>
-                                    <li key={song._id} className="add-song-to-station-li clean-list">
-                                        <p className="counter">{idx + 1}</p>
-
-                                        <div className="title-image-play grid">
-                                            <button><img src={song.imgUrl}></img></button>
-                                            <p>{song.title}</p>
-                                        </div>
-
-                                        <p>{song.artist}</p>
-
-                                        <p>{song.album}</p>
-
-                                        <div className="add-to-station-container">
-                                            <button className="add-to-station-button" onClick={(ev) => onAddSong(ev, song)}>Add</button>
-                                        </div>
-
-                                    </li>
-                                )
-                            }
-                        </ul>
-                    </div>
+                </div>
             }
+            <div className="find-more" onClick={() => setIsSearchOpen(!isSearchOpen)}>{isSearchOpen ? 'X' : 'Find more'}</div>
+
+
+            <section className="search-box">
+                <form  >
+                    <p ></p>
+                    <img src="\src\assets\img\search.svg"></img>
+                    <input
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                        type="search"
+                        id="searchTerm"
+                        name="searchTerm"
+                        placeholder="What do you want to listen to?" />
+
+                </form>
+            </section>
+            {(searchList && searchList.length) &&
+                <div>
+                    {
+                        searchList.current.songs.map((song, idx) =>
+                            <Playlist user={user} songs={searchList.current.songs} isSearch={true} />
+
+                        )
+                    }
+
+                </div>
+            }
+
         </section >
     )
 }

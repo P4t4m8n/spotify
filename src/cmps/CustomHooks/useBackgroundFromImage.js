@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import ColorThief from 'colorthief'
 
 export function useBackgroundFromImage(imageUrl) {
-    console.log("imageUrl:", imageUrl)
 
     const [gradient, setGradient] = useState('linear-gradient(to bottom, #1db954 0%, #121212 100%)')
 
@@ -33,6 +32,5 @@ export function useBackgroundFromImage(imageUrl) {
 
     useEffect(() => {
         document.querySelector('.main-content').style.background = gradient
-        console.log("gradient:", gradient)
     }, [gradient])
 }
