@@ -1,7 +1,7 @@
 import axios from "axios"
 import { utilService } from "./util.service"
 
-const API_KEY_YT = 'AIzaSyBc_uT_p0WT9LtLV7MBsRPkYRT5eSUTvXI'
+const API_KEY_YT = 'AIzaSyB-c85b2LVXNY7RuIUij8swVv4JdRhuSVw'
 const API_KEY_LAST_FM = 'a07417914f1e93617c8e6b02d8f52c86'
 const URL_ARTIST_TUBE = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY_YT}&`
 const URL_PLAYLIST_TUBE = `https://www.googleapis.com/youtube/v3/playlists?key=${API_KEY_YT}&`
