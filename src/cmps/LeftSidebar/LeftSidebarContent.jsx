@@ -20,6 +20,7 @@ export function SideBarContent() {
     const user = useSelector((storeState) => storeState.userMoudle.userObj)
 
     const userStations = useSelector((storeState) => storeState.stationsMoudle.userStations)
+    const currStation = useSelector((storeState) => storeState.stationsMoudle.currStation)
     const [filterSort, setFilterSort] = useState({ name: '', sortBy: '' })
     const [showSearch, setShowSearch] = useState(false)
     const [resize, setResize] = useState(false)
@@ -37,6 +38,7 @@ export function SideBarContent() {
         // }
     }, [user])
 
+
     function FilterList() {
         const regex = new RegExp(filterSort.name, 'i')
         let newList = userStations.filter(station => regex.test(station.name))
@@ -46,9 +48,9 @@ export function SideBarContent() {
 
     }
 
-    async function getUserStations(stations) {
-        setUserStations(stations)
-    }
+    // async function getUserStations(stations) {
+    //     setUserStations(stations)
+    // }
 
     function openModal() { setIsModalOpen(true) }
     function closeModal() { setIsModalOpen(false) }
@@ -116,7 +118,7 @@ export function SideBarContent() {
                             <Input
                                 color="neutral"
                                 type="search"
-                                placeholder="Search your libary"
+                                placeholder="Search your library"
                                 size="sm"
                                 variant="soft"
                                 onChange={handleChange}
@@ -139,7 +141,9 @@ export function SideBarContent() {
                     {
                         user.stations.map((station, idx) => (
                             <Link key={station._id} to={'/1/station/edit/' + station._id}>
-                                <li className="grid">
+                                {/* <li className="grid" > */}
+                                <li className={`grid ${currStation._id === station._id ? 'active-class' : ''}`}>
+
                                     {station.imgUrl ?
                                         <img className="station-image-left-sidebar" src={station.imgUrl}></img> :
                                         <div className="svg-box">
