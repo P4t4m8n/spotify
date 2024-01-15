@@ -23,23 +23,23 @@ export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong,
 
     function handleContextMenu(ev) {
         ev.preventDefault()
-        
-        const menuWidth = 160 
-        const menuHeight = 160 
-        
+
+        const menuWidth = 160
+        const menuHeight = 160
+
         let xPosition = ev.clientX
         let yPosition = ev.clientY
-        
-        
+
+
         if (xPosition + menuWidth > window.innerWidth) {
             xPosition = ev.clientX - menuWidth
         }
-    
-    
+
+
         if (yPosition + menuHeight > window.innerHeight) {
             yPosition = ev.clientY - menuHeight
         }
-        
+
         setContextMenu(song.trackId)
         setContextMenuPosition({ x: xPosition, y: yPosition })
     }
@@ -81,7 +81,10 @@ export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong,
             {activeContextMenuId === song.trackId && (
                 <ul ref={contextMenuRef} className="context-menu" style={{ position: 'absolute', top: `${contextMenuPosition.y}px`, left: `${contextMenuPosition.x}px` }}>
                     <li>
-                        <select onChange={(ev) => onChangePlaylist(ev, song, id, isSearch)} className="playlist-select">
+                        <select onChange={(ev) => {
+                            setContextMenu(null)
+                            onChangePlaylist(ev, song, id, isSearch)
+                        }} className="playlist-select">
                             <option value="none">Pick Playlist</option>
                             {user.stations.map((station, idx) => (
                                 station._id === id ?
