@@ -40,60 +40,114 @@
 
 
 .main-img {
-    grid-column: 1;
+    
     width: auto;
     height: 30vh;
 }
 
 .result-card {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 40% 60%;
 
 
 }
 
 .result {
     display: flex;
+    justify-content: space-between;
+
+   
     position: relative;
+    height: 6rem;
+    width: 100%;
+    border-radius: 1rem;
+   
+    .main-result{
+        display: flex;
+        align-items: center;
+    }
+
+    .result-details{
+        display: flex;
+        flex-direction: column-reverse;
+        
+
+    }
+
+    h3{
+        font-size: 1rem;
+        text-decoration: underline;
+        margin-left: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    header{
+        margin-left: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
 
     .img-play-con {
         position: relative;
-        width: inherit;
-        height: inherit;
+        
+
+        img{
+            width: auto;
+            height: 5rem;
+            align-self: center;
+            margin-left: 0.7rem;
+        }
+
+
+        :hover svg{
+            opacity: 1;
+        }
+
+       
 
 
         button {
-            position: relative;
-            width: inherit;
-            height: inherit;
+            position: absolute;
+            width: 200px;
+            height: 100%;
             background: none;
-            background-color: transparent;
+            background-color: transperent;
             z-index: 2;
-            // opacity: 0;
             padding-right: 4rem;
-
-            // &:hover {
-            //     opacity: 1;
-            // }
+            left: 0;
+            bottom: 0;
 
             svg {
-                width: 4rem;
-                height: 4rem;
+                width: 2rem;
+                height: 2rem;
+                fill:$clr6;
+                opacity:0;
+                left: 50%;
             }
+
         }
     }
 
+    h2{
+        font-size: 0.7rem;
+        padding: 0.5rem;
 
-    height: 6rem;
-    width: 100%;
-    align-items: center;
+    }
+   
+    .add-button{
+        height: auto;
+        width: auto;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        margin-right: 1rem;
+        margin-top: 2rem;
 
 
-    img {
-        position: relative;
-        width: 6rem;
-        height: 100%;
 
+       
+    }
+
+    .add-button:hover{
+        background-color: $clr6;
     }
 
 }
@@ -102,6 +156,7 @@ div .result:hover {
     cursor: pointer;
     background-color: $clr11;
     opacity: 60%;
+    
 }
 
 .search-play-button {
