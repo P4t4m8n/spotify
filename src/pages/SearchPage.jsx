@@ -63,22 +63,27 @@ export function SearchPage() {
             {searchList &&
                 <div className='search-hero'>
                     <div className='top-result'>
-                        <header>Top result</header>
+                       
                         <div className='result-card'>
                             <img className='main-img' src={searchList[0].imgUrl}></img>
                             <div className='results'>
                                 {searchList.map(song =>
                                     <div className='result' key={song.trackId}>
-                                        <div className='img-play-con'>
-                                            <img src={song.imgUrl}></img>
-                                            <PlayCard item={song}></PlayCard>
+                                        <div className='main-result'>
+                                            <div className='img-play-con'>
+                                                <img src={song.imgUrl}></img>
+                                                <PlayCard item={song}></PlayCard>
+                                            </div>
+                                            <div>
+                                                <header>{song.name}</header>
+                                                {(song.artist!=='Unknown') && <h3>{song.artist}</h3>}
+                                            </div>
+
                                         </div>
-                                        <div>
-                                            <header>{song.name}</header>
-                                            <h1>{song.artist}</h1>
-                                            <h2>{song.duration}</h2>
+                                        <div className='result-details'>     
+                                            <h2>{song.duration}</h2>       
+                                            {user && <button className='add-button' onClick={() => onSaveSong(song)}>ADD</button>}
                                         </div>
-                                        {user && <button onClick={() => onSaveSong(song)}>ADD</button>}
                                     </div>
                                 )}
                             </div>
