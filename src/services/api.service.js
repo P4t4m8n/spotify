@@ -1,7 +1,7 @@
 import axios from "axios"
 import { utilService } from "./util.service"
 
-const API_KEY_YT = 'AIzaSyB-c85b2LVXNY7RuIUij8swVv4JdRhuSVw'
+const API_KEY_YT = 'AIzaSyBc_uT_p0WT9LtLV7MBsRPkYRT5eSUTvXI'
 const API_KEY_LAST_FM = 'a07417914f1e93617c8e6b02d8f52c86'
 const URL_ARTIST_TUBE = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY_YT}&`
 const URL_PLAYLIST_TUBE = `https://www.googleapis.com/youtube/v3/playlists?key=${API_KEY_YT}&`
@@ -19,7 +19,6 @@ async function getContent(search) {
     const destTube = `part=snippet&q=${search}&videoCategoryId=10&type=video&maxResults=${maxResults}`
     try {
         const responseArtist = await axios.get(URL_ARTIST_TUBE + destTube)
-        console.log("URL_ARTIST_TUBE + destTube:", URL_ARTIST_TUBE + destTube)
 
         const promisesSongs = responseArtist.data.items.map(async ytItem => {
             try {
@@ -63,7 +62,6 @@ async function _getDuration(videoId) {
     const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${API_KEY_YT}`
     try {
         const duration = await axios(url)
-        console.log("duration:", duration)
         const fixDuration = formatDuration(duration.data.items[0].contentDetails.duration)
         return fixDuration
     }
@@ -72,7 +70,6 @@ async function _getDuration(videoId) {
 }
 
 function formatDuration(duration) {
-    console.log("duration:", duration)
 
     if (duration === 'P0D') return '99:99:99'
 

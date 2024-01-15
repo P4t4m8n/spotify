@@ -23,16 +23,14 @@ export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong,
 
     function handleContextMenu(ev) {
         ev.preventDefault()
-        setContextMenu(song._id)
+        setContextMenu(song.trackId)
         setContextMenuPosition({ x: ev.clientX, y: ev.clientY })
     }
 
-    function closeContextMenu() {
-        if (activeContextMenuId !== song._id) setContextMenu(null)
-    }
 
-    function handleClickOutside(event) {
-        if (contextMenuRef.current && !contextMenuRef.current.contains(event.target)) {
+
+    function handleClickOutside(ev) {
+        if (contextMenuRef.current && !contextMenuRef.current.contains(ev.target)) {
             setContextMenu(null)
         }
     }
@@ -63,10 +61,11 @@ export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong,
 
                 </div>
             </div>
-            {activeContextMenuId === song._id && (
+            {activeContextMenuId === song.trackId && (
                 <ul ref={contextMenuRef} className="context-menu" style={{ position: 'absolute', top: `${contextMenuPosition.y}px`, left: `${contextMenuPosition.x}px` }}>
                     <li>
                         <select onChange={(ev) => onChangePlaylist(ev, song, id, isSearch)} className="playlist-select">
+                            <option value="none">Pick Playlist</option>
                             {user.stations.map((station, idx) => (
                                 station._id === id ?
                                     <option key={idx} value="same">Current Playlist</option> :

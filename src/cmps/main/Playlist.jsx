@@ -3,7 +3,8 @@ import { SongPreview } from "./SongPreview";
 
 
 
-export function Playlist({ songs, onRemoveSong, isEdit, id, user, onChangePlaylist,isSearch }) {
+export function Playlist({onSaveSong, songs, onRemoveSong, isEdit, id, user, onChangePlaylist,isSearch }) {
+console.log("songs:", songs)
 
     return (
 
@@ -22,7 +23,7 @@ export function Playlist({ songs, onRemoveSong, isEdit, id, user, onChangePlayli
                 {songs.map((song, idx) => (
                     <SongPreview key={idx} idx={idx} song={song} isEdit={isEdit}
                         onRemoveSong={onRemoveSong} isSearch={isSearch} onChangePlaylist={onChangePlaylist}
-                        user={user} id={id}>
+                        user={user} id={id} onSaveSong={onSaveSong}>
                     </SongPreview>
                 ))}
 
