@@ -55,7 +55,6 @@ export function SideBarContent() {
     function openModal() { setIsModalOpen(true) }
     function closeModal() { setIsModalOpen(false) }
 
-
     async function createStation() {
 
         let newStation = stationService.getEmptyStation('My station #', user.stations.length - 1)

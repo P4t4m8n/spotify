@@ -19,21 +19,6 @@ export const songService = {
 function query(filterSortBy = {}) {
 
     return httpService.get(BASE_URL, filterSortBy)
-    // const { likedBy, txt } = filterSortBy
-    // let filteredSortSongs = []
-    // try {
-    //     const songs = await asyncService.query(STORAGE_SONGS_KEY)
-
-    //     if (txt) { }
-
-    //     if (likedBy) {
-    //         filteredSortSongs = songs.filter(song => song.likedBy.some(liked => liked === likedBy))
-    //     }
-    //     return filteredSortSongs
-    // }
-    // catch (err) {
-    //     throw err
-    // }
 
 }
 
@@ -83,7 +68,7 @@ function getDefaultSong() {
         type: 'song',
         duration: "00:05",
         trackId: 'oQid2jSU7Ww',
-        songImgUrl: '/src/assets/img/winamp.svg',
+        imgUrl: '/src/assets/img/winamp.svg',
         addedBy: 'artist',
         addedAt: (Date.now() + 1) - Date.now(),
         likedBy: []

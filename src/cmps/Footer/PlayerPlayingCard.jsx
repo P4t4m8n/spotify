@@ -12,7 +12,7 @@ export function PlayerPlayingCard() {
         <div className="playing-card" >
             <img src={`${song.imgUrl}`}></img>
             <div className="playing-card-info">
-                <header>{song.title}</header>
+                <header>{song.name}</header>
                 <p>{song.artist}</p>
             </div>
             <LikeCard item={song}></LikeCard>
