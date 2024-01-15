@@ -79,6 +79,8 @@ export function SideBarContent() {
     }
 
     if (!userStations || !user) return <div>...Loading</div>
+    console.log("user:", user)
+
 
     return (
 

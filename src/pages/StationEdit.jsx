@@ -19,6 +19,7 @@ import { uploadService } from "../services/upload.service"
 export function StationEdit() {
 
     const user = useSelector(storeState => storeState.userMoudle.userObj)
+    console.log("user:", user)
 
     const [stationToEdit, setStationToEdit] = useState(stationService.getEmptyStation())
     const [isSearchOpen, setIsSearchOpen] = useState(false)
@@ -31,7 +32,7 @@ export function StationEdit() {
     useEffect(() => {
         if (params.stationId)
             onLoadStation(params.stationId)
-        
+
 
     }, [params.stationId, user.stations])
 
@@ -70,6 +71,14 @@ export function StationEdit() {
 
         try {
             const savedSation = await saveStation(updatedStation)
+            console.log("savedSation:", savedSation)
+            const userStations = user.stations
+            console.log("userStations:", userStations)
+            const idx = userStations.findIndex(stations => stations._id === savedSation._id)
+            console.log("idx:", idx)
+            userStations.splice(idx, 1, savedSation)
+            console.log("userStations:", userStations)
+            updateUser({ ...user, stations: userStations })
 
         }
         catch (err) {
@@ -117,7 +126,7 @@ export function StationEdit() {
     if (!stationToEdit) return <div>...Loading</div>
 
 
-    const {  songs } = stationToEdit
+    const { songs } = stationToEdit
 
     return (
 

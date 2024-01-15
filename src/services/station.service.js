@@ -115,14 +115,23 @@ function _getStationDuration(items) {
 
 function convertTimeFormat(timeStr) {
     const parts = timeStr.split(':').map(part => parseInt(part, 10))
+    let formattedTime = []
 
     if (parts.length === 2) {
-        return `${parts[0]} minutes and ${parts[1]} seconds`;
+        if (parts[0] > 0) formattedTime.push(`${parts[0]} minutes`)
+        if (parts[1] > 0) formattedTime.push(`${parts[1]} seconds`)
     } else if (parts.length === 3) {
-        return `${parts[0]} hours and ${parts[1]} minutes and ${parts[2]} seconds`
+        if (parts[0] > 0) formattedTime.push(`${parts[0]} hours`)
+        if (parts[1] > 0) formattedTime.push(`${parts[1]} minutes`)
+        if (parts[2] > 0) formattedTime.push(`${parts[2]} seconds`)
     } else {
         return 'Invalid format'
     }
+
+    return formattedTime.join(' and ')
 }
+
+
+
 
 
