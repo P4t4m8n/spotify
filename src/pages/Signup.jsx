@@ -25,7 +25,6 @@ export function Signup() {
         catch (err) { console.log(err) }
     }
 
-    console.log('Render singup')
 
     return (
         <form className="login-form" onSubmit={onSubmit}>
@@ -53,7 +52,7 @@ export function Signup() {
             <input
                 type="text"
                 name="username"
-                value={credentials.fullname}
+                value={credentials.username}
                 placeholder="Name"
                 onChange={handleCredentialsChange}
                 required

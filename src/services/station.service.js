@@ -25,7 +25,6 @@ function get(stationId) {
 
 function save(station) {
     station.duration = _getStationDuration(station.songs)
-    console.log("station:", station)
     const edit = 'edit/'
     if (station._id) return httpService.put(BASE_URL + edit + station._id, station)
     return httpService.post(BASE_URL + edit, station)
@@ -84,7 +83,6 @@ function getDefaultStation() {
 }
 
 function _getStationDuration(items) {
-    console.log("items:", items)
     let totalMinutes = 0
 
     items.forEach(item => {

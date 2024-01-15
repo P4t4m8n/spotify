@@ -6,7 +6,6 @@ import { NavLink } from 'react-router-dom'
 
 export function LoginSignup() {
 
-    console.log('render losign')
 
 
     return (
