@@ -6,7 +6,7 @@ import { setContextMenu } from "../../store/actions/app.actions"
 
 
 
-export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong, user, id }) {
+export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong, user, id, isSearch = false }) {
 
     const activeContextMenuId = useSelector(storeState => storeState.appMoudle.playlistContextMenu)
     const [isHover, setIsHover] = useState(false)
@@ -29,7 +29,7 @@ export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong,
     }
 
     window.onclick = () => {
-       
+
         closeContextMenu()
     }
 
@@ -55,7 +55,7 @@ export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong,
             {activeContextMenuId === song._id && (
                 <ul className="context-menu" style={{ position: 'absolute', top: `${contextMenuPosition.y}px`, left: `${contextMenuPosition.x}px` }}>
                     <li>
-                        <select onChange={(ev) => onChangePlaylist(ev, song, id)} className="playlist-select">
+                        <select onChange={(ev) => onChangePlaylist(ev, song, id, isSearch)} className="playlist-select">
                             {user.stations.map((station, idx) => (
                                 station._id === id ?
                                     <option key={idx} value="same">Current Playlist</option> :
@@ -63,7 +63,7 @@ export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong,
                             ))}
                         </select>
                     </li>
-                    <li onClick={(ev) => onRemoveSong(ev, song._id)}>Remove Song</li>
+                    {isEdit && <li onClick={(ev) => onRemoveSong(ev, song._id)}>Remove Song</li>}
                 </ul>
             )}
         </li>

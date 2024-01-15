@@ -112,8 +112,7 @@ export function StationEdit() {
 
     async function onAddSong(ev, song) {
         ev.preventDefault()
-        ev.stopPropagation()
-        recommendedList.current.songs = recommendedList.current.songs.filter(listSong => song._id !== listSong._id)
+        searchList.current.songs = recommendedList.current.songs.filter(listSong => song._id !== listSong._id)
 
         const songs = stationToEdit.songs
         songs.push(song)
@@ -131,10 +130,11 @@ export function StationEdit() {
         onSaveStation()
     }
 
-    function onChangePlaylist(ev, song, stationId) {
+    function onChangePlaylist(ev, song, stationId, isSearch) {
         ev.preventDefault()
         ev.stopPropagation()
         if (ev.target.value === 'same') return
+        if (isSearch) onAddSong(ev, song)
         onRemoveSong(ev, song._id)
 
         const newPlay = user.stations[ev.target.value]
@@ -171,8 +171,6 @@ export function StationEdit() {
                     <Playlist onChangePlaylist={onChangePlaylist} user={user} songs={songs} id={stationToEdit._id} onRemoveSong={onRemoveSong} isEdit={isEdit.current} />
                 </div>
             }
-            <div className="find-more" onClick={() => setIsSearchOpen(!isSearchOpen)}>{isSearchOpen ? 'X' : 'Find more'}</div>
-
 
             <section className="search-box">
                 <form  >
@@ -192,7 +190,7 @@ export function StationEdit() {
                 <div>
                     {
                         searchList.current.songs.map((song, idx) =>
-                            <Playlist user={user} songs={searchList.current.songs} isSearch={true} />
+                            <Playlist user={user} songs={searchList.current.songs} onChangePlaylist={onChangePlaylist} isSearch={true} />
 
                         )
                     }
