@@ -17,7 +17,6 @@ export function Player() {
     useDeviceCheck()
 
     return (
-
         <DynmicPlayerCmp device={device} volume={volume} setVolume={setVolume} ></DynmicPlayerCmp>
     )
 }
@@ -32,7 +31,6 @@ function DynmicPlayerCmp(props) {
 
         default:
             return (
-
                 <div className="app-footer flex">
                     <PlayerPlayingCard />
                     <YouTubeAudioPlayer {...props}  ></YouTubeAudioPlayer>

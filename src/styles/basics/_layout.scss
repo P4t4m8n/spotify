@@ -136,6 +136,7 @@
 .main-container.MOBILE {
     display: grid;
     grid-template-rows: 80% 10% 10%;
+    grid-template-columns: 100vw;
     grid-template-areas:
         " main"
         " player"
