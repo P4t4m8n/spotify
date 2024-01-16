@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
-import { userService } from '../services/user.service.js'
+import { userService } from '../../services/user.service.js'
 
 export function UserPage(){
     // const [user, setUser] = useState(userService.getLoggedinUser())

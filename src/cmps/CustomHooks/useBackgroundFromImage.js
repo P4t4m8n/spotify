@@ -5,7 +5,7 @@ import ColorThief from 'colorthief'
 
 export function useBackgroundFromImage(imageUrl) {
 
-    const [gradient, setGradient] = useState('linear-gradient(to bottom, #1db954 0%, #121212 100%)')
+    const [gradient, setGradient] = useState('linear-gradient(to bottom, #1a1a1a 0%, #0a0a0a 100%)')
 
     useEffect(() => {
         if (imageUrl) {
@@ -26,7 +26,7 @@ export function useBackgroundFromImage(imageUrl) {
 
             }
         }
-        else setGradient('linear-gradient(to bottom, #1db954 0%, #121212 100%)')
+        else setGradient('linear-gradient(to bottom, #1a1a1a 0%, #0a0a0a 100%)')
 
     }, [imageUrl])
 

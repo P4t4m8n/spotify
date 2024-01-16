@@ -2,7 +2,6 @@ import { useCallback, useState } from "react"
 import { useNavigate, useParams } from "react-router"
 import { utilService } from "../../services/util.service"
 
-
 export function Search() {
 
   const [searchTerm, setSearchTerm] = useState('')
@@ -21,9 +20,6 @@ export function Search() {
     debouncedNavigate(ev.target.value)
   }
 
-
-
-  console.log('Render search')
   return (
     <section className="search-box">
       <form  >
