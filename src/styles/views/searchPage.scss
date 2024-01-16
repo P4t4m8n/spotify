@@ -96,92 +96,39 @@
 
     .results-section {
 
-        .single-song-result {
-            display: flex;
-            justify-content: space-between;
-        
-        
-            position: relative;
-            height: 6rem;
-            width: 100%;
-            border-radius: 1rem;
-        
-            .main-result {
-                display: flex;
-                align-items: center;
-            }
-        
-            .result-details {
-                display: flex;
-                flex-direction: column-reverse;
-            }
-        
-            h3 {
-                font-size: 1rem;
-                text-decoration: underline;
-                margin-left: 0.5rem;
-                margin-top: 0.5rem;
-            }
-        
-            header {
-                margin-left: 0.5rem;
-                margin-bottom: 0.5rem;
-            }
-        
-            .img-play-con {
-                position: relative;
-        
-        
-                img {
-                    width: auto;
-                    height: 5rem;
-                    align-self: center;
-                    margin-left: 0.7rem;
-                }
-                :hover svg {
-                    opacity: 1;
-                }
-        
-                button {
-                    position: absolute;
-                    width: 200px;
-                    height: 100%;
-                    background: none;
-                    background-color: transperent;
-                    z-index: 2;
-                    padding-right: 4rem;
-                    left: 0;
-                    bottom: 0;
-        
-                    svg {
-                        width: 2rem;
-                        height: 2rem;
-                        fill: $clr6;
-                        opacity: 0;
-                        left: 50%;
+        .search-result-list {
+
+            .single-song-result {
+                // background-color: red;
+
+                grid-template-columns: minmax(120px, 4fr) minmax(120px, 1fr);
+
+
+                .img-play-title-artist-container {
+
+
+                    .song-image-play {
+                        width: 40px;
+                        height: 40px;
+                        position: relative;
+                        overflow: hidden;
+                        margin-right: 12px;
+                        // flex:1;
+
+                        img {
+                            height: 100%;
+                            width: 100%;
+                            object-fit: cover;
+                            object-position: center;
+                            border-radius: $panel-gap/2;
+                        }
+
+                        .song-title-artist {}
                     }
                 }
             }
-        
-            h2 {
-                font-size: 0.7rem;
-                padding: 0.5rem;
-            }
-        
-            .add-button {
-                height: auto;
-                width: auto;
-                padding: 0.5rem;
-                border-radius: 0.5rem;
-                margin-right: 1rem;
-                margin-top: 2rem;
-            }
-        
-            .add-button:hover {
-                background-color: $clr6;
-            }
-        
         }
+
     }
 
 }
