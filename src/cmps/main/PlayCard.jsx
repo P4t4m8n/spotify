@@ -11,7 +11,6 @@ export function PlayCard({ item }) {
     const station = useSelector(storeState => storeState.stationsMoudle.currStation)
     const player = useSelector(storeState => storeState.playerMoudle.player)
 
-
     let cardType = (item.type === 'playlist') ? station._id : song._id
 
     function onPlayStation(ev) {

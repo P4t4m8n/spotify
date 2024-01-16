@@ -24,12 +24,13 @@ export function SideBarContent() {
     const [stationInFoucs, setStationInFoucs] = useState(null)
     const [userStations, setUserStations] = useState(null)
 
+
     const navigate = useNavigate()
 
     useEffect(() => {
         if (user) setUserStations(user.stations)
 
-}, [user])
+    }, [user])
 
     function openModal() { setIsModalOpen(true) }
     function closeModal() { setIsModalOpen(false) }
@@ -57,6 +58,7 @@ export function SideBarContent() {
             const editUser = { ...user, stations: newStations }
             await updateUser(editUser)
             await removeStation(stationId)
+            navigate('/')
         }
         catch (err) { console.log(editUser.stations) }
 
@@ -70,10 +72,7 @@ export function SideBarContent() {
 
     function FilterList() {
         const regex = new RegExp(filterSort.name, 'i')
-        console.log("filterSort:", filterSort)
         let newList = user.stations.filter(station => regex.test(station.name))
-        console.log("user:", user)
-        console.log("newList:", newList)
         if (filterSort.sortBy === 'name') newList.sort((stationA, stationB) => stationA.name.localeCompare(stationB.name))
         else if (filterSort.sortBy === 'createAt') newList.sort((stationA, stationB) => stationA.createdAt - stationB.createdAt)
         setUserStations(newList)
@@ -136,7 +135,7 @@ export function SideBarContent() {
 
                 <ul>
                     {
-                       userStations.map((station, idx) => (
+                        userStations.map((station, idx) => (
                             <Link onClick={() => setStationInFoucs(station)} key={station._id} to={'/station/edit/' + station._id}>
                                 <li className={`grid ${(stationInFoucs && stationInFoucs._id === station._id) ? 'active-class' : ''}`}>
 
