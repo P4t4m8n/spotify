@@ -37,9 +37,6 @@ export function AppHeader() {
         }
     }
 
-
-
-
     return (
         <div className="app-header">
             {isSearchShown && <Search />}

@@ -17,7 +17,6 @@ export function PlayCard({ item }) {
         ev.preventDefault()
         if (item.type === 'playlist') {
             if ((item._id !== station._id) || (song._id !== item._id)) {
-                console.log("item:", item)
                 setCurrStation(item)
                 loadSong(item.songs[0])
                 if (isPlaying) setPlaying(false)
