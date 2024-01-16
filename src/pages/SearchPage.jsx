@@ -62,32 +62,38 @@ export function SearchPage() {
             }
             {searchList &&
                 <div className='search-hero'>
-                    <div className='top-result'>
-                       
-                        <div className='result-card'>
-                            <img className='main-img' src={searchList[0].imgUrl}></img>
-                            <div className='results'>
-                                {searchList.map(song =>
-                                    <div className='result' key={song.trackId}>
-                                        <div className='main-result'>
-                                            <div className='img-play-con'>
-                                                <img src={song.imgUrl}></img>
-                                                <PlayCard item={song}></PlayCard>
-                                            </div>
-                                            <div>
-                                                <header>{song.name}</header>
-                                                {(song.artist!=='Unknown') && <h3>{song.artist}</h3>}
-                                            </div>
 
-                                        </div>
-                                        <div className='result-details'>     
-                                            <h2>{song.duration}</h2>       
-                                            {user && <button className='add-button' onClick={() => onSaveSong(song)}>ADD</button>}
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
+                    <div className='top-result-section'>
+                        <div className='image-container'>
+                            <img className='top-result-image' src={searchList[0].imgUrl}></img>
                         </div>
+                        <div className='details-container'>
+                            <h3>{searchList[0].name}</h3>
+                            <p><span>Type</span> <span>Artist</span></p>
+                        </div>
+                    </div>
+
+
+                    <div className='results-section'>
+                        {searchList.map(song =>
+                            <div className='single-song-result' key={song.trackId}>
+                                <div className='main-result'>
+                                    <div className='img-play-con'>
+                                        <img src={song.imgUrl}></img>
+                                        <PlayCard item={song}></PlayCard>
+                                    </div>
+                                    <div>
+                                        <header>{song.name}</header>
+                                        {(song.artist !== 'Unknown') && <h3>{song.artist}</h3>}
+                                    </div>
+
+                                </div>
+                                <div className='result-details'>
+                                    <h2>{song.duration}</h2>
+                                    {user && <button className='add-button' onClick={() => onSaveSong(song)}>ADD</button>}
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                 </div>
