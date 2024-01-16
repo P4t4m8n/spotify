@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { removeStation, saveStation, setCurrStation, setUserStations } from "../../store/actions/station.actions"
 import { stationService } from "../../services/station.service"
 import { updateUser } from "../../store/actions/user.actions"
-import { Create, Dots, Libary, Note, Pin, Plus, SearchSvg, Sort } from "../../services/icons.service"
+import { Create, Delete, Dots, Libary, Note, Pin, Plus, SearchSvg, Sort } from "../../services/icons.service"
 import { Input } from "@mui/joy"
 import { SortByModal } from "./SortModal"
 
@@ -151,7 +151,7 @@ export function SideBarContent() {
                                         <Pin></Pin>
                                         <span className="station-type">{station.type}</span>
                                         <span>{station.songs.length} songs</span>
-                                        <button onClick={(ev) => onRemoveStation(ev, station._id)}>X</button>
+                                        <button onClick={(ev) => onRemoveStation(ev, station._id)}><Delete></Delete></button>
                                     </p>
 
                                 </li>
