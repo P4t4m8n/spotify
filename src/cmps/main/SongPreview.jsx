@@ -14,8 +14,6 @@ export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong,
 
     const contextMenuRef = useRef(null)
 
-
-
     function onSetIsHover(ev, hover) {
         ev.preventDefault()
         setIsHover(hover)
@@ -30,11 +28,9 @@ export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong,
         let xPosition = ev.clientX
         let yPosition = ev.clientY
 
-
         if (xPosition + menuWidth > window.innerWidth) {
             xPosition = ev.clientX - menuWidth
         }
-
 
         if (yPosition + menuHeight > window.innerHeight) {
             yPosition = ev.clientY - menuHeight
@@ -43,8 +39,6 @@ export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong,
         setContextMenu(song.trackId)
         setContextMenuPosition({ x: xPosition, y: yPosition })
     }
-
-
 
     function handleClickOutside(ev) {
         if (contextMenuRef.current && !contextMenuRef.current.contains(ev.target)) {
@@ -64,7 +58,6 @@ export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong,
             onMouseEnter={((ev) => onSetIsHover(ev, true))}
             onMouseLeave={(ev) => onSetIsHover(ev, false)}
             onContextMenu={handleContextMenu}
-
         >
             <p >{isHover ? <PlayCard item={song}></PlayCard> : idx + 1}</p>
             <div className="artist-and-image grid">  <div className="img-list-con"><img src={song.imgUrl} /> </div>{song.name}</div>

@@ -32,16 +32,16 @@ export function StationEdit() {
     const params = useParams()
 
     useEffect(() => {
-        if (params.stationId && user)
+        if (params.stationId && user){
             onLoadStation(params.stationId)
+        }
 
-    }, [params.stationId, user.stations])
+    }, [params.stationId, user])
 
     useBackgroundFromImage(stationToEdit ? stationToEdit.imgUrl : null)
 
     async function onLoadStation(stationId) {
         try {
-
             const station = await loadStation(stationId)
             setStationToEdit(station)
 

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom'
-import { signup } from '../store/actions/user.actions.js'
-import { userService } from "../services/user.service.js"
+import { signup } from '../../store/actions/user.actions.js'
+import { userService } from "../../services/user.service.js"
 
 
 export function Signup() {

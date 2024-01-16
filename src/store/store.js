@@ -7,9 +7,6 @@ import { appRedcuer } from "./redcuers/app.reducer"
 import { sidebarReducer } from "./redcuers/sidebar.reducer"
 import { playerReducer } from "./redcuers/player.redcuer"
 
-
-
-
 const rootReducer = combineReducers({
     stationsMoudle: stationsReducer,
     userMoudle: userReducer,

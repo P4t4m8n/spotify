@@ -5,13 +5,11 @@ import { Pause, Play } from "../../services/icons.service"
 
 
 export function PlayCard({ item }) {
-console.log("item:", item)
 
     const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
     const song = useSelector(storeState => storeState.songMoudle.currSong)
     const station = useSelector(storeState => storeState.stationsMoudle.currStation)
     const player = useSelector(storeState => storeState.playerMoudle.player)
-
 
     let cardType = (item.type === 'playlist') ? station._id : song._id
 
@@ -19,7 +17,6 @@ console.log("item:", item)
         ev.preventDefault()
         if (item.type === 'playlist') {
             if ((item._id !== station._id) || (song._id !== item._id)) {
-                console.log("item:", item)
                 setCurrStation(item)
                 loadSong(item.songs[0])
                 if (isPlaying) setPlaying(false)

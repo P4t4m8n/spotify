@@ -1,28 +1,31 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { setSearchOpen } from "../../store/actions/app.actions"
-import { useSelector } from "react-redux"
+import { HomeSvg, HomeSvgClicked, SearchSvg, SearchSvgClicked } from "../../services/icons.service"
+import { useEffect } from "react"
 
 
 export function SideBarHeader() {
 
-    const isSearchOpen = useSelector(storeState => storeState.appMoudle.isSearchOpen)
+
+    const location = useLocation()
+    const isSearchOpen = location.pathname.includes('search')
+
 
     return (
         <div className="left-sidebar-header">
 
             <ul className="clean-list">
 
-                <li key="home" onClick={() => setSearchOpen(false)}>
-                    <Link to={"/"} className="flex align-center">
-                        <img src="\src\assets\img\homefull.svg" className="left-sidebar-home-icon"></img>
+                <li  >
+                    <Link to={"/"} className={"flex align-center "}>
+                        {isSearchOpen ? <HomeSvg></HomeSvg> : <HomeSvgClicked></HomeSvgClicked>}
                         <span>Home</span>
                     </Link>
                 </li>
 
-                <li key="search">
-                    {/* <li onClick={() => setSearchOpen(!isSearchOpen)} key="search"> */}
-                    <Link to={"/search"} className="flex align-center">
-                        <img src="\src\assets\img\search.svg" className="left-sidebar-search-icon"></img>
+                <li >
+                    <Link to={"/search"} className={"flex align-center"}>
+                        {isSearchOpen ? <SearchSvgClicked></SearchSvgClicked> : <SearchSvg></SearchSvg>}
                         <span>Search</span>
                     </Link>
                 </li>
