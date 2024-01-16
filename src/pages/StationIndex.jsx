@@ -8,6 +8,7 @@ import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromIma
 export function StationIndex() {
 
     const stations = useSelector(storeState => storeState.stationsMoudle.stations)
+    console.log("stations:", stations)
 
     const stationListTitle = useRef([])
 
