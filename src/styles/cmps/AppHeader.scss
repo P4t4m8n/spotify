@@ -101,7 +101,7 @@
 
         .user-nav {
             display: grid;
-            grid-template-columns:  auto 4rem;
+            grid-template-columns: auto 4rem;
             gap: 8px;
 
             button {
@@ -120,18 +120,24 @@
                 max-width: 192px;
             }
 
-            .user-image-container {
-                width: 4rem;
-            }
-            
-            svg {
+            .avatar {
                 width: 3rem;
-                border-radius: 100px;
                 border: 1px solid white;
+                border-radius: 100px;
                 height: 3rem;
-                padding: 4px;
-                
+                display: grid;
+                align-items: center;
+                opacity: 70%;
+
+                svg {
+                    width: 2rem;
+                    height: 2rem;
+                    align-self: center;
+                    justify-self: center;
+                    margin-bottom: 3px;
+                }
             }
+
 
             button:hover {
                 animation: rgb-flashing 1s linear infinite;

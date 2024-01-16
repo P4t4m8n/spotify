@@ -47,10 +47,12 @@ export function AppHeader() {
                 {user ? (
                     < section className='user-nav' >
                         <button onClick={onLogout}>Logout</button>
+                        <div className='avatar'>
                             {user.imgUrl ?
                                 <img src={user.imgUrl}></img>
                                 :
                                 <UserIcon></UserIcon>}
+                        </div>
                     </ section >
                 ) : (
                     <section className='no-user'>
