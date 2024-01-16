@@ -3,6 +3,7 @@ import { useSelector } from "react-redux"
 import { updateUser } from "../../store/actions/user.actions"
 import { Heart } from '../../services/icons.service'
 import { FullHeart } from '../../services/icons.service'
+import { saveStation } from "../../store/actions/station.actions"
 
 
 export function LikeCard({ item }) {
@@ -10,22 +11,25 @@ export function LikeCard({ item }) {
     const [isLiked, setIsLiked] = useState(null)
     const user = useSelector(storeState => storeState.userMoudle.userObj)
 
-    useEffect(() => {
-       
-        let LikeCheck
-        if(user){
+    const PLAYLIST = 'Playlist'
+    const SONG = 'song'
 
-            if (item.type === 'Playlist') LikeCheck = user.stations.some(station => station._id === item._id)
-            if (item.type === 'song') {
+    useEffect(() => {
+
+        let LikeCheck
+        if (user) {
+
+            if (item.type === PLAYLIST) LikeCheck = user.stations.some(station => station._id === item._id)
+            if (item.type === SONG) {
                 LikeCheck = user.stations[0].songs.some(song => song._id === item._id)
-        }
+            }
         }
 
         if (LikeCheck) setIsLiked(true)
         else setIsLiked(false)
 
 
-    }, [item,user])
+    }, [item, user])
 
     async function onLike() {
         if (!user) {
@@ -35,13 +39,14 @@ export function LikeCard({ item }) {
 
         let userToUpdate
 
-        if (item.type === 'Playlist') {
+        if (item.type === PLAYLIST) {
             userToUpdate = handlePlaylistLike(user, item, isLiked, setIsLiked)
-        } else if (item.type === 'song') {
+        } else if (item.type === SONG) {
             userToUpdate = handleSongLike(user, item, isLiked, setIsLiked)
         }
 
         try {
+            if (item.type === SONG) saveStation(userToUpdate.stations[0])
             await updateUser(userToUpdate)
         } catch (err) {
             console.error('Error updating user:', err)
@@ -73,7 +78,6 @@ export function LikeCard({ item }) {
         }
 
         updatedStations[0].songs = favSongs
-        console.log("favSongs:", favSongs)
         return { ...user, stations: updatedStations }
     }
     // console.log('render like')

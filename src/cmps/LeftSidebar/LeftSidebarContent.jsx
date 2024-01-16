@@ -1,12 +1,10 @@
-import { useState, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { SET_FILTER } from "../../store/redcuers/app.reducer"
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
-import { removeStation, saveStation, setUserStations } from "../../store/actions/station.actions"
+import { removeStation, saveStation, setCurrStation, setUserStations } from "../../store/actions/station.actions"
 import { stationService } from "../../services/station.service"
 import { updateUser } from "../../store/actions/user.actions"
-import { Arrow, ArrowBack, Create, Dots, Libary, Note, Pin, Plus, SearchSvg, Sort } from "../../services/icons.service"
-import { Search } from "@mui/icons-material"
+import { Create, Dots, Libary, Note, Pin, Plus, SearchSvg, Sort } from "../../services/icons.service"
 import { Input } from "@mui/joy"
 import { SortByModal } from "./SortModal"
 
@@ -18,25 +16,30 @@ import React from 'react';
 export function SideBarContent() {
 
     const user = useSelector((storeState) => storeState.userMoudle.userObj)
-    console.log("user:", user)
     // const currStation = useSelector((storeState) => storeState.stationsMoudle.currStation)
 
     const [filterSort, setFilterSort] = useState({ name: '', sortBy: '' })
     const [showSearch, setShowSearch] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [stationInFoucs, setStationInFoucs] = useState(null)
+    const [userStations, setUserStations] = useState(null)
 
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if (user) setUserStations(user.stations)
+
+}, [user])
 
     function openModal() { setIsModalOpen(true) }
     function closeModal() { setIsModalOpen(false) }
 
     async function createStation() {
-        let newStation = stationService.getEmptyStation('My station #', user.stations.length - 1)
+        let newStation = stationService.getEmptyStation('My station #', userStations.length - 1)
 
         try {
             newStation = await saveStation(newStation)
-            const newUserStations = user.stations
+            const newUserStations = userStations
             newUserStations.push(newStation)
             const editUser = { ...user, stations: newUserStations }
             await updateUser(editUser)
@@ -55,7 +58,7 @@ export function SideBarContent() {
             await updateUser(editUser)
             await removeStation(stationId)
         }
-        catch (err) { console.log(err) }
+        catch (err) { console.log(editUser.stations) }
 
     }
 
@@ -67,14 +70,17 @@ export function SideBarContent() {
 
     function FilterList() {
         const regex = new RegExp(filterSort.name, 'i')
+        console.log("filterSort:", filterSort)
         let newList = user.stations.filter(station => regex.test(station.name))
+        console.log("user:", user)
+        console.log("newList:", newList)
         if (filterSort.sortBy === 'name') newList.sort((stationA, stationB) => stationA.name.localeCompare(stationB.name))
         else if (filterSort.sortBy === 'createAt') newList.sort((stationA, stationB) => stationA.createdAt - stationB.createdAt)
         setUserStations(newList)
 
     }
 
-    if (!user) return <div>...Loading</div>
+    if (!user || !userStations) return <div>...Loading</div>
 
 
     return (
@@ -130,9 +136,8 @@ export function SideBarContent() {
 
                 <ul>
                     {
-                        user.stations.map((station, idx) => (
+                       userStations.map((station, idx) => (
                             <Link onClick={() => setStationInFoucs(station)} key={station._id} to={'/station/edit/' + station._id}>
-                                {/* <li className="grid" > */}
                                 <li className={`grid ${(stationInFoucs && stationInFoucs._id === station._id) ? 'active-class' : ''}`}>
 
                                     {station.imgUrl ?
@@ -146,7 +151,7 @@ export function SideBarContent() {
                                         <Pin></Pin>
                                         <span className="station-type">{station.type}</span>
                                         <span>{station.songs.length} songs</span>
-                                        {/* <button onClick={(ev) => onRemoveStation(ev, station._id)}>X</button> */}
+                                        <button onClick={(ev) => onRemoveStation(ev, station._id)}>X</button>
                                     </p>
 
                                 </li>
