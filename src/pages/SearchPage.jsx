@@ -61,8 +61,8 @@ export function SearchPage() {
                 </Fragment>
             }
             {searchList &&
-                <div className='search-hero'>
 
+                <div className='search-hero'>
                     <div className='top-result-section'>
                         <div className='image-container'>
                             <img className='top-result-image' src={searchList[0].imgUrl}></img>
@@ -79,7 +79,7 @@ export function SearchPage() {
                             {searchList.map(song =>
                                 <li className='single-song-result grid' key={song.trackId}>
 
-                                    <div className='img-play-title-artist-container flex'>
+                                    <div className='img-play-title-artist-container grid'>
                                         <div className='song-image-play'>
                                             <img src={song.imgUrl}></img>
                                             <PlayCard item={song}></PlayCard>
@@ -91,7 +91,7 @@ export function SearchPage() {
                                         </div>
                                     </div>
 
-                                    <div>
+                                    <div className='duration-add grid'>
                                         {/* <LikeCard></LikeCard> // cant add like card because search results dont have id? */}
                                         <p>{song.duration}</p>
                                         {user && <button className='add-button' onClick={() => onSaveSong(song)}>ADD</button>}
