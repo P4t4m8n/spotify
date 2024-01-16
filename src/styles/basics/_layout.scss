@@ -132,3 +132,12 @@
         }
     }
 }
+
+.main-container.MOBILE {
+    display: grid;
+    grid-template-rows: 80% 10% 10%;
+    grid-template-areas:
+        " main"
+        " player"
+        " left-sidebar";
+}

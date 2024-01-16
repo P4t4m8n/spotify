@@ -4,6 +4,7 @@ import { StationList } from "../cmps/main/StationList"
 import { stationService } from "../services/station.service"
 import { loadStations } from "../store/actions/station.actions"
 import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
+import { useDeviceCheck } from "../cmps/CustomHooks/UseDeviceCheck"
 
 export function StationIndex() {
 
@@ -13,28 +14,18 @@ export function StationIndex() {
 
     useEffect(() => {
         loadStations()
-        myfunction()
         stationListTitle.current = stationService.getStationListTitle()
     }, [])
 
     useBackgroundFromImage('')
+    useDeviceCheck()
 
 
     if (!stations) return <div>...Loading</div>
     // console.log('Render stationIndex')
 
 
-    function myfunction() {
-        let a
-        if (navigator.userAgent.match(/iPhone/i)) {
-          
-
-            console.log("a:", a)
-        } else {
-            a = false;
-        }
-
-    }
+   
 
     return (
         <Fragment >

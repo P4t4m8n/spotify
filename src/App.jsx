@@ -13,7 +13,6 @@ import '../src/styles/main.scss'
 
 export function App() {
 
-
   return (
 
     <div className="main-container">
