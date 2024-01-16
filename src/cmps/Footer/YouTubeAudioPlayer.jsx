@@ -1,6 +1,6 @@
 
 import YouTube from 'react-youtube'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { loadSong, setPlaying } from '../../store/actions/song.action'
 import { utilService } from '../../services/util.service'
@@ -30,30 +30,8 @@ export function YouTubeAudioPlayer({ volume }) {
     },
   }
 
-
   if (!song) return <div> loading</div>
 
-  function onPlayStation(ev) {
-    ev.preventDefault()
-    if (item.type === 'playlist') {
-      if (item._id !== station._id) {
-        setCurrStation(item)
-        loadSong(item.songs[0])
-        if (isPlaying) setPlaying(false)
-      }
-    }
-
-    if (item.type === 'song') {
-      if (item._id !== song._id) {
-        loadSong(item.songs[0])
-        if (isPlaying) setPlaying(false)
-
-      }
-    }
-
-    togglePlayPause()
-
-  }
 
   function onEnd(ev) {
     if (!isRepeat.current && !isShuffle.current) {
@@ -99,17 +77,6 @@ export function YouTubeAudioPlayer({ volume }) {
     setPlayer(ev.target)
     ev.target.setVolume(volume)
 
-  }
-
-  function togglePlayPause() {
-    if (isPlaying) {
-      player.pauseVideo()
-    }
-    else {
-      player.playVideo()
-
-    }
-    setPlaying()
   }
 
   const { trackId } = song

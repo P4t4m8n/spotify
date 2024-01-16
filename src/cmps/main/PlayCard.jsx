@@ -5,8 +5,10 @@ import { Pause, Play } from "../../services/icons.service"
 
 
 export function PlayCard({ item }) {
+console.log("item:", item)
 
     const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
+    console.log("isPlaying:", isPlaying)
     const song = useSelector(storeState => storeState.songMoudle.currSong)
     const station = useSelector(storeState => storeState.stationsMoudle.currStation)
     const player = useSelector(storeState => storeState.playerMoudle.player)
@@ -19,15 +21,12 @@ export function PlayCard({ item }) {
             if ((item._id !== station._id) || (song._id !== item._id)) {
                 setCurrStation(item)
                 loadSong(item.songs[0])
-                if (isPlaying) setPlaying(false)
             }
         }
 
-        if (item.type === 'song') {
+       else if (item.type === 'song') {
             if (item._id !== song._id) {
                 loadSong(item)
-                if (isPlaying) setPlaying(false)
-
             }
         }
 
@@ -43,16 +42,15 @@ export function PlayCard({ item }) {
             player.playVideo()
 
         }
-        setPlaying()
+        setPlaying(!isPlaying)
     }
-    // console.log('render play')
+
     let showPlay = ''
     if (isPlaying && item._id === cardType) showPlay = 'show'
 
     return (
         <button onClick={(ev) => onPlayStation(ev)} className={"play-button " + showPlay}>
             {isPlaying && item._id === cardType ? <Pause /> : <Play />}
-
         </button>
     )
 }

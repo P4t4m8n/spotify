@@ -8,12 +8,12 @@ import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromIma
 export function StationIndex() {
 
     const stations = useSelector(storeState => storeState.stationsMoudle.stations)
-    console.log("stations:", stations)
 
     const stationListTitle = useRef([])
 
     useEffect(() => {
         loadStations()
+        myfunction()
         stationListTitle.current = stationService.getStationListTitle()
     }, [])
 
@@ -22,6 +22,19 @@ export function StationIndex() {
 
     if (!stations) return <div>...Loading</div>
     // console.log('Render stationIndex')
+
+
+    function myfunction() {
+        let a
+        if (navigator.userAgent.match(/iPhone/i)) {
+          
+
+            console.log("a:", a)
+        } else {
+            a = false;
+        }
+
+    }
 
     return (
         <Fragment >

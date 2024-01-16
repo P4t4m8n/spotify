@@ -82,7 +82,7 @@ export function LikeCard({ item }) {
     }
     // console.log('render like')
     return (
-        <button className={"like animate__animated " + (isLiked ? 'fill animate__shakeX' : 'empty animate__heartBeat')} onClick={onLike}>
+        <button className={"like animate__animated " + (isLiked ? 'fill empty animate__heartBeat' : 'fill animate__shakeX')} onClick={onLike}>
             {isLiked ? <FullHeart /> : <Heart />}
         </button>
 

@@ -5,7 +5,6 @@ import { PlayCard } from '../cmps/main/PlayCard'
 import { useNavigate, useParams } from "react-router"
 import { useSelector } from 'react-redux'
 import { saveSong } from '../store/actions/song.action'
-import { updateUser } from '../store/actions/user.actions'
 import { saveStation } from '../store/actions/station.actions'
 import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
 

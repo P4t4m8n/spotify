@@ -3,7 +3,6 @@ import { PlayCard } from "../main/PlayCard"
 
 export function StationList({ stations, stationListTitle }) {
 
-
     return (
         <div className="station">
             <h2 className="station-topic">{stationListTitle}</h2>
