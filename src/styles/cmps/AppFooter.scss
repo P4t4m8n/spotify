@@ -178,6 +178,7 @@
 }
 
 .mobile-player {
+  margin-inline: 1rem;
   grid-area: player;
   display: grid;
   grid-template-rows: auto 1px;
