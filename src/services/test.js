@@ -1,34 +1,46 @@
 // src/socketService.js
 import io from 'socket.io-client';
+import { userService } from './user.service';
 
-const SOCKET_SERVER_URL = "http://localhost:3000";
+const baseUrl = (process.env.NODE_ENV === 'production') ? '' : '//localhost:3030'
+export const socketService = createSocketService()
 
-class SocketService {
-    constructor() {
-        this.socket = io(SOCKET_SERVER_URL);
-    }
+window.socketService = socketService
 
-    sendObject(obj) {
-        this.socket.emit('send-object', obj);
-    }
+socketService.setup()
 
-    onObjectReceive(callback) {
-        this.socket.on('receive-object', callback);
-    }
 
-    sendNotification(message) {
-        this.socket.emit('send-notification', message);
-    }
 
-    onNotificationReceive(callback) {
-        this.socket.on('notification', callback);
-    }
+function createSocketService() {
+    var socket = null;
+    const socketService = {
+        setup() {
+            socket = io(baseUrl)
+            const user = userService.getLoggedinUser()
+            if (user) this.login(user._id)
+        },
 
-    disconnect() {
-        if(this.socket) {
-            this.socket.disconnect();
+        sendObject(obj) {
+            socket.emit('send-object', obj);
+        },
+
+        onObjectReceive(callback) {
+            socket.on('receive-object', callback);
+        },
+
+        sendNotification(message) {
+            socket.emit('send-notification', message);
+        },
+
+        onNotificationReceive(callback) {
+            socket.on('notification', callback);
+        },
+
+        disconnect() {
+            if (socket) {
+                socket.disconnect();
+            }
         }
     }
 }
 
-export default new SocketService();

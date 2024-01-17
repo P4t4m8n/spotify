@@ -3,6 +3,7 @@ import { PlayCard } from "./PlayCard"
 import { LikeCard } from "./LikeCard"
 import { useSelector } from "react-redux"
 import { setContextMenu } from "../../store/actions/app.actions"
+import { Test } from "./tests/test"
 
 
 
@@ -87,6 +88,7 @@ export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong,
                         </select>
                     </li>
                     {isEdit && <li onClick={(ev) => onRemoveSong(ev, song._id)}>Remove Song</li>}
+                    <Test song={song}></Test>
                 </ul>
             )}
         </li>

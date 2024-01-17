@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
-import socketService from '../socketService'
 
-export function Test () {
+export function Test({ song }) {
 
     useEffect(() => {
         // Listening for objects from the server
-        socketService.onObjectReceive((obj) => {
+        Sock.onObjectReceive((obj) => {
             console.log('Received object:', obj)
             // Handle the received object here
         })
@@ -33,7 +32,7 @@ export function Test () {
     // Your component's render logic here
     return (
         <div>
-            {/* Your component JSX */}
+            <button onClick={() => handleSendObject(song)}></button>
         </div>
     )
 }
