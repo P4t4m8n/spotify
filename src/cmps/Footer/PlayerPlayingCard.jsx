@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { LikeCard } from "../main/LikeCard";
 import { MOBILE } from "../CustomHooks/UseDeviceCheck";
 import { PlayCard } from "../main/PlayCard";
+import { useBackgroundFromImage } from "../CustomHooks/useBackgroundFromImage";
 
 
 export function PlayerPlayingCard() {
@@ -11,7 +12,9 @@ export function PlayerPlayingCard() {
     const song = useSelector(storeState => storeState.songMoudle.currSong)
     const user = useSelector(storeState => storeState.userMoudle.userObj)
     const device = useSelector(storeState => storeState.appMoudle.device)
-    
+
+
+    if (device === MOBILE) useBackgroundFromImage(song.imgUrl, true)
 
     return (
         <div className={"playing-card"}>

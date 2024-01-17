@@ -182,9 +182,18 @@
   grid-area: player;
   display: grid;
   grid-template-rows: auto 1px;
+  border-radius: 20px;
+  margin: 2px;
 
-
-
+  .playing-card {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 20% 40% 20% 20%;
+    gap: 0;
+    align-self: center;
+    padding-inline: 4px;
+    padding-left: 8px;
+  }
 
   .play-button {
     svg {
@@ -196,8 +205,12 @@
 
   .audio {
     height: 1px;
+    width: 100%;
+    padding-inline: 16px;
+    border-radius: 3px;
 
     .progress-bar {
+
       p {
         display: none;
       }

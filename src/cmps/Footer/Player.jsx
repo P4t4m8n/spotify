@@ -12,7 +12,6 @@ export function Player() {
 
     const [volume, setVolume] = useState(50)
     const device = useSelector(storeState => storeState.appMoudle.device)
-    console.log("device:", device)
 
     useDeviceCheck()
 
