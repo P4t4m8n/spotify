@@ -103,17 +103,20 @@
             margin: 0;
 
             li:first-child {
-                display: none; // This will hide the first li child
+                display: none;
             }
 
 
             .single-song-result {
                 grid-template-columns: minmax(120px, auto) minmax(120px, auto);
+                column-gap: 24px;
 
                 &:hover {
                     background-color: $clr11;
                     // opacity: 60%;
                     border-radius: $panel-gap/2;
+
+
                 }
 
                 .img-play-title-artist-container {
@@ -121,14 +124,22 @@
                     grid-template-columns: max-content auto;
                     height: 56px;
                     align-content: center;
+                    // padding-right: 24px;
+
 
 
                     .song-image-play {
                         width: 40px;
                         height: 40px;
-                        position: relative;
+                        // position: relative;
+                        align-self: center;
                         overflow: hidden;
                         margin: 0 12px;
+
+                        align-items: center;
+                        justify-content: center;
+
+
 
                         img {
                             height: 100%;
@@ -136,6 +147,8 @@
                             object-fit: cover;
                             object-position: center;
                             border-radius: $panel-gap/2;
+
+
 
                             // flex-shrink: 0;
                         }
@@ -146,6 +159,17 @@
                     }
 
                     .song-title-artist {
+
+                        overflow: hidden;
+
+                        p {
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+
+                        }
+
+
 
                         :last-child {
                             color: $clr13;
@@ -196,28 +220,36 @@
 
 .search-play-button {
     position: absolute;
-    background-color: $clr4;
-    height: 2em;
-    width: 2em;
-    padding: 0.2em;
-    left: 2.5rem;
-    top: 35%;
-    border-radius: 50%;
+    background-color: transparent;
+    // height: 2em;
+    // width: 2em;
+    // padding: 0.2em;
+    // left: 2.5rem;
+    // top: 35%;
+    // border-radius: 50%;
     opacity: 0;
+
+    &:hover {
+        opacity: 1;
+        height: 24px;
+    }
 }
 
-:hover {
-    opacity: 1;
-}
 
-.search-play-button .icon-16 {
-    position: absolute;
-    height: 2em;
-    width: 2em;
-    top: 0;
-    left: 0;
-    font-size: 1em;
-    padding: 0.5em;
+
+.play-button {
+    // position: absolute;
+    height: 24px;
+    width: 24px;
+    background-color: transparent;
+
+
+    // top: 0;
+    // left: 0;
+    // font-size: 1em;
+    // padding: 0.5em;
+
+
 
 }
 

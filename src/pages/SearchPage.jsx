@@ -12,6 +12,7 @@ import { LikeCard } from '../cmps/main/LikeCard'
 export function SearchPage() {
 
     const [searchList, setSearchList] = useState(null)
+
     const user = useSelector(storeState => storeState.userMoudle.userObj)
 
     const genres = ["New", 'Music', 'Pop', 'Hip-Hop', 'Rap', 'Latino', 'indi', 'Rock', 'Podcusts', 'Live', 'Sport', 'Meditation', 'Party', 'Electronic', 'For sleep']
@@ -69,6 +70,7 @@ export function SearchPage() {
                     <div className='top-result-section'>
                         <div className='image-container'>
                             <img className='top-result-image' src={searchList[0].imgUrl}></img>
+                            {/* <PlayCard item={song}></PlayCard> */}
                         </div>
                         <div className='details-container'>
                             <h3>{searchList[0].name}</h3>
@@ -86,9 +88,11 @@ export function SearchPage() {
                                 <li className='single-song-result grid' key={song.trackId}>
 
                                     <div className='img-play-title-artist-container grid'>
-                                        <div className='song-image-play'>
+                                        <div className='song-image-play flex'>
+                                            <div className="search-play-button">
+                                                <PlayCard item={song}></PlayCard>
+                                            </div>
                                             <img src={song.imgUrl}></img>
-                                            <PlayCard item={song}></PlayCard>
                                         </div>
 
                                         <div className='song-title-artist'>
