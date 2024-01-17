@@ -32,9 +32,7 @@ export function App() {
         <RightSidebar />
         <Player />
       </Router>
-      {/* <Router>
-        <Route path='/mobilePlayer' element={<Player></Player>}></Route>
-      </Router> */}
+   
     </div>
   )
 }

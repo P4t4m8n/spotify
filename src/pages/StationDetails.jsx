@@ -33,7 +33,6 @@ export function StationDetails() {
     const amount = currStation.songs.length
 
     console.log('Render station-details')
-
     return (
         <section className="station-details" >
             <header className="station-header" >
