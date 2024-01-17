@@ -3,6 +3,7 @@ import { PlayCard } from "./PlayCard"
 import { LikeCard } from "./LikeCard"
 import { useSelector } from "react-redux"
 import { setContextMenu } from "../../store/actions/app.actions"
+import { useDragAndDrop } from "../CustomHooks/useDND"
 
 
 
@@ -12,6 +13,7 @@ export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong,
     const [isHover, setIsHover] = useState(false)
     const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 })
 
+    const { handleDragStart } = useDragAndDrop()
     const contextMenuRef = useRef(null)
 
     function onSetIsHover(ev, hover) {
@@ -53,8 +55,14 @@ export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong,
         }
     }, [])
 
+    function onDragStart(ev, song) {
+        ev.preventDefault()
+        handleDragStart(song)
+    }
+
     return (
-        <li key={idx} className="station-details-list"
+
+        <li key={idx} className="station-details-list" item={{ content: 'Drag me', id: 1 }} draggable onDragStart={ev => onDragStart(ev, song)}
             onMouseEnter={((ev) => onSetIsHover(ev, true))}
             onMouseLeave={(ev) => onSetIsHover(ev, false)}
             onContextMenu={handleContextMenu}

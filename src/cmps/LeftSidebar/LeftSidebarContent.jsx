@@ -24,6 +24,7 @@ export function SideBarContent() {
     const [stationInFoucs, setStationInFoucs] = useState(null)
     const [userStations, setUserStations] = useState(null)
 
+    const { handleDragOver, handleDrop } = useDragAndDrop()
 
     const navigate = useNavigate()
 
@@ -31,7 +32,6 @@ export function SideBarContent() {
         if (user) setUserStations(user.stations)
 
     }, [user])
-        console.log("user:", user)
 
     function openModal() { setIsModalOpen(true) }
     function closeModal() { setIsModalOpen(false) }
@@ -138,7 +138,7 @@ export function SideBarContent() {
                     {
                         userStations.map((station, idx) => (
                             <Link onClick={() => setStationInFoucs(station)} key={station._id} to={'/station/edit/' + station._id}>
-                                <li className={`grid ${(stationInFoucs && stationInFoucs._id === station._id) ? 'active-class' : ''}`}>
+                                <li onDragOver={handleDragOver}  onDrop={(ev) => handleDrop(ev, song)} className={`grid ${(stationInFoucs && stationInFoucs._id === station._id) ? 'active-class' : ''}`}>
 
                                     {station.imgUrl ?
                                         <img className="station-image-left-sidebar" src={station.imgUrl}></img> :
