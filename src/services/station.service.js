@@ -55,30 +55,149 @@ function getEmptyStation(name = '', idx = '', imgUrl = '', createdBy = { _id: ''
 
 function getDefaultStation() {
 
-    let station = {
-        "_id": utilService.makeId(),
-        "name": utilService.makeLorem(2),
-        "stationListTitle": 'Welcome to YoutubeFy',
-        "type": "playlist",
-        "tags": ["deafult"],
-        "stationImgUrl": 'https://i.scdn.co/image/ab67706f0000000374be24e6ba30b6497b60fca5',
-        "createdBy": {
-            "_id": utilService.makeId(),
-            "username": utilService.makeLorem(1),
-            "profileImg": ""
+   return {
+    "_id": "65a582381424bff446d6839b",
+    "name": "Discover Weekly",
+    "stationListTitle": "New music",
+    "type": "playlist",
+    "tags": [],
+    "imgUrl": "http://res.cloudinary.com/dpnevk8db/image/upload/v1705350332/fxslryvz4zqsx7pfkcpj.jpg",
+    "createdBy": {
+      "_id": "",
+      "username": "TubeFy"
+    },
+    "likedByUsers": 0,
+    "songs": [
+      {
+        "name": "Flowers ",
+        "artist": "Miley Cyrus",
+        "type": "song",
+        "duration": "03:22",
+        "trackId": "G7KNmW9a75Y",
+        "imgUrl": "https://i.ytimg.com/vi/G7KNmW9a75Y/mqdefault.jpg",
+        "addedBy": "artist",
+        "addedAt": {
+          "$numberLong": "1705346665264"
         },
-        "likedByUsers": ['', ''],
-        description:''
-
-    }
-
-    let songs = []
-    for (var i = 0; i < 15; i++) {
-        let song = songService.getRandomSong()
-        songs.push(song)
-    }
-    station.songs = songs
-    return station
+        "likedByUsers": [],
+        "_id": "65a586693bc5d92a271d70bf"
+      },
+      {
+        "name": "Kill Bill ",
+        "artist": "SZA",
+        "type": "song",
+        "duration": "04:36",
+        "trackId": "MSRcC626prw",
+        "imgUrl": "https://i.ytimg.com/vi/MSRcC626prw/mqdefault.jpg",
+        "addedBy": "artist",
+        "addedAt": {
+          "$numberLong": "1705346688501"
+        },
+        "likedByUsers": [],
+        "_id": "65a586803bc5d92a271d70c0"
+      },
+      {
+        "name": "As It Was ",
+        "artist": "Harry Styles",
+        "type": "song",
+        "duration": "02:46",
+        "trackId": "H5v3kku4y6Q",
+        "imgUrl": "https://i.ytimg.com/vi/H5v3kku4y6Q/mqdefault.jpg",
+        "addedBy": "artist",
+        "addedAt": {
+          "$numberLong": "1705346701331"
+        },
+        "likedByUsers": [],
+        "_id": "65a5868d3bc5d92a271d70c1"
+      },
+      {
+        "name": "Seven (feat. Latto)",
+        "artist": "Jungkook",
+        "type": "song",
+        "duration": "03:47",
+        "trackId": "QU9c0053UAU",
+        "imgUrl": "https://i.ytimg.com/vi/QU9c0053UAU/mqdefault.jpg",
+        "addedBy": "artist",
+        "addedAt": {
+          "$numberLong": "1705346723878"
+        },
+        "likedByUsers": [],
+        "_id": "65a586a33bc5d92a271d70c2"
+      },
+      {
+        "name": "Ella Baila Sola",
+        "artist": "Eslabon Armado & Peso Pluma",
+        "type": "song",
+        "duration": "03:08",
+        "trackId": "lZiaYpD9ZrI",
+        "imgUrl": "https://i.ytimg.com/vi/lZiaYpD9ZrI/mqdefault.jpg",
+        "addedBy": "artist",
+        "addedAt": {
+          "$numberLong": "1705346740420"
+        },
+        "likedByUsers": [],
+        "_id": "65a586b43bc5d92a271d70c3"
+      },
+      {
+        "name": "Cruel Summer",
+        "artist": "Taylor Swift",
+        "type": "song",
+        "duration": "03:00",
+        "trackId": "JLJcHbYSlB8",
+        "imgUrl": "https://i.ytimg.com/vi/JLJcHbYSlB8/mqdefault.jpg",
+        "addedBy": "artist",
+        "addedAt": {
+          "$numberLong": "1705346774803"
+        },
+        "likedByUsers": [],
+        "_id": "65a586d63bc5d92a271d70c4"
+      },
+      {
+        "name": "Creepin",
+        "artist": "The Weeknd",
+        "type": "song",
+        "duration": "03:41",
+        "trackId": "-UcFeTfm1oM",
+        "imgUrl": "https://i.ytimg.com/vi/-UcFeTfm1oM/mqdefault.jpg",
+        "addedBy": "artist",
+        "addedAt": {
+          "$numberLong": "1705346790729"
+        },
+        "likedByUsers": [],
+        "_id": "65a586e63bc5d92a271d70c5"
+      },
+      {
+        "name": "BZRP Music Sessions 53",
+        "artist": "SHAKIRA",
+        "type": "song",
+        "duration": "04:40",
+        "trackId": "qSSg1EAImm4",
+        "imgUrl": "https://i.ytimg.com/vi/qSSg1EAImm4/mqdefault.jpg",
+        "addedBy": "artist",
+        "addedAt": {
+          "$numberLong": "1705346998977"
+        },
+        "likedByUsers": [],
+        "_id": "65a587b63bc5d92a271d70c6"
+      },
+      {
+        "name": "Anti-Hero ",
+        "artist": "Taylor Swift",
+        "type": "song",
+        "duration": "05:10",
+        "trackId": "b1kbLwvqugk",
+        "imgUrl": "https://i.ytimg.com/vi/b1kbLwvqugk/mqdefault.jpg",
+        "addedBy": "artist",
+        "addedAt": {
+          "$numberLong": "1705347010109"
+        },
+        "likedByUsers": [],
+        "_id": "65a587c23bc5d92a271d70c7"
+      }
+    ],
+    "duration": "00:34:10",
+    "description": "Rock out while you game"
+  }
 }
 
 function _getStationDuration(items) {

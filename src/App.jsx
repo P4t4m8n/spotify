@@ -6,7 +6,6 @@ import { StationIndex } from './pages/StationIndex.jsx'
 import { StationDetails } from './pages/StationDetails.jsx'
 import { LeftSidebar } from './cmps/LeftSidebar/LeftSidebar.jsx'
 import { SearchPage } from './pages/SearchPage.jsx'
-import { RightSidebar } from './cmps/RightSidebar/RightSidebar.jsx'
 import { StationEdit } from './pages/StationEdit.jsx'
 
 import '../src/styles/main.scss'
@@ -29,7 +28,6 @@ export function App() {
             <Route path="/station/edit/:stationId" element={<StationEdit />}></Route>
           </Routes>
         </div>
-        <RightSidebar />
         <Player />
       </Router>
    

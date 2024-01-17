@@ -1,6 +1,6 @@
 
 import YouTube from 'react-youtube'
-import { Fragment, useRef } from 'react'
+import { Fragment, useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { loadSong, setPlaying } from '../../store/actions/song.action'
 import { utilService } from '../../services/util.service'
@@ -31,17 +31,20 @@ export function YouTubeAudioPlayer({ volume }) {
     },
   }
 
-  if (!song) return <div> loading</div>
+  // useEffect(() => {
 
+  //   if (!song) loadSong(station.songs[0])
+
+  // }, [song])
 
   function onEnd(ev) {
     if (!isRepeat.current && !isShuffle.current) {
       stationIdx.current++
-      if (stationIdx.current >= station.length) stationIdx.current = 0
+      if (stationIdx.current >= station.songs.length) stationIdx.current = 0
     }
 
     if (isShuffle.current) {
-      stationIdx.current = utilService.getRandomIntInclusive(0, station.length)
+      stationIdx.current = utilService.getRandomIntInclusive(0, station.songs.length)
     }
     loadSong(station.songs[stationIdx.current])
   }
@@ -62,12 +65,12 @@ export function YouTubeAudioPlayer({ volume }) {
       stationIdx.current = utilService.getRandomIntInclusive(0, station.songs.length)
     }
 
-    else if (isRepeat.current) { }
+    else if (isRepeat.current) {  }
 
     else {
       stationIdx.current += dir
-      if (stationIdx.current >= station.length) stationIdx.current = 0
-      if (stationIdx.current < 0) stationIdx.current = station.length - 1
+      if (stationIdx.current >= station.songs.length) stationIdx.current = 0
+      if (stationIdx.current < 0) stationIdx.current = station.songs.length - 1
     }
 
 
@@ -79,6 +82,7 @@ export function YouTubeAudioPlayer({ volume }) {
     ev.target.setVolume(volume)
 
   }
+  if(!song) return <div>...Loading</div>
 
   const { trackId } = song
 
