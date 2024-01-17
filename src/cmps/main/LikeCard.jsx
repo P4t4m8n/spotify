@@ -11,7 +11,7 @@ export function LikeCard({ item }) {
     const [isLiked, setIsLiked] = useState(null)
     const user = useSelector(storeState => storeState.userMoudle.userObj)
 
-    const PLAYLIST = 'Playlist'
+    const PLAYLIST = 'playlist'
     const SONG = 'song'
 
     useEffect(() => {
