@@ -1,8 +1,10 @@
+import { PC } from "../../cmps/CustomHooks/UseDeviceCheck"
 
 export const SET_FILTER = "SET_FILTER"
 export const SET_IS_OPEN = "SET_IS_OPEN"
 export const SET_IS_SEARCH_OPEN = "SET_IS_SEARCH_OPEN"
 export const SET_CONTEXT_MENU = "SET_CONTEXT_MENU"
+export const SET_DEVICE = 'SET_DEVICE'
 
 const initialSate = {
     filterSortBy: { txt: '', sortBy: '', likeBy: '' },
@@ -10,6 +12,7 @@ const initialSate = {
     isSearchOpen: false,
     grident: [],
     playlistContextMenu: '',
+    device: PC,
 }
 
 export function appRedcuer(state = initialSate, action = {}) {
@@ -28,6 +31,9 @@ export function appRedcuer(state = initialSate, action = {}) {
 
         case SET_CONTEXT_MENU:
             return { ...state, playlistContextMenu: action.contextMenu }
+
+        case SET_DEVICE:
+            return { ...state, device: action.device }
 
         default:
             return state

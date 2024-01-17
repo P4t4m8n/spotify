@@ -5,10 +5,8 @@ import { Pause, Play } from "../../services/icons.service"
 
 
 export function PlayCard({ item }) {
-console.log("item:", item)
 
     const isPlaying = useSelector(storeState => storeState.songMoudle.isPlaying)
-    console.log("isPlaying:", isPlaying)
     const song = useSelector(storeState => storeState.songMoudle.currSong)
     const station = useSelector(storeState => storeState.stationsMoudle.currStation)
     const player = useSelector(storeState => storeState.playerMoudle.player)

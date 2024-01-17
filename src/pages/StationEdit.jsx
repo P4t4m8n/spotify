@@ -24,6 +24,7 @@ export function StationEdit() {
     const user = useSelector(storeState => storeState.userMoudle.userObj)
 
     const [stationToEdit, setStationToEdit] = useState(stationService.getEmptyStation())
+    console.log("stationToEdit:", stationToEdit)
     const [searchList, setSearchList] = useState(null)
 
 
@@ -126,11 +127,13 @@ export function StationEdit() {
 
     function handleChange({ target }) {
         let value = target.value
+        console.log("value:", value)
         let field = target.name
+        console.log("field:", field)
         if (field === 'search') {
             return
         }
-        setStationToEdit(prevStation => ({ ...prevStation, name: value }))
+        setStationToEdit(prevStation => ({ ...prevStation, [field]: value }))
     }
 
     if (!stationToEdit) return <div>...Loading</div>

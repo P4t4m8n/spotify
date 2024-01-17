@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import { saveSong } from '../store/actions/song.action'
 import { saveStation } from '../store/actions/station.actions'
 import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
+import { LikeCard } from '../cmps/main/LikeCard'
 
 export function SearchPage() {
 
@@ -60,8 +61,11 @@ export function SearchPage() {
                 </Fragment>
             }
             {searchList &&
-                <div className='search-hero'>
 
+                <div className='search-hero grid'>
+                    <div>
+                        <h2 className="section-title">Top result</h2>
+                    </div>
                     <div className='top-result-section'>
                         <div className='image-container'>
                             <img className='top-result-image' src={searchList[0].imgUrl}></img>
@@ -72,27 +76,36 @@ export function SearchPage() {
                         </div>
                     </div>
 
+                    <div>
+                        <h2 className="section-title">Songs</h2>
+                    </div>
 
                     <div className='results-section'>
-                        {searchList.map(song =>
-                            <div className='single-song-result' key={song.trackId}>
-                                <div className='main-result'>
-                                    <div className='img-play-con'>
-                                        <img src={song.imgUrl}></img>
-                                        <PlayCard item={song}></PlayCard>
-                                    </div>
-                                    <div>
-                                        <header>{song.name}</header>
-                                        {(song.artist !== 'Unknown') && <h3>{song.artist}</h3>}
+                        <ul className='search-result-list clean-list'>
+                            {searchList.map(song =>
+                                <li className='single-song-result grid' key={song.trackId}>
+
+                                    <div className='img-play-title-artist-container grid'>
+                                        <div className='song-image-play'>
+                                            <img src={song.imgUrl}></img>
+                                            <PlayCard item={song}></PlayCard>
+                                        </div>
+
+                                        <div className='song-title-artist'>
+                                            <p>{song.name}</p>
+                                            {(song.artist !== 'Unknown') && <p>{song.artist}</p>}
+                                        </div>
                                     </div>
 
-                                </div>
-                                <div className='result-details'>
-                                    <h2>{song.duration}</h2>
-                                    {user && <button className='add-button' onClick={() => onSaveSong(song)}>ADD</button>}
-                                </div>
-                            </div>
-                        )}
+                                    <div className='duration-add grid'>
+                                        {/* <LikeCard></LikeCard> // cant add like card because search results dont have id? */}
+                                        <p>{song.duration}</p>
+                                        {user && <button className='add-button' onClick={() => onSaveSong(song)}>ADD</button>}
+                                    </div>
+
+                                </li>
+                            )}
+                        </ul>
                     </div>
 
                 </div>

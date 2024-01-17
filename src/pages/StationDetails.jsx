@@ -5,6 +5,7 @@ import { Playlist } from "../cmps/main/Playlist"
 import { LikeCard } from "../cmps/main/LikeCard"
 import { PlayCard } from "../cmps/main/PlayCard"
 import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
+import { useDeviceCheck } from "../cmps/CustomHooks/UseDeviceCheck"
 
 
 
@@ -17,7 +18,8 @@ export function StationDetails() {
         onLoadstation()
     }, [params.stationsId])
 
-    useBackgroundFromImage(currStation ? currStation.imgUrl : null);
+    useBackgroundFromImage(currStation ? currStation.imgUrl : null)
+    useDeviceCheck()
 
     async function onLoadstation() {
         const station = await loadStation(params.stationId)
