@@ -3,13 +3,15 @@
 
     display: grid;
     grid-template-columns: minmax(280px, auto) minmax(400px, 1fr);
-    grid-template-rows: 1fr auto;
+    // grid-template-rows: 1fr auto;
     grid-template-areas:
         "left-sidebar main"
-        "player player";
-    gap: $panel-gap;
+        "player player"
+        "mobile-manu mobile-manu";
+    //gap: $panel-gap;
     height: 100vh;
     overflow: hidden;
+    gap: $panel-gap;
 
     ::-webkit-scrollbar {
         display: none;
@@ -131,4 +133,14 @@
             font-size: 2em;
         }
     }
+}
+
+.main-container.MOBILE {
+    display: grid;
+    grid-template-rows: 80% 10% 10%;
+    grid-template-columns: 100vw;
+    grid-template-areas:
+        " main"
+        " player"
+        " left-sidebar";
 }

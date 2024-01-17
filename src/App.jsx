@@ -13,7 +13,6 @@ import '../src/styles/main.scss'
 
 export function App() {
 
-
   return (
 
     <div className="main-container">
@@ -33,6 +32,9 @@ export function App() {
         <RightSidebar />
         <Player />
       </Router>
+      {/* <Router>
+        <Route path='/mobilePlayer' element={<Player></Player>}></Route>
+      </Router> */}
     </div>
   )
 }

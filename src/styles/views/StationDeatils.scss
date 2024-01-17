@@ -428,49 +428,66 @@
 }
 
 
+.main-container.MOBILE {
+    .main-content {
+        display: grid;
+        grid-area: main;
+        grid-template-columns: 100vw;
+        grid-template-rows: auto 85%;
+        grid-template-areas:
+            "header"
+            "contet";
+        padding: 0;
+
+        .station-details~.app-header {
+            display: none !important;
+
+
+        }
+
+        .station-details {
+            grid-area: contet;
+            width: 100vw;
+            display: grid;
+            grid-template-columns: 100vw;
+            grid-template-rows: auto 10% auto;
+            grid-template-areas:
+                "hero"
+                "control"
+                "content";
+
+            .station-header {
+                grid-area: hero;
+                flex-direction: column;
+
+            }
+
+            .station-details-control {
+                grid-area: control;
+                justify-content: center;
+
+                .station-details-control-left {
+                    flex-direction: row;
+                    gap: 60px;
+                    margin-bottom: 16px;
+                }
+
+
+            }
+
+            div {
+                // grid-area: content;
+                // width: 100%;
+                padding-right: 10px;
+
+
+                // .song-list {
+                //     grid-template-columns: 10% 20% 30% 20% 20%;
+                // }
+            }
+        }
+    }
 
 
 
-
-
-
-
-///////////////not sure whta it is if no effect remove
-
-// .playlist-select {
-//     width: 100%;
-//     background: transparent;
-//     border: none;
-//     color: white;
-//     padding: 5px 10px;
-//     -webkit-appearance: none;
-//     -moz-appearance: none;
-//     appearance: none;
-//     cursor: pointer;
-// }
-
-// .playlist-select:hover {
-//     background-color: #333;
-// }
-
-// .playlist-select option {
-//     background-color: #282828;
-//     color: white;
-// }
-
-
-
-
-// .playlist-select {
-//     width: 100%;
-//     background: transparent;
-//     border: none;
-//     color: white;
-//     padding: 5px 10px;
-//     appearance: none;
-// }
-
-// .playlist-select option {
-//     background-color: #282828;
-//     color: white;
-// }
+}

@@ -185,10 +185,11 @@
         }
 
     }
-    
+
     .show {
         opacity: 1 !important;
     }
+
     button {
         position: absolute;
         top: 45%;
@@ -283,4 +284,95 @@
     width: 20px;
     height: 20px;
     fill: white;
+}
+
+.main-container.MOBILE {
+
+    .main-content {
+        display: grid;
+        grid-area: main;
+        grid-template-columns: 100vw;
+        grid-template-rows: 15% 85%;
+        grid-template-areas:
+            "header"
+            "contet";
+        padding: 0;
+
+        .app-header {
+            grid-area: header;
+
+            left: end;
+            top: 0;
+            width: 100vw;
+            
+            
+        }
+        
+        .home-page {
+            width: 100vw;
+            display: grid;
+            grid-template-rows: auto;
+            
+            .station {
+                width: 100vw;
+                display: grid;
+                gap: .5rem;
+                grid-template-rows: 15% 85%;
+                
+                h2 {
+                    font-size: 1.2rem;
+                    padding-left: 14px;
+                }
+                
+                .station-list {
+                    display: flex;
+                    overflow: auto;
+                    flex-wrap: nowrap;
+                
+                    width: 100vw !important;
+                    justify-content:space-between;
+                    
+                }
+                
+                
+                
+                .station-card {
+                    padding: 8px;
+                    display: grid;
+                    grid-template-columns: 100%;
+                    grid-template-rows: 90% 10%;
+                    min-width: 168px;
+                    min-height: 220px;
+
+                    
+                    li {
+                        background-color: inherit !important;
+                        // width: 168px;
+                        // height: 220px;
+                        padding: 0;
+                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+                        border-radius: 10px;
+                        
+                        
+                        img {
+                            border-radius: 10px;
+                            width: 100% !important;
+                            height: 100% !important;
+                            object-fit: cover;
+                        }
+                        .station-name{
+                            padding-block: 2px;
+                        }
+
+                        .station-info {
+                            .station-description {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
 }
