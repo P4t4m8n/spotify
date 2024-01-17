@@ -25,7 +25,6 @@ export function StationIndex() {
     
 
     if (!stations || !stations.length) return <div>...Loading</div>
-    console.log("stations:", stations)
 
     const heroStations = stations.slice(0,6)
     return (
