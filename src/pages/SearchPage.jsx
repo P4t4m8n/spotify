@@ -62,7 +62,10 @@ export function SearchPage() {
             }
             {searchList &&
 
-                <div className='search-hero'>
+                <div className='search-hero grid'>
+                    <div>
+                        <h2 className="section-title">Top result</h2>
+                    </div>
                     <div className='top-result-section'>
                         <div className='image-container'>
                             <img className='top-result-image' src={searchList[0].imgUrl}></img>
@@ -73,6 +76,9 @@ export function SearchPage() {
                         </div>
                     </div>
 
+                    <div>
+                        <h2 className="section-title">Songs</h2>
+                    </div>
 
                     <div className='results-section'>
                         <ul className='search-result-list clean-list'>
