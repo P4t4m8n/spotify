@@ -15,7 +15,6 @@ export function PlayerPlayingCard() {
 
 
     if (device === MOBILE) useBackgroundFromImage(song.imgUrl, true)
-
     return (
         <div className={"playing-card"}>
             <img src={`${song.imgUrl}`}></img>

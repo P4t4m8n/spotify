@@ -11,20 +11,26 @@ export function PlayCard({ item }) {
     const station = useSelector(storeState => storeState.stationsMoudle.currStation)
     const player = useSelector(storeState => storeState.playerMoudle.player)
 
-    let cardType = (item.type === 'playlist') ? station._id : song._id
+    let cardType = (item.type === 'playlist') ? station._id : song.trackId
+
 
     function onPlayStation(ev) {
         ev.preventDefault()
+
         if (item.type === 'playlist') {
-            if ((item._id !== station._id) || (song._id !== item._id)) {
+            if ((item._id !== cardType) || (song.trackId !== item.trackId)) {
                 setCurrStation(item)
                 loadSong(item.songs[0])
+                setPlaying(!isPlaying)
+
             }
         }
 
-       else if (item.type === 'song') {
-            if (item._id !== song._id) {
+        else if (item.type === 'song') {
+            if (item.trackId !== cardType) {
                 loadSong(item)
+                setPlaying(!isPlaying)
+
             }
         }
 
@@ -41,14 +47,15 @@ export function PlayCard({ item }) {
 
         }
         setPlaying(!isPlaying)
+        onPlayStation()
     }
 
     let showPlay = ''
-    if (isPlaying && item._id === cardType) showPlay = 'show'
+    if (isPlaying && (item._id === cardType || item.trackId === cardType)) showPlay = 'show'
 
     return (
         <button onClick={(ev) => onPlayStation(ev)} className={"play-button " + showPlay}>
-            {isPlaying && item._id === cardType ? <Pause /> : <Play />}
+            {isPlaying && (item._id === cardType || item.trackId === cardType) ? <Pause /> : <Play />}
         </button>
     )
 }
