@@ -45,7 +45,6 @@ export async function loadStation(stationId) {
     try {
         const station = await stationService.get(stationId)
         store.dispatch({ type: SET_CURR_STATION, station })
-        console.log('Load')
         return station
     }
     catch (err) {

@@ -3,7 +3,7 @@ import { SongPreview } from "./SongPreview";
 
 
 
-export function Playlist({onSaveSong, songs, onRemoveSong, isEdit, id, user, onChangePlaylist,isSearch }) {
+export function Playlist({ onSaveSong, songs, onRemoveSong, isEdit, id, user, onChangePlaylist, isSearch, station }) {
 
     return (
 
@@ -20,7 +20,7 @@ export function Playlist({onSaveSong, songs, onRemoveSong, isEdit, id, user, onC
             </ul>
             <ul className="song-list grid clean-list">
                 {songs.map((song, idx) => (
-                    <SongPreview key={idx} idx={idx} song={song} isEdit={isEdit}
+                    <SongPreview station={station} key={idx} idx={idx} song={song} isEdit={isEdit}
                         onRemoveSong={onRemoveSong} isSearch={isSearch} onChangePlaylist={onChangePlaylist}
                         user={user} id={id} onSaveSong={onSaveSong}>
                     </SongPreview>

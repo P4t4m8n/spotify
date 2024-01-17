@@ -24,15 +24,16 @@ export function StationEdit() {
     const user = useSelector(storeState => storeState.userMoudle.userObj)
 
     const [stationToEdit, setStationToEdit] = useState(stationService.getEmptyStation())
-    console.log("stationToEdit:", stationToEdit)
     const [searchList, setSearchList] = useState(null)
+    const dragObj = useSelector(storeState => storeState.appMoudle.dragObj)
+
 
 
     const isEdit = useRef(true)
     const params = useParams()
 
     useEffect(() => {
-        if (params.stationId && user){
+        if (params.stationId && user) {
             onLoadStation(params.stationId)
         }
 
@@ -151,7 +152,7 @@ export function StationEdit() {
                     <div className="play-and-context flex">
                         <PlayCard item={stationToEdit}></PlayCard>
                     </div>
-                    <Playlist onChangePlaylist={onChangePlaylist} user={user} songs={songs} id={stationToEdit._id} onRemoveSong={onRemoveSong} isEdit={isEdit.current} />
+                    <Playlist station={stationToEdit} onChangePlaylist={onChangePlaylist} user={user} songs={songs} id={stationToEdit._id} onRemoveSong={onRemoveSong} isEdit={isEdit.current} />
                 </div>
             }
             <EditSearch onSaveSong={onSaveSong} user={user}></EditSearch>

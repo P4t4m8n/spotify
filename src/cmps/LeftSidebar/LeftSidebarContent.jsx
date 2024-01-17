@@ -9,6 +9,7 @@ import { Input } from "@mui/joy"
 import { SortByModal } from "./SortModal"
 
 import React from 'react';
+import { useDragAndDrop } from "../CustomHooks/useDND"
 
 
 
@@ -23,6 +24,7 @@ export function SideBarContent() {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [stationInFoucs, setStationInFoucs] = useState(null)
     const [userStations, setUserStations] = useState(null)
+
 
     const { handleDragOver, handleDrop } = useDragAndDrop()
 
@@ -137,8 +139,8 @@ export function SideBarContent() {
                 <ul>
                     {
                         userStations.map((station, idx) => (
-                            <Link onClick={() => setStationInFoucs(station)} key={station._id} to={'/station/edit/' + station._id}>
-                                <li onDragOver={handleDragOver}  onDrop={(ev) => handleDrop(ev, song)} className={`grid ${(stationInFoucs && stationInFoucs._id === station._id) ? 'active-class' : ''}`}>
+                            <Link onClick={() => setStationInFoucs(station)} key={station._id} to={'/station/edit/' + station._id} onDragOver={handleDragOver}  onDrop={(ev) => handleDrop(ev,station)}>
+                                <li  className={`grid ${(stationInFoucs && stationInFoucs._id === station._id) ? 'active-class' : ''}`}>
 
                                     {station.imgUrl ?
                                         <img className="station-image-left-sidebar" src={station.imgUrl}></img> :

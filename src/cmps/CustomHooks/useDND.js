@@ -1,28 +1,59 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { setDragObj } from '../../store/actions/app.actions'
+import { saveStation } from '../../store/actions/station.actions'
+import { updateUser } from '../../store/actions/user.actions'
 
-function useDragAndDrop() {
-    const [draggedItem, setDraggedItem] = useState(null)
+export function useDragAndDrop() {
 
-    const handleDragStart = (item) => {
-        setDraggedItem(item)
+    const dragObj = useSelector(storeState => storeState.appMoudle.dragObj)
+    const user = useSelector((storeState) => storeState.userMoudle.userObj)
+
+
+    const handleDragStart = (ev, item, station) => {
+
+        const data = { item, from: station }
+        setDragObj(data)
     }
 
-    const handleDragOver = (e) => {
-        e.preventDefault() // Necessary to allow dropping
-    }
-
-    const handleDrop = (ev) => {
+    const handleDragOver = (ev) => {
         ev.preventDefault()
-        if (draggedItem) {
-            handleItemDropped(draggedItem)
-            setDraggedItem(null) // Reset the dragged item
+    }
+
+    const handleDrop = (ev, stationDrop) => {
+        ev.preventDefault()
+
+        const idx = stationDrop.songs.findIndex(song => song.trackId === dragObj.item.trackId)
+        if (idx > -1) return
+        handleTransfer(stationDrop)
+
+    }
+
+    async function handleTransfer(stationDrop) {
+        let userStations = user.stations
+        try {
+            if (dragObj.from) {
+                const newFromSongs = dragObj.from.songs.filter(song => song._id !== dragObj.item._id)
+                let newFrom = dragObj.from
+                newFrom.songs = newFromSongs
+                newFrom = await saveStation(newFrom)
+                const idx = userStations.findIndex(station => station._id === newFrom._id)
+                userStations.splice(idx, 1, newFrom)
+            }
+
+            let dropSongs = stationDrop.songs
+            dropSongs.push(dragObj.item)
+            stationDrop.songs = dropSongs
+            const savedSation = await saveStation(stationDrop)
+            const idx = userStations.findIndex(stations => stations._id === savedSation._id)
+            userStations.splice(idx, 1, savedSation)
+            updateUser({ ...user, stations: userStations })
+            setDragObj({})
+        } catch (err) {
+            console.log(err)
         }
     }
 
-    const handleItemDropped = (item) => {
-        console.log("Item dropped:", item);
-        // Implement the logic after an item is dropped
-    }
 
-    return { handleDragStart, handleDragOver, handleDrop, handleItemDropped }
+    return { handleDragStart, handleDragOver, handleDrop }
 }

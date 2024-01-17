@@ -38,7 +38,6 @@ function getStationListTitle() {
 }
 
 function getEmptyStation(name = '', idx = '', imgUrl = '', createdBy = { _id: '', username: '', }) {
-    console.log("createdBy:", createdBy)
     return {
 
         name: name + idx,

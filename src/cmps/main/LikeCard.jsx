@@ -4,6 +4,7 @@ import { updateUser } from "../../store/actions/user.actions"
 import { Heart } from '../../services/icons.service'
 import { FullHeart } from '../../services/icons.service'
 import { saveStation } from "../../store/actions/station.actions"
+import { saveSong } from "../../store/actions/song.action"
 
 
 export function LikeCard({ item }) {
@@ -32,21 +33,31 @@ export function LikeCard({ item }) {
     }, [item, user])
 
     async function onLike() {
+
+        let tempItem = item
+
         if (!user) {
             console.log('No user found')
             return
         }
+        if (!item._id)
+            try {
+                tempItem = await saveSong(tempItem)
+            }
+            catch (err) {
+                console.error('Error updating user:', err)
+            }
 
         let userToUpdate
 
-        if (item.type === PLAYLIST) {
-            userToUpdate = handlePlaylistLike(user, item, isLiked, setIsLiked)
-        } else if (item.type === SONG) {
-            userToUpdate = handleSongLike(user, item, isLiked, setIsLiked)
+        if (tempItem.type === PLAYLIST) {
+            userToUpdate = handlePlaylistLike(user, tempItem, isLiked, setIsLiked)
+        } else if (tempItem.type === SONG) {
+            userToUpdate = handleSongLike(user, tempItem, isLiked, setIsLiked)
         }
 
         try {
-            if (item.type === SONG) saveStation(userToUpdate.stations[0])
+            if (tempItem.type === SONG) saveStation(userToUpdate.stations[0])
             await updateUser(userToUpdate)
         } catch (err) {
             console.error('Error updating user:', err)

@@ -8,6 +8,9 @@ import { saveSong } from '../store/actions/song.action'
 import { saveStation } from '../store/actions/station.actions'
 import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
 import { LikeCard } from '../cmps/main/LikeCard'
+import { useDragAndDrop } from '../cmps/CustomHooks/useDND'
+import { DEF_IMG } from '../store/actions/app.actions'
+
 
 export function SearchPage() {
 
@@ -15,6 +18,7 @@ export function SearchPage() {
     const user = useSelector(storeState => storeState.userMoudle.userObj)
 
     const genres = ["New", 'Music', 'Pop', 'Hip-Hop', 'Rap', 'Latino', 'indi', 'Rock', 'Podcusts', 'Live', 'Sport', 'Meditation', 'Party', 'Electronic', 'For sleep']
+    const { handleDragStart } = useDragAndDrop()
 
     const params = useParams()
     const navigate = useNavigate()
@@ -35,18 +39,8 @@ export function SearchPage() {
         catch (err) { console.log(err) }
     }
 
-    async function onSaveSong(song) {
-        try {
-            const savedSong = await saveSong(song)
-            const downloadStation = user.stations[1]
-            downloadStation.songs.push(savedSong)
-            saveStation(downloadStation)
 
-        }
-        catch (err) { console.log(err) }
-    }
 
-    // console.log('Render-Search page')
     return (
         <section>
             {!params.searchTerm &&
@@ -68,10 +62,10 @@ export function SearchPage() {
                     </div>
                     <div className='top-result-section'>
                         <div className='image-container'>
-                            <img className='top-result-image' src={searchList[0].imgUrl}></img>
+                            <img className='top-result-image' src={searchList[0].imgUrl||DEF_IMG}></img>
                         </div>
                         <div className='details-container'>
-                            <h3>{searchList[0].name}</h3>
+                            <h3>{searchList[0].name||DEF_IMG}</h3>
                             <p><span>Type</span> <span>Artist</span></p>
                         </div>
                     </div>
@@ -83,7 +77,7 @@ export function SearchPage() {
                     <div className='results-section'>
                         <ul className='search-result-list clean-list'>
                             {searchList.map(song =>
-                                <li className='single-song-result grid' key={song.trackId}>
+                                <li draggable onDragStart={(ev) => handleDragStart(ev, song)} className='single-song-result grid' key={song.trackId}>
 
                                     <div className='img-play-title-artist-container grid'>
                                         <div className='song-image-play'>
@@ -98,9 +92,9 @@ export function SearchPage() {
                                     </div>
 
                                     <div className='duration-add grid'>
-                                        {/* <LikeCard></LikeCard> // cant add like card because search results dont have id? */}
+                                        <LikeCard item={song}></LikeCard>
                                         <p>{song.duration}</p>
-                                        {user && <button className='add-button' onClick={() => onSaveSong(song)}>ADD</button>}
+
                                     </div>
 
                                 </li>

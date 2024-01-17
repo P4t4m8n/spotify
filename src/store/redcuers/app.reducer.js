@@ -5,6 +5,7 @@ export const SET_IS_OPEN = "SET_IS_OPEN"
 export const SET_IS_SEARCH_OPEN = "SET_IS_SEARCH_OPEN"
 export const SET_CONTEXT_MENU = "SET_CONTEXT_MENU"
 export const SET_DEVICE = 'SET_DEVICE'
+export const SET_DRAG_OBJ = 'SET_DRAG_OBJ'
 
 const initialSate = {
     filterSortBy: { txt: '', sortBy: '', likeBy: '' },
@@ -13,6 +14,7 @@ const initialSate = {
     grident: [],
     playlistContextMenu: '',
     device: PC,
+    dragObj: { item:{}, from:{}} 
 }
 
 export function appRedcuer(state = initialSate, action = {}) {
@@ -34,6 +36,9 @@ export function appRedcuer(state = initialSate, action = {}) {
 
         case SET_DEVICE:
             return { ...state, device: action.device }
+
+        case SET_DRAG_OBJ:
+            return { ...state, dragObj: action.obj }
 
         default:
             return state

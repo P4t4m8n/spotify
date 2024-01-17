@@ -7,7 +7,7 @@ import { useDragAndDrop } from "../CustomHooks/useDND"
 
 
 
-export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong, user, id, isSearch = false }) {
+export function SongPreview({ station, song, idx, isEdit, onChangePlaylist, onRemoveSong, user, id, isSearch = false }) {
 
     const activeContextMenuId = useSelector(storeState => storeState.appMoudle.playlistContextMenu)
     const [isHover, setIsHover] = useState(false)
@@ -55,14 +55,11 @@ export function SongPreview({ song, idx, isEdit, onChangePlaylist, onRemoveSong,
         }
     }, [])
 
-    function onDragStart(ev, song) {
-        ev.preventDefault()
-        handleDragStart(song)
-    }
+
 
     return (
 
-        <li key={idx} className="station-details-list" item={{ content: 'Drag me', id: 1 }} draggable onDragStart={ev => onDragStart(ev, song)}
+        <li key={idx} className="station-details-list" item={{ ...song }} draggable onDragStart={(ev) => handleDragStart(ev,song,station)}
             onMouseEnter={((ev) => onSetIsHover(ev, true))}
             onMouseLeave={(ev) => onSetIsHover(ev, false)}
             onContextMenu={handleContextMenu}

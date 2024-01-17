@@ -15,7 +15,6 @@ export function useBackgroundFromImage(imageUrl, isMobile = false) {
             console.log("imageUrl:", imageUrl)
             img.onload = async () => {
                 const colorThief = new ColorThief()
-                console.log("colorThief:", colorThief)
                 const palette = colorThief.getPalette(img, 2)
                 const gradientColors = palette.map(rgb => `rgb(${rgb.join(',')})`)
                 setGradient(`linear-gradient(to bottom, 
@@ -25,7 +24,6 @@ export function useBackgroundFromImage(imageUrl, isMobile = false) {
                     #121212 75%,   
                     #121212 100%)`)
                     
-                    console.log("gradientColors:", gradientColors)
                 }
         }
         else setGradient('linear-gradient(to bottom, #1a1a1a 0%, #0a0a0a 100%)')
