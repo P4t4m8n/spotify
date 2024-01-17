@@ -52,12 +52,39 @@ async function getContent(search) {
 }
 
 function parseSongString(songString) {
-    const parts = songString.split(' - ')
-    if (parts.length === 2) return { artist: parts[0] || '', name: parts[1] || '' }
-    else if (parts.length === 1) return { artist: 'Unknown' || '', name: parts[0] || '' }
-    else return { artist: 'Unknown', title: 'Unknown' }
+    songString = songString.replace(/\[.*?\]|\(.*?\)/g, '')
+    const splitIndex = songString.search(/[^a-zA-Z0-9 ]/)
+    let artist
+    let name
+
+    if (splitIndex !== -1) {
+        artist = songString.substring(0, splitIndex).trim()
+        name = songString.substring(splitIndex + 1).trim()
+    } else {
+        artist = 'Unknown'
+        name = songString.trim()
+    }
+
+    artist = artist.replace(/[^a-zA-Z0-9]/g, '')
+    name = name.replace(/[^a-zA-Z0-9]/g, '')
+
+    artist = artist.length > 12 ? artist.substring(0, 12) + '...' : artist
+    name = name.length > 12 ? name.substring(0, 12) + '...' : name
+
+    if (!artist) artist = 'Unknown'
+    if (!name) name = 'Unknown'
+
+    return { artist, name }
+
 
 }
+// function parseSongString(songString) {
+//     const parts = songString.split(' - ')
+//     if (parts.length === 2) return { artist: parts[0] || '', name: parts[1] || '' }
+//     else if (parts.length === 1) return { artist: 'Unknown' || '', name: parts[0] || '' }
+//     else return { artist: 'Unknown', title: 'Unknown' }
+
+// }
 
 
 async function _getDuration(videoId) {
