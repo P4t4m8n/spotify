@@ -24,7 +24,6 @@ function get(stationId) {
 }
 
 function save(station) {
-    station.duration = _getStationDuration(station.songs)
     const edit = 'edit/'
     if (station._id) return httpService.put(BASE_URL + edit + station._id, station)
     return httpService.post(BASE_URL + edit, station)
@@ -38,7 +37,8 @@ function getStationListTitle() {
     return ['Made for you', 'Top charts', 'Jump back on', 'Recently played', 'Your top mixes']
 }
 
-function getEmptyStation(name = '', idx = '', imgUrl = '') {
+function getEmptyStation(name = '', idx = '', imgUrl = '', createdBy = { _id: '', username: '', }) {
+    console.log("createdBy:", createdBy)
     return {
 
         name: name + idx,
@@ -46,13 +46,11 @@ function getEmptyStation(name = '', idx = '', imgUrl = '') {
         type: "playlist",
         tags: [],
         imgUrl: imgUrl,
-        createdBy: {
-            _id: '',
-            username: '',
-        },
+        createdBy:createdBy,
         likedByUsers: 0,
         songs: [],
-        duration: ''
+        duration: '',
+        description:''
     }
 }
 
@@ -70,7 +68,9 @@ function getDefaultStation() {
             "username": utilService.makeLorem(1),
             "profileImg": ""
         },
-        "likedByUsers": ['', '']
+        "likedByUsers": ['', ''],
+        description:''
+
     }
 
     let songs = []

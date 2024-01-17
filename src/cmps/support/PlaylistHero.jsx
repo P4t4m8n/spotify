@@ -15,7 +15,7 @@ import { stationService } from '../../services/station.service'
 export function PlaylistHero({ handleChange, stationToEdit, onSaveStation, onUplodImg }) {
     const [open, setOpen] = useState(false)
 
-    const { type, name, createdBy, imgUrl } = stationToEdit
+    const { type, name, createdBy, imgUrl,description } = stationToEdit
     const duration = stationService.convertTimeFormat(stationToEdit.duration)
     const amount = stationToEdit.songs.length || 0
 
@@ -61,11 +61,11 @@ export function PlaylistHero({ handleChange, stationToEdit, onSaveStation, onUpl
                                         <Stack spacing={2}>
                                             <FormControl>
                                                 <FormLabel>Name</FormLabel>
-                                                <Input autoFocus required value={name} onChange={(event) => handleChange(event)} />
+                                                <Input autoFocus required name='name' value={name} onChange={(event) => handleChange(event)} />
                                             </FormControl>
                                             <FormControl>
                                                 <FormLabel>Description</FormLabel>
-                                                <Input />
+                                                <Input   name='description' value={description} onChange={(event) => handleChange(event)} />
                                             </FormControl>
                                             <Button type="submit">Save</Button>
                                         </Stack>

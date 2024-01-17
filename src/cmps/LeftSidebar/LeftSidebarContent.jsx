@@ -31,12 +31,13 @@ export function SideBarContent() {
         if (user) setUserStations(user.stations)
 
     }, [user])
+        console.log("user:", user)
 
     function openModal() { setIsModalOpen(true) }
     function closeModal() { setIsModalOpen(false) }
 
     async function createStation() {
-        let newStation = stationService.getEmptyStation('My station #', userStations.length - 1)
+        let newStation = stationService.getEmptyStation('My station #', userStations.length - 1, '', { _id: user._id, username: user.username, })
 
         try {
             newStation = await saveStation(newStation)
