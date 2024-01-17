@@ -146,7 +146,7 @@
                             width: 100%;
                             object-fit: cover;
                             object-position: center;
-                            border-radius: $panel-gap/2;
+                            border-radius: calc($panel-gap/2);
 
 
 

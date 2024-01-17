@@ -5,6 +5,7 @@ import { stationService } from "../services/station.service"
 import { loadStations } from "../store/actions/station.actions"
 import { useBackgroundFromImage } from "../cmps/CustomHooks/useBackgroundFromImage"
 import { PC, useDeviceCheck } from "../cmps/CustomHooks/UseDeviceCheck"
+import { PlayCard } from "../cmps/main/PlayCard"
 
 export function StationIndex() {
 
@@ -21,10 +22,11 @@ export function StationIndex() {
 
     useBackgroundFromImage('')
     useDeviceCheck()
+    
 
+    if (!stations || !stations.length) return <div>...Loading</div>
 
-    if (!stations) return <div>...Loading</div>
-
+    const heroStations = stations.slice(0,6)
     return (
         <Fragment >
             <div className="home-page">
@@ -34,57 +36,45 @@ export function StationIndex() {
                         <ul className="main-hero" >
                             <li>
                                 <div className="content">
-                                    <img src="/src/assets/img/asset 53.jpeg" alt="Daily Mix" />
-                                    <p>Daily Mix 1</p>
+                                    <img src={heroStations[0].imgUrl}></img>
+                                    <p>{heroStations[0].name}</p>
                                 </div>
-                                <button className="hero-play-button">
-                                    <img className="icon-16" src="/src/assets/img/play.svg" alt="Play" />
-                                </button>
+                               <PlayCard item={heroStations[0]}></PlayCard>
                             </li>
                             <li>
-                                <div className="content">
-                                    <img src="/src/assets/img/asset 53.jpeg" alt="Daily Mix" />
-                                    <p>Daily Mix 2</p>
+                            <div className="content">
+                                    <img src={heroStations[1].imgUrl}></img>
+                                    <p>{heroStations[1].name}</p>
                                 </div>
-                                <button className="hero-play-button">
-                                    <img className="icon-16" src="/src/assets/img/play.svg" alt="Play" />
-                                </button>
+                               <PlayCard item={heroStations[1]}></PlayCard>
                             </li>
                             <li>
-                                <div className="content">
-                                    <img src="/src/assets/img/asset 53.jpeg" alt="Daily Mix" />
-                                    <p>Daily Mix 3</p>
+                            <div className="content">
+                                    <img src={heroStations[2].imgUrl}></img>
+                                    <p>{heroStations[2].name}</p>
                                 </div>
-                                <button className="hero-play-button">
-                                    <img className="icon-16" src="/src/assets/img/play.svg" alt="Play" />
-                                </button>
+                               <PlayCard item={heroStations[2]}></PlayCard>
                             </li>
                             <li>
-                                <div className="content">
-                                    <img src="/src/assets/img/asset 53.jpeg" alt="Daily Mix" />
-                                    <p>Daily Mix 4</p>
+                            <div className="content">
+                                    <img src={heroStations[3].imgUrl}></img>
+                                    <p>{heroStations[3].name}</p>
                                 </div>
-                                <button className="hero-play-button">
-                                    <img className="icon-16" src="/src/assets/img/play.svg" alt="Play" />
-                                </button>
+                               <PlayCard item={heroStations[3]}></PlayCard>
                             </li>
                             <li>
-                                <div className="content">
-                                    <img src="/src/assets/img/asset 53.jpeg" alt="Daily Mix" />
-                                    <p>Daily Mix 5</p>
+                            <div className="content">
+                                    <img src={heroStations[4].imgUrl}></img>
+                                    <p>{heroStations[4].name}</p>
                                 </div>
-                                <button className="hero-play-button">
-                                    <img className="icon-16" src="/src/assets/img/play.svg" alt="Play" />
-                                </button>
+                               <PlayCard item={heroStations[4]}></PlayCard>
                             </li>
                             <li>
-                                <div className="content">
-                                    <img src="/src/assets/img/asset 53.jpeg" alt="Daily Mix" />
-                                    <p>Daily Mix 6</p>
+                            <div className="content">
+                                    <img src={heroStations[5].imgUrl}></img>
+                                    <p>{heroStations[5].name}</p>
                                 </div>
-                                <button className="hero-play-button">
-                                    <img className="icon-16" src="/src/assets/img/play.svg" alt="Play" />
-                                </button>
+                               <PlayCard item={heroStations[5]}></PlayCard>
                             </li>
 
                         </ul>
