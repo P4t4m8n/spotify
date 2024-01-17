@@ -35,7 +35,7 @@ function remove(stationId) {
 }
 
 function getStationListTitle() {
-    return ['Made for you', 'Top charts', 'Jump back on', 'Recently played', 'Your top mixes']
+    return ['Made for you','Gangsters paradise','Isreali best songs', 'Isreali classic music', '']
 }
 
 function getEmptyStation(name = '', idx = '', imgUrl = '') {

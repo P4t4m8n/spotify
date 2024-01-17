@@ -33,7 +33,7 @@ export function App() {
         </div>
         <RightSidebar />
         <Player />
-        <MobileManu/>
+        {/*<MobileManu/>*/}
       </Router>
     </div>
   )
