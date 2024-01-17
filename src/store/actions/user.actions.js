@@ -34,11 +34,9 @@ export async function login(credentials) {
 export async function signup(credentials) {
     try {
 
-        let fav = stationService.getEmptyStation('Liked Songs', '', '/src/assets/img/favorits.png')
-        let downloaded = stationService.getEmptyStation('Downloaded', '', '/src/assets/img/favorits.png')
+        let fav = stationService.getEmptyStation('Liked Songs', '', 'http://res.cloudinary.com/dpnevk8db/image/upload/v1705451341/ebpe6nnlgajtmfyldt4a.png')
         fav = await stationService.save(fav)
-        downloaded = await stationService.save(downloaded)
-        credentials.stations = [fav,downloaded]
+        credentials.stations = [fav]
 
         const user = await userService.signup(credentials)
         
