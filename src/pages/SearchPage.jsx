@@ -55,7 +55,8 @@ export function SearchPage() {
                     <ul className="ganeres-list">
                         {genres.map(ganere =>
                             <li key={ganere} style={{ backgroundColor: utilService.getRandomColor() }} onClick={() => navigate('/search/' + ganere)}>
-                                {ganere}<img src={`src/assets/img/${ganere}.jpg`}></img></li>
+                                {/* {ganere}<img src={`src/assets/img/${ganere}.jpg`}></img></li> */}
+                                {ganere}<img src={`http://res.cloudinary.com/dpnevk8db/image/upload/v1705517404/w5svu04jkscmml7gz7x9.jpg`}></img></li>
                         )}
                     </ul>
                 </Fragment>
