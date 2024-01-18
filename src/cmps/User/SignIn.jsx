@@ -29,7 +29,8 @@ export function SignIn({ open, setOpen }) {
   async function onLogin() {
     try {
       login(credentials)
-      console.log('Logged in successfully')
+      showSuccessMsg(`Welcome ${credentials.username}`)
+
     }
     catch (err) { console.log(err) }
 
@@ -38,8 +39,7 @@ export function SignIn({ open, setOpen }) {
   async function onSignup(credentials) {
     try {
       signup(credentials)
-      console.log('Signed in successfully')
-    }
+      showSuccessMsg(`Welcome ${credentials.username}`)    }
     catch (err) { console.log(err) }
   }
 
@@ -63,7 +63,7 @@ export function SignIn({ open, setOpen }) {
     <div id='modalBackdrop' className="modal-backdrop">
       <div className="modal-content">
         <form onSubmit={isLogin}>
-          <h2>{isSignup? 'SignUp':'Login'}</h2>
+          <h2>{isSignup ? 'SignUp' : 'Login'}</h2>
           <input
             type="text"
             placeholder="Username"

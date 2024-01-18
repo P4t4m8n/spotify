@@ -5,6 +5,8 @@ import { Heart } from '../../services/icons.service'
 import { FullHeart } from '../../services/icons.service'
 import { saveStation } from "../../store/actions/station.actions"
 import { saveSong } from "../../store/actions/song.action"
+import { showSuccessMsg } from "../../services/event-bus.service"
+
 
 
 export function LikeCard({ item }) {
@@ -69,9 +71,13 @@ export function LikeCard({ item }) {
         if (isLiked) {
             updatedStations = updatedStations.filter(station => station._id !== likedItem._id)
             setIsLikedCallback(false)
+            showSuccessMsg(`Playlist Unliked`)
+
         } else {
             updatedStations = [...updatedStations, likedItem]
             setIsLikedCallback(true)
+            showSuccessMsg(`Playlist Liked`)
+
         }
         return { ...user, stations: updatedStations }
     }
@@ -83,9 +89,13 @@ export function LikeCard({ item }) {
         if (isLiked) {
             favSongs = favSongs.filter(fav => fav._id !== likedItem._id)
             setIsLikedCallback(false)
+            showSuccessMsg(`Song Unliked`)
+
         } else {
             favSongs.push(likedItem)
             setIsLikedCallback(true)
+            showSuccessMsg(`Song Liked`)
+
         }
 
         updatedStations[0].songs = favSongs

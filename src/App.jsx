@@ -9,6 +9,7 @@ import { SearchPage } from './pages/SearchPage.jsx'
 import { StationEdit } from './pages/StationEdit.jsx'
 
 import '../src/styles/main.scss'
+import { UserMsg } from './cmps/support/UserMsg.jsx'
 
 export function App() {
 
@@ -29,6 +30,7 @@ export function App() {
           </Routes>
         </div>
         <Player />
+        <UserMsg></UserMsg>
       </Router>
    
     </div>

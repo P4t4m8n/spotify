@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { setDragObj } from '../../store/actions/app.actions'
 import { saveStation } from '../../store/actions/station.actions'
 import { updateUser } from '../../store/actions/user.actions'
+import { eventBusService, showSuccessMsg } from "../../services/event-bus.service"
 
 export function useDragAndDrop() {
 
@@ -39,6 +39,7 @@ export function useDragAndDrop() {
                 newFrom = await saveStation(newFrom)
                 const idx = userStations.findIndex(station => station._id === newFrom._id)
                 userStations.splice(idx, 1, newFrom)
+                showSuccessMsg(`Song Saved`)
             }
 
             let dropSongs = stationDrop.songs
@@ -49,7 +50,10 @@ export function useDragAndDrop() {
             userStations.splice(idx, 1, savedSation)
             updateUser({ ...user, stations: userStations })
             setDragObj({})
+            showSuccessMsg(`Song Moved`)
+
         } catch (err) {
+            showSuccessMsg(`Unable to move`)
             console.log(err)
         }
     }

@@ -30,7 +30,7 @@ export function AppHeader() {
             await logout()
             setOpen(false)
             navigate('/')
-            console.log('logout')
+            showSuccessMsg(`Logout`)
         }
         catch (err) {
             console.log(err)
