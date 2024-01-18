@@ -88,6 +88,7 @@ export function SongPreview({ station, song, idx, isEdit, onChangePlaylist, onRe
                                 station._id === id ?
                                     <option key={idx} value="same">Current Playlist</option> :
                                     <option key={idx} value={idx}>{station.name}</option>
+                                
                             ))}
                         </select>
                     </li>
